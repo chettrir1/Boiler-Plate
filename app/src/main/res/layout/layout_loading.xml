@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/loadingContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_FFFFFF"
+        android:gravity="center"
+        android:translationZ="1dp"
+        android:visibility="visible">
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/txtLoading"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="8dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/thumb"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:layout_centerInParent="true"
+            android:text="@string/please_wait" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/thumb"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            tools:visibility="visible"
+            android:visibility="gone"
+            android:layout_centerInParent="true"
+            tools:src="@drawable/ic_launcher_background" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtLoading"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_grey_bordered"
+            android:padding="16dp"
+            tools:text="Retry"
+            android:textAllCaps="false"
+            android:minWidth="200dp"
+            android:textColor="@color/black_FF000000"
+            tools:visibility="visible"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+</layout>

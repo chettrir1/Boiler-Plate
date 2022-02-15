@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">App Name</string>
+    <string name="please_wait">Please wait</string>
+    <string name="loading">Loading…</string>
+    <string name="json_exception">Error while parsing result</string>
+    <string name="db_not_available">Constraint issue </string>
+    <string name="invalid_credential">Invalid Credentials</string>
+    <string name="server_error">Server Error</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="internet_conn_fail">No Internet Connection</string>
+    <string name="data_not_available">Data not available.</string>
+    <string name="home">Home</string>
+    <string name="favourite">Favourite</string>
+    <string name="cart">Cart</string>
+    <string name="profile">Profile</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="notification">Notification</string>
+</resources>

@@ -1,0 +1,123 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
+        <item name="colorOnPrimary">@color/colorAccent</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black_FF000000</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+        <item name="actionBarStyle">@style/ActionBarStyle</item>
+        <item name="actionBarTabTextStyle">@style/ActionBar.TitleTextStyle</item>
+        <item name="actionBarTheme">@style/ActionBarTheme</item>
+        <item name="searchViewStyle">@style/CustomSearchViewStyle</item>
+        <item name="android:searchViewStyle">@style/CustomSearchViewStyle</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationStyle</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="CustomSearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <!-- Background for the search query section (e.g. EditText) -->
+        <item name="queryBackground">@drawable/bg_item</item>
+        <!-- Close button icon -->
+        <item name="closeIcon">@drawable/ic_cross_circle_compat</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:textColor">@color/grey_BFC5D2</item>
+        <!-- Search button icon -->
+        <item name="searchIcon">@null</item>
+        <item name="searchHintIcon">@null</item>
+        <item name="android:voiceSearchMode">showVoiceSearchButton|launchRecognizer</item>
+        <!-- Voice search button icon -->
+        <item name="voiceIcon">@android:drawable/ic_btn_speak_now</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+
+    <style name="ToolBarStyle" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="actionMenuTextColor">@color/black_FF2E384D</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textColorPrimary">@color/grey_2E384D</item>
+        <item name="android:textColorSecondary">@color/grey_FFBFC5D2</item>
+        <item name="android:subtitleTextAppearance">@style/Toolbar.SubtitleText</item>
+        <item name="contentInsetStart">0dp</item>
+        <item name="contentInsetStartWithNavigation">0dp</item>
+        <item name="contentInsetLeft">0dp</item>
+        <item name="titleMarginStart">0dp</item>
+        <item name="searchViewStyle">@style/CustomSearchViewStyle</item>
+    </style>
+
+    <style name="ActionBar.TitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/black_2e384d</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="ActionBarTheme" parent="AppTheme">
+        <item name="colorControlNormal">@color/grey_bfc5d2</item>
+    </style>
+
+    <style name="ActionBarStyle" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/white_f4f6fc</item>
+        <item name="android:titleTextStyle">@style/ActionBar.TitleTextStyle</item>
+        <item name="elevation">0dp</item>
+        <!-- Support library compatibility -->
+        <item name="background">@color/white_FFFFFF</item>
+        <item name="titleTextStyle">@style/ActionBar.TitleTextStyle</item>
+    </style>
+
+    <style name="MyToolbarTitleTextAppearance" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:textColor">@color/black_FF2E384D</item>
+    </style>
+
+    <style name="Toolbar.SubtitleText" parent="TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
+        <item name="android:textSize">@dimen/text_size_10</item>
+    </style>
+
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Light">
+        <item name="colorControlHighlight">@color/blue_E0E7FF</item>
+        <item name="android:background">@null</item>
+        <item name="searchViewStyle">@style/CustomSearchViewStyle</item>
+    </style>
+
+    <style name="Menu.TextAppearance" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textColor">@drawable/menu_item_selector</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
+    </style>
+
+    <style name="NavigationDrawerStyle">
+        <item name="android:textSize">15sp</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="itemTextColor">@color/black_2e384d</item>
+    </style>
+
+    <style name="WindowAnimationStyle">
+        <item name="android:windowEnterAnimation">@android:anim/linear_interpolator</item>
+    </style>
+
+    <style name="MyOverflowButtonStyle" parent="ThemeOverlay.MaterialComponents.ActionBar">
+        <item name="iconTint">@color/colorPrimary</item>
+        <item name="itemIconTint">@color/colorPrimary</item>
+    </style>
+
+    <style name="ToolbarIconColor" parent="AppTheme">
+        <item name="android:colorControlNormal">@color/colorPrimary</item>
+    </style>
+
+    <style name="Widget.Custom.NavigationView" parent="Widget.Design.NavigationView">
+        <item name="itemIconTint">@color/white_FFFFFF</item>
+        <item name="itemTextColor">@color/white_FFFFFF</item>
+        <item name="itemBackground">@drawable/bg_round_padded</item>
+    </style>
+
+</resources>

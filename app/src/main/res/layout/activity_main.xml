@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:fitsSystemWindows="true"
+        android:theme="@style/MyOverflowButtonStyle"
+        tools:openDrawer="start">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background_EBEBEB"
+            android:fitsSystemWindows="true">
+
+            <include
+                android:id="@+id/includeToolbar"
+                layout="@layout/toolbar_main"
+                android:layout_width="0dp"
+                android:layout_height="?android:attr/actionBarSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/nsvMain"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@id/bottom_navigation_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/includeToolbar">
+
+                <FrameLayout
+                    android:id="@+id/mainContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </androidx.core.widget.NestedScrollView>
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottom_navigation_view"
+                android:layout_width="0dp"
+                android:layout_height="?android:attr/actionBarSize"
+                android:background="@color/background_EBEBEB"
+                app:itemIconSize="@dimen/spacing_20"
+                app:itemIconTint="@drawable/bg_bottom_navigation"
+                app:itemTextAppearance="@style/Menu.TextAppearance"
+                app:itemTextColor="@drawable/bg_bottom_navigation"
+                app:labelVisibilityMode="labeled"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:menu="@menu/menu_bottom_nav" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigationView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="@color/background_EBEBEB"
+            android:fitsSystemWindows="true"
+            app:itemIconSize="@dimen/spacing_20"
+            app:itemIconTint="@color/colorPrimary"
+            app:itemTextAppearance="@style/Menu.TextAppearance"
+            app:itemTextColor="@color/colorPrimary"
+            app:menu="@menu/menu_main" />
+    </androidx.drawerlayout.widget.DrawerLayout>
+</layout>
