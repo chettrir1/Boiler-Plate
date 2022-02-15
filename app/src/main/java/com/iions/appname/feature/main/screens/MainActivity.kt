@@ -3,7 +3,6 @@ package com.iions.appname.feature.main.screens
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.view.Gravity
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -142,7 +141,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
         binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
         binding.navigationView.setNavigationItemSelectedListener(this)
-//        binding.drawerLayout.useCustomBehavior(Gravity.START)
     }
 
 }
