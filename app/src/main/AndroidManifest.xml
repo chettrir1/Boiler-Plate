@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.iions.appname">
+    package="com.iions.done">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -9,12 +9,12 @@
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name="com.iions.appname.MainApplicationImpl"
+        android:name="com.iions.done.MainApplicationImpl"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.iions.appname.feature.splash.screens.SplashActivity"
+            android:name="com.iions.done.feature.splash.screens.SplashActivity"
             android:exported="true"
             android:configChanges="uiMode|colorMode|orientation"
             android:noHistory="true">
@@ -25,27 +25,27 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.iions.appname.feature.auth.screens.resetpin.ResetPinActivity"
+            android:name="com.iions.done.feature.auth.screens.resetpin.ResetPinActivity"
             android:exported="true"
             android:screenOrientation="@integer/screen_orientation_portrait"
             android:windowSoftInputMode="adjustResize"/>
         <activity
-            android:name="com.iions.appname.feature.auth.screens.requestpin.RequestPinActivity"
+            android:name="com.iions.done.feature.auth.screens.requestpin.RequestPinActivity"
             android:exported="true"
             android:screenOrientation="@integer/screen_orientation_portrait"
             android:windowSoftInputMode="adjustResize"/>
         <activity
-            android:name="com.iions.appname.feature.auth.screens.register.RegisterActivity"
+            android:name="com.iions.done.feature.auth.screens.register.RegisterActivity"
             android:exported="true"
             android:screenOrientation="@integer/screen_orientation_portrait"
             android:windowSoftInputMode="adjustResize"/>
         <activity
-            android:name="com.iions.appname.feature.auth.screens.login.LoginActivity"
+            android:name="com.iions.done.feature.auth.screens.login.LoginActivity"
             android:exported="true"
             android:screenOrientation="@integer/screen_orientation_portrait"
             android:windowSoftInputMode="adjustResize"/>
         <activity
-            android:name="com.iions.appname.feature.main.screens.MainActivity"
+            android:name="com.iions.done.feature.main.screens.MainActivity"
             android:exported="true"
             android:screenOrientation="@integer/screen_orientation_portrait"
             android:windowSoftInputMode="adjustResize"/>

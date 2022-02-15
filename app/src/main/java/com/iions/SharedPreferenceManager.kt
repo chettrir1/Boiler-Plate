@@ -2,7 +2,7 @@ package com.iions
 
 import android.content.Context
 import androidx.core.content.edit
-import com.iions.appname.utils.SharedPreferenceLongLiveData
+import com.iions.done.utils.SharedPreferenceLongLiveData
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -10,6 +10,9 @@ import javax.inject.Singleton
 class SharedPreferenceManager @Inject constructor(var context: Context) {
 
     private var sharedPreferenceLongLiveData: SharedPreferenceLongLiveData? = null
+
+    private val sharedPreferences =
+        context.getSharedPreferences(Constants.PREF_FILE, Context.MODE_PRIVATE)
 
     var userId: Long
         get() = sharedPreferences.getLong(Constants.PREF_USER_ID, 0L)
@@ -26,10 +29,6 @@ class SharedPreferenceManager @Inject constructor(var context: Context) {
     var email: String?
         get() = sharedPreferences.getString(Constants.PREF_EMAIL, "")
         set(value) = sharedPreferences.edit { putString(Constants.PREF_EMAIL, value) }
-
-    private val sharedPreferences =
-        context.getSharedPreferences(Constants.PREF_FILE, Context.MODE_PRIVATE)
-
     var accessToken: String?
         get() = sharedPreferences.getString(Constants.PREF_TOKEN, "")
         set(value) = sharedPreferences.edit { putString(Constants.PREF_TOKEN, value) }

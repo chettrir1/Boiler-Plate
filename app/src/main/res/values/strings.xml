@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">App Name</string>
+    <string name="app_name">D-One</string>
     <string name="please_wait">Please wait</string>
     <string name="loading">Loading…</string>
     <string name="json_exception">Error while parsing result</string>
