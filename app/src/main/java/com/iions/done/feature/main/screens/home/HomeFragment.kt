@@ -2,15 +2,23 @@ package com.iions.done.feature.main.screens.home
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.iions.done.R
 import com.iions.done.base.BaseFragment
 import com.iions.done.databinding.FragmentHomeBinding
+import com.iions.done.feature.main.data.model.BannersResponse
+import com.rosia.utils.archcomponents.Status
+import com.smarteist.autoimageslider.SliderView
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+
+    private val viewModel: HomeViewModel by viewModels()
+
     override fun layout(): Int = R.layout.fragment_home
 
     companion object {
@@ -21,10 +29,64 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Toast.makeText(requireContext(), "Home Fragment", Toast.LENGTH_SHORT).show()
+        viewModel.fetchCategoryList()
+        viewModel.fetchBannerList()
     }
 
     override fun initObservers() {
+        observeCategoryResponse()
+        observeBannerResponse()
     }
 
+    private fun observeCategoryResponse() {
+        viewModel.categoryResponse.observe(this) { response ->
+            when (response.status) {
+                Status.LOADING -> {
+                    super.showLoading(binding.loadingLayout, getString(R.string.please_wait))
+                }
+                Status.COMPLETE -> {
+                    response.data?.let {
+                        val layoutManager =
+                            LinearLayoutManager(
+                                requireContext(),
+                                LinearLayoutManager.HORIZONTAL,
+                                false
+                            )
+                        binding.includeCategory.recyclerView.layoutManager = layoutManager
+                        binding.includeCategory.recyclerView.adapter =
+                            CategoryListAdapter(it.toMutableList()) {}
+                    }
+                    super.showData(binding.loadingLayout)
+                }
+                Status.ERROR -> {
+                    super.showError(binding.loadingLayout, response.error.toString())
+                }
+            }
+        }
+    }
+
+    private fun observeBannerResponse() {
+        viewModel.bannerResponse.observe(this) { response ->
+            when (response.status) {
+                Status.LOADING -> {
+                }
+                Status.COMPLETE -> {
+                    response.data?.let {
+                        setUpBanner(it)
+                    }
+                }
+                Status.ERROR -> {
+                }
+            }
+        }
+    }
+
+    private fun setUpBanner(packs: List<BannersResponse>) {
+        val adapter = SliderAdapter(packs)
+        binding.includeSlider.slider.autoCycleDirection = SliderView.LAYOUT_DIRECTION_LTR
+        binding.includeSlider.slider.setSliderAdapter(adapter)
+        binding.includeSlider.slider.scrollTimeInSec = 3
+        binding.includeSlider.slider.isAutoCycle = true
+        binding.includeSlider.slider.startAutoCycle()
+    }
 }

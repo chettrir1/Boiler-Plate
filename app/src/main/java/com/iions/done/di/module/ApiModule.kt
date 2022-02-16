@@ -51,7 +51,7 @@ object ApiModule {
         sharedPreferenceManager: SharedPreferenceManager
     ): ApiService {
         val retrofit = Retrofit.Builder()
-            .baseUrl("")
+            .baseUrl("https://google.com")
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()

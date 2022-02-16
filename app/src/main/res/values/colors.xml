@@ -8,7 +8,7 @@
 
 
     <color name="white_FFFFFF">#FFFFFF</color>
-    <color name="background_EBEBEB">#FFFFFF</color>
+    <color name="background_EBEBEB">#EBEBEB</color>
     <color name="white_f4f6fc">#f4f6fc</color>
 
     <color name="black_FF000000">#FF000000</color>
@@ -21,6 +21,7 @@
     <color name="black_000000">#000000</color>
     <color name="black_38000000">#38000000</color>
 
+    <color name="grey_636161">#636161</color>
     <color name="grey_69707F">#69707F</color>
     <color name="grey_2E384D">#2E384D</color>
     <color name="grey_882E384D">#882E384D</color>
@@ -37,6 +38,7 @@
     <color name="grey_FFBFC5D2">#FFBFC5D2</color>
     <color name="grey_b0bac9">#b0bac9</color>
     <color name="grey_6d6d6d">#6d6d6d</color>
+    <color name="grey_cdcbcb">#cdcbcb</color>
 
     <color name="bgBorder">#E0E7FF</color>
 

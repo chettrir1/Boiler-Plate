@@ -5,38 +5,44 @@
         android:id="@+id/loadingContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white_FFFFFF"
+        android:background="@color/background_EBEBEB"
         android:gravity="center"
-        android:translationZ="1dp"
+        android:padding="@dimen/spacing_32"
+        android:translationZ="2dp"
         android:visibility="visible">
 
-        <androidx.core.widget.ContentLoadingProgressBar
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/thumb"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            tools:src="@mipmap/ic_launcher"
+            tools:visibility="visible" />
+
+        <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/txtLoading"
             android:layout_centerHorizontal="true"
-            android:layout_margin="8dp"/>
+            android:layout_margin="@dimen/spacing_8"
+            android:indeterminateTint="@color/red_F93838" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txtLoading"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/thumb"
+            android:layout_centerInParent="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
-            android:layout_centerInParent="true"
-            android:text="@string/please_wait" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/thumb"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            tools:visibility="visible"
-            android:visibility="gone"
-            android:layout_centerInParent="true"
-            tools:src="@drawable/ic_launcher_background" />
+            android:layout_marginTop="@dimen/spacing_16"
+            android:fontFamily="@font/roboto_light"
+            android:gravity="center"
+            android:text="@string/please_wait"
+            android:textColor="@color/black_000000"
+            android:textSize="@dimen/text_size_14" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAction"
@@ -44,15 +50,17 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtLoading"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/bg_grey_bordered"
-            android:padding="16dp"
-            tools:text="Retry"
-            android:textAllCaps="false"
+            android:layout_marginTop="@dimen/spacing_16"
+            android:background="@drawable/bg_item_border"
+            android:fontFamily="@font/roboto_medium"
             android:minWidth="200dp"
-            android:textColor="@color/black_FF000000"
-            tools:visibility="visible"
-            android:visibility="gone" />
+            android:padding="@dimen/spacing_16"
+            android:textAllCaps="false"
+            android:textColor="@color/red_F93838"
+            android:textSize="@dimen/text_size_14"
+            android:visibility="gone"
+            tools:text="Retry"
+            tools:visibility="visible" />
 
     </RelativeLayout>
 </layout>
