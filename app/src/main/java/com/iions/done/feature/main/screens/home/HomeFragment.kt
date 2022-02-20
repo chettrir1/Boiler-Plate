@@ -8,11 +8,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.iions.done.R
 import com.iions.done.base.BaseFragment
 import com.iions.done.databinding.FragmentHomeBinding
+import com.iions.done.feature.groceries.GroceryActivity
 import com.iions.done.feature.main.data.model.BannersResponse
+import com.iions.done.feature.resturants.RestaurantActivity
+import com.iions.done.feature.search.screens.SearchActivity
 import com.rosia.utils.archcomponents.Status
 import com.smarteist.autoimageslider.SliderView
 import dagger.hilt.android.AndroidEntryPoint
-
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
@@ -31,6 +33,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.fetchCategoryList()
         viewModel.fetchBannerList()
+        binding.tvSearch.setOnClickListener {
+            SearchActivity.start(requireActivity())
+        }
     }
 
     override fun initObservers() {
@@ -54,7 +59,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                             )
                         binding.includeCategory.recyclerView.layoutManager = layoutManager
                         binding.includeCategory.recyclerView.adapter =
-                            CategoryListAdapter(it.toMutableList()) {}
+                            CategoryListAdapter(it.toMutableList()) {
+                                if (it.name == "Restaurants") {
+                                    RestaurantActivity.start(requireActivity())
+                                } else if (it.name == "Grocery") {
+                                    GroceryActivity.start(requireActivity())
+                                }
+                            }
                     }
                     super.showData(binding.loadingLayout)
                 }

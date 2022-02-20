@@ -18,14 +18,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <include
-                android:id="@+id/include_search"
-                layout="@layout/snippet_search"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_search"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_16"
                 android:layout_marginTop="@dimen/spacing_20"
                 android:layout_marginEnd="@dimen/spacing_16"
+                android:background="@drawable/bg_circular_grey_white"
+                android:drawableStart="@drawable/ic_search"
+                android:drawablePadding="@dimen/spacing_10"
+                android:padding="@dimen/spacing_16"
+                android:text="@string/search_for_anything"
+                android:textColor="@color/black_2e384d"
+                android:textSize="@dimen/text_size_12"
+                app:fontFamily="@font/roboto_regular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -40,7 +47,7 @@
                 android:layout_marginEnd="@dimen/spacing_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/include_search" />
+                app:layout_constraintTop_toBottomOf="@id/tv_search" />
 
             <include
                 android:id="@+id/include_slider"

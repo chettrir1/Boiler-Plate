@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/background_EBEBEB"
-                tools:context=".feature.groceries.GroceryActivity">
+                tools:context=".feature.resturants.RestaurantActivity">
 
                 <include
                     android:id="@+id/include_filter"
@@ -42,8 +42,8 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <include
-                    android:id="@+id/include_slider"
-                    layout="@layout/snippet_home_slider"
+                    android:id="@+id/include_nearby"
+                    layout="@layout/snippet_resturant_nearby"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/spacing_16"
@@ -53,8 +53,20 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/include_filter" />
 
+                <include
+                    android:id="@+id/include_slider"
+                    layout="@layout/snippet_home_slider"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_16"
+                    android:layout_marginTop="@dimen/spacing_16"
+                    android:layout_marginEnd="@dimen/spacing_16"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/include_nearby" />
+
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_grocery"
+                    android:id="@+id/rv_resturant"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/spacing_16"
@@ -69,7 +81,7 @@
                     app:layout_constraintVertical_bias="0.0"
                     app:spanCount="3"
                     tools:itemCount="12"
-                    tools:listitem="@layout/item_grocery" />
+                    tools:listitem="@layout/item_resturant" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>

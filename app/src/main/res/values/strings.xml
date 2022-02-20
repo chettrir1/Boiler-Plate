@@ -55,4 +55,7 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="new_password">New Password</string>
     <string name="forgot_npassword">Forgot\nPassword?</string>
+    <string name="resturants">Resturants</string>
+    <string name="groceries">Groceries</string>
+    <string name="search_for_anything">Search for anything...</string>
 </resources>
