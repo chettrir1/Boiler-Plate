@@ -22,13 +22,19 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".feature.resturants.ResturantActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="@integer/screen_orientation_portrait"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".feature.groceries.GroceryActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="@integer/screen_orientation_portrait"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".feature.search.screens.SearchActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="@integer/screen_orientation_portrait"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".feature.splash.screens.SplashActivity"
             android:configChanges="uiMode|colorMode|orientation"

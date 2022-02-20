@@ -33,7 +33,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
         }
 
         binding.btnRegister.enablePianoEffect().setOnClickListener {
-            VerifyPinActivity.start(this)
+            VerifyPinActivity.start(this, true)
         }
     }
 

@@ -44,11 +44,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        if (!(viewModel.isUserLoggedIn())) {
-//            LoginActivity.start(this)
-//            finish()
-//            return
-//        }
+        if (!(viewModel.isUserLoggedIn())) {
+            LoginActivity.start(this)
+            finish()
+            return
+        }
         setUpNavigationDrawer()
         setSupportActionBar(binding.includeToolbar.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)

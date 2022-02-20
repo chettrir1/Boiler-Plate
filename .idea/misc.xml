@@ -47,8 +47,8 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2954898911353033" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_request_pin.xml" value="0.13179347826086957" />
-        <entry key="app/src/main/res/layout/activity_reset_pin.xml" value="0.13179347826086957" />
+        <entry key="app/src/main/res/layout/activity_request_pin.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_reset_pin.xml" value="0.23889596866290078" />
         <entry key="app/src/main/res/layout/activity_resturant.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.19972826086956522" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.14361702127659576" />

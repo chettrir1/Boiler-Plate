@@ -8,6 +8,7 @@ import com.iions.done.R
 import com.iions.done.base.BaseActivity
 import com.iions.done.databinding.ActivityLoginBinding
 import com.iions.done.feature.auth.screens.register.RegisterActivity
+import com.iions.done.feature.auth.screens.requestpin.RequestPinActivity
 import com.iions.done.feature.main.screens.MainActivity
 import com.iions.done.utils.enablePianoEffect
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,6 +36,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
         binding.btnContinue.enablePianoEffect().setOnClickListener {
             MainActivity.start(this)
+        }
+
+        binding.tvForgotPassword.setOnClickListener {
+            RequestPinActivity.start(this)
         }
     }
 

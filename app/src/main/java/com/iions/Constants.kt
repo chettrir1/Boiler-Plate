@@ -4,6 +4,7 @@ object Constants {
     const val PREF_FILE = "rosia-sales"
     const val PREF_TOKEN = "access_token"
     const val PREF_REFRESH_TOKEN = "refresh_token"
+    const val IS_NEW_USER = "new_user"
     const val DB_NAME = "app.db"
 
     /*preferences*/

@@ -50,4 +50,9 @@
     <string name="cancel">Cancel</string>
     <string name="are_you_sure_you_want_to_logout">Are you sure you want to logout?</string>
     <string name="alert">Alert!</string>
+    <string name="btn_continue">Continue</string>
+    <string name="i_already_have_a_pin">I already have a pin</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="new_password">New Password</string>
+    <string name="forgot_npassword">Forgot\nPassword?</string>
 </resources>
