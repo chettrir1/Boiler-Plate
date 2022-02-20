@@ -30,6 +30,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding.tvCreateAccount.setOnClickListener {
             RegisterActivity.start(this)
         }
