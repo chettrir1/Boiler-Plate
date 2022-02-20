@@ -18,4 +18,31 @@
     <string name="notification">Notification</string>
     <string name="categories">Categories</string>
     <string name="see_all">See All</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="create_an_account">Create an Account</string>
+    <string name="i_already_have_an_account">I already have an Account</string>
+    <string name="enter_your_phone_number">Enter your phone number</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="enter_your_email_address">Enter your email address</string>
+    <string name="email_address">Email Address</string>
+    <string name="enter_your_full_name">Enter your full name</string>
+    <string name="your_name">Your Name</string>
+    <string name="register_an_account">Register\nan Account</string>
+    <string name="type_your_phone_number">Type your phone number</string>
+    <string name="username">Username</string>
+    <string name="login">Login</string>
+    <string name="verify_mobile_number">Verify\nMobile Number</string>
+    <string name="enter_a_4_digit_pin_sent_to_your_phone_number">Enter a 4-Digit Pin sent to your phone number</string>
+    <string name="order_history">Order History</string>
+    <string name="my_favourites">My Favourites</string>
+    <string name="all_categories">All Categories</string>
+    <string name="my_cart">My Cart</string>
+    <string name="recommended_products">Recommended Products</string>
+    <string name="my_profile">My Profile</string>
+    <string name="history">History</string>
+    <string name="take_a_photo">Camera</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

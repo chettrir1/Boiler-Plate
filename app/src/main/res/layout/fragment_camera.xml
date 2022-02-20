@@ -11,13 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white_FFFFFF"
-        tools:context=".feature.main.screens.favourite.FavouriteFragment">
+        tools:context=".feature.main.screens.camera.CameraFragment">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
-            android:text="Favourite"
+            android:text="Camera"
             android:textColor="@color/black_2e384d"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

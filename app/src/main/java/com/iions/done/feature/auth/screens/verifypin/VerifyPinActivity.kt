@@ -1,4 +1,4 @@
-package com.iions.done.feature.auth.screens.login
+package com.iions.done.feature.auth.screens.verifypin
 
 import android.app.Activity
 import android.content.Intent
@@ -6,34 +6,31 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import com.iions.done.R
 import com.iions.done.base.BaseActivity
-import com.iions.done.databinding.ActivityLoginBinding
-import com.iions.done.feature.auth.screens.register.RegisterActivity
+import com.iions.done.databinding.ActivityVerifyPinBinding
 import com.iions.done.feature.main.screens.MainActivity
 import com.iions.done.utils.enablePianoEffect
+import com.iions.done.utils.startResendTimer
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginActivity : BaseActivity<ActivityLoginBinding>() {
+class VerifyPinActivity : BaseActivity<ActivityVerifyPinBinding>() {
 
     companion object {
         fun start(activity: Activity) {
-            val intent = Intent(activity, LoginActivity::class.java)
+            val intent = Intent(activity, VerifyPinActivity::class.java)
             activity.startActivity(intent)
             activity.finish()
         }
     }
 
-    private val viewModel: LoginViewModel by viewModels()
+    private val viewModel: VerifyPinViewModel by viewModels()
 
-    override fun layout() = R.layout.activity_login
+    override fun layout() = R.layout.activity_verify_pin
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding.tvCreateAccount.setOnClickListener {
-            RegisterActivity.start(this)
-        }
-
-        binding.btnContinue.enablePianoEffect().setOnClickListener {
+        startResendTimer(binding.btnResend)
+        binding.btnVerify.enablePianoEffect().setOnClickListener {
             MainActivity.start(this)
         }
     }

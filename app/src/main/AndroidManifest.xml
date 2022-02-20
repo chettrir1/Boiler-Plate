@@ -59,6 +59,11 @@
             android:exported="true"
             android:screenOrientation="@integer/screen_orientation_portrait"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".feature.auth.screens.verifypin.VerifyPinActivity"
+            android:exported="true"
+            android:screenOrientation="@integer/screen_orientation_portrait"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

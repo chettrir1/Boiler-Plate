@@ -3,7 +3,7 @@
     <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryVariant">@color/background_EBEBEB</item>
         <item name="colorOnPrimary">@color/colorAccent</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -16,6 +16,7 @@
         <item name="searchViewStyle">@style/CustomSearchViewStyle</item>
         <item name="android:searchViewStyle">@style/CustomSearchViewStyle</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationStyle</item>
+        <item name="android:windowDisablePreview">true</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
@@ -118,6 +119,17 @@
         <item name="itemIconTint">@color/white_FFFFFF</item>
         <item name="itemTextColor">@color/white_FFFFFF</item>
         <item name="itemBackground">@drawable/bg_round_padded</item>
+    </style>
+
+    <style name="CustomButtonFilled" parent="Widget.AppCompat.Button.Borderless.Colored">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="helperTextEnabled">false</item>
+        <item name="background">@color/red_F93838</item>
+        <item name="cornerRadius">@dimen/spacing_24</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Widget.Button</item>
+        <item name="android:textColor">@color/white_FFFFFF</item>
     </style>
 
 </resources>

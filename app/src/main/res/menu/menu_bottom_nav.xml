@@ -3,24 +3,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-<group android:checkableBehavior="single">
-    <item
-        android:id="@+id/action_home"
-        android:icon="@drawable/ic_nav_home"
-        android:title="@string/home" />
-    <item
-        android:id="@+id/action_favourite"
-        android:icon="@drawable/ic_nav_favourite"
-        android:title="@string/favourite" />
-    <item
-        android:id="@+id/action_cart"
-        android:icon="@drawable/ic_nav_cart"
-        android:title="@string/cart" />
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/action_home"
+            android:icon="@drawable/ic_nav_home"
+            android:title="@string/home" />
+        <item
+            android:id="@+id/action_history"
+            android:icon="@drawable/ic_nav_history"
+            android:title="@string/history" />
 
-    <item
-        android:id="@+id/action_profile"
-        android:icon="@drawable/ic_nav_profile"
-        android:title="@string/profile" />
+        <item
+            android:id="@+id/action_camera"
+            android:icon="@drawable/ic_nav_camera"
+            android:title="@string/take_a_photo" />
+        <item
+            android:id="@+id/action_cart"
+            android:icon="@drawable/ic_nav_cart"
+            android:title="@string/cart" />
+
+        <item
+            android:id="@+id/action_profile"
+            android:icon="@drawable/ic_nav_profile"
+            android:title="@string/profile" />
     </group>
 
 </menu>

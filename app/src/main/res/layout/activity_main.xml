@@ -64,6 +64,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@color/background_EBEBEB"
+            app:headerLayout="@layout/snippet_home_nav_header"
             android:fitsSystemWindows="true"
             app:itemIconSize="@dimen/spacing_20"
             app:itemIconTint="@color/colorPrimary"

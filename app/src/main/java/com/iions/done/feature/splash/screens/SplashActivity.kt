@@ -1,15 +1,21 @@
 package com.iions.done.feature.splash.screens
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
+import android.view.WindowInsets
+import android.view.WindowInsetsController
+import android.view.WindowManager
 import androidx.constraintlayout.motion.widget.MotionLayout
 import com.iions.done.R
 import com.iions.done.base.BaseActivity
 import com.iions.done.databinding.ActivitySplashBinding
 import com.iions.done.feature.main.screens.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_splash.*
 
 @SuppressLint("CustomSplashScreen")
+@AndroidEntryPoint
 class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
     override fun layout() = R.layout.activity_splash

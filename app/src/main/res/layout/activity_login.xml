@@ -1,15 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".feature.auth.screens.login.LoginActivity">
+        android:background="@color/background_EBEBEB"
+        android:fillViewport="true">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".feature.auth.screens.login.LoginActivity">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_logo"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/spacing_30"
+                android:layout_marginTop="@dimen/spacing_80"
+                android:layout_marginEnd="@dimen/spacing_30"
+                app:layout_constraintDimensionRatio="5:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_toolbar_logo" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_title_username"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_30"
+                android:layout_marginTop="?android:attr/actionBarSize"
+                android:layout_marginEnd="@dimen/spacing_30"
+                android:text="@string/username"
+                android:textColor="@color/black_000000"
+                android:textSize="@dimen/text_size_14"
+                app:fontFamily="@font/roboto_medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_logo" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_username"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/grey_8798AD"
+                android:drawableStart="@drawable/ic_username"
+                android:drawablePadding="@dimen/spacing_8"
+                android:hint="@string/type_your_phone_number"
+                android:inputType="number"
+                android:textColor="@color/black_000000"
+                android:textColorHint="@color/grey_636161"
+                android:textSize="@dimen/text_size_14"
+                app:fontFamily="@font/roboto_light"
+                app:layout_constraintEnd_toEndOf="@id/tv_title_username"
+                app:layout_constraintStart_toStartOf="@id/tv_title_username"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title_username" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_title_password"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_30"
+                android:layout_marginTop="@dimen/spacing_16"
+                android:layout_marginEnd="@dimen/spacing_30"
+                android:text="@string/password"
+                android:textColor="@color/black_000000"
+                android:textSize="@dimen/text_size_14"
+                app:fontFamily="@font/roboto_medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_username" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_password"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/grey_8798AD"
+                android:drawableStart="@drawable/ic_password"
+                android:drawablePadding="@dimen/spacing_8"
+                android:hint="@string/enter_your_password"
+                android:inputType="textPassword"
+                android:textColor="@color/black_000000"
+                android:textColorHint="@color/grey_636161"
+                android:textSize="@dimen/text_size_14"
+                app:fontFamily="@font/roboto_light"
+                app:layout_constraintEnd_toEndOf="@id/tv_title_password"
+                app:layout_constraintStart_toStartOf="@id/tv_title_password"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title_password" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_forgot_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_8"
+                android:text="@string/forgot_password"
+                android:textColor="@color/black_000000"
+                android:textSize="@dimen/text_size_14"
+                app:fontFamily="@font/roboto_medium"
+                app:layout_constraintEnd_toEndOf="@+id/et_password"
+                app:layout_constraintTop_toBottomOf="@+id/et_password" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_continue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_24"
+                android:background="@drawable/bg_button_circular_red"
+                android:text="@string/login"
+                app:layout_constraintEnd_toEndOf="@+id/tv_title_username"
+                app:layout_constraintStart_toStartOf="@+id/tv_title_username"
+                app:layout_constraintTop_toBottomOf="@+id/tv_forgot_password" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_create_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_48"
+                android:drawableEnd="@drawable/ic_auth_arrow"
+                android:drawablePadding="@dimen/spacing_8"
+                android:gravity="center_vertical"
+                android:padding="@dimen/spacing_8"
+                android:text="@string/create_an_account"
+                android:textColor="@color/black_000000"
+                android:textSize="@dimen/text_size_14"
+                app:fontFamily="@font/roboto_regular"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_continue" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>

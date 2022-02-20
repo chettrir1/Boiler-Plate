@@ -13,8 +13,10 @@ import com.iions.SharedPreferenceManager
 import com.iions.done.R
 import com.iions.done.base.BaseActivity
 import com.iions.done.databinding.ActivityMainBinding
+import com.iions.done.feature.auth.screens.login.LoginActivity
+import com.iions.done.feature.main.screens.camera.CameraFragment
 import com.iions.done.feature.main.screens.cart.CartFragment
-import com.iions.done.feature.main.screens.favourite.FavouriteFragment
+import com.iions.done.feature.main.screens.history.HistoryFragment
 import com.iions.done.feature.main.screens.home.HomeFragment
 import com.iions.done.feature.main.screens.profile.ProfileFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,13 +41,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
     override fun layout() = R.layout.activity_main
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
-        //        if (!(viewModel.isUserLoggedIn())) {
-//            startActivity(LoginActivity.start(this))
-//            finish()
-//            return
-//        }
+        if (!(viewModel.isUserLoggedIn())) {
+            LoginActivity.start(this)
+            finish()
+            return
+        }
         setUpNavigationDrawer()
         setSupportActionBar(binding.includeToolbar.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
@@ -62,8 +63,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
                     addFragment(fragment)
                     return@setOnItemSelectedListener true
                 }
-                R.id.action_favourite -> {
-                    val fragment = FavouriteFragment.getInstance()
+                R.id.action_history -> {
+                    val fragment = HistoryFragment.getInstance()
+                    addFragment(fragment)
+                    return@setOnItemSelectedListener true
+                }
+                R.id.action_camera -> {
+                    val fragment = CameraFragment.getInstance()
                     addFragment(fragment)
                     return@setOnItemSelectedListener true
                 }

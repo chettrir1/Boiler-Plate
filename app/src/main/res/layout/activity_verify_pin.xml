@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_EBEBEB"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".feature.auth.screens.verifypin.VerifyPinActivity">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_30"
+                android:layout_marginTop="@dimen/spacing_48"
+                android:layout_marginEnd="@dimen/spacing_30"
+                android:text="@string/verify_mobile_number"
+                android:textColor="@color/black_000000"
+                android:textSize="@dimen/text_size_24"
+                app:fontFamily="@font/roboto_bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_enter_pin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_48"
+                android:gravity="center_vertical"
+                android:padding="@dimen/spacing_8"
+                android:text="@string/enter_a_4_digit_pin_sent_to_your_phone_number"
+                android:textColor="@color/grey_636161"
+                android:textSize="@dimen/text_size_14"
+                app:fontFamily="@font/roboto_regular"
+                app:layout_constraintEnd_toEndOf="@+id/textView"
+                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <com.chaos.view.PinView
+                android:id="@+id/et_pin"
+                style="@style/PinWidget.PinView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:cursorVisible="true"
+                android:inputType="number"
+                android:padding="@dimen/spacing_16"
+                android:textColor="@color/black_000000"
+                android:textSize="@dimen/text_size_16"
+                android:fontFamily="@font/roboto_regular"
+                app:cursorColor="@color/red_F93838"
+                app:cursorWidth="@dimen/spacing_1"
+                app:hideLineWhenFilled="true"
+                app:itemCount="4"
+                app:itemHeight="?android:attr/actionBarSize"
+                app:itemRadius="@dimen/spacing_8"
+                app:itemSpacing="@dimen/spacing_16"
+                app:itemWidth="?android:attr/actionBarSize"
+                app:layout_constraintEnd_toEndOf="@id/tv_enter_pin"
+                app:layout_constraintStart_toStartOf="@id/tv_enter_pin"
+                app:layout_constraintTop_toBottomOf="@+id/tv_enter_pin"
+                app:lineColor="@color/grey_636161"
+                app:lineWidth="@dimen/spacing_1"
+                app:viewType="rectangle" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_resend"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_48"
+                android:background="@drawable/bg_button_circular_grey"
+                android:text="Resend (59s)"
+                app:layout_constraintEnd_toEndOf="@+id/tv_enter_pin"
+                app:layout_constraintStart_toStartOf="@+id/tv_enter_pin"
+                app:layout_constraintTop_toBottomOf="@+id/et_pin" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_verify"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_24"
+                android:background="@drawable/bg_button_circular_red"
+                android:text="Verify Mobile"
+                app:layout_constraintEnd_toEndOf="@+id/btn_resend"
+                app:layout_constraintStart_toStartOf="@+id/btn_resend"
+                app:layout_constraintTop_toBottomOf="@+id/btn_resend" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>
