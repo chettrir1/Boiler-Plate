@@ -10,37 +10,25 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background_EBEBEB"
-        android:fillViewport="true"
-        tools:context=".feature.main.screens.home.HomeFragment">
+        android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/background_EBEBEB"
+            tools:context=".feature.groceries.GroceryActivity">
 
             <include
-                android:id="@+id/include_search"
-                layout="@layout/snippet_search"
+                android:id="@+id/include_filter"
+                layout="@layout/snippet_filter"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_16"
-                android:layout_marginTop="@dimen/spacing_20"
+                android:layout_marginTop="@dimen/spacing_16"
                 android:layout_marginEnd="@dimen/spacing_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <include
-                android:id="@+id/include_category"
-                layout="@layout/snippet_home_category"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_16"
-                android:layout_marginTop="@dimen/spacing_20"
-                android:layout_marginEnd="@dimen/spacing_16"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/include_search" />
 
             <include
                 android:id="@+id/include_slider"
@@ -48,22 +36,30 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_16"
-                android:layout_marginTop="@dimen/spacing_20"
+                android:layout_marginTop="@dimen/spacing_16"
                 android:layout_marginEnd="@dimen/spacing_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/include_category" />
+                app:layout_constraintTop_toBottomOf="@id/include_filter" />
 
-            <include
-                android:id="@+id/loadingLayout"
-                layout="@layout/layout_loading"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_grocery"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_16"
+                android:layout_marginTop="@dimen/spacing_8"
+                android:layout_marginEnd="@dimen/spacing_16"
+                android:layout_marginBottom="@dimen/spacing_16"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:visibility="gone" />
+                app:layout_constraintTop_toBottomOf="@id/include_slider"
+                app:layout_constraintVertical_bias="0.0"
+                app:spanCount="3"
+                tools:itemCount="12"
+                tools:listitem="@layout/item_grocery" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

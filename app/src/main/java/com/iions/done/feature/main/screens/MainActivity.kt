@@ -19,6 +19,7 @@ import com.iions.done.feature.main.screens.cart.CartFragment
 import com.iions.done.feature.main.screens.history.HistoryFragment
 import com.iions.done.feature.main.screens.home.HomeFragment
 import com.iions.done.feature.main.screens.profile.ProfileFragment
+import com.iions.done.utils.alertdialog.showAlert
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.toolbar_main.view.*
 import javax.inject.Inject
@@ -35,6 +36,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
         fun start(activity: Activity) {
             val intent = Intent(activity, MainActivity::class.java)
             activity.startActivity(intent)
+            activity.finish()
         }
     }
 
@@ -42,11 +44,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (!(viewModel.isUserLoggedIn())) {
-            LoginActivity.start(this)
-            finish()
-            return
-        }
+//        if (!(viewModel.isUserLoggedIn())) {
+//            LoginActivity.start(this)
+//            finish()
+//            return
+//        }
         setUpNavigationDrawer()
         setSupportActionBar(binding.includeToolbar.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
@@ -124,10 +126,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        binding.drawerLayout.closeDrawer(GravityCompat.START)
         when (item.itemId) {
             R.id.action_home -> {
                 binding.drawerLayout.closeDrawer(GravityCompat.START)
+            }
+
+            R.id.action_logout -> {
+                showAlertDialog(
+                    getString(R.string.alert),
+                    getString(R.string.are_you_sure_you_want_to_logout)
+                )
             }
             else -> {
                 binding.drawerLayout.closeDrawer(GravityCompat.START)
@@ -149,4 +157,19 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
         binding.navigationView.setNavigationItemSelectedListener(this)
     }
 
+    private fun showAlertDialog(title: String, message: String) {
+        showAlert(
+            title = title,
+            message = message,
+            imageRes = null,
+            buttons = arrayOf(getString(R.string.logout), getString(R.string.cancel)),
+            handler = { index ->
+                when (index) {
+                    0 -> {
+                    }
+                    else -> Unit
+                }
+            }
+        )
+    }
 }

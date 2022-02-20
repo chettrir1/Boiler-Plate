@@ -19,7 +19,6 @@ class VerifyPinActivity : BaseActivity<ActivityVerifyPinBinding>() {
         fun start(activity: Activity) {
             val intent = Intent(activity, VerifyPinActivity::class.java)
             activity.startActivity(intent)
-            activity.finish()
         }
     }
 

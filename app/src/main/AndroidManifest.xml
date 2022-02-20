@@ -21,6 +21,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".feature.resturants.ResturantActivity"
+            android:exported="true" />
+        <activity
+            android:name=".feature.groceries.GroceryActivity"
+            android:exported="true" />
+        <activity
             android:name=".feature.search.screens.SearchActivity"
             android:exported="true" />
         <activity
@@ -52,6 +58,7 @@
         <activity
             android:name=".feature.auth.screens.login.LoginActivity"
             android:exported="true"
+            android:noHistory="true"
             android:screenOrientation="@integer/screen_orientation_portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity

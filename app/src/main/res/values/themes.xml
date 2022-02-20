@@ -132,4 +132,11 @@
         <item name="android:textColor">@color/white_FFFFFF</item>
     </style>
 
+    <style name="CleanAlertDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/in_enter_slide_up</item>
+        <item name="android:windowExitAnimation">@anim/in_exit_fade</item>
+        <item name="android:windowShowAnimation">@anim/in_enter_slide_up</item>
+        <item name="android:windowHideAnimation">@anim/in_exit_fade</item>
+    </style>
+
 </resources>

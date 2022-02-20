@@ -5,16 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/background_EBEBEB"
-    android:paddingStart="0dp"
-    android:paddingEnd="@dimen/spacing_16">
+    android:paddingStart="0dp">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cv_cart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_16"
-        android:layout_marginTop="@dimen/spacing_8"
-        android:layout_marginBottom="@dimen/spacing_8"
+        android:layout_marginTop="@dimen/spacing_12"
+        android:layout_marginBottom="@dimen/spacing_12"
         android:clipToPadding="false"
         app:cardBackgroundColor="@color/white_FFFFFF"
         app:cardCornerRadius="@dimen/spacing_10"
@@ -34,13 +32,15 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_10"
         android:layout_marginTop="@dimen/spacing_8"
+        android:layout_marginEnd="@dimen/spacing_8"
         android:textColor="@color/black_000000"
         android:textSize="@dimen/text_size_14"
         app:fontFamily="@font/roboto_medium"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:layout_constraintStart_toEndOf="@+id/cv_cart"
         app:layout_constraintTop_toTopOf="@id/cv_cart"
         tools:text="Garam Red Chowmein" />
@@ -158,4 +158,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/tv_title"
         app:layout_constraintStart_toStartOf="@id/cv_cart" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_title"
+        app:srcCompat="@drawable/ic_delete"
+        app:tint="@color/red_F93838" />
 </androidx.constraintlayout.widget.ConstraintLayout>

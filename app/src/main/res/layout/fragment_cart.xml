@@ -10,18 +10,22 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white_FFFFFF"
+        android:background="@color/background_EBEBEB"
         tools:context=".feature.main.screens.cart.CartFragment">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:gravity="center"
-            android:text="Cart"
-            android:textColor="@color/black_2e384d"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_cart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_16"
+            android:layout_marginEnd="@dimen/spacing_16"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:itemCount="3"
+            tools:listitem="@layout/item_cart" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
