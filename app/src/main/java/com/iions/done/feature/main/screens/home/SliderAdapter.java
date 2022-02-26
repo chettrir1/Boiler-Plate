@@ -9,7 +9,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 
 import com.bumptech.glide.Glide;
 import com.iions.done.R;
-import com.iions.done.feature.main.data.model.BannersResponse;
+import com.iions.done.feature.main.data.model.BannerResponse;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
 import java.util.List;
@@ -17,10 +17,10 @@ import java.util.List;
 public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapterViewHolder> {
 
     // list for storing urls of images.
-    private final List<BannersResponse> mSliderItems;
+    private final List<BannerResponse> mSliderItems;
 
     // Constructor
-    public SliderAdapter(List<BannersResponse> sliderDataArrayList) {
+    public SliderAdapter(List<BannerResponse> sliderDataArrayList) {
         this.mSliderItems = sliderDataArrayList;
     }
 
@@ -37,7 +37,7 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
     @Override
     public void onBindViewHolder(SliderAdapterViewHolder viewHolder, final int position) {
 
-        final BannersResponse sliderItem = mSliderItems.get(position);
+        final BannerResponse sliderItem = mSliderItems.get(position);
 
         // Glide is use to load image
         // from url in your imageview.

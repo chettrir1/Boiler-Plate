@@ -7,12 +7,12 @@ import com.iions.done.R
 import com.iions.done.base.BaseAdapter
 import com.iions.done.base.BaseViewHolder
 import com.iions.done.databinding.ItemHomeCategoriesBinding
-import com.iions.done.feature.main.data.model.CategoriesResponse
+import com.iions.done.feature.main.data.model.CategoryResponse
 
 class CategoryListAdapter(
-    private var dataList: MutableList<CategoriesResponse>,
-    private val onItemSelectedListener: (CategoriesResponse) -> Unit
-) : BaseAdapter<CategoriesResponse, CategoryListAdapter.CategoryListViewHolder>() {
+    private var dataList: MutableList<CategoryResponse>,
+    private val onItemSelectedListener: (CategoryResponse) -> Unit
+) : BaseAdapter<CategoryResponse, CategoryListAdapter.CategoryListViewHolder>() {
 
     override fun getViewHolder(binding: ViewDataBinding, viewType: Int): CategoryListViewHolder {
         return CategoryListViewHolder(binding as ItemHomeCategoriesBinding)
@@ -30,15 +30,15 @@ class CategoryListAdapter(
         return dataList.size
     }
 
-    fun updateData(list: MutableList<CategoriesResponse>) {
+    fun updateData(list: MutableList<CategoryResponse>) {
         this.dataList = list
         notifyDataSetChanged()
     }
 
     inner class CategoryListViewHolder(private var binding: ItemHomeCategoriesBinding) :
-        BaseViewHolder<CategoriesResponse>(binding) {
+        BaseViewHolder<CategoryResponse>(binding) {
         @SuppressLint("SetTextI18n")
-        override fun bindView(obj: CategoriesResponse) {
+        override fun bindView(obj: CategoryResponse) {
             super.bindView(obj)
             binding.tvTitle.text = obj.name
             Glide.with(binding.root.context).load(obj.image)

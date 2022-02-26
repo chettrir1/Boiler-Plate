@@ -5,7 +5,6 @@ import com.iions.done.remote.helper.BaseResponse
 import io.reactivex.Single
 import io.reactivex.annotations.NonNull
 
-
 class NotNullMapper<T> : io.reactivex.functions.Function<BaseResponse<T>, Single<T>> {
     @Throws(Exception::class)
     override fun apply(@NonNull baseResponse: BaseResponse<T>): Single<T> {
@@ -13,7 +12,7 @@ class NotNullMapper<T> : io.reactivex.functions.Function<BaseResponse<T>, Single
         return if (baseResponse.status!!) {
             val item = baseResponse.response
             if (item == null)
-                Single.error(FailedResponseException(-1, baseResponse.statusMessage.toString()))
+                Single.error(FailedResponseException(-1, baseResponse.message.toString()))
             else
                 Single.just(item)
         } else {
@@ -28,7 +27,7 @@ inline fun <reified T> notNullMapper(baseResponse: BaseResponse<T>): T {
         item?.let {
             return@let it
         }.orElse {
-            throw FailedResponseException(-1, baseResponse.statusMessage.toString())
+            throw FailedResponseException(-1, baseResponse.message.toString())
         }
     } else {
         throw FailedResponseException(-1, "Server Error!")

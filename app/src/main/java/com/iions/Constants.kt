@@ -6,6 +6,7 @@ object Constants {
     const val PREF_REFRESH_TOKEN = "refresh_token"
     const val IS_NEW_USER = "new_user"
     const val DB_NAME = "app.db"
+    const val GENERIC_ID = "id"
 
     /*preferences*/
     const val PREF_ROLE = "user_role"
@@ -28,4 +29,28 @@ object Constants {
     const val USER_ROLE_ID = "role_id"
     const val USER_ROLE = "role"
     const val USER_PROFILE_IMAGE = "profile_image"
+
+    /*grocery*/
+    const val TBL_GROCERY = "grocery"
+    const val GROCERY_ID = "grocery_id"
+    const val GROCERY_SKU = "grocery_sku"
+    const val GROCERY_NAME = "grocery_name"
+    const val BRAND_ID = "grocery_brand_id"
+    const val GROCERY_COVER_IMAGE = "grocery_cover_image"
+    const val GROCERY_CATEGORY_ID = "grocery_category_id"
+    const val GROCERY_HAS_VARIANT = "grocery_has_variant"
+    const val GROCERY_PARENT_ID = "grocery_parent_id"
+
+    /*brand*/
+    const val TBL_GROCERY_BRAND = "grocery_brand"
+    const val GROCERY_BRAND_ID = "grocery_brand_id"
+    const val GROCERY_BRAND_NAME = "grocery_brand_name"
+    const val GROCERY_BRAND_LOGO = "grocery_brand_logo"
+
+    /*category*/
+    const val TBL_CATEGORY = "category"
+    const val CATEGORY_NAME = "category_name"
+    const val CATEGORY_ICON = "category_icon"
+
+    /*restaurant*/
 }

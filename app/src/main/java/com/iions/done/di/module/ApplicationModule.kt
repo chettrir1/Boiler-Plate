@@ -16,6 +16,7 @@ import kotlinx.coroutines.MainCoroutineDispatcher
 @InstallIn(SingletonComponent::class)
 @Module(
     includes = [
+        (SplashModule::class),
         (AuthModule::class),
         (MainModule::class)
     ]

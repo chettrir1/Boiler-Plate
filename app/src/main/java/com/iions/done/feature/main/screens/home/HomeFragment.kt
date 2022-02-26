@@ -9,10 +9,10 @@ import com.iions.done.R
 import com.iions.done.base.BaseFragment
 import com.iions.done.databinding.FragmentHomeBinding
 import com.iions.done.feature.groceries.GroceryActivity
-import com.iions.done.feature.main.data.model.BannersResponse
+import com.iions.done.feature.main.data.model.BannerResponse
 import com.iions.done.feature.resturants.RestaurantActivity
 import com.iions.done.feature.search.screens.SearchActivity
-import com.rosia.utils.archcomponents.Status
+import com.iions.done.utils.archcomponents.Status
 import com.smarteist.autoimageslider.SliderView
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -92,7 +92,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
     }
 
-    private fun setUpBanner(packs: List<BannersResponse>) {
+    private fun setUpBanner(packs: List<BannerResponse>) {
         val adapter = SliderAdapter(packs)
         binding.includeSlider.slider.autoCycleDirection = SliderView.LAYOUT_DIRECTION_LTR
         binding.includeSlider.slider.setSliderAdapter(adapter)

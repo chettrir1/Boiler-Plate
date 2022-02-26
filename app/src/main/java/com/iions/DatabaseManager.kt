@@ -10,4 +10,8 @@ class DatabaseManager @Inject constructor(context: Context) {
     private val instance = MainDatabase.getInstance(context)
 
     fun getInstance(): MainDatabase = instance
+    fun getUserDao() = instance.getUsersDao()
+    fun getCategoryDao() = instance.getCategoryDao()
+    fun getGroceryDao() = instance.getGroceryDao()
+    fun getGroceryBrandDao() = instance.getGroceryBrandDao()
 }
