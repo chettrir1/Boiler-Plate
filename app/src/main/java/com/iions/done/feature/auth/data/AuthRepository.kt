@@ -22,25 +22,27 @@ interface AuthRepository {
     }
 
     interface Remote {
-        suspend fun authenticateUser(
-            username: String,
-            password: String,
-            apkVersionName: String,
-            firebaseToken: String?
-        ): LoginResponse?
+//        suspend fun authenticateUser(
+//            username: String,
+//            password: String,
+//            apkVersionName: String,
+//            firebaseToken: String?
+//        ): LoginResponse?
 
+        suspend fun loginWithPhone(username: String): LoginResponse?
         suspend fun requestPin(phoneNumber: String): RequestPinResponse
         suspend fun requestResetPin(resetPinRequestModel: ResetPinRequestModel): ResetPinResponse
     }
 
     fun getPhoneNumber(): String
-    suspend fun authenticateUser(
-        username: String,
-        password: String,
-        apkVersionName: String,
-        firebaseToken: String?
-    ): LoginResponse?
+//    suspend fun authenticateUser(
+//        username: String,
+//        password: String,
+//        apkVersionName: String,
+//        firebaseToken: String?
+//    ): LoginResponse?
 
+    suspend fun loginWithPhone(username: String): LoginResponse?
     suspend fun requestPin(phoneNumber: String): RequestPinResponse
     suspend fun requestResetPin(resetPinRequestModel: ResetPinRequestModel): ResetPinResponse
     fun getLoginUserId(): Int

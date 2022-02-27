@@ -52,6 +52,6 @@
             app:layout_constraintTop_toBottomOf="@id/tv_categories"
             app:spanCount="4"
             tools:itemCount="1"
-            tools:listitem="@layout/item_home_categories" />
+            tools:listitem="@layout/item_home_module" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -3,8 +3,7 @@ package com.iions.done.feature.main.screens.home
 import android.app.Application
 import androidx.lifecycle.*
 import com.iions.done.feature.main.data.MainRepository
-import com.iions.done.feature.main.data.model.BannerResponse
-import com.iions.done.feature.main.data.model.CategoryResponse
+import com.iions.done.feature.main.data.model.*
 import com.rosia.utils.archcomponents.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.cancel
@@ -17,9 +16,18 @@ class HomeViewModel @Inject constructor(
     private val repository: MainRepository
 ) : AndroidViewModel(app), LifecycleObserver {
 
-    private val categoryUseCase = MutableLiveData<Response<List<CategoryResponse>>>()
-    val categoryResponse: LiveData<Response<List<CategoryResponse>>> =
+    private val categoryUseCase = MutableLiveData<Response<List<ModuleResponse>>>()
+    val categoryResponse: LiveData<Response<List<ModuleResponse>>> =
         categoryUseCase
+
+    private val groceryUseCase = MutableLiveData<Response<List<GroceryResponse>>>()
+    val groceryResponse: LiveData<Response<List<GroceryResponse>>> =
+        groceryUseCase
+
+    private val groceryCategoryUseCase = MutableLiveData<Response<List<GroceryCategoryResponse>>>()
+    val groceryCategoryResponse: LiveData<Response<List<GroceryCategoryResponse>>> =
+        groceryCategoryUseCase
+
 
     private val bannerUseCase = MutableLiveData<Response<List<BannerResponse>>>()
     val bannerResponse: LiveData<Response<List<BannerResponse>>> =
@@ -31,16 +39,44 @@ class HomeViewModel @Inject constructor(
         super.onCleared()
     }
 
-    fun fetchCategoryList() {
+    fun fetchModuleList() {
         viewModelScope.launch {
             categoryUseCase.value = Response.loading()
             try {
                 categoryUseCase.value = Response.complete(
-                    repository.fetchCategoryList()
+                    repository.fetchModuleList()
                 )
             } catch (error: Exception) {
                 error.printStackTrace()
                 categoryUseCase.value = Response.error(error)
+            }
+        }
+    }
+
+    fun fetchGroceryCategoryList() {
+        viewModelScope.launch {
+            groceryCategoryUseCase.value = Response.loading()
+            try {
+                groceryCategoryUseCase.value = Response.complete(
+                    repository.fetchGroceryCategoryList()
+                )
+            } catch (error: Exception) {
+                error.printStackTrace()
+                groceryCategoryUseCase.value = Response.error(error)
+            }
+        }
+    }
+
+    fun fetchGroceryList() {
+        viewModelScope.launch {
+            groceryUseCase.value = Response.loading()
+            try {
+                groceryUseCase.value = Response.complete(
+                    repository.fetchGroceryList()
+                )
+            } catch (error: Exception) {
+                error.printStackTrace()
+                groceryUseCase.value = Response.error(error)
             }
         }
     }

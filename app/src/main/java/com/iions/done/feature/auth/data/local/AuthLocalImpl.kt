@@ -16,15 +16,15 @@ class AuthLocalImpl @Inject constructor(
         loginResponse: LoginResponse,
         password: String
     ) {
-        sharedPreferenceManager.accessToken = loginResponse.token
-        sharedPreferenceManager.refreshToken = loginResponse.userModel.refreshToken
-        sharedPreferenceManager.userId = loginResponse.userModel.id
-        sharedPreferenceManager.phone = loginResponse.userModel.phoneNumber
-        sharedPreferenceManager.name = loginResponse.userModel.fullName
-        sharedPreferenceManager.email = loginResponse.userModel.email
-        sharedPreferenceManager.userRole = loginResponse.userModel.roleModel.name
-        sharedPreferenceManager.userRoleId = loginResponse.userModel.roleModel.id
-        sharedPreferenceManager.loginDate = getCurrentDate()
+//        sharedPreferenceManager.accessToken = loginResponse.token
+//        sharedPreferenceManager.refreshToken = loginResponse.userModel.refreshToken
+//        sharedPreferenceManager.userId = loginResponse.userModel.id
+//        sharedPreferenceManager.phone = loginResponse.userModel.phoneNumber
+//        sharedPreferenceManager.name = loginResponse.userModel.fullName
+//        sharedPreferenceManager.email = loginResponse.userModel.email
+//        sharedPreferenceManager.userRole = loginResponse.userModel.roleModel.name
+//        sharedPreferenceManager.userRoleId = loginResponse.userModel.roleModel.id
+//        sharedPreferenceManager.loginDate = getCurrentDate()
     }
 
     override fun getPhoneNumber(): String = sharedPreferenceManager.phone ?: ""

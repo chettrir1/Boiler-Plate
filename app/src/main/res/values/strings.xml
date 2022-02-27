@@ -58,4 +58,6 @@
     <string name="resturants">Resturants</string>
     <string name="groceries">Groceries</string>
     <string name="search_for_anything">Search for anything...</string>
+    <string name="login_with_password">Login with password</string>
+    <string name="username_field_empty">Username field can\'t be empty!</string>
 </resources>

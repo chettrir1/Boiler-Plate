@@ -39,6 +39,4 @@ class SplashViewModel @Inject constructor(
             }
         }
     }
-
-
 }

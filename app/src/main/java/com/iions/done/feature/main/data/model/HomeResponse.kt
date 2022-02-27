@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class HomeResponse(
     @SerializedName("modules")
-    var modules: List<CategoryResponse>?,
+    var modules: List<ModuleResponse>?,
     @SerializedName("grocery")
-    var grocery: List<GroceryResponse>?
+    var grocery: List<GroceryRemoteResponse>?
 )

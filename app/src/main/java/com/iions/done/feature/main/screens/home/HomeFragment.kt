@@ -15,6 +15,7 @@ import com.iions.done.feature.search.screens.SearchActivity
 import com.iions.done.utils.archcomponents.Status
 import com.smarteist.autoimageslider.SliderView
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.snippet_home_grocery.view.*
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
@@ -31,8 +32,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.fetchCategoryList()
+        viewModel.fetchModuleList()
         viewModel.fetchBannerList()
+        viewModel.fetchGroceryCategoryList()
+        viewModel.fetchGroceryList()
         binding.tvSearch.setOnClickListener {
             SearchActivity.start(requireActivity())
         }
@@ -41,6 +44,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override fun initObservers() {
         observeCategoryResponse()
         observeBannerResponse()
+        observeGroceryCategoryResponse()
+        observeGroceryResponse()
     }
 
     private fun observeCategoryResponse() {
@@ -51,15 +56,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 }
                 Status.COMPLETE -> {
                     response.data?.let {
-                        val layoutManager =
-                            LinearLayoutManager(
-                                requireContext(),
-                                LinearLayoutManager.HORIZONTAL,
-                                false
-                            )
-                        binding.includeCategory.recyclerView.layoutManager = layoutManager
+                        binding.includeCategory.recyclerView.layoutManager = setUpLayoutManager()
                         binding.includeCategory.recyclerView.adapter =
-                            CategoryListAdapter(it.toMutableList()) {
+                            ModuleListAdapter(it.toMutableList()) {
                                 if (it.name == "Restaurants") {
                                     RestaurantActivity.start(requireActivity())
                                 } else if (it.name == "Grocery") {
@@ -67,7 +66,45 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                                 }
                             }
                     }
+                }
+                Status.ERROR -> {
+                    super.showError(binding.loadingLayout, response.error.toString())
+                }
+            }
+        }
+    }
+
+    private fun observeGroceryResponse() {
+        viewModel.groceryResponse.observe(this) { response ->
+            when (response.status) {
+                Status.LOADING -> {
+                }
+                Status.COMPLETE -> {
+                    response.data?.let {
+                        binding.includeGrocery.rvGrocery.layoutManager = setUpLayoutManager()
+                        binding.includeGrocery.rvGrocery.adapter =
+                            GroceryListAdapter(it.toMutableList()) {}
+                    }
                     super.showData(binding.loadingLayout)
+                }
+                Status.ERROR -> {
+                    super.showError(binding.loadingLayout, response.error.toString())
+                }
+            }
+        }
+    }
+
+    private fun observeGroceryCategoryResponse() {
+        viewModel.groceryCategoryResponse.observe(this) { response ->
+            when (response.status) {
+                Status.LOADING -> {
+                }
+                Status.COMPLETE -> {
+                    response.data?.let {
+                        binding.includeGrocery.rvCategory.layoutManager = setUpLayoutManager()
+                        binding.includeGrocery.rvCategory.adapter =
+                            GroceryCategoryListAdapter(it.toMutableList()) {}
+                    }
                 }
                 Status.ERROR -> {
                     super.showError(binding.loadingLayout, response.error.toString())
@@ -99,5 +136,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding.includeSlider.slider.scrollTimeInSec = 3
         binding.includeSlider.slider.isAutoCycle = true
         binding.includeSlider.slider.startAutoCycle()
+    }
+
+    private fun setUpLayoutManager(): LinearLayoutManager {
+        return LinearLayoutManager(
+            requireContext(),
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
     }
 }

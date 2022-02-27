@@ -6,39 +6,39 @@ import com.bumptech.glide.Glide
 import com.iions.done.R
 import com.iions.done.base.BaseAdapter
 import com.iions.done.base.BaseViewHolder
-import com.iions.done.databinding.ItemHomeCategoriesBinding
-import com.iions.done.feature.main.data.model.CategoryResponse
+import com.iions.done.databinding.ItemHomeModuleBinding
+import com.iions.done.feature.main.data.model.ModuleResponse
 
-class CategoryListAdapter(
-    private var dataList: MutableList<CategoryResponse>,
-    private val onItemSelectedListener: (CategoryResponse) -> Unit
-) : BaseAdapter<CategoryResponse, CategoryListAdapter.CategoryListViewHolder>() {
+class ModuleListAdapter(
+    private var dataList: MutableList<ModuleResponse>,
+    private val onItemSelectedListener: (ModuleResponse) -> Unit
+) : BaseAdapter<ModuleResponse, ModuleListAdapter.ModuleListViewHolder>() {
 
-    override fun getViewHolder(binding: ViewDataBinding, viewType: Int): CategoryListViewHolder {
-        return CategoryListViewHolder(binding as ItemHomeCategoriesBinding)
+    override fun getViewHolder(binding: ViewDataBinding, viewType: Int): ModuleListViewHolder {
+        return ModuleListViewHolder(binding as ItemHomeModuleBinding)
     }
 
-    override fun onBindCustomViewHolder(holder: CategoryListViewHolder, position: Int) {
+    override fun onBindCustomViewHolder(holder: ModuleListViewHolder, position: Int) {
         return holder.bindView(dataList[position])
     }
 
     override fun getLayoutResource(viewType: Int): Int {
-        return R.layout.item_home_categories
+        return R.layout.item_home_module
     }
 
     override fun getItemCount(): Int {
         return dataList.size
     }
 
-    fun updateData(list: MutableList<CategoryResponse>) {
+    fun updateData(list: MutableList<ModuleResponse>) {
         this.dataList = list
         notifyDataSetChanged()
     }
 
-    inner class CategoryListViewHolder(private var binding: ItemHomeCategoriesBinding) :
-        BaseViewHolder<CategoryResponse>(binding) {
+    inner class ModuleListViewHolder(private var binding: ItemHomeModuleBinding) :
+        BaseViewHolder<ModuleResponse>(binding) {
         @SuppressLint("SetTextI18n")
-        override fun bindView(obj: CategoryResponse) {
+        override fun bindView(obj: ModuleResponse) {
             super.bindView(obj)
             binding.tvTitle.text = obj.name
             Glide.with(binding.root.context).load(obj.image)
