@@ -24,6 +24,7 @@ class GroceryCategoryListAdapter(
     }
 
     override fun onBindCustomViewHolder(holder: GroceryCategoryListViewHolder, position: Int) {
+
         return holder.bindView(dataList[position])
     }
 

@@ -2,7 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/first"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/action_order_history"
             android:icon="@drawable/ic_nav_order"
@@ -22,12 +24,11 @@
             android:id="@+id/action_cart"
             android:icon="@drawable/ic_nav_cart"
             android:title="@string/my_cart" />
+    </group>
 
-        <item
-            android:id="@+id/action_recommended_products"
-            android:icon="@drawable/ic_nav_recommended"
-            android:title="@string/recommended_products" />
-
+    <group
+        android:id="@+id/second"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/action_profile"
             android:icon="@drawable/ic_nav_profile"
@@ -36,12 +37,13 @@
         <item
             android:id="@+id/action_settings"
             android:icon="@drawable/ic_nav_settings"
-            android:title="Settings" />
+            android:title="@string/settings" />
+    </group>
 
+    <group android:checkableBehavior="single">
         <item
             android:id="@+id/action_logout"
             android:icon="@drawable/ic_nav_logout"
-            android:title="Logout" />
-
+            android:title="@string/logout" />
     </group>
 </menu>

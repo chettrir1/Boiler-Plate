@@ -43,8 +43,6 @@
     <string name="my_profile">My Profile</string>
     <string name="history">History</string>
     <string name="take_a_photo">Camera</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="nearby_restaurants">Nearby Restaurants</string>
     <string name="logout">Logout</string>
     <string name="cancel">Cancel</string>
@@ -55,9 +53,10 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="new_password">New Password</string>
     <string name="forgot_npassword">Forgot\nPassword?</string>
-    <string name="resturants">Resturants</string>
+    <string name="restaurants">Restaurants</string>
     <string name="groceries">Groceries</string>
-    <string name="search_for_anything">Search for anything...</string>
+    <string name="search_for_anything">Search for anything…</string>
     <string name="login_with_password">Login with password</string>
     <string name="username_field_empty">Username field can\'t be empty!</string>
+    <string name="settings">Settings</string>
 </resources>

@@ -20,7 +20,7 @@ class RestaurantActivity : BaseActivity<ActivityRestaurantBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding.includeToolbar.tvTitle.text = getString(R.string.resturants)
+        binding.includeToolbar.tvTitle.text = getString(R.string.restaurants)
 
         binding.includeToolbar.ivBack.setOnClickListener {
             onBackPressed()

@@ -2,6 +2,7 @@ package com.iions.done.feature.main.screens.home
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,7 +16,6 @@ import com.iions.done.feature.search.screens.SearchActivity
 import com.iions.done.utils.archcomponents.Status
 import com.smarteist.autoimageslider.SliderView
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.snippet_home_grocery.view.*
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
@@ -65,6 +65,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                                     GroceryActivity.start(requireActivity())
                                 }
                             }
+                        binding.includeCategory.recyclerView.hasFixedSize()
+                        ViewCompat.setNestedScrollingEnabled(
+                            binding.includeCategory.recyclerView,
+                            false
+                        )
+
                     }
                 }
                 Status.ERROR -> {
@@ -85,6 +91,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                         binding.includeGrocery.rvGrocery.adapter =
                             GroceryListAdapter(it.toMutableList()) {}
                     }
+                    binding.includeGrocery.rvGrocery.hasFixedSize()
+                    ViewCompat.setNestedScrollingEnabled(binding.includeGrocery.rvGrocery, false)
                     super.showData(binding.loadingLayout)
                 }
                 Status.ERROR -> {
@@ -105,6 +113,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                         binding.includeGrocery.rvCategory.adapter =
                             GroceryCategoryListAdapter(it.toMutableList()) {}
                     }
+                    binding.includeGrocery.rvCategory.hasFixedSize()
+                    ViewCompat.setNestedScrollingEnabled(binding.includeGrocery.rvCategory, false)
                 }
                 Status.ERROR -> {
                     super.showError(binding.loadingLayout, response.error.toString())

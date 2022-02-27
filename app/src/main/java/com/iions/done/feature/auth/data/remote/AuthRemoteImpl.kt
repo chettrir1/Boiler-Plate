@@ -1,10 +1,7 @@
 package com.iions.done.feature.auth.data.remote
 
 import com.iions.done.feature.auth.data.AuthRepository
-import com.iions.done.feature.auth.data.model.LoginResponse
-import com.iions.done.feature.auth.data.model.RequestPinResponse
-import com.iions.done.feature.auth.data.model.ResetPinRequestModel
-import com.iions.done.feature.auth.data.model.ResetPinResponse
+import com.iions.done.feature.auth.data.model.*
 import com.iions.done.remote.ApiService
 import javax.inject.Inject
 
@@ -50,6 +47,10 @@ class AuthRemoteImpl @Inject constructor(
     }
 
     override suspend fun requestResetPin(resetPinRequestModel: ResetPinRequestModel): ResetPinResponse {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun logout(token: String): LogoutResponse? {
         TODO("Not yet implemented")
     }
 }

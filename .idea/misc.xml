@@ -19,6 +19,11 @@
         <entry key="app/src/main/res/drawable/bg_grey_bordered.xml" value="0.2671875" />
         <entry key="app/src/main/res/drawable/bg_item.xml" value="0.2671875" />
         <entry key="app/src/main/res/drawable/bg_item_border.xml" value="0.31145833333333334" />
+        <entry key="app/src/main/res/drawable/bg_nav.xml" value="0.1815" />
+        <entry key="app/src/main/res/drawable/bg_nav_icon.xml" value="0.1815" />
+        <entry key="app/src/main/res/drawable/bg_nav_icon_selected.xml" value="0.1815" />
+        <entry key="app/src/main/res/drawable/bg_nav_item.xml" value="0.1815" />
+        <entry key="app/src/main/res/drawable/bg_nav_selected.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/bg_round_padded.xml" value="0.31145833333333334" />
         <entry key="app/src/main/res/drawable/ic_arrow_left.xml" value="0.31145833333333334" />
         <entry key="app/src/main/res/drawable/ic_chevron_left_compat.xml" value="0.2671875" />
@@ -48,7 +53,7 @@
         <entry key="app/src/main/res/font/roboto_regular.xml" value="0.28125" />
         <entry key="app/src/main/res/layout/activity_grocery.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2954898911353033" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_request_pin.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_reset_pin.xml" value="0.335" />
@@ -80,7 +85,7 @@
         <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.13179347826086957" />
         <entry key="app/src/main/res/layout/slider_layout.xml" value="0.19067028985507245" />
         <entry key="app/src/main/res/layout/snippet_filter.xml" value="0.375" />
-        <entry key="app/src/main/res/layout/snippet_home_category.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/snippet_home_category.xml" value="0.33229166666666665" />
         <entry key="app/src/main/res/layout/snippet_home_grocery.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/snippet_home_nav_header.xml" value="0.335" />
         <entry key="app/src/main/res/layout/snippet_home_slider.xml" value="0.19067028985507245" />
@@ -91,7 +96,7 @@
         <entry key="app/src/main/res/layout/view_clean_alert.xml" value="0.16530797101449277" />
         <entry key="app/src/main/res/menu/menu_bottom_nav.xml" value="0.25104166666666666" />
         <entry key="app/src/main/res/menu/menu_home.xml" value="0.24166666666666667" />
-        <entry key="app/src/main/res/menu/menu_main.xml" value="0.335" />
+        <entry key="app/src/main/res/menu/menu_main.xml" value="0.375" />
         <entry key="banner/src/main/res/drawable/svg_indicator_icon_gain.xml" value="0.31145833333333334" />
         <entry key="banner/src/main/res/drawable/svg_indicator_icon_miss.xml" value="0.31145833333333334" />
       </map>

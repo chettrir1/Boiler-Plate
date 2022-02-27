@@ -64,12 +64,14 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@color/background_EBEBEB"
-            app:headerLayout="@layout/snippet_home_nav_header"
             android:fitsSystemWindows="true"
+            app:itemBackground="@drawable/bg_nav_background"
+            android:theme="@style/NavigationDrawerStyle"
+            app:headerLayout="@layout/snippet_home_nav_header"
             app:itemIconSize="@dimen/spacing_20"
-            app:itemIconTint="@color/colorPrimary"
+            app:itemIconTint="@drawable/bg_nav_item"
             app:itemTextAppearance="@style/Menu.TextAppearance"
-            app:itemTextColor="@color/colorPrimary"
+            app:itemTextColor="@drawable/bg_nav_item"
             app:menu="@menu/menu_main" />
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

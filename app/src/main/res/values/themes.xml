@@ -93,13 +93,11 @@
     <style name="Menu.TextAppearance" parent="TextAppearance.MaterialComponents.Body2">
         <item name="android:fontFamily">@font/roboto_regular</item>
         <item name="android:textColor">@drawable/menu_item_selector</item>
-        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:textSize">@dimen/text_size_12</item>
     </style>
 
     <style name="NavigationDrawerStyle">
-        <item name="android:textSize">15sp</item>
-        <item name="fontFamily">@font/roboto_regular</item>
-        <item name="itemTextColor">@color/black_2e384d</item>
+        <item name="android:listDivider">@color/grey_BFC5D2</item>
     </style>
 
     <style name="WindowAnimationStyle">
@@ -115,10 +113,8 @@
         <item name="android:colorControlNormal">@color/colorPrimary</item>
     </style>
 
-    <style name="Widget.Custom.NavigationView" parent="Widget.Design.NavigationView">
-        <item name="itemIconTint">@color/white_FFFFFF</item>
-        <item name="itemTextColor">@color/white_FFFFFF</item>
-        <item name="itemBackground">@drawable/bg_round_padded</item>
+    <style name="Widget.Custom.NavigationView" parent="Widget.Material3.NavigationView">
+        <item name="android:listDivider">@color/grey_908F8F</item>
     </style>
 
     <style name="CustomButtonFilled" parent="Widget.AppCompat.Button.Borderless.Colored">
