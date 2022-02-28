@@ -13,6 +13,7 @@ import com.iions.SharedPreferenceManager
 import com.iions.done.R
 import com.iions.done.base.BaseActivity
 import com.iions.done.databinding.ActivityMainBinding
+import com.iions.done.databinding.SnippetHomeNavHeaderBinding
 import com.iions.done.feature.auth.screens.login.smslogin.SmsLoginActivity
 import com.iions.done.feature.main.screens.camera.CameraFragment
 import com.iions.done.feature.main.screens.cart.CartFragment
@@ -52,6 +53,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
         supportActionBar?.setHomeButtonEnabled(false)
         setDefaultFragment(savedInstanceState)
+        val navViewLeft = binding.navigationView.getHeaderView(0)
+        val navHeaderMainBinding: SnippetHomeNavHeaderBinding =
+            SnippetHomeNavHeaderBinding.bind(navViewLeft)
+        navHeaderMainBinding.tvName.text = "Unknnown"
+        navHeaderMainBinding.tvPhone.text = "------"
+        navHeaderMainBinding.cvImage.setOnClickListener {
+            SmsLoginActivity.start(this)
+        }
+
         binding.includeToolbar.ivMenu.setOnClickListener {
             binding.drawerLayout.openDrawer(GravityCompat.START)
         }
@@ -180,6 +190,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
                     showProgress(true)
                 }
                 Status.COMPLETE -> {
+                    showProgress(false)
                     SmsLoginActivity.start(this)
                 }
                 Status.ERROR -> {

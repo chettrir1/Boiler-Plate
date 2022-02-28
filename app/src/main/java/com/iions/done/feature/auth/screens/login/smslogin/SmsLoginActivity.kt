@@ -1,6 +1,7 @@
 package com.iions.done.feature.auth.screens.login.smslogin
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -11,10 +12,15 @@ import com.iions.done.feature.auth.screens.login.LoginActivity
 import com.iions.done.feature.auth.screens.verifypin.VerifyPinActivity
 import com.iions.done.utils.archcomponents.Status
 import com.iions.done.utils.enablePianoEffect
+import com.iions.done.utils.progressdialog.ProgressDialog
+import com.iions.done.utils.showToast
+import com.valdesekamdem.library.mdtoast.MDToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SmsLoginActivity : BaseActivity<ActivitySmsLoginBinding>() {
+
+    private lateinit var dialog: Dialog
 
     companion object {
         fun start(activity: Activity) {
@@ -54,15 +60,35 @@ class SmsLoginActivity : BaseActivity<ActivitySmsLoginBinding>() {
         viewModel.loginResponse.observe(this) { response ->
             when (response.status) {
                 Status.LOADING -> {
+                    showProgress()
                 }
                 Status.COMPLETE -> {
-                    response.data?.let {
-                        VerifyPinActivity.start(this, false)
-                    }
+                    hideDialog()
+                    showToast(
+                        "Verification pin has been sent Successfully!",
+                        MDToast.TYPE_SUCCESS
+                    )
+                    VerifyPinActivity.start(this, false)
                 }
                 Status.ERROR -> {
+                    hideDialog()
+                    showToast(
+                        response.error?.message,
+                        MDToast.TYPE_ERROR
+                    )
                 }
             }
+        }
+    }
+
+    private fun showProgress() {
+        dialog = ProgressDialog.progressDialog(this)
+        dialog.show()
+    }
+
+    private fun hideDialog() {
+        if (dialog.isShowing) {
+            dialog.dismiss()
         }
     }
 }

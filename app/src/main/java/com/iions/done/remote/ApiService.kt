@@ -17,7 +17,7 @@ interface ApiService {
     @POST("login/phone")
     suspend fun loginWithPhone(
         @Body requestParams: MutableMap<String, Any>
-    ): BaseResponse<LoginResponse>
+    ): BaseResponse<List<LoginResponse>>
 
     @POST("logout")
     suspend fun logout(

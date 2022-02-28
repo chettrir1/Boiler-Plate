@@ -8,10 +8,11 @@ import javax.inject.Inject
 class AuthRemoteImpl @Inject constructor(
     private val apiService: ApiService
 ) : AuthRepository.Remote {
-    override suspend fun loginWithPhone(username: String): LoginResponse? {
+    override suspend fun loginWithPhone(username: String): List<LoginResponse>? {
         val requestParams = mutableMapOf<String, Any>()
         requestParams["phone_number"] = username
-        val remoteResponse = apiService.loginWithPhone(requestParams)
+        val remoteResponse = apiService.
+        loginWithPhone(requestParams)
         return remoteResponse.response
     }
 
