@@ -13,15 +13,18 @@ import com.iions.SharedPreferenceManager
 import com.iions.done.R
 import com.iions.done.base.BaseActivity
 import com.iions.done.databinding.ActivityMainBinding
-import com.iions.done.feature.auth.screens.login.LoginActivity
+import com.iions.done.feature.auth.screens.login.smslogin.SmsLoginActivity
 import com.iions.done.feature.main.screens.camera.CameraFragment
 import com.iions.done.feature.main.screens.cart.CartFragment
 import com.iions.done.feature.main.screens.history.HistoryFragment
 import com.iions.done.feature.main.screens.home.HomeFragment
 import com.iions.done.feature.main.screens.profile.ProfileFragment
 import com.iions.done.utils.alertdialog.showAlert
+import com.iions.done.utils.archcomponents.Status
+import com.iions.done.utils.progressdialog.ProgressDialog
+import com.iions.done.utils.showToast
+import com.valdesekamdem.library.mdtoast.MDToast.TYPE_ERROR
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.toolbar_main.view.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -44,11 +47,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        if (!(viewModel.isUserLoggedIn())) {
-//            LoginActivity.start(this)
-//            finish()
-//            return
-//        }
         setUpNavigationDrawer()
         setSupportActionBar(binding.includeToolbar.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
@@ -90,6 +88,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
         }
     }
 
+    override fun initObservers() {
+        observeLogoutResponse()
+    }
+
     private fun setDefaultFragment(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
@@ -120,9 +122,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
                 }
             }
         }
-    }
-
-    override fun initObservers() {
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -166,10 +165,42 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
             handler = { index ->
                 when (index) {
                     0 -> {
+                        viewModel.requestLogout()
                     }
                     else -> Unit
                 }
             }
         )
+    }
+
+    private fun observeLogoutResponse() {
+        viewModel.logoutResponse.observe(this) { response ->
+            when (response.status) {
+                Status.LOADING -> {
+                    showProgress(true)
+                }
+                Status.COMPLETE -> {
+                    SmsLoginActivity.start(this)
+                }
+                Status.ERROR -> {
+                    showProgress(false)
+                    showToast(
+                        response.error?.message,
+                        TYPE_ERROR
+                    )
+                }
+            }
+        }
+    }
+
+    private fun showProgress(show: Boolean) {
+        val dialog = ProgressDialog.progressDialog(this)
+        if (show) {
+            dialog.show()
+        } else {
+            if (dialog.isShowing) {
+                dialog.dismiss()
+            }
+        }
     }
 }

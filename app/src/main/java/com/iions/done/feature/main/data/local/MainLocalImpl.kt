@@ -35,4 +35,8 @@ class MainLocalImpl @Inject constructor(
     override suspend fun fetchGroceryList(): List<GroceryResponse>? {
         return databaseManager.getGroceryDao().getGroceryResponse()
     }
+
+    override fun getAuthorizationToken(): String {
+        return sharedPreferenceManager.accessToken.toString()
+    }
 }

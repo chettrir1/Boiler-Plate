@@ -1,9 +1,13 @@
 package com.iions.done.utils
 
+import android.app.Activity
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.view.Gravity
+import androidx.fragment.app.Fragment
+import com.valdesekamdem.library.mdtoast.MDToast
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -37,4 +41,31 @@ fun getCurrentDate(): String {
     cal.add(Calendar.DATE, 0)
     val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
     return simpleDateFormat.format(cal.time)
+}
+
+fun isValidContext(context: Context?): Boolean {
+    if (context == null) {
+        return false
+    }
+    if (context is Activity) {
+        val activity: Activity = context
+        !activity.isDestroyed && !activity.isFinishing
+    }
+    return true
+}
+
+fun Activity.showToast(message: String?, type: Int, duration: Int? = null) {
+    if (isValidContext(this)) {
+        val toast = MDToast.makeText(this, message, duration ?: MDToast.LENGTH_SHORT, type)
+        toast.setGravity(Gravity.TOP, 0, 100)
+        toast.show()
+    }
+}
+
+fun Fragment.showToast(message: String?, type: Int, duration: Int? = null) {
+    if (isValidContext(context)) {
+        val toast = MDToast.makeText(context, message, duration ?: MDToast.LENGTH_SHORT, type)
+        toast.setGravity(Gravity.TOP, 0, 100)
+        toast.show()
+    }
 }

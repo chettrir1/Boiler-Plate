@@ -24,7 +24,6 @@ class GroceryCategoryListAdapter(
     }
 
     override fun onBindCustomViewHolder(holder: GroceryCategoryListViewHolder, position: Int) {
-
         return holder.bindView(dataList[position])
     }
 
@@ -47,9 +46,14 @@ class GroceryCategoryListAdapter(
         override fun bindView(obj: GroceryCategoryResponse) {
             super.bindView(obj)
             binding.tvName.text = obj.name
-
             if (mCheckedPostion == -1) {
-                setSelectedItem(binding, false)
+                if (absoluteAdapterPosition == 0) {
+                    setSelectedItem(binding, true)
+                    if (mCheckedPostion != absoluteAdapterPosition) {
+                        mCheckedPostion = absoluteAdapterPosition
+                    }
+                } else
+                    setSelectedItem(binding, false)
             } else {
                 if (mCheckedPostion == absoluteAdapterPosition) {
                     setSelectedItem(binding, true)
@@ -57,6 +61,7 @@ class GroceryCategoryListAdapter(
                     setSelectedItem(binding, false)
                 }
             }
+
             binding.constraint.setOnClickListener {
                 setSelectedItem(binding, true)
                 if (mCheckedPostion != absoluteAdapterPosition) {

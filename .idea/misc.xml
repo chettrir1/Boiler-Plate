@@ -24,6 +24,7 @@
         <entry key="app/src/main/res/drawable/bg_nav_icon_selected.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/bg_nav_item.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/bg_nav_selected.xml" value="0.1815" />
+        <entry key="app/src/main/res/drawable/bg_progress_dialog.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/bg_round_padded.xml" value="0.31145833333333334" />
         <entry key="app/src/main/res/drawable/ic_arrow_left.xml" value="0.31145833333333334" />
         <entry key="app/src/main/res/drawable/ic_chevron_left_compat.xml" value="0.2671875" />
@@ -83,6 +84,7 @@
         <entry key="app/src/main/res/layout/item_sub_order_history.xml" value="0.375" />
         <entry key="app/src/main/res/layout/layout_loading.xml" value="0.375" />
         <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.13179347826086957" />
+        <entry key="app/src/main/res/layout/progress_dialog.xml" value="0.26403985507246375" />
         <entry key="app/src/main/res/layout/slider_layout.xml" value="0.19067028985507245" />
         <entry key="app/src/main/res/layout/snippet_filter.xml" value="0.375" />
         <entry key="app/src/main/res/layout/snippet_home_category.xml" value="0.33229166666666665" />
