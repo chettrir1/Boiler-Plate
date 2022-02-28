@@ -36,6 +36,7 @@
             android:text="@string/see_all"
             android:textColor="@color/red_F93838"
             android:textSize="@dimen/text_size_11"
+            android:visibility="gone"
             app:fontFamily="@font/roboto_medium"
             app:layout_constraintBottom_toBottomOf="@+id/tv_categories"
             app:layout_constraintEnd_toEndOf="parent"
@@ -44,8 +45,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="0dp"
-            android:nestedScrollingEnabled="false"
             android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
             android:overScrollMode="never"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

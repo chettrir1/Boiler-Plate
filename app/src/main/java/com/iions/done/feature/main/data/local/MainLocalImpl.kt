@@ -3,7 +3,10 @@ package com.iions.done.feature.main.data.local
 import com.iions.DatabaseManager
 import com.iions.SharedPreferenceManager
 import com.iions.done.feature.main.data.MainRepository
-import com.iions.done.feature.main.data.model.*
+import com.iions.done.feature.main.data.model.BannerResponse
+import com.iions.done.feature.main.data.model.GroceryCategoryResponse
+import com.iions.done.feature.main.data.model.GroceryResponse
+import com.iions.done.feature.main.data.model.ModuleResponse
 import javax.inject.Inject
 
 class MainLocalImpl @Inject constructor(
@@ -12,7 +15,7 @@ class MainLocalImpl @Inject constructor(
 ) : MainRepository.Local {
 
     override fun isUserLoggedIn(): Boolean {
-        return sharedPreferenceManager.userId > 0
+        return sharedPreferenceManager.username.isNotEmpty()
     }
 
     override suspend fun fetchModuleList(): List<ModuleResponse> {

@@ -57,7 +57,7 @@
                 android:textColorHint="@color/grey_636161"
                 app:errorEnabled="true"
                 app:errorTextColor="@color/red_F93838"
-                app:hintTextColor="@color/grey_636161"
+                app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="@id/tv_title_username"
                 app:layout_constraintStart_toStartOf="@id/tv_title_username"
                 app:layout_constraintTop_toBottomOf="@+id/tv_title_username">

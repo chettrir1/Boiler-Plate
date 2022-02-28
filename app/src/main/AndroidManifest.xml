@@ -75,6 +75,7 @@
         <activity
             android:name=".feature.auth.screens.verifypin.VerifyPinActivity"
             android:exported="true"
+            android:noHistory="true"
             android:screenOrientation="@integer/screen_orientation_portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity

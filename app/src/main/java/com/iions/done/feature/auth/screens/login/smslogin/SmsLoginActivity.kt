@@ -19,6 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SmsLoginActivity : BaseActivity<ActivitySmsLoginBinding>() {
+    private val viewModel: SmsLoginViewModel by viewModels()
 
     private lateinit var dialog: Dialog
 
@@ -26,11 +27,8 @@ class SmsLoginActivity : BaseActivity<ActivitySmsLoginBinding>() {
         fun start(activity: Activity) {
             val intent = Intent(activity, SmsLoginActivity::class.java)
             activity.startActivity(intent)
-            activity.finish()
         }
     }
-
-    private val viewModel: SmsLoginViewModel by viewModels()
 
     override fun layout() = R.layout.activity_sms_login
 
@@ -65,10 +63,10 @@ class SmsLoginActivity : BaseActivity<ActivitySmsLoginBinding>() {
                 Status.COMPLETE -> {
                     hideDialog()
                     showToast(
-                        "Verification pin has been sent Successfully!",
+                        getString(R.string.verification_code_sent),
                         MDToast.TYPE_SUCCESS
                     )
-                    VerifyPinActivity.start(this, false)
+                    VerifyPinActivity.start(this, true)
                 }
                 Status.ERROR -> {
                     hideDialog()

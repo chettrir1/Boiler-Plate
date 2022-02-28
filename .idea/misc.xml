@@ -16,6 +16,9 @@
         <entry key="app/src/main/res/drawable/bg_circular_grey_white.xml" value="0.31145833333333334" />
         <entry key="app/src/main/res/drawable/bg_circular_red.xml" value="0.31145833333333334" />
         <entry key="app/src/main/res/drawable/bg_circular_red_white.xml" value="0.321025641025641" />
+        <entry key="app/src/main/res/drawable/bg_edit_text.xml" value="0.1815" />
+        <entry key="app/src/main/res/drawable/bg_edit_text_selected.xml" value="0.1815" />
+        <entry key="app/src/main/res/drawable/bg_edit_text_selector.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/bg_grey_bordered.xml" value="0.2671875" />
         <entry key="app/src/main/res/drawable/bg_item.xml" value="0.2671875" />
         <entry key="app/src/main/res/drawable/bg_item_border.xml" value="0.31145833333333334" />

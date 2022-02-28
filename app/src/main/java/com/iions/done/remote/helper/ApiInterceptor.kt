@@ -42,7 +42,7 @@ class ApiInterceptor @Inject constructor(
             val accessToken = response.headers["Authorization"]?.split(" ")?.get(1)
             prefs.accessToken = accessToken
         }
-        prefs.refreshToken = response.headers["RefreshToken"]?.split(" ")?.get(1)
+        prefs.accessToken = response.headers["RefreshToken"]?.split(" ")?.get(1)
 
         when (response.code) {
             TOKEN_EXPIRED -> {

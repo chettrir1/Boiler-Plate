@@ -59,4 +59,6 @@
     <string name="login_with_password">Login with password</string>
     <string name="username_field_empty">Username field can\'t be empty!</string>
     <string name="settings">Settings</string>
+    <string name="verification_field_empty">Verification field cannot be empty!</string>
+    <string name="verification_code_sent">Verification code has been sent Successfully!</string>
 </resources>

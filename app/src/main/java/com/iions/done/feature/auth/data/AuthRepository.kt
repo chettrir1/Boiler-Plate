@@ -10,12 +10,9 @@ interface AuthRepository {
     interface Local {
         fun getPhoneNumber(): String
         suspend fun clearPrefs()
-        suspend fun saveUser(
-            loginResponse: LoginResponse,
-            password: String
-        )
-
-        fun getLoggedInUserId(): Int
+        suspend fun saveUser(loginResponse: VerifyPinResponse)
+        suspend fun saveUsername(username: String)
+        fun getLoggedInUserId(): String
     }
 
     interface Remote {
@@ -23,11 +20,13 @@ interface AuthRepository {
         suspend fun requestPin(phoneNumber: String): RequestPinResponse
         suspend fun requestResetPin(resetPinRequestModel: ResetPinRequestModel): ResetPinResponse
         suspend fun logout(token: String): LogoutResponse?
+        suspend fun verifyPinRequest(pin: String, phone: String): VerifyPinResponse?
     }
 
     fun getPhoneNumber(): String
     suspend fun loginWithPhone(username: String): List<LoginResponse>?
     suspend fun requestPin(phoneNumber: String): RequestPinResponse
     suspend fun requestResetPin(resetPinRequestModel: ResetPinRequestModel): ResetPinResponse
-    fun getLoginUserId(): Int
+    fun getLoginUserId(): String
+    suspend fun verifyPinRequest(pin: String, phone: String): VerifyPinResponse?
 }

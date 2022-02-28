@@ -19,7 +19,7 @@ class RefreshTokenService @Inject constructor(var prefs: SharedPreferenceManager
 
         val request = Request.Builder()
             .url("" + "user/regenerate-refresh-token")
-            .addHeader("RefreshToken", prefs.refreshToken ?: "")
+            .addHeader("RefreshToken", prefs.accessToken ?: "")
             .post(requestBody)
             .build()
         val httpResponse: Response = mOkHttpClient.newCall(request).execute()

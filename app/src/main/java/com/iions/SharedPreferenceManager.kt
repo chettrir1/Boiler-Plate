@@ -14,13 +14,13 @@ class SharedPreferenceManager @Inject constructor(var context: Context) {
     private val sharedPreferences =
         context.getSharedPreferences(Constants.PREF_FILE, Context.MODE_PRIVATE)
 
-    var userId: Long
-        get() = sharedPreferences.getLong(Constants.PREF_USER_ID, 0L)
-        set(value) = sharedPreferences.edit { putLong(Constants.PREF_USER_ID, value) }
-
-    var name: String
+    var username: String
         get() = sharedPreferences.getString(Constants.PREF_USER_NAME, "") ?: ""
         set(value) = sharedPreferences.edit { putString(Constants.PREF_USER_NAME, value) }
+
+    var name: String
+        get() = sharedPreferences.getString(Constants.PREF_NAME, "") ?: ""
+        set(value) = sharedPreferences.edit { putString(Constants.PREF_NAME, value) }
 
     var phone: String?
         get() = sharedPreferences.getString(Constants.PREF_PHONE, "")
@@ -29,21 +29,10 @@ class SharedPreferenceManager @Inject constructor(var context: Context) {
     var email: String?
         get() = sharedPreferences.getString(Constants.PREF_EMAIL, "")
         set(value) = sharedPreferences.edit { putString(Constants.PREF_EMAIL, value) }
+
     var accessToken: String?
         get() = sharedPreferences.getString(Constants.PREF_TOKEN, "")
         set(value) = sharedPreferences.edit { putString(Constants.PREF_TOKEN, value) }
-
-    var refreshToken: String?
-        get() = sharedPreferences.getString(Constants.PREF_REFRESH_TOKEN, "")
-        set(value) = sharedPreferences.edit { putString(Constants.PREF_REFRESH_TOKEN, value) }
-
-    var userRole: String
-        get() = sharedPreferences.getString(Constants.PREF_ROLE, "") ?: ""
-        set(value) = sharedPreferences.edit { putString(Constants.PREF_ROLE, value) }
-
-    var userRoleId: Long
-        get() = sharedPreferences.getLong(Constants.PREF_ROLE_ID, -1)
-        set(value) = sharedPreferences.edit { putLong(Constants.PREF_ROLE_ID, value) }
 
     fun clearCache() {
         sharedPreferences.edit().clear().apply()

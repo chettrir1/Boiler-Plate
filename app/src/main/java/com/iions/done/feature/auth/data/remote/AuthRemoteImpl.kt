@@ -11,8 +11,7 @@ class AuthRemoteImpl @Inject constructor(
     override suspend fun loginWithPhone(username: String): List<LoginResponse>? {
         val requestParams = mutableMapOf<String, Any>()
         requestParams["phone_number"] = username
-        val remoteResponse = apiService.
-        loginWithPhone(requestParams)
+        val remoteResponse = apiService.loginWithPhone(requestParams)
         return remoteResponse.response
     }
 
@@ -52,6 +51,15 @@ class AuthRemoteImpl @Inject constructor(
     }
 
     override suspend fun logout(token: String): LogoutResponse? {
-        TODO("Not yet implemented")
+        return apiService.logout(token).response
+    }
+
+    override suspend fun verifyPinRequest(pin: String, phone: String): VerifyPinResponse? {
+        val requestParams = mutableMapOf<String, Any>()
+        requestParams["phone_number"] = phone
+        requestParams["otp"] = pin
+        requestParams["device_name"] = android.os.Build.DEVICE
+        val remoteResponse = apiService.verifyPin(requestParams)
+        return remoteResponse.response
     }
 }

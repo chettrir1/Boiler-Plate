@@ -1,9 +1,6 @@
 package com.iions.done.feature.auth.data
 
-import com.iions.done.feature.auth.data.model.LoginResponse
-import com.iions.done.feature.auth.data.model.RequestPinResponse
-import com.iions.done.feature.auth.data.model.ResetPinRequestModel
-import com.iions.done.feature.auth.data.model.ResetPinResponse
+import com.iions.done.feature.auth.data.model.*
 import com.iions.done.utils.SchedulersFactory
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -35,6 +32,7 @@ class AuthRepositoryImpl @Inject constructor(
 
     override suspend fun loginWithPhone(username: String): List<LoginResponse>? {
         return withContext(schedulersFactory.io()) {
+            localRepository.saveUsername(username)
             remoteRepository.loginWithPhone(username)
         }
     }
@@ -51,7 +49,17 @@ class AuthRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun getLoginUserId(): Int {
+    override fun getLoginUserId(): String {
         return localRepository.getLoggedInUserId()
+    }
+
+    override suspend fun verifyPinRequest(pin: String, phone: String): VerifyPinResponse? {
+        return withContext(schedulersFactory.io()) {
+            val remoteResponse = remoteRepository.verifyPinRequest(pin, phone)
+            if (remoteResponse != null) {
+                localRepository.saveUser(remoteResponse)
+            }
+            remoteResponse
+        }
     }
 }

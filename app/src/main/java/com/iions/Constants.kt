@@ -9,14 +9,11 @@ object Constants {
     const val GENERIC_ID = "id"
 
     /*preferences*/
-    const val PREF_ROLE = "user_role"
-    const val PREF_ROLE_ID = "user_role_id"
-    const val PREF_USER_ID = "id"
-    const val PREF_USER_NAME = "name"
+    const val PREF_USER_NAME = "username"
+    const val PREF_NAME = "name"
     const val PREF_PHONE = "phone"
     const val PREF_EMAIL = "email"
     const val PREF_LOGIN_DATE = "login_date"
-    const val PREF_USER_PASS = "0xpwDff"
 
     /*user*/
     const val TBL_USERS = "users"
