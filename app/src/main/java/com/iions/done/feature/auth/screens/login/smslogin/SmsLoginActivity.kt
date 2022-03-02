@@ -35,7 +35,7 @@ class SmsLoginActivity : BaseActivity<ActivitySmsLoginBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding.tvLoginWithPassword.setOnClickListener {
+        binding.btnLoginWithPassword.enablePianoEffect().setOnClickListener {
             LoginActivity.start(this)
         }
 

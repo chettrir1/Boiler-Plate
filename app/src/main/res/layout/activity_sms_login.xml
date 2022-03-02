@@ -10,7 +10,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background_EBEBEB"
+        android:background="@color/white_FFFFFF"
         android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,57 +18,64 @@
             android:layout_height="match_parent"
             tools:context=".feature.auth.screens.resetpin.ResetPinActivity">
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_login"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/spacing_24"
+                android:layout_marginTop="@dimen/spacing_24"
+                android:layout_marginEnd="@dimen/spacing_24"
+                app:layout_constraintDimensionRatio="5:3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/vc_login" />
+
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textView"
+                android:id="@+id/tv_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_30"
                 android:layout_marginTop="@dimen/spacing_48"
                 android:layout_marginEnd="@dimen/spacing_30"
-                android:text="Login\nWith SMS"
-                android:textColor="@color/black_000000"
+                android:text="@string/login_with_sms"
+                android:textColor="@color/black_2e384d"
                 android:textSize="@dimen/text_size_24"
                 app:fontFamily="@font/roboto_bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/iv_login" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_title_username"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_30"
-                android:layout_marginTop="@dimen/spacing_48"
-                android:layout_marginEnd="@dimen/spacing_30"
-                android:text="@string/username"
-                android:textColor="@color/black_000000"
-                android:textSize="@dimen/text_size_14"
-                app:fontFamily="@font/roboto_medium"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_phone"
+                android:layout_width="@dimen/spacing_24"
+                android:layout_height="@dimen/spacing_24"
+                android:layout_weight="1"
+                app:layout_constraintBottom_toBottomOf="@id/til_username"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toTopOf="@id/til_username"
+                app:srcCompat="@drawable/ic_phone" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_username"
                 style="@style/Widget.Design.TextInputLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/enter_your_phone_number"
-                android:textColorHint="@color/grey_636161"
+                android:layout_marginStart="@dimen/spacing_8"
+                android:layout_marginTop="@dimen/spacing_16"
+                android:hint="@string/phone_number"
+                android:textColorHint="@color/grey_BFC5D2"
                 app:errorEnabled="true"
                 app:errorTextColor="@color/red_F93838"
-                app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="@id/tv_title_username"
-                app:layout_constraintStart_toStartOf="@id/tv_title_username"
-                app:layout_constraintTop_toBottomOf="@+id/tv_title_username">
+                app:layout_constraintEnd_toEndOf="@id/tv_title"
+                app:layout_constraintStart_toEndOf="@id/iv_phone"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title">
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/et_username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/grey_8798AD"
-                    android:drawableStart="@drawable/ic_username"
-                    android:drawablePadding="@dimen/spacing_8"
                     android:inputType="number"
                     android:textColor="@color/black_000000"
                     android:textSize="@dimen/text_size_14"
@@ -82,27 +89,44 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_48"
                 android:background="@drawable/bg_button_circular_red"
+                android:fontFamily="@font/roboto_regular"
                 android:text="@string/btn_continue"
-                app:layout_constraintEnd_toEndOf="@+id/tv_title_username"
-                app:layout_constraintStart_toStartOf="@+id/tv_title_username"
+                android:textAllCaps="false"
+                app:layout_constraintEnd_toEndOf="@+id/tv_title"
+                app:layout_constraintStart_toStartOf="@+id/tv_title"
                 app:layout_constraintTop_toBottomOf="@+id/til_username" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_login_with_password"
-                android:layout_width="wrap_content"
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_login_with_password"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_48"
-                android:drawableEnd="@drawable/ic_auth_arrow"
-                android:drawablePadding="@dimen/spacing_8"
-                android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/spacing_16"
+                android:layout_marginBottom="@dimen/spacing_16"
+                android:background="@drawable/bg_button_circular_grey"
+                android:drawableStart="@drawable/ic_password"
                 android:padding="@dimen/spacing_8"
                 android:text="@string/login_with_password"
-                android:textColor="@color/black_000000"
-                android:textSize="@dimen/text_size_14"
+                android:textAllCaps="false"
+                android:textColor="@color/black_2e384d"
+                android:textSize="@dimen/text_size_16"
                 app:fontFamily="@font/roboto_regular"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/btn_continue"
+                app:layout_constraintStart_toStartOf="@+id/btn_continue"
+                app:layout_constraintTop_toBottomOf="@+id/tv_or"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_or"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_16"
+                android:text="OR"
+                android:textColor="@color/grey_636161"
+                android:textSize="@dimen/text_size_15"
+                app:fontFamily="@font/roboto_light"
+                app:layout_constraintEnd_toEndOf="@+id/btn_continue"
+                app:layout_constraintStart_toStartOf="@+id/btn_continue"
                 app:layout_constraintTop_toBottomOf="@+id/btn_continue" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

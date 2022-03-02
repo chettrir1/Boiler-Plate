@@ -55,9 +55,13 @@ class VerifyPinActivity : BaseActivity<ActivityVerifyPinBinding>() {
         }
 
         binding.btnResend.enablePianoEffect().setOnClickListener {
-            stopResendTimer()
             viewModel.loginWithPhoneResponse()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        stopResendTimer()
     }
 
     private fun getBundle(): Boolean {

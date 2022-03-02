@@ -21,6 +21,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".feature.groceries.detail.GroceryDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".feature.resturants.RestaurantActivity"
             android:exported="true"
             android:screenOrientation="@integer/screen_orientation_portrait"
@@ -83,7 +86,6 @@
             android:exported="true"
             android:screenOrientation="@integer/screen_orientation_portrait"
             android:windowSoftInputMode="adjustResize" />
-
     </application>
 
 </manifest>

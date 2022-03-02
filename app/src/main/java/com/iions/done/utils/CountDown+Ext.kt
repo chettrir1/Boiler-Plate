@@ -11,13 +11,15 @@ fun startResendTimer(view: AppCompatButton) {
 
         @SuppressLint("SetTextI18n")
         override fun onTick(time: Long) {
-            view.text = "RESEND (${time.formatTime()}s)"
+            view.text = "Resend (${time.formatTime()}s)"
             view.isClickable = false
+            view.isEnabled = false
         }
 
         @SuppressLint("SetTextI18n")
         override fun onFinish() {
-            view.text = "RESEND"
+            view.text = "Resend"
+            view.isEnabled = true
             view.isClickable = true
         }
     }.start()
