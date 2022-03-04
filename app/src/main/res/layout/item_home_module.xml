@@ -19,6 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clipToPadding="false"
+            app:cardBackgroundColor="@color/white_FFFFFF"
             app:cardCornerRadius="@dimen/spacing_32"
             app:cardElevation="0dp"
             app:cardUseCompatPadding="false"
@@ -30,8 +31,9 @@
                 android:id="@+id/iv_categories"
                 android:layout_width="@dimen/spacing_64"
                 android:layout_height="@dimen/spacing_64"
+                android:padding="@dimen/spacing_16"
                 android:scaleType="fitXY"
-                app:srcCompat="@drawable/logo" />
+                app:srcCompat="@drawable/restaurant" />
         </com.google.android.material.card.MaterialCardView>
 
         <androidx.appcompat.widget.AppCompatTextView
