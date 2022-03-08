@@ -20,12 +20,12 @@ class HomeViewModel @Inject constructor(
     val categoryResponse: LiveData<Response<List<ModuleResponse>>> =
         categoryUseCase
 
-    private val groceryUseCase = MutableLiveData<Response<List<GroceryResponse>>>()
-    val groceryResponse: LiveData<Response<List<GroceryResponse>>> =
+    private val groceryUseCase = MutableLiveData<Response<List<HomeGroceryResponse>>>()
+    val groceryResponse: LiveData<Response<List<HomeGroceryResponse>>> =
         groceryUseCase
 
-    private val groceryCategoryUseCase = MutableLiveData<Response<List<GroceryCategoryResponse>>>()
-    val groceryCategoryResponse: LiveData<Response<List<GroceryCategoryResponse>>> =
+    private val groceryCategoryUseCase = MutableLiveData<Response<List<HomeGroceryCategoryResponse>>>()
+    val groceryCategoryResponse: LiveData<Response<List<HomeGroceryCategoryResponse>>> =
         groceryCategoryUseCase
 
 

@@ -4,8 +4,8 @@ import com.iions.DatabaseManager
 import com.iions.SharedPreferenceManager
 import com.iions.done.feature.main.data.MainRepository
 import com.iions.done.feature.main.data.model.BannerResponse
-import com.iions.done.feature.main.data.model.GroceryCategoryResponse
-import com.iions.done.feature.main.data.model.GroceryResponse
+import com.iions.done.feature.main.data.model.HomeGroceryCategoryResponse
+import com.iions.done.feature.main.data.model.HomeGroceryResponse
 import com.iions.done.feature.main.data.model.ModuleResponse
 import javax.inject.Inject
 
@@ -31,11 +31,11 @@ class MainLocalImpl @Inject constructor(
         return packs
     }
 
-    override suspend fun fetchGroceryCategoryList(): List<GroceryCategoryResponse>? {
+    override suspend fun fetchGroceryCategoryList(): List<HomeGroceryCategoryResponse>? {
         return databaseManager.getGroceryCategoryDao().getGroceryCategoryResponse()
     }
 
-    override suspend fun fetchGroceryList(): List<GroceryResponse>? {
+    override suspend fun fetchGroceryList(): List<HomeGroceryResponse>? {
         return databaseManager.getGroceryDao().getGroceryResponse()
     }
 

@@ -21,13 +21,14 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
             android:fillViewport="true">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/background_EBEBEB"
-                tools:context=".feature.groceries.GroceryActivity">
+                tools:context=".feature.groceries.screen.GroceryActivity">
 
                 <include
                     android:id="@+id/include_filter"
@@ -41,6 +42,19 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_category"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_8"
+                    android:layout_marginBottom="@dimen/spacing_8"
+                    android:nestedScrollingEnabled="false"
+                    android:overScrollMode="never"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@id/include_filter"
+                    app:layout_constraintStart_toStartOf="@id/include_filter"
+                    app:layout_constraintTop_toBottomOf="@id/include_filter" />
+
                 <include
                     android:id="@+id/include_slider"
                     layout="@layout/snippet_home_slider"
@@ -51,7 +65,7 @@
                     android:layout_marginEnd="@dimen/spacing_16"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/include_filter" />
+                    app:layout_constraintTop_toBottomOf="@id/rv_category" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_grocery"
@@ -71,6 +85,16 @@
                     tools:itemCount="12"
                     tools:listitem="@layout/item_grocery" />
 
+                <include
+                    android:id="@+id/loadingLayout"
+                    layout="@layout/layout_loading"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:visibility="gone" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>

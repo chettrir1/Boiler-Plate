@@ -6,5 +6,5 @@ data class HomeResponse(
     @SerializedName("modules")
     var modules: List<ModuleResponse>?,
     @SerializedName("grocery")
-    var grocery: List<GroceryRemoteResponse>?
+    var grocery: List<HomeGroceryRemoteResponse>?
 )

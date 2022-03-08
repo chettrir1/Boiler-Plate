@@ -21,7 +21,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".feature.groceries.detail.GroceryDetailActivity"
+            android:name="com.iions.done.feature.groceries.screen.detail.GroceryDetailActivity"
             android:exported="false" />
         <activity
             android:name=".feature.resturants.RestaurantActivity"
@@ -29,7 +29,7 @@
             android:screenOrientation="@integer/screen_orientation_portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".feature.groceries.GroceryActivity"
+            android:name=".feature.groceries.screen.GroceryActivity"
             android:exported="true"
             android:screenOrientation="@integer/screen_orientation_portrait"
             android:windowSoftInputMode="adjustResize" />

@@ -14,13 +14,13 @@ import com.smarteist.autoimageslider.SliderViewAdapter;
 
 import java.util.List;
 
-public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapterViewHolder> {
+public class HomeSliderAdapter extends SliderViewAdapter<HomeSliderAdapter.SliderAdapterViewHolder> {
 
     // list for storing urls of images.
     private final List<BannerResponse> mSliderItems;
 
     // Constructor
-    public SliderAdapter(List<BannerResponse> sliderDataArrayList) {
+    public HomeSliderAdapter(List<BannerResponse> sliderDataArrayList) {
         this.mSliderItems = sliderDataArrayList;
     }
 

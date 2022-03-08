@@ -1,4 +1,4 @@
-package com.iions.done.feature.groceries.detail
+package com.iions.done.feature.groceries.screen.detail
 
 import android.app.Activity
 import android.content.Intent

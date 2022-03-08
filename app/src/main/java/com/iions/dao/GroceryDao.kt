@@ -4,8 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.iions.done.feature.main.data.model.GroceryRemoteResponse
-import com.iions.done.feature.main.data.model.GroceryResponse
+import com.iions.done.feature.main.data.model.HomeGroceryResponse
 import com.iions.entity.GroceryEntity
 
 @Dao
@@ -24,5 +23,5 @@ interface GroceryDao {
         grocery_parent_id as parentId
         from grocery"""
     )
-    suspend fun getGroceryResponse(): List<GroceryResponse>?
+    suspend fun getGroceryResponse(): List<HomeGroceryResponse>?
 }

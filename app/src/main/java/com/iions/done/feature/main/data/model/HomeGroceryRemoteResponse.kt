@@ -2,7 +2,7 @@ package com.iions.done.feature.main.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class GroceryRemoteResponse(
+data class HomeGroceryRemoteResponse(
     @SerializedName("id")
     var id: Int,
     @SerializedName("sku")
@@ -20,12 +20,12 @@ data class GroceryRemoteResponse(
     @SerializedName("parent_id")
     var parentId: Int? = 0,
     @SerializedName("brand")
-    var brand: BrandResponse? = null,
+    var brand: HomeGroceyBrandResponse? = null,
     @SerializedName("category")
-    var category: GroceryCategoryResponse? = null
+    var category: HomeGroceryCategoryResponse? = null
 )
 
-data class GroceryResponse(
+data class HomeGroceryResponse(
     @SerializedName("id")
     var id: Int,
     @SerializedName("sku")
@@ -44,7 +44,7 @@ data class GroceryResponse(
     var parentId: Int? = 0
 )
 
-data class BrandResponse(
+data class HomeGroceyBrandResponse(
     @SerializedName("id")
     var id: Int? = 0,
     @SerializedName("name")
@@ -53,7 +53,7 @@ data class BrandResponse(
     var logo: String? = ""
 )
 
-data class GroceryCategoryResponse(
+data class HomeGroceryCategoryResponse(
     @SerializedName("id")
     var id: Int? = 0,
     @SerializedName("name")

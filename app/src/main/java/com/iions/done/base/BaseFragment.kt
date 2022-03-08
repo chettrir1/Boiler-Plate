@@ -1,5 +1,6 @@
 package com.iions.done.base
 
+import android.annotation.SuppressLint
 import android.location.LocationManager
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.iions.done.R
 
+@SuppressLint("CutPasteId")
 abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
 
     abstract fun layout(): Int

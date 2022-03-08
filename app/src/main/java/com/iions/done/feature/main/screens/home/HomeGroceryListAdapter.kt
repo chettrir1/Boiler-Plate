@@ -7,12 +7,12 @@ import com.iions.done.R
 import com.iions.done.base.BaseAdapter
 import com.iions.done.base.BaseViewHolder
 import com.iions.done.databinding.ItemGroceryBinding
-import com.iions.done.feature.main.data.model.GroceryResponse
+import com.iions.done.feature.main.data.model.HomeGroceryResponse
 
-class GroceryListAdapter(
-    private var dataList: MutableList<GroceryResponse>,
-    private val onItemSelectedListener: (GroceryResponse) -> Unit
-) : BaseAdapter<GroceryResponse, GroceryListAdapter.GroceryListViewHolder>() {
+class HomeGroceryListAdapter(
+    private var dataList: MutableList<HomeGroceryResponse>,
+    private val onItemSelectedListener: (HomeGroceryResponse) -> Unit
+) : BaseAdapter<HomeGroceryResponse, HomeGroceryListAdapter.GroceryListViewHolder>() {
 
     override fun getViewHolder(
         binding: ViewDataBinding,
@@ -33,15 +33,15 @@ class GroceryListAdapter(
         return dataList.size
     }
 
-    fun updateData(list: MutableList<GroceryResponse>) {
+    fun updateData(list: MutableList<HomeGroceryResponse>) {
         this.dataList = list
         notifyDataSetChanged()
     }
 
     inner class GroceryListViewHolder(private var binding: ItemGroceryBinding) :
-        BaseViewHolder<GroceryResponse>(binding) {
+        BaseViewHolder<HomeGroceryResponse>(binding) {
         @SuppressLint("SetTextI18n")
-        override fun bindView(obj: GroceryResponse) {
+        override fun bindView(obj: HomeGroceryResponse) {
             super.bindView(obj)
             binding.tvTitle.text = obj.name
             Glide.with(binding.root.context).load(obj.image)

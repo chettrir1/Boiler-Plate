@@ -24,7 +24,7 @@ class SplashLocalImpl @Inject constructor(
         databaseManager.getModuleDao().insert(ModulesMapper.mapToLocal(modules ?: emptyList()))
     }
 
-    private suspend fun saveGrocery(grocery: List<GroceryRemoteResponse>?) {
+    private suspend fun saveGrocery(grocery: List<HomeGroceryRemoteResponse>?) {
         databaseManager.getGroceryDao().insert(GroceryMapper.mapToLocal(grocery ?: emptyList()))
         grocery?.forEach {
             it.brand?.let { data -> saveGroceryBrand(data) }
@@ -32,11 +32,11 @@ class SplashLocalImpl @Inject constructor(
         }
     }
 
-    private suspend fun saveGroceryBrand(brand: BrandResponse) {
+    private suspend fun saveGroceryBrand(brand: HomeGroceyBrandResponse) {
         databaseManager.getGroceryBrandDao().insert(GroceryBrandMapper.mapToLocal(brand))
     }
 
-    private suspend fun saveGroceryCategory(category: GroceryCategoryResponse) {
+    private suspend fun saveGroceryCategory(category: HomeGroceryCategoryResponse) {
         databaseManager.getGroceryCategoryDao().insert(GroceryCategoryMapper.mapToLocal(category))
     }
 }

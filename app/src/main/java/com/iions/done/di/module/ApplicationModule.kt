@@ -18,7 +18,8 @@ import kotlinx.coroutines.MainCoroutineDispatcher
     includes = [
         (SplashModule::class),
         (AuthModule::class),
-        (MainModule::class)
+        (MainModule::class),
+        (GroceryModule::class)
     ]
 )
 open class ApplicationModule {

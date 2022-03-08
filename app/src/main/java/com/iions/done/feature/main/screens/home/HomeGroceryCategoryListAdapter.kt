@@ -7,12 +7,12 @@ import com.iions.done.R
 import com.iions.done.base.BaseAdapter
 import com.iions.done.base.BaseViewHolder
 import com.iions.done.databinding.ItemCategoryBinding
-import com.iions.done.feature.main.data.model.GroceryCategoryResponse
+import com.iions.done.feature.main.data.model.HomeGroceryCategoryResponse
 
-class GroceryCategoryListAdapter(
-    private var dataList: MutableList<GroceryCategoryResponse>,
-    private val onItemSelectedListener: (GroceryCategoryResponse) -> Unit
-) : BaseAdapter<GroceryCategoryResponse, GroceryCategoryListAdapter.GroceryCategoryListViewHolder>() {
+class HomeGroceryCategoryListAdapter(
+    private var dataList: MutableList<HomeGroceryCategoryResponse>,
+    private val onItemSelectedListener: (HomeGroceryCategoryResponse) -> Unit
+) : BaseAdapter<HomeGroceryCategoryResponse, HomeGroceryCategoryListAdapter.GroceryCategoryListViewHolder>() {
 
     private var mCheckedPostion = -1
 
@@ -35,15 +35,15 @@ class GroceryCategoryListAdapter(
         return dataList.size
     }
 
-    fun updateData(list: MutableList<GroceryCategoryResponse>) {
+    fun updateData(list: MutableList<HomeGroceryCategoryResponse>) {
         this.dataList = list
         notifyDataSetChanged()
     }
 
     inner class GroceryCategoryListViewHolder(private var binding: ItemCategoryBinding) :
-        BaseViewHolder<GroceryCategoryResponse>(binding) {
+        BaseViewHolder<HomeGroceryCategoryResponse>(binding) {
         @SuppressLint("SetTextI18n")
-        override fun bindView(obj: GroceryCategoryResponse) {
+        override fun bindView(obj: HomeGroceryCategoryResponse) {
             super.bindView(obj)
             binding.tvName.text = obj.name
             if (mCheckedPostion == -1) {

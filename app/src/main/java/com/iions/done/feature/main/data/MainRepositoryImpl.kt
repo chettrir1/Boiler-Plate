@@ -2,8 +2,8 @@ package com.iions.done.feature.main.data
 
 import com.iions.done.feature.auth.data.model.LogoutResponse
 import com.iions.done.feature.main.data.model.BannerResponse
-import com.iions.done.feature.main.data.model.GroceryCategoryResponse
-import com.iions.done.feature.main.data.model.GroceryResponse
+import com.iions.done.feature.main.data.model.HomeGroceryCategoryResponse
+import com.iions.done.feature.main.data.model.HomeGroceryResponse
 import com.iions.done.feature.main.data.model.ModuleResponse
 import com.iions.done.utils.SchedulersFactory
 import kotlinx.coroutines.withContext
@@ -30,13 +30,13 @@ class MainRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun fetchGroceryCategoryList(): List<GroceryCategoryResponse>? {
+    override suspend fun fetchGroceryCategoryList(): List<HomeGroceryCategoryResponse>? {
         return withContext(schedulersFactory.io()) {
             localRepository.fetchGroceryCategoryList()
         }
     }
 
-    override suspend fun fetchGroceryList(): List<GroceryResponse>? {
+    override suspend fun fetchGroceryList(): List<HomeGroceryResponse>? {
         return withContext(schedulersFactory.io()) {
             localRepository.fetchGroceryList()
         }
