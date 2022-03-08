@@ -1,10 +1,7 @@
 package com.iions.done.feature.main.data
 
 import com.iions.done.feature.auth.data.model.LogoutResponse
-import com.iions.done.feature.main.data.model.BannerResponse
-import com.iions.done.feature.main.data.model.HomeGroceryCategoryResponse
-import com.iions.done.feature.main.data.model.HomeGroceryResponse
-import com.iions.done.feature.main.data.model.ModuleResponse
+import com.iions.done.feature.main.data.model.*
 import com.iions.done.utils.SchedulersFactory
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -46,9 +43,15 @@ class MainRepositoryImpl @Inject constructor(
         return localRepository.getAuthorizationToken()
     }
 
-    override suspend fun requestLogout(token: String): LogoutResponse? {
+    override suspend fun requestLogout(token: String): List<LogoutResponse>? {
         return withContext(schedulersFactory.io()) {
             remoteRepository.requestLogout(token)
+        }
+    }
+
+    override suspend fun fetchCartList(token: String): CartBaseResponse? {
+        return withContext(schedulersFactory.io()) {
+            remoteRepository.fetchCartList(token)
         }
     }
 }

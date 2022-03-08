@@ -5,7 +5,7 @@ import androidx.lifecycle.*
 import com.iions.done.feature.auth.data.AuthRepository
 import com.iions.done.feature.auth.data.model.LoginResponse
 import com.iions.done.feature.auth.data.model.VerifyPinResponse
-import com.rosia.utils.archcomponents.Response
+import com.iions.done.utils.archcomponents.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch

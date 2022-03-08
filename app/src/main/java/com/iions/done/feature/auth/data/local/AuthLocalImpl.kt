@@ -12,10 +12,9 @@ class AuthLocalImpl @Inject constructor(
     private val databaseManager: DatabaseManager
 ) : AuthRepository.Local {
 
-    override suspend fun saveUser(
-        loginResponse: VerifyPinResponse
-    ) {
-        sharedPreferenceManager.accessToken = loginResponse.token
+    override suspend fun saveUser(loginResponse: VerifyPinResponse) {
+        sharedPreferenceManager.accessToken = "${"Bearer " + loginResponse.token}"
+        sharedPreferenceManager.userId = loginResponse.user.id.toInt()
         sharedPreferenceManager.username = loginResponse.user.phoneNumber.toString()
         sharedPreferenceManager.phone = loginResponse.user.phoneNumber
         sharedPreferenceManager.name = loginResponse.user.name.toString()

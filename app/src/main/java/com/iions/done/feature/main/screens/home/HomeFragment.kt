@@ -10,6 +10,7 @@ import com.iions.done.R
 import com.iions.done.base.BaseFragment
 import com.iions.done.databinding.FragmentHomeBinding
 import com.iions.done.feature.groceries.screen.GroceryActivity
+import com.iions.done.feature.groceries.screen.detail.GroceryDetailActivity
 import com.iions.done.feature.main.data.model.BannerResponse
 import com.iions.done.feature.resturants.RestaurantActivity
 import com.iions.done.feature.search.screens.SearchActivity
@@ -59,7 +60,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                         binding.includeCategory.recyclerView.layoutManager = setUpLayoutManager()
                         binding.includeCategory.recyclerView.adapter =
                             ModuleListAdapter(it.toMutableList()) {
-                                if (it.name == "Restaurants") {
+                                if (it.name == "Restaurant") {
                                     RestaurantActivity.start(requireActivity())
                                 } else if (it.name == "Grocery") {
                                     GroceryActivity.start(requireActivity())
@@ -70,7 +71,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                             binding.includeCategory.recyclerView,
                             false
                         )
-
                     }
                 }
                 Status.ERROR -> {
@@ -89,7 +89,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     response.data?.let {
                         binding.includeGrocery.rvGrocery.layoutManager = setUpLayoutManager()
                         binding.includeGrocery.rvGrocery.adapter =
-                            HomeGroceryListAdapter(it.toMutableList()) {}
+                            HomeGroceryListAdapter(it.toMutableList()) { response ->
+                                GroceryDetailActivity.start(
+                                    requireActivity(),
+                                    response.id,
+                                    response.name
+                                )
+                            }
                     }
                     binding.includeGrocery.rvGrocery.hasFixedSize()
                     ViewCompat.setNestedScrollingEnabled(binding.includeGrocery.rvGrocery, false)

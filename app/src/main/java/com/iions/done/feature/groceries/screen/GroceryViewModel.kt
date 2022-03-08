@@ -6,7 +6,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.iions.done.feature.groceries.data.GroceryRepository
 import com.iions.done.feature.groceries.data.model.GroceryResponse
-import com.rosia.utils.archcomponents.Response
+import com.iions.done.utils.archcomponents.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.Flow

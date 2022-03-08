@@ -14,7 +14,7 @@ class HomeGroceryCategoryListAdapter(
     private val onItemSelectedListener: (HomeGroceryCategoryResponse) -> Unit
 ) : BaseAdapter<HomeGroceryCategoryResponse, HomeGroceryCategoryListAdapter.GroceryCategoryListViewHolder>() {
 
-    private var mCheckedPostion = -1
+    private var mCheckedPosition = -1
 
     override fun getViewHolder(
         binding: ViewDataBinding,
@@ -46,16 +46,16 @@ class HomeGroceryCategoryListAdapter(
         override fun bindView(obj: HomeGroceryCategoryResponse) {
             super.bindView(obj)
             binding.tvName.text = obj.name
-            if (mCheckedPostion == -1) {
+            if (mCheckedPosition == -1) {
                 if (absoluteAdapterPosition == 0) {
                     setSelectedItem(binding, true)
-                    if (mCheckedPostion != absoluteAdapterPosition) {
-                        mCheckedPostion = absoluteAdapterPosition
+                    if (mCheckedPosition != absoluteAdapterPosition) {
+                        mCheckedPosition = absoluteAdapterPosition
                     }
                 } else
                     setSelectedItem(binding, false)
             } else {
-                if (mCheckedPostion == absoluteAdapterPosition) {
+                if (mCheckedPosition == absoluteAdapterPosition) {
                     setSelectedItem(binding, true)
                 } else {
                     setSelectedItem(binding, false)
@@ -64,10 +64,10 @@ class HomeGroceryCategoryListAdapter(
 
             binding.constraint.setOnClickListener {
                 setSelectedItem(binding, true)
-                if (mCheckedPostion != absoluteAdapterPosition) {
+                if (mCheckedPosition != absoluteAdapterPosition) {
                     setSelectedItem(binding, true)
-                    notifyItemChanged(mCheckedPostion)
-                    mCheckedPostion = absoluteAdapterPosition
+                    notifyItemChanged(mCheckedPosition)
+                    mCheckedPosition = absoluteAdapterPosition
                 }
                 onItemSelectedListener(obj)
             }

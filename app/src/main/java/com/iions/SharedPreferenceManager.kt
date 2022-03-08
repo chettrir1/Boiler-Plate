@@ -14,6 +14,10 @@ class SharedPreferenceManager @Inject constructor(var context: Context) {
     private val sharedPreferences =
         context.getSharedPreferences(Constants.PREF_FILE, Context.MODE_PRIVATE)
 
+    var userId: Int
+        get() = sharedPreferences.getInt(Constants.PREF_USER_ID, -1)
+        set(value) = sharedPreferences.edit { putInt(Constants.PREF_USER_ID, value) }
+
     var username: String
         get() = sharedPreferences.getString(Constants.PREF_USER_NAME, "") ?: ""
         set(value) = sharedPreferences.edit { putString(Constants.PREF_USER_NAME, value) }

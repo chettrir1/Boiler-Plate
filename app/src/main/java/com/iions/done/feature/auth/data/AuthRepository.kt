@@ -19,7 +19,7 @@ interface AuthRepository {
         suspend fun loginWithPhone(username: String): List<LoginResponse>?
         suspend fun requestPin(phoneNumber: String): RequestPinResponse
         suspend fun requestResetPin(resetPinRequestModel: ResetPinRequestModel): ResetPinResponse
-        suspend fun logout(token: String): LogoutResponse?
+        suspend fun logout(token: String):  List<LogoutResponse>?
         suspend fun verifyPinRequest(pin: String, phone: String): VerifyPinResponse?
     }
 

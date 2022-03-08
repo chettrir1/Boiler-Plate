@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable-v24/bg_grey_bordered.xml" value="0.321025641025641" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1815" />
+        <entry key="app/src/main/res/drawable/bg_add_to_cart.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/bg_bottom_navigation.xml" value="0.3" />
         <entry key="app/src/main/res/drawable/bg_button_circular_grey.xml" value="0.3260416666666667" />
         <entry key="app/src/main/res/drawable/bg_button_circular_red.xml" value="0.3260416666666667" />
@@ -24,12 +25,15 @@
         <entry key="app/src/main/res/drawable/bg_item.xml" value="0.2671875" />
         <entry key="app/src/main/res/drawable/bg_item_border.xml" value="0.31145833333333334" />
         <entry key="app/src/main/res/drawable/bg_nav.xml" value="0.1815" />
+        <entry key="app/src/main/res/drawable/bg_nav_background_selected.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/bg_nav_icon.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/bg_nav_icon_selected.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/bg_nav_item.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/bg_nav_selected.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/bg_progress_dialog.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/bg_round_padded.xml" value="0.31145833333333334" />
+        <entry key="app/src/main/res/drawable/ic_add_to_cart_add.xml" value="0.2985" />
+        <entry key="app/src/main/res/drawable/ic_add_to_cart_minus.xml" value="0.2985" />
         <entry key="app/src/main/res/drawable/ic_arrow_left.xml" value="0.31145833333333334" />
         <entry key="app/src/main/res/drawable/ic_chevron_left_compat.xml" value="0.2671875" />
         <entry key="app/src/main/res/drawable/ic_close.xml" value="0.31145833333333334" />
@@ -96,6 +100,7 @@
         <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.13179347826086957" />
         <entry key="app/src/main/res/layout/progress_dialog.xml" value="0.26403985507246375" />
         <entry key="app/src/main/res/layout/slider_layout.xml" value="0.19067028985507245" />
+        <entry key="app/src/main/res/layout/snippet_add_to_cart.xml" value="0.2543822146216332" />
         <entry key="app/src/main/res/layout/snippet_filter.xml" value="0.375" />
         <entry key="app/src/main/res/layout/snippet_grocery_detail.xml" value="0.375" />
         <entry key="app/src/main/res/layout/snippet_home_category.xml" value="0.33229166666666665" />

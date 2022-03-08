@@ -9,10 +9,12 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.card.MaterialCardView
 import com.iions.done.R
 import com.iions.done.feature.groceries.data.model.GroceryResponse
+import com.iions.done.feature.main.data.model.HomeGroceryResponse
 
-class GroceryListAdapter :
+class GroceryListAdapter(private val onItemSelectedListener: (GroceryResponse) -> Unit) :
     PagingDataAdapter<GroceryResponse, GroceryListAdapter.GroceryListViewHolder>(GroceryComparator) {
 
     override fun onBindViewHolder(holder: GroceryListViewHolder, position: Int) {
@@ -30,13 +32,17 @@ class GroceryListAdapter :
         private val tvTitle: AppCompatTextView = view.findViewById(R.id.tv_title)
         private val tvPrice: AppCompatTextView = view.findViewById(R.id.tv_price)
         private val ivGrocery: AppCompatImageView = view.findViewById(R.id.iv_grocery)
+        private val cvGrocery: MaterialCardView = view.findViewById(R.id.cv_grocery)
 
         fun bind(item: GroceryResponse) {
             tvTitle.text = item.name
             Glide.with(ivGrocery)
                 .load("https://d-one.iionstech.com" + item.mainImageThumbnail)
-                .placeholder(R.drawable.logo).into(ivGrocery)
+                .placeholder(R.drawable.grey_logo).into(ivGrocery)
             tvPrice.text = "Rs. 2500"
+            cvGrocery.setOnClickListener {
+                onItemSelectedListener(item)
+            }
         }
     }
 
@@ -51,5 +57,4 @@ class GroceryListAdapter :
             newItem: GroceryResponse
         ) = oldItem == newItem
     }
-
 }

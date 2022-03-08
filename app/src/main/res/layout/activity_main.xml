@@ -27,20 +27,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.core.widget.NestedScrollView
-                android:id="@+id/nsvMain"
+            <FrameLayout
+                android:id="@+id/mainContainer"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toTopOf="@id/bottom_navigation_view"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/includeToolbar">
-
-                <FrameLayout
-                    android:id="@+id/mainContainer"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </androidx.core.widget.NestedScrollView>
+                app:layout_constraintTop_toBottomOf="@+id/includeToolbar" />
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottom_navigation_view"
@@ -65,10 +59,10 @@
             android:layout_gravity="start"
             android:background="@color/background_EBEBEB"
             android:fitsSystemWindows="true"
-            app:itemBackground="@drawable/bg_nav_background"
             android:theme="@style/NavigationDrawerStyle"
-            app:itemIconSize="@dimen/spacing_20"
             app:headerLayout="@layout/snippet_home_nav_header"
+            app:itemBackground="@drawable/bg_nav_background"
+            app:itemIconSize="@dimen/spacing_20"
             app:itemIconTint="@drawable/bg_nav_item"
             app:itemTextAppearance="@style/Menu.TextAppearance"
             app:itemTextColor="@drawable/bg_nav_item"

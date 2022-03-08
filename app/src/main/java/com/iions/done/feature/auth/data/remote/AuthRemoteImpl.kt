@@ -50,7 +50,7 @@ class AuthRemoteImpl @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    override suspend fun logout(token: String): LogoutResponse? {
+    override suspend fun logout(token: String):  List<LogoutResponse>? {
         return apiService.logout(token).response
     }
 

@@ -10,6 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/background_EBEBEB"
         android:orientation="vertical">
 
         <include
@@ -21,12 +22,11 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:animateLayoutChanges="true"
             android:fillViewport="true">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@color/background_EBEBEB"
                 tools:context=".feature.groceries.screen.GroceryActivity">
 
@@ -48,7 +48,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_8"
                     android:layout_marginBottom="@dimen/spacing_8"
-                    android:nestedScrollingEnabled="false"
                     android:overScrollMode="never"
                     android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="@id/include_filter"
@@ -75,6 +74,7 @@
                     android:layout_marginTop="@dimen/spacing_8"
                     android:layout_marginEnd="@dimen/spacing_16"
                     android:layout_marginBottom="@dimen/spacing_16"
+                    android:nestedScrollingEnabled="false"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

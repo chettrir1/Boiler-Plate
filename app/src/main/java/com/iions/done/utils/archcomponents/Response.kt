@@ -1,6 +1,4 @@
-package com.rosia.utils.archcomponents
-
-import com.iions.done.utils.archcomponents.Status
+package com.iions.done.utils.archcomponents
 
 /**
  * Used to handle Response from the Network layer or Database layer

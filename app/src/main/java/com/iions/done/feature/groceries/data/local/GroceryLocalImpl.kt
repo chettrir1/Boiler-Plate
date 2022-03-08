@@ -9,4 +9,7 @@ class GroceryLocalImpl @Inject constructor(
     private val sharedPreferenceManager: SharedPreferenceManager,
     private val databaseManager: DatabaseManager
 ) : GroceryRepository.Local {
+    override fun getUserId(): Int {
+        return sharedPreferenceManager.userId
+    }
 }

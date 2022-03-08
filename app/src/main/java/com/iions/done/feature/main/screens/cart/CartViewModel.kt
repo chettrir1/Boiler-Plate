@@ -1,9 +1,9 @@
-package com.iions.done.feature.main.screens
+package com.iions.done.feature.main.screens.cart
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.iions.done.feature.auth.data.model.LogoutResponse
 import com.iions.done.feature.main.data.MainRepository
+import com.iions.done.feature.main.data.model.CartBaseResponse
 import com.iions.done.utils.archcomponents.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.cancel
@@ -11,14 +11,14 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class CartViewModel @Inject constructor(
     var app: Application,
     private val repository: MainRepository
 ) : AndroidViewModel(app), LifecycleObserver {
 
-    private val logoutUseCase = MutableLiveData<Response< List<LogoutResponse>>>()
-    val logoutResponse: LiveData<Response< List<LogoutResponse>>> =
-        logoutUseCase
+    private val cartUseCase = MutableLiveData<Response<CartBaseResponse>>()
+    val cartResponse: LiveData<Response<CartBaseResponse>> =
+        cartUseCase
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public override fun onCleared() {
@@ -26,24 +26,20 @@ class MainViewModel @Inject constructor(
         super.onCleared()
     }
 
-    fun isUserLoggedIn(): Boolean {
-        return repository.isUserLoggedIn()
-    }
-
     private fun getAuthorizationToken(): String {
         return repository.getAuthorizationToken()
     }
 
-    fun requestLogout() {
+    fun fetchCartList() {
         viewModelScope.launch {
-            logoutUseCase.value = Response.loading()
+            cartUseCase.value = Response.loading()
             try {
-                logoutUseCase.value = Response.complete(
-                    repository.requestLogout(getAuthorizationToken())
+                cartUseCase.value = Response.complete(
+                    repository.fetchCartList(getAuthorizationToken())
                 )
             } catch (error: Exception) {
                 error.printStackTrace()
-                logoutUseCase.value = Response.error(error)
+                cartUseCase.value = Response.error(error)
             }
         }
     }

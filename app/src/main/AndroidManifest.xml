@@ -22,7 +22,9 @@
         android:theme="@style/AppTheme">
         <activity
             android:name="com.iions.done.feature.groceries.screen.detail.GroceryDetailActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="@integer/screen_orientation_portrait"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".feature.resturants.RestaurantActivity"
             android:exported="true"

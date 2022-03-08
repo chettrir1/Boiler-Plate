@@ -63,4 +63,9 @@
     <string name="verification_code_sent">Verification code has been sent Successfully!</string>
     <string name="login_with_sms">Login with sms</string>
     <string name="product_description">Product Description</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="order_now">Order Now</string>
+    <string name="_1">1</string>
+    <string name="move_to_wishlist">Move to Wishlist</string>
+    <string name="order_this_only">Order This Only</string>
 </resources>

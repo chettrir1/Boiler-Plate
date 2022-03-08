@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.iions.done.feature.main.data.MainRepository
 import com.iions.done.feature.main.data.model.*
-import com.rosia.utils.archcomponents.Response
+import com.iions.done.utils.archcomponents.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch

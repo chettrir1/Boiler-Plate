@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
 
     companion object {
-        fun start(activity: Activity, id: String, title: String) {
+        fun start(activity: Activity, id: Int, title: String) {
             val intent = Intent(activity, GroceryDetailActivity::class.java)
             intent.putExtra(Constants.GENERIC_ID, id)
             intent.putExtra(Constants.GENERIC_TITLE, title)

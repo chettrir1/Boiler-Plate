@@ -4,11 +4,11 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.core.view.ViewCompat
 import androidx.lifecycle.lifecycleScope
 import com.iions.done.R
 import com.iions.done.base.BaseActivity
 import com.iions.done.databinding.ActivityGroceryBinding
+import com.iions.done.feature.groceries.screen.detail.GroceryDetailActivity
 import com.iions.done.utils.archcomponents.Status
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -50,14 +50,18 @@ class GroceryActivity : BaseActivity<ActivityGroceryBinding>() {
                     response.data?.let {
                         lifecycleScope.launchWhenCreated {
                             it.collectLatest {
-                                val listAdapter = GroceryListAdapter()
+                                val listAdapter = GroceryListAdapter { response ->
+                                    GroceryDetailActivity.start(
+                                        this@GroceryActivity,
+                                        response.id,
+                                        response.name
+                                    )
+                                }
                                 binding.rvGrocery.adapter = listAdapter
                                 listAdapter.submitData(it)
                             }
                         }
                     }
-                    binding.rvGrocery.hasFixedSize()
-                    ViewCompat.setNestedScrollingEnabled(binding.rvGrocery, false)
                     super.showData(binding.loadingLayout)
                 }
                 Status.ERROR -> {

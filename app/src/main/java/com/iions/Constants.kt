@@ -10,6 +10,7 @@ object Constants {
     const val GENERIC_TITLE = "title"
 
     /*preferences*/
+    const val PREF_USER_ID = "userId"
     const val PREF_USER_NAME = "username"
     const val PREF_NAME = "name"
     const val PREF_PHONE = "phone"
