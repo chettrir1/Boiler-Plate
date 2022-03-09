@@ -46,6 +46,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(), MotionLayout.Trans
                 }
                 Status.COMPLETE -> {
                     response.data?.let {
+                        MainActivity.start(this)
                     }
                 }
                 Status.ERROR -> {
@@ -66,7 +67,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(), MotionLayout.Trans
     ) {}
 
     override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
-        MainActivity.start(this)
     }
 
     override fun onTransitionTrigger(

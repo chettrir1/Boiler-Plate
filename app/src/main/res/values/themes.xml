@@ -18,6 +18,9 @@
         <item name="android:windowAnimationStyle">@style/WindowAnimationStyle</item>
         <item name="android:windowBackground">@color/background_F5F5F5</item>
         <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowEnterTransition">@transition/explode</item>
+        <item name="android:windowExitTransition">@transition/explode</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->

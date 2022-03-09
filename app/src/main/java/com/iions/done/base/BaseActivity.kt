@@ -84,9 +84,4 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
         binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)
             ?.findViewById<ProgressBar>(R.id.progressBar)?.visibility = View.GONE
     }
-
-    override fun finish() {
-        super.finish()
-        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
-    }
 }

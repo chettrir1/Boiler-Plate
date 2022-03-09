@@ -50,6 +50,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setUpNavigationDrawer()
         setSupportActionBar(binding.includeToolbar.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
