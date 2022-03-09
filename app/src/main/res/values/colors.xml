@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorAccent">@color/black_2e384d</color>
-    <color name="colorPrimary">@color/black_2e384d</color>
-    <color name="colorPrimaryDark">@color/black_2e384d</color>
+    <color name="colorAccent">@color/background_F5F5F5</color>
+    <color name="colorPrimary">@color/background_F5F5F5</color>
+    <color name="colorPrimaryDark">@color/background_F5F5F5</color>
     <color name="teal_200">@color/red_F93838</color>
     <color name="teal_700">@color/red_F93838</color>
 
 
     <color name="white_FFFFFF">#FFFFFF</color>
-    <color name="background_EBEBEB">#E0E0E0</color>
+    <color name="background_F5F5F5">#F5F5F5</color>
     <color name="white_f4f6fc">#f4f6fc</color>
 
     <color name="black_FF000000">#FF000000</color>

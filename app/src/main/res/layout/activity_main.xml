@@ -15,7 +15,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/background_EBEBEB"
             android:fitsSystemWindows="true">
 
             <include
@@ -40,8 +39,8 @@
                 android:id="@+id/bottom_navigation_view"
                 android:layout_width="0dp"
                 android:layout_height="?android:attr/actionBarSize"
-                android:background="@color/background_EBEBEB"
                 app:itemIconSize="@dimen/spacing_20"
+                android:background="@color/background_F5F5F5"
                 app:itemIconTint="@drawable/bg_bottom_navigation"
                 app:itemTextAppearance="@style/Menu.TextAppearance"
                 app:itemTextColor="@drawable/bg_bottom_navigation"
@@ -56,8 +55,8 @@
             android:id="@+id/navigationView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:background="@color/background_F5F5F5"
             android:layout_gravity="start"
-            android:background="@color/background_EBEBEB"
             android:fitsSystemWindows="true"
             android:theme="@style/NavigationDrawerStyle"
             app:headerLayout="@layout/snippet_home_nav_header"

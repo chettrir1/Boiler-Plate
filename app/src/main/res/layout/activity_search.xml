@@ -8,8 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background_EBEBEB">
+        android:layout_height="match_parent">
 
         <com.paulrybitskyi.persistentsearchview.PersistentSearchView
             android:id="@+id/search_view"
@@ -21,7 +20,6 @@
             android:paddingEnd="4dp"
             android:paddingRight="4dp"
             app:areSuggestionsDisabled="false"
-            app:cardBackgroundColor="@color/background_EBEBEB"
             app:cardCornerRadius="8dp"
             app:cardElevation="2dp"
             app:clearInputButtonDrawable="@drawable/ic_close"

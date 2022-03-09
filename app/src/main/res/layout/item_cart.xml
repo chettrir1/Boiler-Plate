@@ -10,8 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/constraint"
-        android:background="@color/background_EBEBEB">
+        android:id="@+id/constraint">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cv_cart"

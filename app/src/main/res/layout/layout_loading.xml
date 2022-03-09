@@ -6,9 +6,9 @@
         android:id="@+id/loadingContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background_EBEBEB"
         android:gravity="center"
         android:padding="@dimen/spacing_32"
+        android:background="@color/background_F5F5F5"
         android:translationZ="2dp"
         android:visibility="visible">
 

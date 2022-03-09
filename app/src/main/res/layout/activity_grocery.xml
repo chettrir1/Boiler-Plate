@@ -10,7 +10,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background_EBEBEB"
         android:orientation="vertical">
 
         <include
@@ -27,7 +26,6 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/background_EBEBEB"
                 tools:context=".feature.groceries.screen.GroceryActivity">
 
                 <include

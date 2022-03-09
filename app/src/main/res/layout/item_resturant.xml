@@ -8,7 +8,6 @@
     android:layout_marginTop="@dimen/spacing_8"
     android:layout_marginEnd="@dimen/spacing_4"
     android:layout_marginBottom="@dimen/spacing_8"
-    android:background="@color/background_EBEBEB"
     android:padding="@dimen/spacing_6">
 
     <com.google.android.material.card.MaterialCardView

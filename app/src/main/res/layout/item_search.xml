@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:id="@+id/constraint"
     android:layout_height="wrap_content"
-    android:background="@color/background_EBEBEB"
     android:padding="@dimen/spacing_6">
 
     <com.google.android.material.card.MaterialCardView

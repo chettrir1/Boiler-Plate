@@ -1,7 +1,10 @@
 package com.iions.done.feature.splash.screens
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
+import android.view.WindowInsets
+import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.constraintlayout.motion.widget.MotionLayout
 import com.iions.done.R
@@ -20,6 +23,15 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(), MotionLayout.Trans
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        @Suppress("DEPRECATION")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.insetsController?.hide(WindowInsets.Type.statusBars())
+        } else {
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
+        }
         binding.motionLayout.setTransitionListener(this)
     }
 
