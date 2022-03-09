@@ -2,6 +2,7 @@ package com.iions.done.feature.groceries.data
 
 import androidx.paging.PagingData
 import com.iions.done.feature.groceries.data.model.AddToCartResponse
+import com.iions.done.feature.groceries.data.model.GroceryDetailRemoteBaseResponse
 import com.iions.done.feature.groceries.data.model.GroceryResponse
 import kotlinx.coroutines.flow.Flow
 
@@ -15,14 +16,15 @@ interface GroceryRepository {
     ): Flow<PagingData<GroceryResponse>>?
 
     fun getUserId(): Int
-
     suspend fun addToCart(
-        userId: Int?, itemId: Int?, itemType: String?
+        itemId: Int?, itemType: String?, quantity: Int?
     ): List<AddToCartResponse>?
 
-    interface Local {
-        fun isUserLoggedIn(): Boolean
+    suspend fun getGroceryDetail(itemId: Int): GroceryDetailRemoteBaseResponse?
 
+    interface Local {
+        fun getAuthorizationToken(): String
+        fun isUserLoggedIn(): Boolean
         fun getUserId(): Int
     }
 
@@ -34,8 +36,10 @@ interface GroceryRepository {
         ): Flow<PagingData<GroceryResponse>>?
 
         suspend fun addToCart(
-            userId: Int?, itemId: Int?, itemType: String?
+            token: String, userId: Int?, itemId: Int?, itemType: String?, quantity: Int?
         ): List<AddToCartResponse>?
+
+        suspend fun getGroceryDetail(itemId: Int): GroceryDetailRemoteBaseResponse?
 
     }
 }

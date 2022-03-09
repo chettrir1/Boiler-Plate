@@ -92,7 +92,7 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
         errorMessage: String,
         @DrawableRes thumbnail: Int,
         actionLabel: String,
-        actionListener: () -> Unit
+        actionListener: (type: String?) -> Unit
     ) {
         binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)?.visibility =
             View.VISIBLE
@@ -107,9 +107,11 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
                 text = actionLabel
                 visibility = View.VISIBLE
                 setOnClickListener {
-                    binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)
-                        ?.findViewById<AppCompatImageView>(R.id.thumb)?.visibility = View.GONE
-                    actionListener()
+                    if (actionLabel == getString(R.string.retry)) {
+                        binding.root.findViewById<RelativeLayout>(R.id.loadingLayout)
+                            ?.findViewById<AppCompatImageView>(R.id.thumb)?.visibility = View.GONE
+                    }
+                    actionListener(actionLabel)
                 }
             }
         binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)

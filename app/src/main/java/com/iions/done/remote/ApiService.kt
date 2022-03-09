@@ -4,6 +4,7 @@ import com.iions.done.feature.auth.data.model.LoginResponse
 import com.iions.done.feature.auth.data.model.LogoutResponse
 import com.iions.done.feature.auth.data.model.VerifyPinResponse
 import com.iions.done.feature.groceries.data.model.AddToCartResponse
+import com.iions.done.feature.groceries.data.model.GroceryDetailRemoteBaseResponse
 import com.iions.done.feature.groceries.data.model.GroceryRemoteBaseResponse
 import com.iions.done.feature.main.data.model.CartBaseResponse
 import com.iions.done.feature.main.data.model.HomeResponse
@@ -45,8 +46,15 @@ interface ApiService {
     suspend fun getGroceries(@Query("page") page: Int): BaseResponse<GroceryRemoteBaseResponse>
 
     @Headers("Accept: application/json")
+    @POST("grocery/item")
+    suspend fun getGroceryDetail(
+        @Body requestParams: MutableMap<String, Any>
+    ): BaseResponse<GroceryDetailRemoteBaseResponse>
+
+    @Headers("Accept: application/json")
     @POST("cart/addToCart")
     suspend fun requestAddToCart(
+        @Header("Authorization") token: String,
         @Body requestParams: MutableMap<String, Any>
     ): BaseResponse<List<AddToCartResponse>>
 

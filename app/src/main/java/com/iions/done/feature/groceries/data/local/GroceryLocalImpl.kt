@@ -10,6 +10,10 @@ class GroceryLocalImpl @Inject constructor(
     private val databaseManager: DatabaseManager
 ) : GroceryRepository.Local {
 
+    override fun getAuthorizationToken(): String {
+        return sharedPreferenceManager.accessToken.toString()
+    }
+
     override fun isUserLoggedIn(): Boolean {
         return sharedPreferenceManager.username.isNotEmpty()
     }

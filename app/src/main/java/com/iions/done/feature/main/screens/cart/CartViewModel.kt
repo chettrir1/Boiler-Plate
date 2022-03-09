@@ -26,6 +26,10 @@ class CartViewModel @Inject constructor(
         super.onCleared()
     }
 
+    fun isUserLoggedIn(): Boolean {
+        return repository.isUserLoggedIn()
+    }
+
     private fun getAuthorizationToken(): String {
         return repository.getAuthorizationToken()
     }

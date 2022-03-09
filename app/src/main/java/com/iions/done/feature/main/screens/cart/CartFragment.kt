@@ -8,6 +8,7 @@ import com.iions.done.R
 import com.iions.done.base.BaseFragment
 import com.iions.done.databinding.FragmentCartBinding
 import com.iions.done.exceptions.parseError
+import com.iions.done.feature.auth.screens.login.smslogin.SmsLoginActivity
 import com.iions.done.utils.archcomponents.Status
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -50,11 +51,22 @@ class CartFragment : BaseFragment<FragmentCartBinding>() {
                 Status.ERROR -> {
                     super.showActionableError(
                         binding.loadingLayout,
-                        this.parseError(response.error),
+                        errorMessage = if (viewModel.isUserLoggedIn()) {
+                            this.parseError(response.error)
+                        } else {
+                            getString(R.string.you_havent_logged_in_yet)
+                        },
                         R.drawable.ic_error_cart,
-                        getString(R.string.retry)
+                        actionLabel = if (viewModel.isUserLoggedIn()) {
+                            getString(R.string.retry)
+                        } else {
+                            getString(R.string.login)
+                        }
                     ) {
-                        viewModel.fetchCartList()
+                        if (it == getString(R.string.retry))
+                            viewModel.fetchCartList()
+                        else
+                            SmsLoginActivity.start(requireActivity(), "")
                     }
                 }
             }

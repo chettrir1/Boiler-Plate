@@ -41,6 +41,7 @@ class CartListAdapter(
         override fun bindView(obj: CartResponse) {
             super.bindView(obj)
             binding.tvTitle.text = obj.item.name
+            binding.tvQuantity.text = obj.quantity.toString()
             Glide.with(binding.root.context).load(obj.item.mainImageThumbnail)
                 .placeholder(R.drawable.grey_logo).into(binding.ivCart)
 

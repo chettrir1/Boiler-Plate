@@ -69,4 +69,6 @@
     <string name="move_to_wishlist">Move to Wishlist</string>
     <string name="order_this_only">Order This Only</string>
     <string name="retry">Retry</string>
+    <string name="you_havent_logged_in_yet">You haven\'t logged in yet.</string>
+    <string name="item_added_to_cart">Item added to Cart!</string>
 </resources>

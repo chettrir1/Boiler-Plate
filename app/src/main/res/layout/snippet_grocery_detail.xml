@@ -1,90 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Hulas Premium Basmati Rice"
-        android:textColor="@color/black_2e384d"
-        android:textSize="@dimen/text_size_18"
-        app:fontFamily="@font/roboto_bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Rs. 2500"
-        android:textColor="@color/red_F93838"
-        android:textSize="@dimen/text_size_14"
-        app:fontFamily="@font/roboto_bold"
-        app:layout_constraintStart_toStartOf="@+id/tv_title"
-        app:layout_constraintTop_toBottomOf="@id/tv_title" />
+    </data>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_old_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_8"
-        android:text="Rs. 2,500"
-        android:textColor="@color/grey_8798AD"
-        android:textSize="@dimen/text_size_14"
-        app:fontFamily="@font/roboto_light"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_price"
-        app:layout_constraintStart_toEndOf="@+id/tv_price"
-        app:layout_constraintTop_toTopOf="@+id/tv_price" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatRatingBar
-        android:id="@+id/rating_bar"
-        style="@style/Widget.AppCompat.RatingBar.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:indeterminateTint="@color/red_F93838"
-        android:rating="3.5"
-        app:layout_constraintStart_toStartOf="@+id/tv_price"
-        app:layout_constraintTop_toBottomOf="@+id/tv_price" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="Hulas Premium Basmati Rice"
+            android:textColor="@color/black_2e384d"
+            android:textSize="@dimen/text_size_18"
+            app:fontFamily="@font/roboto_bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_reviews"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_8"
-        android:text="331 Reviews"
-        android:textColor="@color/black_2e384d"
-        android:textSize="@dimen/text_size_12"
-        app:fontFamily="@font/roboto_regular"
-        app:layout_constraintBottom_toBottomOf="@+id/rating_bar"
-        app:layout_constraintStart_toEndOf="@+id/rating_bar"
-        app:layout_constraintTop_toTopOf="@+id/rating_bar" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rs. 2500"
+            android:textColor="@color/red_F93838"
+            android:textSize="@dimen/text_size_14"
+            app:fontFamily="@font/roboto_bold"
+            app:layout_constraintStart_toStartOf="@+id/tv_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="@dimen/spacing_16"
-        android:background="@color/grey_D1D1D1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rating_bar" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_old_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_8"
+            android:text="Rs. 2,500"
+            android:textColor="@color/grey_8798AD"
+            android:textSize="@dimen/text_size_14"
+            app:fontFamily="@font/roboto_light"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_price"
+            app:layout_constraintStart_toEndOf="@+id/tv_price"
+            app:layout_constraintTop_toTopOf="@+id/tv_price" />
+
+        <androidx.appcompat.widget.AppCompatRatingBar
+            android:id="@+id/rating_bar"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/red_F93838"
+            android:rating="3.5"
+            app:layout_constraintStart_toStartOf="@+id/tv_price"
+            app:layout_constraintTop_toBottomOf="@+id/tv_price" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_reviews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_8"
+            android:text="331 Reviews"
+            android:textColor="@color/black_2e384d"
+            android:textSize="@dimen/text_size_12"
+            app:fontFamily="@font/roboto_regular"
+            app:layout_constraintBottom_toBottomOf="@+id/rating_bar"
+            app:layout_constraintStart_toEndOf="@+id/rating_bar"
+            app:layout_constraintTop_toTopOf="@+id/rating_bar" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/spacing_16"
+            android:background="@color/grey_D1D1D1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rating_bar" />
 
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_title_product_description"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_16"
-        android:text="@string/product_description"
-        android:textColor="@color/black_2e384d"
-        android:textSize="@dimen/text_size_14"
-        app:fontFamily="@font/roboto_bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title_product_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_16"
+            android:text="@string/product_description"
+            android:textColor="@color/black_2e384d"
+            android:textSize="@dimen/text_size_14"
+            app:fontFamily="@font/roboto_bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

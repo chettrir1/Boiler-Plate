@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.iions.done.feature.groceries.data.GroceryRepository
 import com.iions.done.feature.groceries.data.model.AddToCartResponse
+import com.iions.done.feature.groceries.data.model.GroceryDetailRemoteBaseResponse
 import com.iions.done.utils.archcomponents.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.cancel
@@ -20,6 +21,10 @@ class GroceryDetailViewModel @Inject constructor(
     val addToCartResponse: LiveData<Response<List<AddToCartResponse>>> =
         addToCartUseCase
 
+    private val groceryUseCase = MutableLiveData<Response<GroceryDetailRemoteBaseResponse>>()
+    val groceryResponse: LiveData<Response<GroceryDetailRemoteBaseResponse>> =
+        groceryUseCase
+
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public override fun onCleared() {
         viewModelScope.cancel()
@@ -30,12 +35,26 @@ class GroceryDetailViewModel @Inject constructor(
         return repository.isUserLoggedIn()
     }
 
-    fun requestAddToCart(itemId: Int?, itemType: String?) {
+    fun getGroceryDetail(itemId: Int) {
+        viewModelScope.launch {
+            groceryUseCase.value = Response.loading()
+            try {
+                groceryUseCase.value = Response.complete(
+                    repository.getGroceryDetail(itemId)
+                )
+            } catch (error: Exception) {
+                error.printStackTrace()
+                groceryUseCase.value = Response.error(error)
+            }
+        }
+    }
+
+    fun requestAddToCart(itemId: Int?, itemType: String?, quantity: Int?) {
         viewModelScope.launch {
             addToCartUseCase.value = Response.loading()
             try {
                 addToCartUseCase.value = Response.complete(
-                    repository.addToCart(repository.getUserId(), itemId, itemType)
+                    repository.addToCart(itemId, itemType, quantity)
                 )
             } catch (error: Exception) {
                 error.printStackTrace()
