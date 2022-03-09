@@ -46,7 +46,7 @@ class HomeGroceryListAdapter(
             super.bindView(obj)
             binding.tvTitle.text = obj.name
             Glide.with(binding.root.context).load(obj.image)
-                .placeholder(R.drawable.grey_logo).into(binding.ivGrocery)
+                .placeholder(R.drawable.logo).into(binding.ivGrocery)
             binding.tvPrice.text = "Rs. 2500"
             binding.cvGrocery.setOnClickListener {
                 onItemSelectedListener(obj)

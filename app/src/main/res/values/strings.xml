@@ -71,4 +71,7 @@
     <string name="retry">Retry</string>
     <string name="you_havent_logged_in_yet">You haven\'t logged in yet.</string>
     <string name="item_added_to_cart">Item added to Cart!</string>
+    <string name="proceed_to_checkout">Proceed to Checkout</string>
+    <string name="you_can_simply_pay_for_all_the_items_upon_ndelivery_of_the_product">You can simply pay for all the items upon\ndelivery of the product.</string>
+    <string name="cash_on_delivery">Cash on Delivery</string>
 </resources>

@@ -37,8 +37,8 @@ class GroceryListAdapter(private val onItemSelectedListener: (GroceryResponse) -
         fun bind(item: GroceryResponse) {
             tvTitle.text = item.name
             Glide.with(ivGrocery)
-                .load("https://d-one.iionstech.com" + item.mainImageThumbnail)
-                .placeholder(R.drawable.grey_logo).into(ivGrocery)
+                .load("https://d-one.iionstech.com/storage/" + item.mainImageThumbnail)
+                .placeholder(R.drawable.logo).into(ivGrocery)
             tvPrice.text = "Rs. 2500"
             cvGrocery.setOnClickListener {
                 onItemSelectedListener(item)

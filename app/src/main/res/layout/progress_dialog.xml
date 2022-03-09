@@ -62,7 +62,7 @@
         android:fontFamily="@font/roboto_regular"
         android:text="@string/please_wait"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/black_2e384d"
         app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
         app:layout_constraintEnd_toEndOf="@+id/rlProgress"
         app:layout_constraintStart_toStartOf="@+id/rlProgress"
