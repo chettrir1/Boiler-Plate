@@ -6,6 +6,8 @@ import com.iions.done.feature.groceries.data.model.GroceryResponse
 import kotlinx.coroutines.flow.Flow
 
 interface GroceryRepository {
+    fun isUserLoggedIn(): Boolean
+
     suspend fun getGroceries(
         filter: String?,
         category: String?,
@@ -19,6 +21,8 @@ interface GroceryRepository {
     ): List<AddToCartResponse>?
 
     interface Local {
+        fun isUserLoggedIn(): Boolean
+
         fun getUserId(): Int
     }
 

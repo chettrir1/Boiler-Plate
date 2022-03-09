@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import com.iions.done.R
 import com.iions.done.base.BaseActivity
 import com.iions.done.databinding.ActivityGroceryBinding
+import com.iions.done.exceptions.parseError
 import com.iions.done.feature.groceries.screen.detail.GroceryDetailActivity
 import com.iions.done.utils.archcomponents.Status
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,7 +45,7 @@ class GroceryActivity : BaseActivity<ActivityGroceryBinding>() {
         viewModel.groceryResponse.observe(this) { response ->
             when (response.status) {
                 Status.LOADING -> {
-                    super.showLoading(binding.loadingLayout, getString(R.string.please_wait))
+                    showLoading(binding.loadingLayout, getString(R.string.please_wait))
                 }
                 Status.COMPLETE -> {
                     response.data?.let {
@@ -62,10 +63,10 @@ class GroceryActivity : BaseActivity<ActivityGroceryBinding>() {
                             }
                         }
                     }
-                    super.showData(binding.loadingLayout)
+                    showData(binding.loadingLayout)
                 }
                 Status.ERROR -> {
-                    super.showError(binding.loadingLayout, response.error.toString())
+                    showError(binding.loadingLayout, this.parseError(response.error))
                 }
             }
         }

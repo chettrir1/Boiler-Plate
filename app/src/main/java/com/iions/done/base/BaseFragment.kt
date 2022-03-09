@@ -90,11 +90,16 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
     fun <T : ViewDataBinding> showActionableError(
         binding: T?,
         errorMessage: String,
+        @DrawableRes thumbnail: Int,
         actionLabel: String,
         actionListener: () -> Unit
     ) {
         binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)?.visibility =
             View.VISIBLE
+        binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)
+            ?.findViewById<AppCompatImageView>(R.id.thumb)?.visibility = View.VISIBLE
+        binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)
+            ?.findViewById<AppCompatImageView>(R.id.thumb)?.setImageResource(thumbnail)
         binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)
             ?.findViewById<AppCompatTextView>(R.id.txtLoading)?.text = errorMessage
         binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)
@@ -102,6 +107,8 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
                 text = actionLabel
                 visibility = View.VISIBLE
                 setOnClickListener {
+                    binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)
+                        ?.findViewById<AppCompatImageView>(R.id.thumb)?.visibility = View.GONE
                     actionListener()
                 }
             }

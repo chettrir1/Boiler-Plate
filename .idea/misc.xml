@@ -91,6 +91,7 @@
         <entry key="app/src/main/res/layout/item_grocery.xml" value="0.55" />
         <entry key="app/src/main/res/layout/item_home.xml" value="0.26403985507246375" />
         <entry key="app/src/main/res/layout/item_home_categories.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/item_home_grocery.xml" value="0.2424112868747328" />
         <entry key="app/src/main/res/layout/item_home_module.xml" value="0.26403985507246375" />
         <entry key="app/src/main/res/layout/item_order_history.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_resturant.xml" value="0.375" />

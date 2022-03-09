@@ -8,6 +8,7 @@ import com.iions.done.feature.groceries.data.model.AddToCartResponse
 import com.iions.done.feature.groceries.data.model.GroceryResponse
 import com.iions.done.feature.groceries.screen.detail.GroceryPagingSource
 import com.iions.done.remote.ApiService
+import com.iions.done.utils.notNullMapper
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -32,12 +33,12 @@ class GroceryRemoteImpl @Inject constructor(
         userId: Int?,
         itemId: Int?,
         itemType: String?
-    ): List<AddToCartResponse>? {
+    ): List<AddToCartResponse> {
         val requestParams = mutableMapOf<String, Any>()
         requestParams["user_id"] = userId ?: -1
         requestParams["item_id"] = itemId ?: -1
         requestParams["item_type"] = itemType ?: ""
         val remoteResponse = apiService.requestAddToCart(requestParams)
-        return remoteResponse.response
+        return notNullMapper(remoteResponse)
     }
 }

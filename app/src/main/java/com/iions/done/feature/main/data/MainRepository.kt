@@ -23,7 +23,7 @@ interface MainRepository {
     }
 
     interface Remote {
-        suspend fun requestLogout(token: String):  List<LogoutResponse>?
+        suspend fun requestLogout(token: String): List<LogoutResponse>?
         suspend fun fetchCartList(token: String): CartBaseResponse?
     }
 }

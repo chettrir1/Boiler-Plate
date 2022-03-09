@@ -2,12 +2,12 @@ package com.iions.done.feature.main.screens.cart
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.iions.done.R
 import com.iions.done.base.BaseFragment
 import com.iions.done.databinding.FragmentCartBinding
+import com.iions.done.exceptions.parseError
 import com.iions.done.utils.archcomponents.Status
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -48,7 +48,14 @@ class CartFragment : BaseFragment<FragmentCartBinding>() {
                     super.showData(binding.loadingLayout)
                 }
                 Status.ERROR -> {
-                    super.showError(binding.loadingLayout, response.error.toString())
+                    super.showActionableError(
+                        binding.loadingLayout,
+                        this.parseError(response.error),
+                        R.drawable.ic_error_cart,
+                        getString(R.string.retry)
+                    ) {
+                        viewModel.fetchCartList()
+                    }
                 }
             }
         }

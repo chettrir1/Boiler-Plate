@@ -34,7 +34,7 @@ class GroceryViewModel @Inject constructor(
             groceryUseCase.value = Response.loading()
             try {
                 groceryUseCase.value = Response.complete(
-                    repository.getGroceries(filter, category, brand)?.cachedIn(viewModelScope)
+                    repository.getGroceries(filter, category, brand)
                 )
             } catch (error: Exception) {
                 error.printStackTrace()

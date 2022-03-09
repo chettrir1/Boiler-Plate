@@ -9,6 +9,7 @@ import com.iions.Constants
 import com.iions.done.R
 import com.iions.done.base.BaseActivity
 import com.iions.done.databinding.ActivityVerifyPinBinding
+import com.iions.done.exceptions.parseError
 import com.iions.done.feature.auth.screens.resetpin.ResetPinActivity
 import com.iions.done.utils.archcomponents.Status
 import com.iions.done.utils.enablePianoEffect
@@ -86,7 +87,7 @@ class VerifyPinActivity : BaseActivity<ActivityVerifyPinBinding>() {
                 Status.ERROR -> {
                     hideDialog()
                     showToast(
-                        response.error?.message,
+                        this.parseError(response.error),
                         MDToast.TYPE_ERROR
                     )
                 }

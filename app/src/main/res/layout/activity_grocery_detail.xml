@@ -71,6 +71,7 @@
         <include
             layout="@layout/snippet_add_to_cart"
             android:layout_width="0dp"
+            android:id="@+id/include_add_to_cart"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

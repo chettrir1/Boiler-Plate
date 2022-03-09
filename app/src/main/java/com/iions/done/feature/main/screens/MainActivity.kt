@@ -9,11 +9,13 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
+import com.iions.Constants
 import com.iions.SharedPreferenceManager
 import com.iions.done.R
 import com.iions.done.base.BaseActivity
 import com.iions.done.databinding.ActivityMainBinding
 import com.iions.done.databinding.SnippetHomeNavHeaderBinding
+import com.iions.done.exceptions.parseError
 import com.iions.done.feature.auth.screens.login.smslogin.SmsLoginActivity
 import com.iions.done.feature.main.screens.camera.CameraFragment
 import com.iions.done.feature.main.screens.cart.CartFragment
@@ -59,7 +61,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
         navHeaderMainBinding.tvName.text = "Unknnown"
         navHeaderMainBinding.tvPhone.text = "------"
         navHeaderMainBinding.cvImage.setOnClickListener {
-            SmsLoginActivity.start(this)
+            SmsLoginActivity.start(this, "")
         }
 
         binding.includeToolbar.ivMenu.setOnClickListener {
@@ -191,12 +193,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
                 }
                 Status.COMPLETE -> {
                     showProgress(false)
-                    SmsLoginActivity.start(this)
+                    SmsLoginActivity.start(this, Constants.TYPE_LOGOUT)
                 }
                 Status.ERROR -> {
                     showProgress(false)
                     showToast(
-                        response.error?.message,
+                        this.parseError(response.error),
                         TYPE_ERROR
                     )
                 }

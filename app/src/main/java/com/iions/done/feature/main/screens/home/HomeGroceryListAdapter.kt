@@ -7,6 +7,7 @@ import com.iions.done.R
 import com.iions.done.base.BaseAdapter
 import com.iions.done.base.BaseViewHolder
 import com.iions.done.databinding.ItemGroceryBinding
+import com.iions.done.databinding.ItemHomeGroceryBinding
 import com.iions.done.feature.main.data.model.HomeGroceryResponse
 
 class HomeGroceryListAdapter(
@@ -18,7 +19,7 @@ class HomeGroceryListAdapter(
         binding: ViewDataBinding,
         viewType: Int
     ): GroceryListViewHolder {
-        return GroceryListViewHolder(binding as ItemGroceryBinding)
+        return GroceryListViewHolder(binding as ItemHomeGroceryBinding)
     }
 
     override fun onBindCustomViewHolder(holder: GroceryListViewHolder, position: Int) {
@@ -26,7 +27,7 @@ class HomeGroceryListAdapter(
     }
 
     override fun getLayoutResource(viewType: Int): Int {
-        return R.layout.item_grocery
+        return R.layout.item_home_grocery
     }
 
     override fun getItemCount(): Int {
@@ -38,7 +39,7 @@ class HomeGroceryListAdapter(
         notifyDataSetChanged()
     }
 
-    inner class GroceryListViewHolder(private var binding: ItemGroceryBinding) :
+    inner class GroceryListViewHolder(private var binding: ItemHomeGroceryBinding) :
         BaseViewHolder<HomeGroceryResponse>(binding) {
         @SuppressLint("SetTextI18n")
         override fun bindView(obj: HomeGroceryResponse) {

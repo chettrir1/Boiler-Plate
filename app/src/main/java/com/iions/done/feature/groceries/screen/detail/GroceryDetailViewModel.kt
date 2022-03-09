@@ -26,6 +26,10 @@ class GroceryDetailViewModel @Inject constructor(
         super.onCleared()
     }
 
+    fun isUserLoggedIn(): Boolean {
+        return repository.isUserLoggedIn()
+    }
+
     fun requestAddToCart(itemId: Int?, itemType: String?) {
         viewModelScope.launch {
             addToCartUseCase.value = Response.loading()

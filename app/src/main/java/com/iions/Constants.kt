@@ -8,6 +8,7 @@ object Constants {
     const val DB_NAME = "app.db"
     const val GENERIC_ID = "id"
     const val GENERIC_TITLE = "title"
+    const val TYPE_LOGOUT = "logout"
 
     /*preferences*/
     const val PREF_USER_ID = "userId"

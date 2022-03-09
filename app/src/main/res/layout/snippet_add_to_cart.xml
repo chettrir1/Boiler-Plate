@@ -1,93 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="?android:attr/actionBarSize"
-    android:background="@drawable/bg_add_to_cart"
-    android:padding="@dimen/spacing_10"
-    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/iv_minus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="?android:attr/selectableItemBackground"
-        android:padding="@dimen/spacing_4"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_add_to_cart"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_add_to_cart"
-        app:srcCompat="@drawable/ic_add_to_cart_minus" />
+    <data>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_quantity"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="@dimen/spacing_8"
-        android:background="@drawable/bg_circular_border_grey"
-        android:gravity="center"
-        android:maxLength="4"
-        android:paddingStart="@dimen/spacing_20"
-        android:paddingEnd="@dimen/spacing_20"
-        android:text="@string/_1"
-        android:textColor="@color/black_000000"
-        android:textSize="@dimen/text_size_12"
-        app:fontFamily="@font/roboto_medium"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_minus"
-        app:layout_constraintStart_toEndOf="@+id/iv_minus"
-        app:layout_constraintTop_toTopOf="@+id/iv_minus" />
+    </data>
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/iv_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_8"
-        android:background="?android:attr/selectableItemBackground"
-        android:padding="@dimen/spacing_4"
-        app:layout_constraintBottom_toBottomOf="@id/tv_quantity"
-        app:layout_constraintStart_toEndOf="@+id/tv_quantity"
-        app:layout_constraintTop_toTopOf="@+id/tv_quantity"
-        app:srcCompat="@drawable/ic_add_to_cart_add" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@drawable/bg_add_to_cart"
+        android:padding="@dimen/spacing_10"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/btn_add_to_cart"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_8"
-        android:background="@drawable/bg_circular_grey"
-        android:gravity="center"
-        android:paddingStart="@dimen/spacing_16"
-        android:paddingTop="@dimen/spacing_4"
-        android:paddingEnd="@dimen/spacing_16"
-        android:paddingBottom="@dimen/spacing_4"
-        android:text="@string/add_to_cart"
-        android:textColor="@color/white_FFFFFF"
-        android:textSize="@dimen/text_size_14"
-        app:fontFamily="@font/roboto_medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_order_now"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/iv_add"
-        app:layout_constraintTop_toTopOf="parent" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_minus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="@dimen/spacing_4"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_add_to_cart"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btn_add_to_cart"
+            app:srcCompat="@drawable/ic_add_to_cart_minus" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/btn_order_now"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_8"
-        android:background="@drawable/bg_circular_red"
-        android:gravity="center"
-        android:paddingStart="@dimen/spacing_16"
-        android:paddingTop="@dimen/spacing_4"
-        android:paddingEnd="@dimen/spacing_16"
-        android:paddingBottom="@dimen/spacing_4"
-        android:text="@string/order_now"
-        android:textColor="@color/white_FFFFFF"
-        android:textSize="@dimen/text_size_14"
-        app:fontFamily="@font/roboto_medium"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_add_to_cart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_add_to_cart"
-        app:layout_constraintTop_toTopOf="@+id/btn_add_to_cart"
-        app:layout_constraintVertical_bias="0.0" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/spacing_8"
+            android:background="@drawable/bg_circular_border_grey"
+            android:gravity="center"
+            android:maxLength="4"
+            android:paddingStart="@dimen/spacing_20"
+            android:paddingEnd="@dimen/spacing_20"
+            android:text="@string/_1"
+            android:textColor="@color/black_000000"
+            android:textSize="@dimen/text_size_12"
+            app:fontFamily="@font/roboto_medium"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_minus"
+            app:layout_constraintStart_toEndOf="@+id/iv_minus"
+            app:layout_constraintTop_toTopOf="@+id/iv_minus" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_8"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="@dimen/spacing_4"
+            app:layout_constraintBottom_toBottomOf="@id/tv_quantity"
+            app:layout_constraintStart_toEndOf="@+id/tv_quantity"
+            app:layout_constraintTop_toTopOf="@+id/tv_quantity"
+            app:srcCompat="@drawable/ic_add_to_cart_add" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btn_add_to_cart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_8"
+            android:background="@drawable/bg_circular_grey"
+            android:gravity="center"
+            android:paddingStart="@dimen/spacing_16"
+            android:paddingTop="@dimen/spacing_4"
+            android:paddingEnd="@dimen/spacing_16"
+            android:paddingBottom="@dimen/spacing_4"
+            android:text="@string/add_to_cart"
+            android:textColor="@color/white_FFFFFF"
+            android:textSize="@dimen/text_size_14"
+            app:fontFamily="@font/roboto_medium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_order_now"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/iv_add"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btn_order_now"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_8"
+            android:background="@drawable/bg_circular_red"
+            android:gravity="center"
+            android:paddingStart="@dimen/spacing_16"
+            android:paddingTop="@dimen/spacing_4"
+            android:paddingEnd="@dimen/spacing_16"
+            android:paddingBottom="@dimen/spacing_4"
+            android:text="@string/order_now"
+            android:textColor="@color/white_FFFFFF"
+            android:textSize="@dimen/text_size_14"
+            app:fontFamily="@font/roboto_medium"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_add_to_cart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_add_to_cart"
+            app:layout_constraintTop_toTopOf="@+id/btn_add_to_cart"
+            app:layout_constraintVertical_bias="0.0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

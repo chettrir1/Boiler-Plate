@@ -9,7 +9,7 @@ import org.json.JSONException
 import java.io.IOException
 import java.net.UnknownHostException
 
-class FailedResponseException(val status: Int = 400, override val message: String) :
+class FailedResponseException(val status: Boolean, override val message: String) :
     IOException(message)
 
 class NetworkNotAvailableException(val errorMessage: String) : IOException(errorMessage)

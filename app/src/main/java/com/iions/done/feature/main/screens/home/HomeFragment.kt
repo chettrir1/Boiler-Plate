@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.iions.done.R
 import com.iions.done.base.BaseFragment
 import com.iions.done.databinding.FragmentHomeBinding
+import com.iions.done.exceptions.parseError
 import com.iions.done.feature.groceries.screen.GroceryActivity
 import com.iions.done.feature.groceries.screen.detail.GroceryDetailActivity
 import com.iions.done.feature.main.data.model.BannerResponse
@@ -74,7 +75,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     }
                 }
                 Status.ERROR -> {
-                    super.showError(binding.loadingLayout, response.error.toString())
+                    super.showErrorWithImage(
+                        binding.loadingLayout,
+                        parseError(response.error),
+                        R.drawable.ic_error_home
+                    )
                 }
             }
         }
@@ -102,7 +107,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     super.showData(binding.loadingLayout)
                 }
                 Status.ERROR -> {
-                    super.showError(binding.loadingLayout, response.error.toString())
+                    super.showErrorWithImage(
+                        binding.loadingLayout,
+                        parseError(response.error),
+                        R.drawable.ic_error_home
+                    )
                 }
             }
         }
@@ -123,7 +132,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     ViewCompat.setNestedScrollingEnabled(binding.includeGrocery.rvCategory, false)
                 }
                 Status.ERROR -> {
-                    super.showError(binding.loadingLayout, response.error.toString())
+                    super.showErrorWithImage(
+                        binding.loadingLayout,
+                        parseError(response.error),
+                        R.drawable.ic_error_home
+                    )
                 }
             }
         }

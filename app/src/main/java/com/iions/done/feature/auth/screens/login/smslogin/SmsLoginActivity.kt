@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import com.iions.done.R
 import com.iions.done.base.BaseActivity
 import com.iions.done.databinding.ActivitySmsLoginBinding
+import com.iions.done.exceptions.parseError
 import com.iions.done.feature.auth.screens.login.LoginActivity
 import com.iions.done.feature.auth.screens.verifypin.VerifyPinActivity
 import com.iions.done.utils.archcomponents.Status
@@ -24,8 +25,9 @@ class SmsLoginActivity : BaseActivity<ActivitySmsLoginBinding>() {
     private lateinit var dialog: Dialog
 
     companion object {
-        fun start(activity: Activity) {
+        fun start(activity: Activity, type: String) {
             val intent = Intent(activity, SmsLoginActivity::class.java)
+
             activity.startActivity(intent)
         }
     }
@@ -71,7 +73,7 @@ class SmsLoginActivity : BaseActivity<ActivitySmsLoginBinding>() {
                 Status.ERROR -> {
                     hideDialog()
                     showToast(
-                        response.error?.message,
+                        this.parseError(response.error),
                         MDToast.TYPE_ERROR
                     )
                 }

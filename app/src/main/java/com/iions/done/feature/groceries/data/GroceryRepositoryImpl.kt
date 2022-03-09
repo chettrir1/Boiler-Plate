@@ -13,6 +13,9 @@ class GroceryRepositoryImpl @Inject constructor(
     private val localRepository: GroceryRepository.Local,
     private val remoteRepository: GroceryRepository.Remote
 ) : GroceryRepository {
+    override fun isUserLoggedIn(): Boolean {
+        return localRepository.isUserLoggedIn()
+    }
 
     override suspend fun getGroceries(
         filter: String?,
