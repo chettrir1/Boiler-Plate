@@ -13,9 +13,10 @@ import com.iions.entity.*
         ModulesEntity::class,
         GroceryEntity::class,
         GroceryBrandEntity::class,
-        GroceryCategoryEntity::class
+        GroceryCategoryEntity::class,
+        BannerEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class MainDatabase : RoomDatabase() {
@@ -46,4 +47,5 @@ abstract class MainDatabase : RoomDatabase() {
     abstract fun getGroceryDao(): GroceryDao
     abstract fun getGroceryBrandDao(): GroceryBrandDao
     abstract fun getGroceryCategoryDao(): GroceryCategoryDao
+    abstract fun getBannerDao(): BannerDao
 }

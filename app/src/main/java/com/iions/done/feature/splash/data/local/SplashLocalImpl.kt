@@ -2,10 +2,7 @@ package com.iions.done.feature.splash.data.local
 
 import com.iions.DatabaseManager
 import com.iions.SharedPreferenceManager
-import com.iions.done.feature.main.data.mapper.ModulesMapper
-import com.iions.done.feature.main.data.mapper.GroceryBrandMapper
-import com.iions.done.feature.main.data.mapper.GroceryCategoryMapper
-import com.iions.done.feature.main.data.mapper.GroceryMapper
+import com.iions.done.feature.main.data.mapper.*
 import com.iions.done.feature.main.data.model.*
 import com.iions.done.feature.splash.data.SplashRepository
 import javax.inject.Inject
@@ -18,6 +15,11 @@ class SplashLocalImpl @Inject constructor(
     override suspend fun fetchHomeResponse(response: HomeResponse?) {
         saveModules(response?.modules)
         saveGrocery(response?.grocery)
+        saveBanner(response?.banners)
+    }
+
+    private suspend fun saveBanner(banners: List<BannerResponse>?) {
+        databaseManager.getBannerDao().insert(BannersMapper.mapToLocal(banners ?: emptyList()))
     }
 
     private suspend fun saveModules(modules: List<ModuleResponse>?) {

@@ -45,7 +45,9 @@ class MainRepositoryImpl @Inject constructor(
 
     override suspend fun requestLogout(token: String): List<LogoutResponse>? {
         return withContext(schedulersFactory.io()) {
-            remoteRepository.requestLogout(token)
+            val response = remoteRepository.requestLogout(token)
+            localRepository.clearPrefs()
+            response
         }
     }
 

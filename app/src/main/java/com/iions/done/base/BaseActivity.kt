@@ -6,6 +6,9 @@ import android.view.View
 import android.widget.*
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.iions.done.R
@@ -67,18 +70,28 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
     fun <T : ViewDataBinding> showActionableError(
         binding: T?,
         errorMessage: String,
+        @DrawableRes thumbnail: Int,
         actionLabel: String,
-        actionListener: () -> Unit
+        actionListener: (type: String?) -> Unit
     ) {
-        binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)?.visibility = View.VISIBLE
+        binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)?.visibility =
+            View.VISIBLE
         binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)
-            ?.findViewById<TextView>(R.id.txtLoading)?.text = errorMessage
+            ?.findViewById<AppCompatImageView>(R.id.thumb)?.visibility = View.VISIBLE
         binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)
-            ?.findViewById<Button>(R.id.btnAction)?.apply {
+            ?.findViewById<AppCompatImageView>(R.id.thumb)?.setImageResource(thumbnail)
+        binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)
+            ?.findViewById<AppCompatTextView>(R.id.txtLoading)?.text = errorMessage
+        binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)
+            ?.findViewById<AppCompatButton>(R.id.btnAction)?.apply {
                 text = actionLabel
                 visibility = View.VISIBLE
                 setOnClickListener {
-                    actionListener()
+                    if (actionLabel == getString(R.string.retry)) {
+                        binding.root.findViewById<RelativeLayout>(R.id.loadingLayout)
+                            ?.findViewById<AppCompatImageView>(R.id.thumb)?.visibility = View.GONE
+                    }
+                    actionListener(actionLabel)
                 }
             }
         binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)

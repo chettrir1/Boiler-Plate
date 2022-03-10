@@ -14,6 +14,8 @@ data class CartResponse(
     var userId: Int?,
     @SerializedName("quantity")
     var quantity: Int?,
+    @SerializedName("price")
+    var price: Int?,
     @SerializedName("item")
     var item: CartItemResponse
 )

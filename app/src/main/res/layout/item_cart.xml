@@ -32,7 +32,7 @@
                 android:layout_width="@dimen/spacing_100"
                 android:layout_height="@dimen/spacing_108"
                 android:scaleType="fitXY"
-                app:srcCompat="@drawable/grey_logo" />
+                app:srcCompat="@drawable/logo" />
         </com.google.android.material.card.MaterialCardView>
 
         <androidx.appcompat.widget.AppCompatTextView

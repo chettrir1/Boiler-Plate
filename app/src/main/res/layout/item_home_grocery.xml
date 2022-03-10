@@ -34,7 +34,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/grey_logo" />
+                app:srcCompat="@drawable/logo" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_discount_percentage"

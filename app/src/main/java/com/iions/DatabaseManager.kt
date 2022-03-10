@@ -15,4 +15,5 @@ class DatabaseManager @Inject constructor(context: Context) {
     fun getGroceryDao() = instance.getGroceryDao()
     fun getGroceryBrandDao() = instance.getGroceryBrandDao()
     fun getGroceryCategoryDao() = instance.getGroceryCategoryDao()
+    fun getBannerDao() = instance.getBannerDao()
 }

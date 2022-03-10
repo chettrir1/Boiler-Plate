@@ -57,5 +57,10 @@ object Constants {
     const val MODULES_NAME = "module_name"
     const val MODULES_ICON = "module_icon"
 
+    /*banners*/
+    const val TBL_BANNER = "banner"
+    const val BANNER_ID = "banner_id"
+    const val BANNER_IMAGE = "banner_image"
+
     /*restaurant*/
 }

@@ -3,6 +3,7 @@ package com.iions.done.feature.main.screens.cart
 import android.annotation.SuppressLint
 import androidx.databinding.ViewDataBinding
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.iions.done.R
 import com.iions.done.base.BaseAdapter
 import com.iions.done.base.BaseViewHolder
@@ -43,7 +44,11 @@ class CartListAdapter(
             binding.tvTitle.text = obj.item.name
             binding.tvQuantity.text = obj.quantity.toString()
             Glide.with(binding.root.context).load(obj.item.mainImageThumbnail)
-                .placeholder(R.drawable.grey_logo).into(binding.ivCart)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .placeholder(R.drawable.logo).into(binding.ivCart)
+
+            val total = obj.quantity?.toDouble()?.times(obj.price?.toDouble()!!)
+            binding.tvPrice.text = "Rs. $total"
 
             binding.constraint.setOnClickListener {
                 onItemSelectedListener(obj)

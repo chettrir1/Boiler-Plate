@@ -17,8 +17,8 @@
             android:layout_height="wrap_content"
             tools:text="Hulas Premium Basmati Rice"
             android:textColor="@color/black_2e384d"
-            android:textSize="@dimen/text_size_18"
-            app:fontFamily="@font/roboto_bold"
+            android:textSize="@dimen/text_size_20"
+            app:fontFamily="@font/roboto_medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:text="Rs. 2500"
             android:textColor="@color/red_F93838"
-            android:textSize="@dimen/text_size_14"
+            android:textSize="@dimen/text_size_16"
             app:fontFamily="@font/roboto_bold"
             app:layout_constraintStart_toStartOf="@+id/tv_title"
             app:layout_constraintTop_toBottomOf="@id/tv_title" />
@@ -53,7 +53,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:indeterminateTint="@color/red_F93838"
-            android:rating="3.5"
+            android:rating="4"
+            android:theme="@style/RatingBar"
             app:layout_constraintStart_toStartOf="@+id/tv_price"
             app:layout_constraintTop_toBottomOf="@+id/tv_price" />
 
@@ -62,8 +63,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_8"
-            android:text="331 Reviews"
-            android:textColor="@color/black_2e384d"
+            android:text="(331 Reviews)"
+            android:textColor="@color/grey_636161"
             android:textSize="@dimen/text_size_12"
             app:fontFamily="@font/roboto_regular"
             app:layout_constraintBottom_toBottomOf="@+id/rating_bar"
@@ -87,11 +88,25 @@
             android:layout_marginTop="@dimen/spacing_16"
             android:text="@string/product_description"
             android:textColor="@color/black_2e384d"
-            android:textSize="@dimen/text_size_14"
-            app:fontFamily="@font/roboto_bold"
+            android:textSize="@dimen/text_size_16"
+            app:fontFamily="@font/roboto_medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_product_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_8"
+            android:text="@string/product_description"
+            android:textColor="@color/black_2e384d"
+            android:textSize="@dimen/text_size_14"
+            app:fontFamily="@font/roboto_regular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_product_description" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

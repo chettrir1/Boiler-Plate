@@ -24,10 +24,6 @@ class AuthRemoteImpl @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    override suspend fun logout(token: String): List<LogoutResponse> {
-        return notNullMapper(apiService.logout(token))
-    }
-
     override suspend fun verifyPinRequest(pin: String, phone: String): VerifyPinResponse {
         val requestParams = mutableMapOf<String, Any>()
         requestParams["phone_number"] = phone

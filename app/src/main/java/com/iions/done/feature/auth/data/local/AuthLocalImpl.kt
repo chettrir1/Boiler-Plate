@@ -28,13 +28,6 @@ class AuthLocalImpl @Inject constructor(
 
     override fun getPhoneNumber(): String = sharedPreferenceManager.phone ?: ""
 
-    override suspend fun clearPrefs() {
-        val phone = sharedPreferenceManager.phone
-        sharedPreferenceManager.clearCache()
-        sharedPreferenceManager.phone = phone
-        databaseManager.getInstance().clearAllTables()
-    }
-
     override fun getLoggedInUserId(): String {
         return sharedPreferenceManager.username
     }

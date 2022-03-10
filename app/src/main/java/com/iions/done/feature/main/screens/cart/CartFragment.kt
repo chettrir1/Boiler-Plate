@@ -10,6 +10,7 @@ import com.iions.done.databinding.FragmentCartBinding
 import com.iions.done.exceptions.parseError
 import com.iions.done.feature.auth.screens.login.smslogin.SmsLoginActivity
 import com.iions.done.utils.archcomponents.Status
+import com.iions.done.utils.gone
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,6 +27,10 @@ class CartFragment : BaseFragment<FragmentCartBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onResume() {
+        super.onResume()
         viewModel.fetchCartList()
     }
 
@@ -37,6 +42,7 @@ class CartFragment : BaseFragment<FragmentCartBinding>() {
         viewModel.cartResponse.observe(this) { response ->
             when (response.status) {
                 Status.LOADING -> {
+                    binding.loadingLayout.thumb.gone()
                     super.showLoading(binding.loadingLayout, getString(R.string.please_wait))
                 }
                 Status.COMPLETE -> {

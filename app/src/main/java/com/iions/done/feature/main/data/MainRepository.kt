@@ -20,6 +20,7 @@ interface MainRepository {
         suspend fun fetchGroceryCategoryList(): List<HomeGroceryCategoryResponse>?
         suspend fun fetchGroceryList(): List<HomeGroceryResponse>?
         fun getAuthorizationToken(): String
+        suspend fun clearPrefs()
     }
 
     interface Remote {

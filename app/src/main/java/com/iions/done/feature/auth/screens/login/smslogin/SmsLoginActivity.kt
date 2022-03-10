@@ -27,7 +27,6 @@ class SmsLoginActivity : BaseActivity<ActivitySmsLoginBinding>() {
     companion object {
         fun start(activity: Activity, type: String) {
             val intent = Intent(activity, SmsLoginActivity::class.java)
-
             activity.startActivity(intent)
         }
     }
@@ -63,7 +62,7 @@ class SmsLoginActivity : BaseActivity<ActivitySmsLoginBinding>() {
                     showProgress()
                 }
                 Status.COMPLETE -> {
-                    hideDialog()
+                    hideProgress()
                     showToast(
                         getString(R.string.verification_code_sent),
                         MDToast.TYPE_SUCCESS
@@ -71,7 +70,7 @@ class SmsLoginActivity : BaseActivity<ActivitySmsLoginBinding>() {
                     VerifyPinActivity.start(this, true)
                 }
                 Status.ERROR -> {
-                    hideDialog()
+                    hideProgress()
                     showToast(
                         this.parseError(response.error),
                         MDToast.TYPE_ERROR
@@ -86,7 +85,7 @@ class SmsLoginActivity : BaseActivity<ActivitySmsLoginBinding>() {
         dialog.show()
     }
 
-    private fun hideDialog() {
+    private fun hideProgress() {
         if (dialog.isShowing) {
             dialog.dismiss()
         }

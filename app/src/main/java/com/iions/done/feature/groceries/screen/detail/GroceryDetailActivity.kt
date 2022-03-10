@@ -3,7 +3,10 @@ package com.iions.done.feature.groceries.screen.detail
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import androidx.activity.viewModels
+import androidx.core.text.HtmlCompat
+import com.denzcoskun.imageslider.models.SlideModel
 import com.iions.Constants
 import com.iions.done.R
 import com.iions.done.base.BaseActivity
@@ -11,11 +14,13 @@ import com.iions.done.databinding.ActivityGroceryDetailBinding
 import com.iions.done.exceptions.parseError
 import com.iions.done.feature.auth.screens.login.smslogin.SmsLoginActivity
 import com.iions.done.feature.groceries.data.model.GroceryDetailRemoteBaseResponse
+import com.iions.done.utils.ImageGetter
 import com.iions.done.utils.archcomponents.Status
 import com.iions.done.utils.enablePianoEffect
 import com.iions.done.utils.showToast
 import com.valdesekamdem.library.mdtoast.MDToast
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.DelicateCoroutinesApi
 
 @AndroidEntryPoint
 class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
@@ -33,7 +38,7 @@ class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding.includeToolbar.tvTitle.text = intent.getStringExtra(Constants.GENERIC_TITLE)
+        binding.includeToolbar.tvTitle.text = getString(R.string.groceries)
         viewModel.getGroceryDetail(intent.getIntExtra(Constants.GENERIC_ID, 0))
         quantity = binding.includeAddToCart.tvQuantity.text.toString().toInt()
 
@@ -99,7 +104,13 @@ class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
     }
 
     private fun setUpView(response: GroceryDetailRemoteBaseResponse) {
-        binding.includePriceView.tvTitle.text = response.item?.name
+        quantity = binding.includeAddToCart.tvQuantity.text.toString().toInt()
+        binding.includePriceView.tvTitle.text = "${response.item?.name} (${response.item?.unitSize})"
+        response.item?.description?.let { displayHtml(it) }
+        response.item?.images?.map {
+            SlideModel("https://d-one.iionstech.com/storage/${it.original}")
+        }?.let { binding.slideView.setImageList(it) }
+
         binding.includeAddToCart.btnAddToCart.enablePianoEffect().setOnClickListener {
             if (viewModel.isUserLoggedIn()) {
                 viewModel.requestAddToCart(
@@ -114,14 +125,33 @@ class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
     }
 
     private fun addQuantity() {
-        display(binding.includeAddToCart.tvQuantity.text.toString().toInt() + 1)
+        quantity++
+        display(quantity)
     }
 
     private fun removeQuantity() {
-        display(binding.includeAddToCart.tvQuantity.text.toString().toInt() - 1)
+        quantity--
+        display(quantity)
     }
 
     private fun display(number: Int) {
         binding.includeAddToCart.tvQuantity.text = "$number"
+    }
+
+    private fun displayHtml(html: String) {
+        // Creating object of ImageGetter class you just created
+        val imageGetter = ImageGetter(resources, binding.includePriceView.tvProductDescription)
+        // Using Html framework to parse html
+        val styledText = HtmlCompat.fromHtml(
+            html,
+            HtmlCompat.FROM_HTML_MODE_LEGACY,
+            imageGetter, null
+        )
+
+        // to enable image/link clicking
+        binding.includePriceView.tvProductDescription.movementMethod = LinkMovementMethod.getInstance()
+
+        // setting the text after formatting html and downloading and setting images
+        binding.includePriceView.tvProductDescription.text = styledText
     }
 }

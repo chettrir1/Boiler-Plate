@@ -1,6 +1,7 @@
 package com.iions.done.feature.main.screens
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
@@ -37,6 +38,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
     @Inject
     lateinit var sharedPreferenceManager: SharedPreferenceManager
     private val viewModel: MainViewModel by viewModels()
+    private lateinit var dialog: Dialog
 
     companion object {
         fun start(activity: Activity) {
@@ -190,14 +192,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
         viewModel.logoutResponse.observe(this) { response ->
             when (response.status) {
                 Status.LOADING -> {
-                    showProgress(true)
+                    showProgress()
                 }
                 Status.COMPLETE -> {
-                    showProgress(false)
+                    hideProgress()
                     SmsLoginActivity.start(this, Constants.TYPE_LOGOUT)
                 }
                 Status.ERROR -> {
-                    showProgress(false)
+                    hideProgress()
                     showToast(
                         this.parseError(response.error),
                         TYPE_ERROR
@@ -207,14 +209,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
         }
     }
 
-    private fun showProgress(show: Boolean) {
-        val dialog = ProgressDialog.progressDialog(this)
-        if (show) {
-            dialog.show()
-        } else {
-            if (dialog.isShowing) {
-                dialog.dismiss()
-            }
+    private fun showProgress() {
+        dialog = ProgressDialog.progressDialog(this)
+        dialog.show()
+    }
+
+    private fun hideProgress() {
+        if (dialog.isShowing) {
+            dialog.dismiss()
         }
     }
 }
