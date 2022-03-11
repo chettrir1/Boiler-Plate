@@ -10,6 +10,7 @@ import com.iions.done.databinding.FragmentCartBinding
 import com.iions.done.feature.auth.screens.login.smslogin.SmsLoginActivity
 import com.iions.done.feature.groceries.screen.GroceryActivity
 import com.iions.done.feature.summary.screens.PaymentOptionActivity
+import com.iions.done.utils.Commons
 import com.iions.done.utils.archcomponents.Status
 import com.iions.done.utils.enablePianoEffect
 import com.iions.done.utils.gone
@@ -65,7 +66,8 @@ class CartFragment : BaseFragment<FragmentCartBinding>() {
                                 data.cart?.toMutableList()
                                     ?.let { response -> CartListAdapter(response) {} }
                             binding.rvCart.hasFixedSize()
-                            binding.includeProceedToCheckout.tvTotalAmount.text = "Rs. $total"
+                            binding.includeProceedToCheckout.tvTotalAmount.text =
+                                "Rs. ${Commons.currencyFormatter(total)}"
                             super.showData(binding.loadingLayout)
                         } else {
                             super.showActionableError(

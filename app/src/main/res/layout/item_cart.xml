@@ -41,11 +41,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_10"
             android:layout_marginTop="@dimen/spacing_8"
-            android:layout_marginEnd="@dimen/spacing_8"
             android:textColor="@color/black_000000"
             android:textSize="@dimen/text_size_14"
             app:fontFamily="@font/roboto_medium"
-            app:layout_constraintEnd_toStartOf="@+id/iv_delete"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/cv_cart"
             app:layout_constraintTop_toTopOf="@id/cv_cart"
             tools:text="Garam Red Chowmein" />
@@ -118,7 +117,7 @@
             android:textSize="@dimen/text_size_12"
             app:fontFamily="@font/roboto_medium"
             app:layout_constraintBottom_toBottomOf="@id/cv_cart"
-            app:layout_constraintEnd_toStartOf="@+id/tv_order_one"
+            app:layout_constraintEnd_toStartOf="@+id/tv_delete"
             app:layout_constraintStart_toEndOf="@+id/cv_cart"
             app:layout_constraintStart_toStartOf="@+id/iv_minus"
             app:layout_constraintTop_toBottomOf="@+id/tv_quantity"
@@ -126,7 +125,7 @@
             android:text="@string/move_to_wishlist" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_order_one"
+            android:id="@+id/tv_delete"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_8"
@@ -145,7 +144,7 @@
             app:layout_constraintStart_toEndOf="@+id/tv_wishlist"
             app:layout_constraintTop_toTopOf="@+id/tv_wishlist"
             app:layout_constraintVertical_bias="0.0"
-            android:text="@string/order_this_only" />
+            android:text="@string/remove" />
 
         <View
             android:layout_width="0dp"
@@ -155,14 +154,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/cv_cart" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_title"
-            app:srcCompat="@drawable/ic_delete"
-            app:tint="@color/red_F93838" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,23 +1,20 @@
-package com.iions.done.feature.main.screens.cart
+package com.iions.done.feature.summary.screens
 
 import android.annotation.SuppressLint
 import androidx.databinding.ViewDataBinding
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.iions.done.R
 import com.iions.done.base.BaseAdapter
 import com.iions.done.base.BaseViewHolder
-import com.iions.done.databinding.ItemCartBinding
+import com.iions.done.databinding.ItemOrderSummaryBinding
 import com.iions.done.feature.main.data.model.CartResponse
 import com.iions.done.utils.Commons
 
-class CartListAdapter(
-    private var dataList: MutableList<CartResponse>,
-    private val onItemSelectedListener: (CartResponse) -> Unit
-) : BaseAdapter<CartResponse, CartListAdapter.CartListViewHolder>() {
+class OrderSummaryAdapter(
+    private var dataList: MutableList<CartResponse>
+) : BaseAdapter<CartResponse, OrderSummaryAdapter.CartListViewHolder>() {
 
     override fun getViewHolder(binding: ViewDataBinding, viewType: Int): CartListViewHolder {
-        return CartListViewHolder(binding as ItemCartBinding)
+        return CartListViewHolder(binding as ItemOrderSummaryBinding)
     }
 
     override fun onBindCustomViewHolder(holder: CartListViewHolder, position: Int) {
@@ -25,7 +22,7 @@ class CartListAdapter(
     }
 
     override fun getLayoutResource(viewType: Int): Int {
-        return R.layout.item_cart
+        return R.layout.item_order_summary
     }
 
     override fun getItemCount(): Int {
@@ -37,24 +34,15 @@ class CartListAdapter(
         notifyDataSetChanged()
     }
 
-    inner class CartListViewHolder(private var binding: ItemCartBinding) :
+    inner class CartListViewHolder(private var binding: ItemOrderSummaryBinding) :
         BaseViewHolder<CartResponse>(binding) {
         @SuppressLint("SetTextI18n")
         override fun bindView(obj: CartResponse) {
             super.bindView(obj)
-            binding.tvTitle.text = obj.item.name
-            binding.tvQuantity.text = obj.quantity.toString()
-            Glide.with(binding.root.context).load(obj.item.mainImageThumbnail)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(R.drawable.logo).into(binding.ivCart)
-
+            binding.tvName.text = "${obj.item.name} * (${obj.quantity})"
             val total = obj.quantity?.times(obj.price!!)
             if (total != null) {
                 binding.tvPrice.text = "Rs. ${Commons.currencyFormatter(total)}"
-            }
-
-            binding.constraint.setOnClickListener {
-                onItemSelectedListener(obj)
             }
         }
     }

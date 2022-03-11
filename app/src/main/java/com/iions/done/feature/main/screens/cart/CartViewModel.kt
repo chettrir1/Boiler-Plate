@@ -47,5 +47,4 @@ class CartViewModel @Inject constructor(
             }
         }
     }
-
 }

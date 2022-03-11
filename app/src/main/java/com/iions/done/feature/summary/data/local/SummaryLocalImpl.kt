@@ -9,4 +9,8 @@ class SummaryLocalImpl @Inject constructor(
     private val sharedPreferenceManager: SharedPreferenceManager,
     private val databaseManager: DatabaseManager
 ) : SummaryRepository.Local {
+
+    override fun getAuthorizationToken(): String {
+        return sharedPreferenceManager.accessToken.toString()
+    }
 }
