@@ -80,4 +80,16 @@
     <string name="select_a_payment">Select A Payment</string>
     <string name="remove">Remove</string>
     <string name="feature_not_available_at_the_moment">This feature is not available at the moment!</string>
+    <string name="custom_address">Custom Address</string>
+    <string name="show_more">Show More</string>
+    <string name="my_address">My Address</string>
+    <string name="select">Select</string>
+    <string name="city">City</string>
+    <string name="district">District</string>
+    <string name="local_area">Local Area</string>
+    <string name="enter_your_area">Enter your area</string>
+    <string name="confirm_order">Confirm Order</string>
+    <string name="order_confirmed">Order Confirmed</string>
+    <string name="order_summary">Order Summary</string>
+    <string name="back_to_home">Back to Home</string>
 </resources>
