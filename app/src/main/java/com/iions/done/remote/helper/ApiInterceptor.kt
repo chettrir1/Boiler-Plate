@@ -5,7 +5,6 @@ import com.iions.SharedPreferenceManager
 import com.iions.done.exceptions.NetworkNotAvailableException
 import com.iions.done.utils.checkNetworkAvailability
 import okhttp3.Interceptor
-import okhttp3.Request
 import okhttp3.Response
 import javax.inject.Inject
 
@@ -18,7 +17,6 @@ class ApiInterceptor @Inject constructor(
         if (!checkNetworkAvailability(context)) {
             throw NetworkNotAvailableException("No Internet Connection.")
         }
-        val request: Request = chain.request()
-        return chain.proceed(request)
+        return chain.proceed(chain.request())
     }
 }

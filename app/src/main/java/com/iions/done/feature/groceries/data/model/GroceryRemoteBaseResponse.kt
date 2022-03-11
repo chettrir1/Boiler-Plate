@@ -1,6 +1,7 @@
 package com.iions.done.feature.groceries.data.model
 
 import com.google.gson.annotations.SerializedName
+import com.iions.done.feature.main.data.model.BannerResponse
 
 data class GroceryRemoteBaseResponse(
     @SerializedName("items")
@@ -8,7 +9,9 @@ data class GroceryRemoteBaseResponse(
     @SerializedName("brands")
     var brand: List<GroceryBrandResponse>? = null,
     @SerializedName("categories")
-    var category: List<GroceryCategoryResponse>? = null
+    var category: List<GroceryCategoryResponse>? = null,
+    @SerializedName("banner")
+    var banner: List<BannerResponse>? = null
 )
 
 data class GroceryItemsResponse(

@@ -11,7 +11,6 @@ import com.iions.Constants
 import com.iions.done.R
 import com.iions.done.base.BaseActivity
 import com.iions.done.databinding.ActivityGroceryDetailBinding
-import com.iions.done.exceptions.parseError
 import com.iions.done.feature.auth.screens.login.smslogin.SmsLoginActivity
 import com.iions.done.feature.groceries.data.model.GroceryDetailRemoteBaseResponse
 import com.iions.done.utils.ImageGetter
@@ -20,7 +19,6 @@ import com.iions.done.utils.enablePianoEffect
 import com.iions.done.utils.showToast
 import com.valdesekamdem.library.mdtoast.MDToast
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.DelicateCoroutinesApi
 
 @AndroidEntryPoint
 class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
@@ -74,7 +72,7 @@ class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
                     showData(binding.loadingLayout)
                 }
                 Status.ERROR -> {
-                    showError(binding.loadingLayout, this.parseError(response.error))
+                    showError(binding.loadingLayout, response.error.toString())
                 }
             }
         }
@@ -95,7 +93,7 @@ class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
                 }
                 Status.ERROR -> {
                     showToast(
-                        this.parseError(response.error),
+                        response.error.toString(),
                         MDToast.TYPE_ERROR
                     )
                 }
@@ -105,7 +103,8 @@ class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
 
     private fun setUpView(response: GroceryDetailRemoteBaseResponse) {
         quantity = binding.includeAddToCart.tvQuantity.text.toString().toInt()
-        binding.includePriceView.tvTitle.text = "${response.item?.name} (${response.item?.unitSize})"
+        binding.includePriceView.tvTitle.text =
+            "${response.item?.name} (${response.item?.unitSize})"
         response.item?.description?.let { displayHtml(it) }
         response.item?.images?.map {
             SlideModel("https://d-one.iionstech.com/storage/${it.original}")
@@ -149,7 +148,8 @@ class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
         )
 
         // to enable image/link clicking
-        binding.includePriceView.tvProductDescription.movementMethod = LinkMovementMethod.getInstance()
+        binding.includePriceView.tvProductDescription.movementMethod =
+            LinkMovementMethod.getInstance()
 
         // setting the text after formatting html and downloading and setting images
         binding.includePriceView.tvProductDescription.text = styledText

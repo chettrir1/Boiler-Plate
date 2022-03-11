@@ -44,7 +44,6 @@ class GroceryListAdapter(
         override fun bindView(obj: GroceryResponse) {
             super.bindView(obj)
             binding.tvTitle.text = obj.name
-
             if (!obj.mainImageThumbnail.isNullOrEmpty())
                 Glide.with(binding.root.context)
                     .load("https://d-one.iionstech.com/storage/${obj.mainImageThumbnail}")

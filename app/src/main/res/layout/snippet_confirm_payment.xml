@@ -24,14 +24,14 @@
             android:textSize="@dimen/text_size_18"
             app:fontFamily="@font/roboto_bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btn_order_now"
+            app:layout_constraintEnd_toStartOf="@+id/btn_confirm_payment"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Rs. 3,100,00" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/btn_order_now"
+            android:id="@+id/btn_confirm_payment"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_8"
@@ -41,7 +41,7 @@
             android:paddingTop="@dimen/spacing_4"
             android:paddingEnd="@dimen/spacing_16"
             android:paddingBottom="@dimen/spacing_4"
-            android:text="@string/proceed_to_checkout"
+            android:text="@string/confirm_payment"
             android:textColor="@color/white_FFFFFF"
             android:textSize="@dimen/text_size_14"
             app:fontFamily="@font/roboto_medium"

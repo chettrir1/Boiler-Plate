@@ -8,12 +8,14 @@ import androidx.core.widget.NestedScrollView
 import com.iions.done.R
 import com.iions.done.base.BaseActivity
 import com.iions.done.databinding.ActivityGroceryBinding
-import com.iions.done.exceptions.parseError
 import com.iions.done.feature.groceries.data.model.GroceryResponse
 import com.iions.done.feature.groceries.screen.detail.GroceryDetailActivity
+import com.iions.done.feature.main.data.model.BannerResponse
+import com.iions.done.feature.main.screens.home.HomeSliderAdapter
 import com.iions.done.utils.archcomponents.Status
 import com.iions.done.utils.gone
 import com.iions.done.utils.visible
+import com.smarteist.autoimageslider.SliderView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,6 +39,7 @@ class GroceryActivity : BaseActivity<ActivityGroceryBinding>() {
         binding.includeToolbar.ivBack.setOnClickListener {
             onBackPressed()
         }
+
         viewModel.getGroceries("", "", "", page)
 
         binding.nestedScrollView.setOnScrollChangeListener(
@@ -72,8 +75,18 @@ class GroceryActivity : BaseActivity<ActivityGroceryBinding>() {
                                 this@GroceryActivity,
                                 response.id,
                                 response.name
-                            ) }
+                            )
+                        }
                         binding.rvGrocery.adapter = adapter
+                        val items = it.banner?.map {
+                            BannerResponse(
+                                it.id,
+                                "https://d-one.iionstech.com/storage/${it.url}"
+                            )
+                        }
+                        if (items != null) {
+                            setUpBanner(items)
+                        }
                     }
                     binding.progressBar.gone()
                     binding.nestedScrollView.visible()
@@ -83,7 +96,7 @@ class GroceryActivity : BaseActivity<ActivityGroceryBinding>() {
                 Status.ERROR -> {
                     super.showActionableError(
                         binding.loadingLayout,
-                        errorMessage = this.parseError(response.error),
+                        errorMessage = response.error.toString(),
                         R.drawable.ic_error_cart,
                         actionLabel = getString(R.string.retry)
                     ) {
@@ -93,4 +106,15 @@ class GroceryActivity : BaseActivity<ActivityGroceryBinding>() {
             }
         }
     }
+
+    private fun setUpBanner(packs: List<BannerResponse>) {
+        val adapter =
+            HomeSliderAdapter(packs)
+        binding.includeSlider.slider.autoCycleDirection = SliderView.LAYOUT_DIRECTION_LTR
+        binding.includeSlider.slider.setSliderAdapter(adapter)
+        binding.includeSlider.slider.scrollTimeInSec = 3
+        binding.includeSlider.slider.isAutoCycle = true
+        binding.includeSlider.slider.startAutoCycle()
+    }
+
 }

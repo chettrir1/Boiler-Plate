@@ -7,15 +7,18 @@ import androidx.fragment.app.viewModels
 import com.iions.done.R
 import com.iions.done.base.BaseFragment
 import com.iions.done.databinding.FragmentCartBinding
-import com.iions.done.exceptions.parseError
 import com.iions.done.feature.auth.screens.login.smslogin.SmsLoginActivity
+import com.iions.done.feature.groceries.screen.GroceryActivity
+import com.iions.done.feature.summary.screens.PaymentOptionActivity
 import com.iions.done.utils.archcomponents.Status
+import com.iions.done.utils.enablePianoEffect
 import com.iions.done.utils.gone
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class CartFragment : BaseFragment<FragmentCartBinding>() {
     private val viewModel: CartViewModel by viewModels()
+    private var total = 0
 
     override fun layout(): Int = R.layout.fragment_cart
 
@@ -27,6 +30,11 @@ class CartFragment : BaseFragment<FragmentCartBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.includeProceedToCheckout.btnProceedToPayment.enablePianoEffect()
+            .setOnClickListener {
+                PaymentOptionActivity.start(requireActivity())
+            }
     }
 
     override fun onResume() {
@@ -46,19 +54,38 @@ class CartFragment : BaseFragment<FragmentCartBinding>() {
                     super.showLoading(binding.loadingLayout, getString(R.string.please_wait))
                 }
                 Status.COMPLETE -> {
-                    response.data?.let {
-                        binding.rvCart.adapter =
-                            it.cart?.toMutableList()
-                                ?.let { response -> CartListAdapter(response) {} }
+                    response.data?.let { data ->
+                        if (data.cart?.isEmpty() == false) {
+                            data.cart?.forEach { cart ->
+                                val price =
+                                    cart.quantity?.let { quantity -> cart.price?.times(quantity) }
+                                total += price!!
+                            }
+                            binding.rvCart.adapter =
+                                data.cart?.toMutableList()
+                                    ?.let { response -> CartListAdapter(response) {} }
+                            binding.rvCart.hasFixedSize()
+                            binding.includeProceedToCheckout.tvTotalAmount.text = "Rs. $total"
+                            super.showData(binding.loadingLayout)
+                        } else {
+                            super.showActionableError(
+                                binding.loadingLayout,
+                                errorMessage = getString(R.string.no_item_in_your_cart),
+                                R.drawable.vc_empty,
+                                actionLabel = getString(R.string.browse)
+                            ) {
+                                if (it == getString(R.string.browse)) {
+                                    GroceryActivity.start(requireActivity())
+                                }
+                            }
+                        }
                     }
-                    binding.rvCart.hasFixedSize()
-                    super.showData(binding.loadingLayout)
                 }
                 Status.ERROR -> {
                     super.showActionableError(
                         binding.loadingLayout,
                         errorMessage = if (viewModel.isUserLoggedIn()) {
-                            this.parseError(response.error)
+                            response.error.toString()
                         } else {
                             getString(R.string.you_havent_logged_in_yet)
                         },

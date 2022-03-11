@@ -45,7 +45,7 @@ class HomeGroceryListAdapter(
         override fun bindView(obj: HomeGroceryResponse) {
             super.bindView(obj)
             binding.tvTitle.text = obj.name
-            Glide.with(binding.root.context).load(obj.image)
+            Glide.with(binding.root.context).load("https://d-one.iionstech.com/storage/${obj.image}")
                 .placeholder(R.drawable.logo).into(binding.ivGrocery)
             binding.tvPrice.text = "Rs. 2500"
             binding.cvGrocery.setOnClickListener {

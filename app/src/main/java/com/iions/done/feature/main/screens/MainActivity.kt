@@ -16,7 +16,6 @@ import com.iions.done.R
 import com.iions.done.base.BaseActivity
 import com.iions.done.databinding.ActivityMainBinding
 import com.iions.done.databinding.SnippetHomeNavHeaderBinding
-import com.iions.done.exceptions.parseError
 import com.iions.done.feature.auth.screens.login.smslogin.SmsLoginActivity
 import com.iions.done.feature.main.screens.camera.CameraFragment
 import com.iions.done.feature.main.screens.cart.CartFragment
@@ -201,7 +200,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
                 Status.ERROR -> {
                     hideProgress()
                     showToast(
-                        this.parseError(response.error),
+                        response.error.toString(),
                         TYPE_ERROR
                     )
                 }

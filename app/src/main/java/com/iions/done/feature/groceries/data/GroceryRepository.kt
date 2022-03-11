@@ -17,7 +17,7 @@ interface GroceryRepository {
     fun getUserId(): Int
     suspend fun addToCart(
         itemId: Int?, itemType: String?, quantity: Int?
-    ): List<AddToCartResponse>?
+    ): AddToCartResponse?
 
     suspend fun getGroceryDetail(itemId: Int): GroceryDetailRemoteBaseResponse?
 
@@ -37,7 +37,7 @@ interface GroceryRepository {
 
         suspend fun addToCart(
             token: String, userId: Int?, itemId: Int?, itemType: String?, quantity: Int?
-        ): List<AddToCartResponse>?
+        ): AddToCartResponse?
 
         suspend fun getGroceryDetail(itemId: Int): GroceryDetailRemoteBaseResponse?
 

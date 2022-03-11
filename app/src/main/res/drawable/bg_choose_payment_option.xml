@@ -1,0 +1,17 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="false">
+        <shape>
+            <stroke android:width="@dimen/spacing_1" android:color="#DBDADA" />
+            <solid android:color="#DBDADA"/>
+            <corners android:radius="@dimen/spacing_8" />
+        </shape>
+    </item>
+
+    <item android:state_selected="true">
+        <shape>
+            <stroke android:width="@dimen/spacing_1" android:color="@color/red_F93838" />
+
+            <corners android:radius="@dimen/spacing_8" />
+        </shape>
+    </item>
+</selector>

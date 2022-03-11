@@ -32,7 +32,7 @@ class GroceryRemoteImpl @Inject constructor(
         itemId: Int?,
         itemType: String?,
         quantity: Int?
-    ): List<AddToCartResponse> {
+    ): AddToCartResponse {
         val requestParams = mutableMapOf<String, Any>()
         requestParams["user_id"] = userId ?: -1
         requestParams["item_id"] = itemId ?: -1

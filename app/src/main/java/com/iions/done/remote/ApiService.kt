@@ -56,7 +56,7 @@ interface ApiService {
     suspend fun requestAddToCart(
         @Header("Authorization") token: String,
         @Body requestParams: MutableMap<String, Any>
-    ): BaseResponse<List<AddToCartResponse>>
+    ): BaseResponse<AddToCartResponse>
 
     @Headers("Accept: application/json")
     @GET("cart/getCart")

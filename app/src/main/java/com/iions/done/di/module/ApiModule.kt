@@ -2,9 +2,9 @@ package com.iions.done.di.module
 
 import com.iions.SharedPreferenceManager
 import com.iions.done.remote.ApiService
-import com.iions.done.remote.helper.ApiInterceptor
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.iions.done.remote.helper.ApiInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -40,8 +40,7 @@ object ApiModule {
                 addInterceptor(httpLoggingInterceptor)
                 connectTimeout(40, TimeUnit.SECONDS)
                 readTimeout(40, TimeUnit.SECONDS)
-            }
-            .build()
+            }.build()
     }
 
     @Provides

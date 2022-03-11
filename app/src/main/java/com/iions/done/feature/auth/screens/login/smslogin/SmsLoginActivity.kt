@@ -8,7 +8,6 @@ import androidx.activity.viewModels
 import com.iions.done.R
 import com.iions.done.base.BaseActivity
 import com.iions.done.databinding.ActivitySmsLoginBinding
-import com.iions.done.exceptions.parseError
 import com.iions.done.feature.auth.screens.login.LoginActivity
 import com.iions.done.feature.auth.screens.verifypin.VerifyPinActivity
 import com.iions.done.utils.archcomponents.Status
@@ -72,7 +71,7 @@ class SmsLoginActivity : BaseActivity<ActivitySmsLoginBinding>() {
                 Status.ERROR -> {
                     hideProgress()
                     showToast(
-                        this.parseError(response.error),
+                        response.error.toString(),
                         MDToast.TYPE_ERROR
                     )
                 }

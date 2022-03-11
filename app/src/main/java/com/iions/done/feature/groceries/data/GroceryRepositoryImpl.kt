@@ -33,7 +33,7 @@ class GroceryRepositoryImpl @Inject constructor(
 
     override suspend fun addToCart(
         itemId: Int?, itemType: String?, quantity: Int?
-    ): List<AddToCartResponse>? {
+    ): AddToCartResponse? {
         return withContext(schedulersFactory.io()) {
             remoteRepository.addToCart(
                 localRepository.getAuthorizationToken(),
