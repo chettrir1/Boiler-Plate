@@ -9,6 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:animateLayoutChanges="true"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
@@ -211,8 +212,13 @@
                     android:id="@+id/group_custom_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
                     app:constraint_referenced_ids="tv_title_district,tv_district,tv_title_city,tv_city,tv_title_local_area,et_local_area" />
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/group_custom_address_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="tv_title_custom_address,iv_right_arrow" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>

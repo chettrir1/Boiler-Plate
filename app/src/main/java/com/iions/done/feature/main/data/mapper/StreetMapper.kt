@@ -9,7 +9,7 @@ object StreetMapper {
             StreetEntity(
                 id = it.id ?: -1,
                 name = it.name ?: "",
-                districtId = -1
+                districtId = it.districtId ?: -1
             )
         }
     }

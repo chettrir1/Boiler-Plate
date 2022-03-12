@@ -12,8 +12,8 @@ import com.iions.done.feature.summary.data.model.AddressSearchResponse
 class AddressSearchAdapter(private val onItemSelectedListener: (AddressSearchResponse) -> Unit) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>(), Filterable {
 
-    private val items = ArrayList<AddressSearchResponse>()
-    private var filter = ArrayList<AddressSearchResponse>()
+    private val items = mutableListOf<AddressSearchResponse>()
+    private var filter = mutableListOf<AddressSearchResponse>()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -43,7 +43,7 @@ class AddressSearchAdapter(private val onItemSelectedListener: (AddressSearchRes
                 filter = if (characterString.isEmpty()) {
                     items
                 } else {
-                    val filteredList = ArrayList<AddressSearchResponse>()
+                    val filteredList = mutableListOf<AddressSearchResponse>()
                     for (item in items) {
                         if (item.name?.toLowerCase()?.contains(characterString.toLowerCase())!!) {
                             filteredList.add(item)
@@ -58,7 +58,7 @@ class AddressSearchAdapter(private val onItemSelectedListener: (AddressSearchRes
 
             override fun publishResults(constraint: CharSequence, results: FilterResults) {
                 if (filter.size > 0) {
-                    filter = results.values as ArrayList<AddressSearchResponse>
+                    filter = results.values as MutableList<AddressSearchResponse>
                 }
                 notifyDataSetChanged()
             }
@@ -72,7 +72,7 @@ class AddressSearchAdapter(private val onItemSelectedListener: (AddressSearchRes
         }
     }
 
-    fun setSearchItems(item: ArrayList<AddressSearchResponse>) {
+    fun setSearchItems(item: MutableList<AddressSearchResponse>) {
         items.addAll(item)
         filter.addAll(items)
         notifyDataSetChanged()

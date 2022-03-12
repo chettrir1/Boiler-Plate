@@ -7,4 +7,5 @@ object Constants {
     const val AUTHENTICATION_ERROR_401 = 401
     const val INTERNAL_SERVER_ERROR = 500
     const val GATE_WAY_TIME_OUT = 504
+    const val ORDER_RESPONSE = "order"
 }

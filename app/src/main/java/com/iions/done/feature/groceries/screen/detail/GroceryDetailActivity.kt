@@ -103,8 +103,13 @@ class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
 
     private fun setUpView(response: GroceryDetailRemoteBaseResponse) {
         quantity = binding.includeAddToCart.tvQuantity.text.toString().toInt()
-        binding.includePriceView.tvTitle.text =
-            "${response.item?.name} (${response.item?.unitSize})"
+        if (!response.item?.unitSize.isNullOrEmpty()) {
+            binding.includePriceView.tvTitle.text =
+                "${response.item?.name} (${response.item?.unitSize})"
+        } else
+            binding.includePriceView.tvTitle.text =
+                "${response.item?.name}"
+
         response.item?.description?.let { displayHtml(it) }
         response.item?.images?.map {
             SlideModel("https://d-one.iionstech.com/storage/${it.original}")

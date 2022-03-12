@@ -29,10 +29,24 @@ data class UserResponse(
 data class UserAddressResponse(
     @SerializedName("id")
     var id: Int?,
-    @SerializedName("district_id")
-    var districtId: Int? = null,
-    @SerializedName("street_id")
-    var streetId: Int? = null,
     @SerializedName("local_address")
-    var localAddress: String? = null
+    var localAddress: String? = null,
+    @SerializedName("district")
+    var district: DistrictResponse?,
+    @SerializedName("street")
+    var street: StreetResponse?
+)
+
+data class DistrictResponse(
+    @SerializedName("id")
+    var id: Int?,
+    @SerializedName("name")
+    var name: String? = null
+)
+
+data class StreetResponse(
+    @SerializedName("id")
+    var id: Int?,
+    @SerializedName("name")
+    var name: String? = null
 )

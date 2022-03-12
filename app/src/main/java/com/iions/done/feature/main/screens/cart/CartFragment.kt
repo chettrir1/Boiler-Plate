@@ -51,6 +51,7 @@ class CartFragment : BaseFragment<FragmentCartBinding>() {
         viewModel.cartResponse.observe(this) { response ->
             when (response.status) {
                 Status.LOADING -> {
+                    total = 0
                     binding.loadingLayout.thumb.gone()
                     super.showLoading(binding.loadingLayout, getString(R.string.please_wait))
                 }

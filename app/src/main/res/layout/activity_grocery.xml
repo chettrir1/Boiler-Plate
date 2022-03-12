@@ -86,15 +86,6 @@
                     app:spanCount="2"
                     tools:itemCount="12"
                     tools:listitem="@layout/item_grocery" />
-
-                <ProgressBar
-                    android:id="@+id/progress_bar"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/spacing_32"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rv_grocery" />
-
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 

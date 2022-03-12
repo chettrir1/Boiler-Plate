@@ -13,7 +13,6 @@ import com.iions.done.feature.groceries.screen.detail.GroceryDetailActivity
 import com.iions.done.feature.main.data.model.BannerResponse
 import com.iions.done.feature.main.screens.home.HomeSliderAdapter
 import com.iions.done.utils.archcomponents.Status
-import com.iions.done.utils.gone
 import com.iions.done.utils.visible
 import com.smarteist.autoimageslider.SliderView
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,6 +22,7 @@ class GroceryActivity : BaseActivity<ActivityGroceryBinding>() {
     private val dataList: ArrayList<GroceryResponse> = arrayListOf()
     private val viewModel: GroceryViewModel by viewModels()
     private var page: Int = 1
+    private var totalPage: Int = 1
 
     private var adapter: GroceryListAdapter? = null
 
@@ -46,7 +46,8 @@ class GroceryActivity : BaseActivity<ActivityGroceryBinding>() {
             NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
                 if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight) {
                     page++
-                    viewModel.getGroceries("", "", "", page)
+                    if (page <= totalPage)
+                        viewModel.getGroceries("", "", "", page)
                 }
             })
     }
@@ -63,11 +64,10 @@ class GroceryActivity : BaseActivity<ActivityGroceryBinding>() {
                 Status.LOADING -> {
                     if (page <= 1)
                         showLoading(binding.loadingLayout, getString(R.string.please_wait))
-                    else
-                        binding.progressBar.visible()
                 }
                 Status.COMPLETE -> {
                     response.data?.let {
+                        totalPage = it.items?.lastPage ?: 1
                         it.items?.data?.toList()?.let { it1 -> dataList.addAll(it1) }
 
                         adapter = GroceryListAdapter(dataList.toMutableList()) { response ->
@@ -88,10 +88,8 @@ class GroceryActivity : BaseActivity<ActivityGroceryBinding>() {
                             setUpBanner(items)
                         }
                     }
-                    binding.progressBar.gone()
                     binding.nestedScrollView.visible()
                     showData(binding.loadingLayout)
-
                 }
                 Status.ERROR -> {
                     super.showActionableError(

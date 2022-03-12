@@ -13,8 +13,9 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class AddressSearchFragment(
-    private val items: ArrayList<AddressSearchResponse>,
-    private val onItemSelectedListener: (AddressSearchResponse) -> Unit
+    private val items: MutableList<AddressSearchResponse>,
+    private val isDistrict: Boolean,
+    private val onItemSelectedListener: (AddressSearchResponse, Boolean) -> Unit
 ) : BaseDialogFragment<FragmentAddressSearchBinding>() {
 
     private lateinit var adapter: AddressSearchAdapter
@@ -46,8 +47,11 @@ class AddressSearchFragment(
         setRecyclerView(items)
     }
 
-    private fun setRecyclerView(items: ArrayList<AddressSearchResponse>) {
-        adapter = AddressSearchAdapter {}
+    private fun setRecyclerView(items: MutableList<AddressSearchResponse>) {
+        adapter = AddressSearchAdapter {
+            dismiss()
+            onItemSelectedListener(it, isDistrict)
+        }
         adapter.setSearchItems(items)
         binding.rvSearch.adapter = adapter
         binding.searchView

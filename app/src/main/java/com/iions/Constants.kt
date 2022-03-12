@@ -33,7 +33,9 @@ object Constants {
     const val TBL_USER_ADDRESS = "address"
     const val USER_ADDRESS_ID = "user_address_id"
     const val USER_ADDRESS_DISTRICT_ID = "district_id"
+    const val USER_ADDRESS_DISTRICT = "district_name"
     const val USER_ADDRESS_STREET_ID = "street_id"
+    const val USER_ADDRESS_STREET = "street_name"
     const val USER_ADDRESS_LOCAL = "local_address"
 
     /*grocery*/

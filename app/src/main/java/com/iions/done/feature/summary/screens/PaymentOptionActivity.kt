@@ -8,8 +8,10 @@ import com.iions.done.R
 import com.iions.done.base.BaseActivity
 import com.iions.done.databinding.ActivityPaymentOptionBinding
 import com.iions.done.feature.groceries.screen.GroceryActivity
+import com.iions.done.feature.summary.screens.address.ChooseAddressActivity
 import com.iions.done.utils.Commons
 import com.iions.done.utils.archcomponents.Status
+import com.iions.done.utils.enablePianoEffect
 import com.iions.done.utils.showToast
 import com.valdesekamdem.library.mdtoast.MDToast
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,18 +36,23 @@ class PaymentOptionActivity : BaseActivity<ActivityPaymentOptionBinding>() {
         viewModel.fetchCartList()
 
         binding.includePaymentOption.llCashOnDelivery.isSelected = true
-        binding.includePaymentOption.llDebitCard.setOnClickListener {
+        binding.includePaymentOption.llDebitCard.enablePianoEffect().setOnClickListener {
             showToast(
                 getString(R.string.feature_not_available_at_the_moment),
                 MDToast.TYPE_INFO
             )
         }
-        binding.includePaymentOption.llWallet.setOnClickListener {
+        binding.includePaymentOption.llWallet.enablePianoEffect().setOnClickListener {
             showToast(
                 getString(R.string.feature_not_available_at_the_moment),
                 MDToast.TYPE_INFO
             )
         }
+
+        binding.includeConfirmPayment.btnConfirmPayment.enablePianoEffect().setOnClickListener {
+            ChooseAddressActivity.start(this)
+        }
+
     }
 
     override fun initObservers() {

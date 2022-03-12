@@ -8,6 +8,7 @@ import com.iions.done.feature.groceries.data.model.GroceryDetailRemoteBaseRespon
 import com.iions.done.feature.groceries.data.model.GroceryRemoteBaseResponse
 import com.iions.done.feature.main.data.model.CartBaseResponse
 import com.iions.done.feature.main.data.model.HomeResponse
+import com.iions.done.feature.summary.data.model.CreateOrderBaseResponse
 import com.iions.done.remote.helper.BaseResponse
 import retrofit2.http.*
 
@@ -63,5 +64,13 @@ interface ApiService {
     suspend fun getCart(
         @Header("Authorization") token: String
     ): BaseResponse<CartBaseResponse>
+
+    @Headers("Accept: application/json")
+    @POST("cart/createOrder")
+    suspend fun createOrder(
+        @Header("Authorization") token: String,
+        @Body requestParams: MutableMap<String, Any>
+    ): BaseResponse<CreateOrderBaseResponse>
+
 
 }

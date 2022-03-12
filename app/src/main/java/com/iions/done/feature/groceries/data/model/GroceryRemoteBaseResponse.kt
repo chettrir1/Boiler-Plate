@@ -17,6 +17,8 @@ data class GroceryRemoteBaseResponse(
 data class GroceryItemsResponse(
     @SerializedName("current_page")
     var currentPage: Int,
+    @SerializedName("last_page")
+    var lastPage: Int,
     @SerializedName("data")
     var data: List<GroceryResponse>? = null,
     @SerializedName("first_page_url")

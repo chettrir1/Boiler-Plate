@@ -22,7 +22,8 @@ class AuthLocalImpl @Inject constructor(
         sharedPreferenceManager.name = loginResponse.user.name.toString()
         sharedPreferenceManager.email = loginResponse.user.email
         sharedPreferenceManager.loginDate = getCurrentDate()
-        saveAddress(loginResponse.user.addresses)
+        if (!loginResponse.user.addresses.isNullOrEmpty())
+            saveAddress(loginResponse.user.addresses)
     }
 
     private suspend fun saveAddress(address: List<UserAddressResponse>?) {

@@ -1,10 +1,11 @@
 package com.iions.done.feature.main.data.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class CartBaseResponse(
     @SerializedName("cart")
-    var cart: List<CartResponse>? = emptyList(),
+    var cart: List<CartResponse>? = emptyList()
 )
 
 data class CartResponse(
@@ -18,7 +19,7 @@ data class CartResponse(
     var price: Int?,
     @SerializedName("item")
     var item: CartItemResponse
-)
+) : Serializable
 
 data class CartItemResponse(
     @SerializedName("id")
@@ -29,4 +30,4 @@ data class CartItemResponse(
     var name: String?,
     @SerializedName("main_image_thumbnail")
     var mainImageThumbnail: String?
-)
+) : Serializable

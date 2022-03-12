@@ -16,6 +16,7 @@ import com.iions.done.utils.progressdialog.ProgressDialog
 import com.iions.done.utils.showToast
 import com.valdesekamdem.library.mdtoast.MDToast
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.system.exitProcess
 
 @AndroidEntryPoint
 class SmsLoginActivity : BaseActivity<ActivitySmsLoginBinding>() {
@@ -88,5 +89,11 @@ class SmsLoginActivity : BaseActivity<ActivitySmsLoginBinding>() {
         if (dialog.isShowing) {
             dialog.dismiss()
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+        exitProcess(0)
     }
 }

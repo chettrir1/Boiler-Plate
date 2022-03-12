@@ -14,9 +14,16 @@ interface StreetDao {
 
     @Query(
         """select street_id as id,
-        street_id as url
+        street_name as name
         from street
         where district_id =:districtId"""
     )
     suspend fun getStreetResponse(districtId: Int): List<StreetResponse>
+
+    @Query(
+        """select street_id as id,
+        street_id as name
+        from street where street_id=:streetId"""
+    )
+    suspend fun getStreetResponseWithId(streetId: Int): StreetResponse
 }

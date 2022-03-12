@@ -8,5 +8,5 @@ data class StreetResponse(
     @SerializedName("name")
     var name: String?,
     @SerializedName("district_id")
-    var districtId: String?
+    var districtId: Int?
 )
