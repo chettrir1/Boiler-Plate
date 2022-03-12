@@ -41,9 +41,10 @@ class SummaryRepositoryImpl @Inject constructor(
 
     override suspend fun createOrder(
         cod: String,
-        districtId: Int,
-        streetId: Int,
-        localAddress: String
+        districtId: Int?,
+        streetId: Int?,
+        localAddress: String?,
+        addressId: Int?
     ): CreateOrderBaseResponse? {
         return withContext(schedulersFactory.io()) {
             remoteRepository.createOrder(
@@ -51,7 +52,8 @@ class SummaryRepositoryImpl @Inject constructor(
                 cod,
                 districtId,
                 streetId,
-                localAddress
+                localAddress,
+                addressId
             )
         }
     }

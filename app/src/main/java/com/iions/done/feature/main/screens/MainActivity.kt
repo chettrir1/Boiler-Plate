@@ -42,6 +42,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
     companion object {
         fun start(activity: Activity) {
             val intent = Intent(activity, MainActivity::class.java)
+            intent.flags =
+                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
             activity.startActivity(intent)
             activity.finish()
         }

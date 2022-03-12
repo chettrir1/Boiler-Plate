@@ -13,7 +13,8 @@ interface UserAddressDao {
     suspend fun insert(user: List<UserAddressEntity>)
 
     @Query(
-        """select district_id as districtId,
+        """select user_address_id as addressId,
+            district_id as districtId,
             district_name as district,
             street_id as streetId,
             street_name as street,

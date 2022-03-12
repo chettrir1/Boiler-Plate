@@ -83,12 +83,18 @@ class ChooseAddressViewModel @Inject constructor(
         }
     }
 
-    fun createOrder(cod: String, districtId: Int, streetId: Int, localAddress: String) {
+    fun createOrder(
+        cod: String,
+        districtId: Int? = -1,
+        streetId: Int? = -1,
+        localAddress: String? = "",
+        addressId: Int? = -1
+    ) {
         viewModelScope.launch {
             createOrderUseCase.value = Response.loading()
             try {
                 createOrderUseCase.value = Response.complete(
-                    repository.createOrder(cod, districtId, streetId, localAddress)
+                    repository.createOrder(cod, districtId, streetId, localAddress, addressId)
                 )
             } catch (error: Exception) {
                 error.printStackTrace()

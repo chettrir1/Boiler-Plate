@@ -1,7 +1,6 @@
 package com.iions.done.feature.summary.data
 
 import com.iions.done.feature.auth.data.model.AddressResponse
-import com.iions.done.feature.auth.data.model.UserAddressResponse
 import com.iions.done.feature.main.data.model.CartBaseResponse
 import com.iions.done.feature.main.data.model.DistrictResponse
 import com.iions.done.feature.main.data.model.StreetResponse
@@ -14,9 +13,10 @@ interface SummaryRepository {
     suspend fun fetchStreetList(districtId: Int): List<StreetResponse>?
     suspend fun createOrder(
         cod: String,
-        districtId: Int,
-        streetId: Int,
-        localAddress: String
+        districtId: Int?,
+        streetId: Int?,
+        localAddress: String?,
+        addressId: Int?
     ): CreateOrderBaseResponse?
 
     interface Local {
@@ -31,9 +31,10 @@ interface SummaryRepository {
         suspend fun createOrder(
             token: String,
             cod: String,
-            districtId: Int,
-            streetId: Int,
-            localAddress: String
+            districtId: Int?,
+            streetId: Int?,
+            localAddress: String?,
+            addressId: Int?
         ): CreateOrderBaseResponse?
     }
 }

@@ -103,6 +103,7 @@
             android:name=".feature.summary.screens.confirm.OrderConfirmActivity"
             android:exported="true"
             android:screenOrientation="@integer/screen_orientation_portrait"
+            android:noHistory="true"
             android:windowSoftInputMode="adjustResize" />
 
         <meta-data

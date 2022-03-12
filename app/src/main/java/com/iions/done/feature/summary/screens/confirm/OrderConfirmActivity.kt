@@ -24,6 +24,8 @@ class OrderConfirmActivity : BaseActivity<ActivityOrderConfirmedBinding>() {
         fun start(activity: Activity, response: CreateOrderBaseResponse) {
             val intent = Intent(activity, OrderConfirmActivity::class.java)
             intent.putExtra(Constants.ORDER_RESPONSE, response)
+            intent.flags =
+                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
             activity.startActivity(intent)
         }
     }

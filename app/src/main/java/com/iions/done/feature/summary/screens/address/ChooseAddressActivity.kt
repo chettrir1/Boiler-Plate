@@ -24,7 +24,8 @@ class ChooseAddressActivity : BaseActivity<ActivityChooseAddressBinding>() {
     private val viewModel: ChooseAddressViewModel by viewModels()
     private var districtId = 0
     private var streetId = 0
-    private var savedlocalAddress = ""
+    private var addressId = 0
+    private var savedLocalAddress = ""
     private lateinit var dialog: Dialog
     private var isCustomAddressClicked = false
     private var isAddressAvailable = false
@@ -97,7 +98,7 @@ class ChooseAddressActivity : BaseActivity<ActivityChooseAddressBinding>() {
                     }
                 }
             } else {
-                viewModel.createOrder("cod", districtId, streetId, savedlocalAddress)
+                viewModel.createOrder(cod = "cod", addressId = addressId)
             }
         }
 
@@ -125,9 +126,7 @@ class ChooseAddressActivity : BaseActivity<ActivityChooseAddressBinding>() {
                             binding.groupCustomAddress.gone()
                             binding.rvAddress.adapter =
                                 AddressListAdapter(it.toMutableList()) {
-                                    districtId = it.districtId ?: -1
-                                    streetId = it.streetId ?: -1
-                                    savedlocalAddress = it.localAddress ?: ""
+                                    addressId = it.addressId ?: -1
                                 }
                         } else {
                             isAddressAvailable = false

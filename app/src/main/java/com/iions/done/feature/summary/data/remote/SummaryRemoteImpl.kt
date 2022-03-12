@@ -18,15 +18,17 @@ class SummaryRemoteImpl @Inject constructor(
     override suspend fun createOrder(
         token: String,
         cod: String,
-        districtId: Int,
-        streetId: Int,
-        localAddress: String
+        districtId: Int?,
+        streetId: Int?,
+        localAddress: String?,
+        addressId: Int?
     ): CreateOrderBaseResponse {
         val requestParams = mutableMapOf<String, Any>()
         requestParams["payment_method"] = cod
-        requestParams["district_id"] = districtId
-        requestParams["street_id"] = streetId
-        requestParams["local_address"] = localAddress
+        requestParams["district_id"] = districtId ?: -1
+        requestParams["street_id"] = streetId ?: -1
+        requestParams["local_address"] = localAddress ?: ""
+        requestParams["address_id"] = addressId ?: -1
         val remoteResponse = apiService.createOrder(token, requestParams)
         return notNullMapper(remoteResponse)
     }
