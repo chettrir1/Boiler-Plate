@@ -9,5 +9,5 @@ import com.iions.Constants
 data class BannerEntity(
     @PrimaryKey
     @ColumnInfo(name = Constants.BANNER_ID) var id: Int,
-    @ColumnInfo(name = Constants.BANNER_IMAGE) var image: String,
+    @ColumnInfo(name = Constants.BANNER_IMAGE) var image: String
 )

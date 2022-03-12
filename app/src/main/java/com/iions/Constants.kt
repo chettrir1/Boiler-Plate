@@ -30,6 +30,12 @@ object Constants {
     const val USER_ROLE = "role"
     const val USER_PROFILE_IMAGE = "profile_image"
 
+    const val TBL_USER_ADDRESS = "address"
+    const val USER_ADDRESS_ID = "user_address_id"
+    const val USER_ADDRESS_DISTRICT_ID = "district_id"
+    const val USER_ADDRESS_STREET_ID = "street_id"
+    const val USER_ADDRESS_LOCAL = "local_address"
+
     /*grocery*/
     const val TBL_GROCERY = "grocery"
     const val GROCERY_ID = "grocery_id"
@@ -61,6 +67,17 @@ object Constants {
     const val TBL_BANNER = "banner"
     const val BANNER_ID = "banner_id"
     const val BANNER_IMAGE = "banner_image"
+
+    /*district*/
+    const val TBL_DISTRICT = "district"
+    const val DISTRICT_ID = "district_id"
+    const val DISTRICT_NAME = "district_name"
+
+
+    /*street */
+    const val TBL_STREET = "street"
+    const val STREET_ID = "street_id"
+    const val STREET_NAME = "street_name"
 
     /*restaurant*/
 }

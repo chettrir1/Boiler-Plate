@@ -16,6 +16,8 @@ class SplashLocalImpl @Inject constructor(
         saveModules(response?.modules)
         saveGrocery(response?.grocery)
         saveBanner(response?.banners)
+        saveDistrict(response?.district)
+        saveStreet(response?.streets)
     }
 
     private suspend fun saveBanner(banners: List<BannerResponse>?) {
@@ -30,8 +32,16 @@ class SplashLocalImpl @Inject constructor(
         databaseManager.getGroceryDao().insert(GroceryMapper.mapToLocal(grocery ?: emptyList()))
         grocery?.forEach {
             it.brand?.let { data -> saveGroceryBrand(data) }
-            it.category?.let { data-> saveGroceryCategory(data) }
+            it.category?.let { data -> saveGroceryCategory(data) }
         }
+    }
+
+    private suspend fun saveDistrict(district: List<DistrictResponse>?) {
+        databaseManager.getDistrictDao().insert(DistrictMapper.mapToLocal(district ?: emptyList()))
+    }
+
+    private suspend fun saveStreet(street: List<StreetResponse>?) {
+        databaseManager.getStreetDao().insert(StreetMapper.mapToLocal(street ?: emptyList()))
     }
 
     private suspend fun saveGroceryBrand(brand: HomeGroceyBrandResponse) {

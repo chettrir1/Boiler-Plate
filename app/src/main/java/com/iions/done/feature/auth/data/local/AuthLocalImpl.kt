@@ -3,7 +3,9 @@ package com.iions.done.feature.auth.data.local
 import com.iions.DatabaseManager
 import com.iions.SharedPreferenceManager
 import com.iions.done.feature.auth.data.AuthRepository
+import com.iions.done.feature.auth.data.model.UserAddressResponse
 import com.iions.done.feature.auth.data.model.VerifyPinResponse
+import com.iions.done.feature.main.data.mapper.UserAddressMapper
 import com.iions.done.utils.getCurrentDate
 import javax.inject.Inject
 
@@ -20,6 +22,12 @@ class AuthLocalImpl @Inject constructor(
         sharedPreferenceManager.name = loginResponse.user.name.toString()
         sharedPreferenceManager.email = loginResponse.user.email
         sharedPreferenceManager.loginDate = getCurrentDate()
+        saveAddress(loginResponse.user.addresses)
+    }
+
+    private suspend fun saveAddress(address: List<UserAddressResponse>?) {
+        databaseManager.getUserAddressDao()
+            .insert(UserAddressMapper.mapToLocal(address ?: emptyList()))
     }
 
     override suspend fun saveUsername(username: String) {

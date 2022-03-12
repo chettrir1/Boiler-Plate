@@ -10,11 +10,14 @@ import com.iions.entity.*
 @Database(
     entities = [
         UserEntity::class,
+        UserAddressEntity::class,
         ModulesEntity::class,
         GroceryEntity::class,
         GroceryBrandEntity::class,
         GroceryCategoryEntity::class,
-        BannerEntity::class
+        BannerEntity::class,
+        DistrictEntity::class,
+        StreetEntity::class
     ],
     version = 2,
     exportSchema = false
@@ -43,9 +46,12 @@ abstract class MainDatabase : RoomDatabase() {
     }
 
     abstract fun getUsersDao(): UserDao
+    abstract fun getUserAddressDao(): UserAddressDao
     abstract fun getModuleDao(): ModuleDao
     abstract fun getGroceryDao(): GroceryDao
     abstract fun getGroceryBrandDao(): GroceryBrandDao
     abstract fun getGroceryCategoryDao(): GroceryCategoryDao
     abstract fun getBannerDao(): BannerDao
+    abstract fun getDistrictDao(): DistrictDao
+    abstract fun getStreetDao(): StreetDao
 }
