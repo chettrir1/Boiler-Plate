@@ -72,4 +72,10 @@ class MainRepositoryImpl @Inject constructor(
             remoteRepository.removeCartList(authorizationToken, cartId)
         }
     }
+
+    override suspend fun fetchProfileResponse(): ProfileBaseResponse? {
+        return withContext(schedulersFactory.io()) {
+            remoteRepository.fetchProfileResponse(localRepository.getAuthorizationToken())
+        }
+    }
 }

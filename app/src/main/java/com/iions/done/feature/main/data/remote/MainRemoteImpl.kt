@@ -4,6 +4,7 @@ import com.iions.done.exceptions.FailedResponseException
 import com.iions.done.feature.auth.data.model.LogoutResponse
 import com.iions.done.feature.main.data.MainRepository
 import com.iions.done.feature.main.data.model.CartBaseResponse
+import com.iions.done.feature.main.data.model.ProfileBaseResponse
 import com.iions.done.feature.main.data.model.RemoveCartResponse
 import com.iions.done.remote.ApiService
 import javax.inject.Inject
@@ -43,6 +44,18 @@ class MainRemoteImpl @Inject constructor(
         val requestParams = mutableMapOf<String, Any>()
         requestParams["cart_id"] = cartId
         val remoteResponse = apiService.removeFromCart(authorizationToken, requestParams)
+        if (remoteResponse.status == true) {
+            throw FailedResponseException(
+                remoteResponse.status!!,
+                remoteResponse.message.toString()
+            )
+        } else {
+            return remoteResponse.response
+        }
+    }
+
+    override suspend fun fetchProfileResponse(authorizationToken: String): ProfileBaseResponse? {
+        val remoteResponse = apiService.fetchProfile(authorizationToken)
         if (remoteResponse.status == true) {
             throw FailedResponseException(
                 remoteResponse.status!!,

@@ -8,6 +8,7 @@ import com.iions.done.feature.groceries.data.model.GroceryDetailRemoteBaseRespon
 import com.iions.done.feature.groceries.data.model.GroceryRemoteBaseResponse
 import com.iions.done.feature.main.data.model.CartBaseResponse
 import com.iions.done.feature.main.data.model.HomeResponse
+import com.iions.done.feature.main.data.model.ProfileBaseResponse
 import com.iions.done.feature.main.data.model.RemoveCartResponse
 import com.iions.done.feature.summary.data.model.CreateOrderBaseResponse
 import com.iions.done.remote.helper.BaseResponse
@@ -80,5 +81,10 @@ interface ApiService {
         @Body requestParams: MutableMap<String, Any>
     ): BaseResponse<CreateOrderBaseResponse>
 
+    @Headers("Accept: application/json")
+    @GET("me")
+    suspend fun fetchProfile(
+        @Header("Authorization") token: String
+    ): BaseResponse<ProfileBaseResponse>
 
 }

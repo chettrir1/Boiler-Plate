@@ -15,6 +15,7 @@ interface MainRepository {
     suspend fun fetchCartList(token: String): CartBaseResponse?
     suspend fun fetchAddressList(): List<AddressResponse>?
     suspend fun removeCartList(authorizationToken: String, cartId: Int): List<RemoveCartResponse>?
+    suspend fun fetchProfileResponse(): ProfileBaseResponse?
 
     interface Local {
         fun isUserLoggedIn(): Boolean
@@ -25,12 +26,16 @@ interface MainRepository {
         fun getAuthorizationToken(): String
         suspend fun clearPrefs()
         suspend fun fetchAddressList(): List<AddressResponse>?
-
     }
 
     interface Remote {
         suspend fun requestLogout(token: String): List<LogoutResponse>?
         suspend fun fetchCartList(token: String): CartBaseResponse?
-        suspend fun removeCartList(authorizationToken: String, cartId: Int): List<RemoveCartResponse>?
+        suspend fun removeCartList(
+            authorizationToken: String,
+            cartId: Int
+        ): List<RemoveCartResponse>?
+
+        suspend fun fetchProfileResponse(authorizationToken: String): ProfileBaseResponse?
     }
 }

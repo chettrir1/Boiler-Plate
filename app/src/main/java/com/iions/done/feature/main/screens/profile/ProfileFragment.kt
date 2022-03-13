@@ -8,6 +8,7 @@ import com.iions.done.R
 import com.iions.done.base.BaseFragment
 import com.iions.done.databinding.FragmentProfileBinding
 import com.iions.done.feature.auth.screens.login.smslogin.SmsLoginActivity
+import com.iions.done.feature.main.data.model.ProfileBaseResponse
 import com.iions.done.utils.archcomponents.Status
 import com.iions.done.utils.gone
 import com.iions.done.utils.visible
@@ -32,7 +33,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     override fun onResume() {
         super.onResume()
         if (viewModel.isUserLoggedIn()) {
-            viewModel.fetchAddressList()
+            viewModel.fetchProfileResponse()
         } else {
             super.showActionableError(
                 binding.loadingLayout,
@@ -46,6 +47,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     }
 
     override fun initObservers() {
+        observeProfileResponse()
         observeAddressResponse()
     }
 
@@ -54,15 +56,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         viewModel.addressResponse.observe(this) { response ->
             when (response.status) {
                 Status.LOADING -> {
-                    binding.loadingLayout.thumb.gone()
-                    super.showLoading(binding.loadingLayout, getString(R.string.please_wait))
                 }
                 Status.COMPLETE -> {
                     response.data?.let {
                         if (it.isNotEmpty()) {
                             binding.rvAddress.adapter =
-                                ProfileAddressListAdapter(it.toMutableList()) {
-                                }
+                                ProfileAddressListAdapter(it.toMutableList()) {}
                             binding.group.visible()
                         } else {
                             binding.group.gone()
@@ -82,5 +81,42 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                 }
             }
         }
+    }
+
+    private fun observeProfileResponse() {
+        viewModel.profileResponse.observe(this) { response ->
+            when (response.status) {
+                Status.LOADING -> {
+                    binding.loadingLayout.thumb.gone()
+                    super.showLoading(binding.loadingLayout, getString(R.string.please_wait))
+                }
+                Status.COMPLETE -> {
+                    response.data?.let {
+                       setView(it)
+                        viewModel.fetchAddressList()
+                    }
+                }
+                Status.ERROR -> {
+                    super.showActionableError(
+                        binding.loadingLayout,
+                        errorMessage = response.error?.message.toString(),
+                        R.drawable.vc_profile,
+                        actionLabel = getString(R.string.retry)
+                    ) {
+                        viewModel.fetchAddressList()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setView(it: ProfileBaseResponse) {
+        binding.includeProfiles.tvProfileName.text = it.user?.name ?: "Unknown"
+        binding.includeProfiles.tvProfileNumber.text = it.user?.phoneNumber ?: "98********"
+        binding.includeProfileDetails.tvName.text = it.user?.name ?: "Unknown"
+        binding.includeProfileDetails.tvEmail.text =
+            it.user?.email ?: "unknown@gmail.com"
+        binding.includeProfileDetails.tvPhone.text =
+            it.user?.phoneNumber ?: "98********"
     }
 }

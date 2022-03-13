@@ -4,10 +4,7 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.iions.done.feature.auth.data.model.AddressResponse
 import com.iions.done.feature.main.data.MainRepository
-import com.iions.done.feature.main.data.model.DistrictResponse
-import com.iions.done.feature.main.data.model.StreetResponse
-import com.iions.done.feature.summary.data.SummaryRepository
-import com.iions.done.feature.summary.data.model.CreateOrderBaseResponse
+import com.iions.done.feature.main.data.model.ProfileBaseResponse
 import com.iions.done.utils.archcomponents.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.cancel
@@ -23,6 +20,10 @@ class ProfileViewModel @Inject constructor(
     private val addressUseCase = MutableLiveData<Response<List<AddressResponse>>>()
     val addressResponse: LiveData<Response<List<AddressResponse>>> =
         addressUseCase
+
+    private val profileUseCase = MutableLiveData<Response<ProfileBaseResponse>>()
+    val profileResponse: LiveData<Response<ProfileBaseResponse>> =
+        profileUseCase
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public override fun onCleared() {
@@ -40,6 +41,20 @@ class ProfileViewModel @Inject constructor(
             } catch (error: Exception) {
                 error.printStackTrace()
                 addressUseCase.value = Response.error(error)
+            }
+        }
+    }
+
+    fun fetchProfileResponse() {
+        viewModelScope.launch {
+            profileUseCase.value = Response.loading()
+            try {
+                profileUseCase.value = Response.complete(
+                    repository.fetchProfileResponse()
+                )
+            } catch (error: Exception) {
+                error.printStackTrace()
+                profileUseCase.value = Response.error(error)
             }
         }
     }
