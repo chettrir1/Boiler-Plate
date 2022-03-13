@@ -1,5 +1,6 @@
 package com.iions.done.feature.summary.data.remote
 
+import com.iions.done.exceptions.FailedResponseException
 import com.iions.done.feature.main.data.model.CartBaseResponse
 import com.iions.done.feature.summary.data.SummaryRepository
 import com.iions.done.feature.summary.data.model.CreateOrderBaseResponse
@@ -11,8 +12,13 @@ class SummaryRemoteImpl @Inject constructor(
     private val apiService: ApiService
 ) : SummaryRepository.Remote {
 
-    override suspend fun fetchCartList(authorizationToken: String): CartBaseResponse {
-        return notNullMapper(apiService.getCart(authorizationToken))
+    override suspend fun fetchCartList(authorizationToken: String): CartBaseResponse? {
+        val remoteResponse= apiService.getCart(authorizationToken)
+        if (remoteResponse.status==true){
+            throw FailedResponseException(remoteResponse.status!!, remoteResponse.message.toString())
+        }else{
+            return remoteResponse.response
+        }
     }
 
     override suspend fun createOrder(
@@ -22,7 +28,7 @@ class SummaryRemoteImpl @Inject constructor(
         streetId: Int?,
         localAddress: String?,
         addressId: Int?
-    ): CreateOrderBaseResponse {
+    ): CreateOrderBaseResponse? {
         val requestParams = mutableMapOf<String, Any>()
         requestParams["payment_method"] = cod
         requestParams["district_id"] = districtId ?: -1
@@ -30,6 +36,10 @@ class SummaryRemoteImpl @Inject constructor(
         requestParams["local_address"] = localAddress ?: ""
         requestParams["address_id"] = addressId ?: -1
         val remoteResponse = apiService.createOrder(token, requestParams)
-        return notNullMapper(remoteResponse)
+        if (remoteResponse.status==true){
+            throw FailedResponseException(remoteResponse.status!!, remoteResponse.message.toString())
+        }else{
+            return remoteResponse.response
+        }
     }
 }

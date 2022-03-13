@@ -25,8 +25,6 @@ class ApiInterceptor @Inject constructor(
     private val prefs: SharedPreferenceManager
 ) : Interceptor {
 
-    private val gson by lazy { Gson() }
-
     override fun intercept(chain: Interceptor.Chain): Response {
         if (!checkNetworkAvailability(context)) {
             throw NetworkNotAvailableException("No Internet Connection.")
