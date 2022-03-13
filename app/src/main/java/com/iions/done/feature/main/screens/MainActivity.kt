@@ -65,7 +65,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
         navHeaderMainBinding.tvName.text = "Unknnown"
         navHeaderMainBinding.tvPhone.text = "------"
         navHeaderMainBinding.cvImage.setOnClickListener {
-            SmsLoginActivity.start(this, "")
+            SmsLoginActivity.start(this)
         }
 
         binding.includeToolbar.ivMenu.setOnClickListener {
@@ -197,12 +197,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
                 }
                 Status.COMPLETE -> {
                     hideProgress()
-                    SmsLoginActivity.start(this, Constants.TYPE_LOGOUT)
+                    SmsLoginActivity.start(this)
                 }
                 Status.ERROR -> {
                     hideProgress()
                     showToast(
-                        response.error.toString(),
+                        response.error?.message.toString(),
                         TYPE_ERROR
                     )
                 }

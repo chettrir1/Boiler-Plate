@@ -1,10 +1,11 @@
 package com.iions.done.di.module
 
-import com.iions.SharedPreferenceManager
-import com.iions.done.remote.ApiService
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.iions.SharedPreferenceManager
+import com.iions.done.remote.ApiService
 import com.iions.done.remote.helper.ApiInterceptor
+import com.iions.done.remote.helper.ErrorInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,6 +33,7 @@ object ApiModule {
     @Provides
     fun provideOkHttpClient(
         httpLoggingInterceptor: HttpLoggingInterceptor,
+        errorInterceptor: ErrorInterceptor,
         apiInterceptor: ApiInterceptor
     ): OkHttpClient {
         return OkHttpClient.Builder()

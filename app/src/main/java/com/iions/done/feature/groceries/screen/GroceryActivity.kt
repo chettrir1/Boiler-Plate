@@ -94,7 +94,7 @@ class GroceryActivity : BaseActivity<ActivityGroceryBinding>() {
                 Status.ERROR -> {
                     super.showActionableError(
                         binding.loadingLayout,
-                        errorMessage = response.error.toString(),
+                        errorMessage = response.error?.message.toString(),
                         R.drawable.ic_error_cart,
                         actionLabel = getString(R.string.retry)
                     ) {

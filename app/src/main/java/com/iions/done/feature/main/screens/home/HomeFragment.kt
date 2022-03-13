@@ -76,7 +76,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 Status.ERROR -> {
                     super.showErrorWithImage(
                         binding.loadingLayout,
-                        response.error.toString(),
+                        response.error?.message.toString(),
                         R.drawable.ic_error_home
                     )
                 }
@@ -108,7 +108,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 Status.ERROR -> {
                     super.showErrorWithImage(
                         binding.loadingLayout,
-                        response.error.toString(),
+                        response.error?.message.toString(),
                         R.drawable.ic_error_home
                     )
                 }
@@ -133,7 +133,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 Status.ERROR -> {
                     super.showErrorWithImage(
                         binding.loadingLayout,
-                        response.error.toString(),
+                        response.error?.message.toString(),
                         R.drawable.ic_error_home
                     )
                 }

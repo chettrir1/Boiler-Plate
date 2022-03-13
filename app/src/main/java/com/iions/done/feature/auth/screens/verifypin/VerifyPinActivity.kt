@@ -86,7 +86,7 @@ class VerifyPinActivity : BaseActivity<ActivityVerifyPinBinding>() {
                 Status.ERROR -> {
                     hideDialog()
                     showToast(
-                        response.error.toString(),
+                        response.error?.message,
                         MDToast.TYPE_ERROR
                     )
                 }

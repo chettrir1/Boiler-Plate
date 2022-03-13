@@ -88,7 +88,7 @@ class CartFragment : BaseFragment<FragmentCartBinding>() {
                     super.showActionableError(
                         binding.loadingLayout,
                         errorMessage = if (viewModel.isUserLoggedIn()) {
-                            response.error.toString()
+                            response.error?.message.toString()
                         } else {
                             getString(R.string.you_havent_logged_in_yet)
                         },
@@ -102,7 +102,7 @@ class CartFragment : BaseFragment<FragmentCartBinding>() {
                         if (it == getString(R.string.retry))
                             viewModel.fetchCartList()
                         else
-                            SmsLoginActivity.start(requireActivity(), "")
+                            SmsLoginActivity.start(requireActivity())
                     }
                 }
             }

@@ -11,6 +11,7 @@ import com.iions.done.R
 import com.iions.done.base.BaseActivity
 import com.iions.done.databinding.ActivitySplashBinding
 import com.iions.done.feature.main.screens.MainActivity
+import com.iions.done.utils.alertdialog.showAlert
 import com.iions.done.utils.archcomponents.Status
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -50,6 +51,20 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(), MotionLayout.Trans
                     }
                 }
                 Status.ERROR -> {
+                    showAlert(
+                        title = "Alert!",
+                        message = "Looks like your data did not load properly, Please make sure either your internet is working properly or you are connected to internet!",
+                        imageRes = null,
+                        buttons = arrayOf(getString(R.string.retry), getString(R.string.exit)),
+                        handler = { index ->
+                            when (index) {
+                                0 -> {
+                                    binding.motionLayout.setTransitionListener(this)
+                                }
+                                else -> Unit
+                            }
+                        }
+                    )
                 }
             }
         }
@@ -64,7 +79,8 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(), MotionLayout.Trans
         startId: Int,
         endId: Int,
         progress: Float
-    ) {}
+    ) {
+    }
 
     override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
     }
@@ -74,5 +90,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(), MotionLayout.Trans
         triggerId: Int,
         positive: Boolean,
         progress: Float
-    ) {}
+    ) {
+    }
 }

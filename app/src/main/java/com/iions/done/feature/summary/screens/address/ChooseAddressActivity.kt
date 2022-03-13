@@ -194,7 +194,7 @@ class ChooseAddressActivity : BaseActivity<ActivityChooseAddressBinding>() {
                 Status.ERROR -> {
                     hideProgress()
                     showToast(
-                        response.error.toString(),
+                        response.error?.message.toString(),
                         MDToast.TYPE_ERROR
                     )
                 }

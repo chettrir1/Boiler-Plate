@@ -25,7 +25,7 @@ class SmsLoginActivity : BaseActivity<ActivitySmsLoginBinding>() {
     private lateinit var dialog: Dialog
 
     companion object {
-        fun start(activity: Activity, type: String) {
+        fun start(activity: Activity) {
             val intent = Intent(activity, SmsLoginActivity::class.java)
             activity.startActivity(intent)
         }
@@ -72,7 +72,7 @@ class SmsLoginActivity : BaseActivity<ActivitySmsLoginBinding>() {
                 Status.ERROR -> {
                     hideProgress()
                     showToast(
-                        response.error.toString(),
+                        response.error?.message,
                         MDToast.TYPE_ERROR
                     )
                 }

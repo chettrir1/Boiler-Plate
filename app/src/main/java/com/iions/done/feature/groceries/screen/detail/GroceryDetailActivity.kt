@@ -72,7 +72,7 @@ class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
                     showData(binding.loadingLayout)
                 }
                 Status.ERROR -> {
-                    showError(binding.loadingLayout, response.error.toString())
+                    showError(binding.loadingLayout, response.error?.message.toString())
                 }
             }
         }
@@ -93,7 +93,7 @@ class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
                 }
                 Status.ERROR -> {
                     showToast(
-                        response.error.toString(),
+                        response.error?.message,
                         MDToast.TYPE_ERROR
                     )
                 }
@@ -123,7 +123,7 @@ class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
                     quantity = quantity
                 )
             } else {
-                SmsLoginActivity.start(this, "")
+                SmsLoginActivity.start(this)
             }
         }
     }
