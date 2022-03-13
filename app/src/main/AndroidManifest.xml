@@ -24,8 +24,15 @@
         tools:ignore="DataExtractionRules"
         tools:replace="android:allowBackup">
         <activity
+            android:name=".feature.main.screens.profile.edit.EditProfileActivity"
+            android:exported="false"
+            android:screenOrientation="@integer/screen_orientation_portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
             android:name=".feature.summary.screens.PaymentOptionActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="@integer/screen_orientation_portrait"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".feature.groceries.screen.detail.GroceryDetailActivity"
             android:exported="false"
@@ -102,8 +109,8 @@
         <activity
             android:name=".feature.summary.screens.confirm.OrderConfirmActivity"
             android:exported="true"
-            android:screenOrientation="@integer/screen_orientation_portrait"
             android:noHistory="true"
+            android:screenOrientation="@integer/screen_orientation_portrait"
             android:windowSoftInputMode="adjustResize" />
 
         <meta-data

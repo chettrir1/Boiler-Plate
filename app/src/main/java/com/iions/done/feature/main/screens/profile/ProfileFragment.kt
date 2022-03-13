@@ -9,6 +9,7 @@ import com.iions.done.base.BaseFragment
 import com.iions.done.databinding.FragmentProfileBinding
 import com.iions.done.feature.auth.screens.login.smslogin.SmsLoginActivity
 import com.iions.done.feature.main.data.model.ProfileBaseResponse
+import com.iions.done.feature.main.screens.profile.edit.EditProfileActivity
 import com.iions.done.utils.archcomponents.Status
 import com.iions.done.utils.gone
 import com.iions.done.utils.visible
@@ -28,6 +29,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.includeProfiles.tvEdit.setOnClickListener {
+            EditProfileActivity.start(requireActivity())
+        }
     }
 
     override fun onResume() {

@@ -13,6 +13,7 @@ import com.iions.done.base.BaseActivity
 import com.iions.done.databinding.ActivityGroceryDetailBinding
 import com.iions.done.feature.auth.screens.login.smslogin.SmsLoginActivity
 import com.iions.done.feature.groceries.data.model.GroceryDetailRemoteBaseResponse
+import com.iions.done.feature.summary.screens.PaymentOptionActivity
 import com.iions.done.utils.ImageGetter
 import com.iions.done.utils.archcomponents.Status
 import com.iions.done.utils.enablePianoEffect
@@ -24,6 +25,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
     private val viewModel: GroceryDetailViewModel by viewModels()
     private var quantity = 0
+    private var isOrderNow = false
 
     companion object {
         fun start(activity: Activity, id: Int, title: String) {
@@ -85,10 +87,14 @@ class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
                 }
                 Status.COMPLETE -> {
                     response.data?.let {
-                        showToast(
-                            getString(R.string.item_added_to_cart),
-                            MDToast.TYPE_SUCCESS
-                        )
+                        if (!isOrderNow) {
+                            showToast(
+                                getString(R.string.item_added_to_cart),
+                                MDToast.TYPE_SUCCESS
+                            )
+                        } else {
+                            PaymentOptionActivity.start(this)
+                        }
                     }
                 }
                 Status.ERROR -> {
@@ -116,15 +122,13 @@ class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
         }?.let { binding.slideView.setImageList(it) }
 
         binding.includeAddToCart.btnAddToCart.enablePianoEffect().setOnClickListener {
-            if (viewModel.isUserLoggedIn()) {
-                viewModel.requestAddToCart(
-                    itemId = response.item?.id,
-                    itemType = "grocery",
-                    quantity = quantity
-                )
-            } else {
-                SmsLoginActivity.start(this)
-            }
+            isOrderNow = false
+            addToCart(response)
+        }
+
+        binding.includeAddToCart.btnOrderNow.enablePianoEffect().setOnClickListener {
+            isOrderNow = true
+            addToCart(response)
         }
     }
 
@@ -158,5 +162,17 @@ class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
 
         // setting the text after formatting html and downloading and setting images
         binding.includePriceView.tvProductDescription.text = styledText
+    }
+
+    private fun addToCart(response: GroceryDetailRemoteBaseResponse) {
+        if (viewModel.isUserLoggedIn()) {
+            viewModel.requestAddToCart(
+                itemId = response.item?.id,
+                itemType = "grocery",
+                quantity = quantity
+            )
+        } else {
+            SmsLoginActivity.start(this)
+        }
     }
 }
