@@ -95,7 +95,7 @@ class GroceryActivity : BaseActivity<ActivityGroceryBinding>() {
                     super.showActionableError(
                         binding.loadingLayout,
                         errorMessage = response.error?.message.toString(),
-                        R.drawable.ic_error_cart,
+                        R.drawable.vc_cart,
                         actionLabel = getString(R.string.retry)
                     ) {
                         viewModel.getGroceries("", "", "", page)

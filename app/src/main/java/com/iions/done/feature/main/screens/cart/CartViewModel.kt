@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.iions.done.feature.main.data.MainRepository
 import com.iions.done.feature.main.data.model.CartBaseResponse
+import com.iions.done.feature.main.data.model.RemoveCartResponse
 import com.iions.done.utils.archcomponents.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.cancel
@@ -19,6 +20,10 @@ class CartViewModel @Inject constructor(
     private val cartUseCase = MutableLiveData<Response<CartBaseResponse>>()
     val cartResponse: LiveData<Response<CartBaseResponse>> =
         cartUseCase
+
+    private val removeCartUseCase = MutableLiveData<Response<List<RemoveCartResponse>>>()
+    val removeCartResponse: LiveData<Response<List<RemoveCartResponse>>> =
+        removeCartUseCase
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public override fun onCleared() {
@@ -44,6 +49,20 @@ class CartViewModel @Inject constructor(
             } catch (error: Exception) {
                 error.printStackTrace()
                 cartUseCase.value = Response.error(error)
+            }
+        }
+    }
+
+    fun removeCartList(cart_id: Int) {
+        viewModelScope.launch {
+            removeCartUseCase.value = Response.loading()
+            try {
+                removeCartUseCase.value = Response.complete(
+                    repository.removeCartList(getAuthorizationToken(), cart_id)
+                )
+            } catch (error: Exception) {
+                error.printStackTrace()
+                removeCartUseCase.value = Response.error(error)
             }
         }
     }

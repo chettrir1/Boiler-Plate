@@ -10,10 +10,11 @@ import com.iions.done.base.BaseViewHolder
 import com.iions.done.databinding.ItemCartBinding
 import com.iions.done.feature.main.data.model.CartResponse
 import com.iions.done.utils.Commons
+import com.iions.done.utils.enablePianoEffect
 
 class CartListAdapter(
     private var dataList: MutableList<CartResponse>,
-    private val onItemSelectedListener: (CartResponse) -> Unit
+    private val onItemSelectedListener: (CartResponse, Boolean) -> Unit,
 ) : BaseAdapter<CartResponse, CartListAdapter.CartListViewHolder>() {
 
     override fun getViewHolder(binding: ViewDataBinding, viewType: Int): CartListViewHolder {
@@ -54,7 +55,11 @@ class CartListAdapter(
             }
 
             binding.constraint.setOnClickListener {
-                onItemSelectedListener(obj)
+                onItemSelectedListener(obj, false)
+            }
+
+            binding.tvDelete.enablePianoEffect().setOnClickListener {
+                onItemSelectedListener(obj, true)
             }
         }
     }

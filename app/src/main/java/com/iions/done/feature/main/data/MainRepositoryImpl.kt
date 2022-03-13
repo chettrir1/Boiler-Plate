@@ -63,4 +63,13 @@ class MainRepositoryImpl @Inject constructor(
             localRepository.fetchAddressList()
         }
     }
+
+    override suspend fun removeCartList(
+        authorizationToken: String,
+        cartId: Int
+    ): List<RemoveCartResponse>? {
+        return withContext(schedulersFactory.io()) {
+            remoteRepository.removeCartList(authorizationToken, cartId)
+        }
+    }
 }

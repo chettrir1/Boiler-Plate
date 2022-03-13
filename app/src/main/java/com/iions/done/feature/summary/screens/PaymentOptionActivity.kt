@@ -99,7 +99,7 @@ class PaymentOptionActivity : BaseActivity<ActivityPaymentOptionBinding>() {
                     super.showActionableError(
                         binding.loadingLayout,
                         errorMessage = response.error?.message.toString(),
-                        R.drawable.ic_error_cart,
+                        R.drawable.vc_cart,
                         actionLabel = getString(R.string.retry)
                     ) {
                         viewModel.fetchCartList()

@@ -129,5 +129,4 @@ class VerifyPinActivity : BaseActivity<ActivityVerifyPinBinding>() {
             dialog.dismiss()
         }
     }
-
 }

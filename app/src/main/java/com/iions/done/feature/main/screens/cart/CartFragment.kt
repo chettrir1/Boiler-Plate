@@ -14,6 +14,8 @@ import com.iions.done.utils.Commons
 import com.iions.done.utils.archcomponents.Status
 import com.iions.done.utils.enablePianoEffect
 import com.iions.done.utils.gone
+import com.iions.done.utils.showToast
+import com.valdesekamdem.library.mdtoast.MDToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,7 +33,6 @@ class CartFragment : BaseFragment<FragmentCartBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.includeProceedToCheckout.btnProceedToPayment.enablePianoEffect()
             .setOnClickListener {
                 PaymentOptionActivity.start(requireActivity())
@@ -40,11 +41,24 @@ class CartFragment : BaseFragment<FragmentCartBinding>() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.fetchCartList()
+        if (viewModel.isUserLoggedIn()) {
+            viewModel.fetchCartList()
+        } else {
+            super.showActionableError(
+                binding.loadingLayout,
+                errorMessage = getString(R.string.you_havent_logged_in_yet),
+                R.drawable.vc_cart,
+                actionLabel = getString(R.string.login)
+            ) {
+                SmsLoginActivity.start(requireActivity())
+            }
+        }
     }
+
 
     override fun initObservers() {
         observeCartResponse()
+        observeRemoveCartResponse()
     }
 
     private fun observeCartResponse() {
@@ -65,7 +79,13 @@ class CartFragment : BaseFragment<FragmentCartBinding>() {
                             }
                             binding.rvCart.adapter =
                                 data.cart?.toMutableList()
-                                    ?.let { response -> CartListAdapter(response) {} }
+                                    ?.let { response ->
+                                        CartListAdapter(response) { item, delete ->
+                                            if (delete) {
+                                                viewModel.removeCartList(item.id ?: -1)
+                                            }
+                                        }
+                                    }
                             binding.rvCart.hasFixedSize()
                             binding.includeProceedToCheckout.tvTotalAmount.text =
                                 "Rs. ${Commons.currencyFormatter(total)}"
@@ -87,23 +107,34 @@ class CartFragment : BaseFragment<FragmentCartBinding>() {
                 Status.ERROR -> {
                     super.showActionableError(
                         binding.loadingLayout,
-                        errorMessage = if (viewModel.isUserLoggedIn()) {
-                            response.error?.message.toString()
-                        } else {
-                            getString(R.string.you_havent_logged_in_yet)
-                        },
-                        R.drawable.ic_error_cart,
-                        actionLabel = if (viewModel.isUserLoggedIn()) {
-                            getString(R.string.retry)
-                        } else {
-                            getString(R.string.login)
-                        }
+                        errorMessage = response.error?.message.toString(),
+                        R.drawable.vc_cart,
+                        actionLabel = getString(R.string.retry)
                     ) {
-                        if (it == getString(R.string.retry))
-                            viewModel.fetchCartList()
-                        else
-                            SmsLoginActivity.start(requireActivity())
+                        viewModel.fetchCartList()
                     }
+                }
+            }
+        }
+    }
+
+    private fun observeRemoveCartResponse() {
+        viewModel.removeCartResponse.observe(this) { response ->
+            when (response.status) {
+                Status.LOADING -> {
+                }
+                Status.COMPLETE -> {
+                    showToast(
+                        getString(R.string.item_removed_from_cart),
+                        MDToast.TYPE_SUCCESS
+                    )
+                    viewModel.fetchCartList()
+                }
+                Status.ERROR -> {
+                    showToast(
+                        response.error?.message,
+                        MDToast.TYPE_ERROR
+                    )
                 }
             }
         }

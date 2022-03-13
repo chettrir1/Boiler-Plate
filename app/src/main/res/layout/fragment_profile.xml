@@ -13,11 +13,12 @@
         tools:context=".feature.main.screens.profile.ProfileFragment">
 
         <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:fillViewport="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -46,8 +47,8 @@
                     android:id="@+id/cv_image"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_16"
-                    android:layout_marginEnd="@dimen/spacing_16"
+                    android:layout_marginStart="@dimen/spacing_24"
+                    android:layout_marginEnd="@dimen/spacing_24"
                     app:cardBackgroundColor="@color/background_F5F5F5"
                     app:cardCornerRadius="@dimen/spacing_16"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -80,7 +81,7 @@
                     layout="@layout/snippet_profile_details"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_16"
+                    android:layout_marginTop="@dimen/spacing_24"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/cv_image" />
@@ -89,9 +90,9 @@
                     android:id="@+id/tv_title_shipping_address"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_16"
+                    android:layout_marginStart="@dimen/spacing_24"
                     android:layout_marginTop="@dimen/spacing_8"
-                    android:layout_marginEnd="@dimen/spacing_16"
+                    android:layout_marginEnd="@dimen/spacing_24"
                     android:text="@string/shipping_address"
                     android:textColor="@color/black_2e384d"
                     android:textSize="@dimen/text_size_16"
@@ -113,8 +114,10 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_address"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_marginBottom="@dimen/spacing_16"
+                    android:nestedScrollingEnabled="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@id/divider"
                     app:layout_constraintStart_toStartOf="@id/divider"
@@ -126,8 +129,8 @@
                 <androidx.constraintlayout.widget.Group
                     android:id="@+id/group"
                     android:layout_width="wrap_content"
-                    android:visibility="gone"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     app:constraint_referenced_ids="tv_title_shipping_address,divider,rv_address" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

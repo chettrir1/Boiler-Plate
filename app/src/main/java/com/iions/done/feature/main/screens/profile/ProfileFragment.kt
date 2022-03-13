@@ -8,7 +8,6 @@ import com.iions.done.R
 import com.iions.done.base.BaseFragment
 import com.iions.done.databinding.FragmentProfileBinding
 import com.iions.done.feature.auth.screens.login.smslogin.SmsLoginActivity
-import com.iions.done.feature.summary.screens.address.AddressListAdapter
 import com.iions.done.utils.archcomponents.Status
 import com.iions.done.utils.gone
 import com.iions.done.utils.visible
@@ -28,7 +27,22 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.fetchAddressList()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (viewModel.isUserLoggedIn()) {
+            viewModel.fetchAddressList()
+        } else {
+            super.showActionableError(
+                binding.loadingLayout,
+                errorMessage = getString(R.string.you_havent_logged_in_yet),
+                R.drawable.vc_profile,
+                actionLabel = getString(R.string.login)
+            ) {
+                SmsLoginActivity.start(requireActivity())
+            }
+        }
     }
 
     override fun initObservers() {
@@ -47,11 +61,11 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                     response.data?.let {
                         if (it.isNotEmpty()) {
                             binding.rvAddress.adapter =
-                                AddressListAdapter(it.toMutableList()) {
+                                ProfileAddressListAdapter(it.toMutableList()) {
                                 }
                             binding.group.visible()
                         } else {
-                            binding.group.visible()
+                            binding.group.gone()
                         }
                     }
                     super.showData(binding.loadingLayout)
@@ -59,22 +73,11 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                 Status.ERROR -> {
                     super.showActionableError(
                         binding.loadingLayout,
-                        errorMessage = if (viewModel.isUserLoggedIn()) {
-                            response.error?.message.toString()
-                        } else {
-                            getString(R.string.you_havent_logged_in_yet)
-                        },
+                        errorMessage = response.error?.message.toString(),
                         R.drawable.vc_profile,
-                        actionLabel = if (viewModel.isUserLoggedIn()) {
-                            getString(R.string.retry)
-                        } else {
-                            getString(R.string.login)
-                        }
+                        actionLabel = getString(R.string.retry)
                     ) {
-                        if (it == getString(R.string.retry))
-                            viewModel.fetchAddressList()
-                        else
-                            SmsLoginActivity.start(requireActivity())
+                        viewModel.fetchAddressList()
                     }
                 }
             }
