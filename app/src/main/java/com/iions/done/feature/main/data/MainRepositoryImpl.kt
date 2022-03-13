@@ -1,5 +1,6 @@
 package com.iions.done.feature.main.data
 
+import com.iions.done.feature.auth.data.model.AddressResponse
 import com.iions.done.feature.auth.data.model.LogoutResponse
 import com.iions.done.feature.main.data.model.*
 import com.iions.done.utils.SchedulersFactory
@@ -54,6 +55,12 @@ class MainRepositoryImpl @Inject constructor(
     override suspend fun fetchCartList(token: String): CartBaseResponse? {
         return withContext(schedulersFactory.io()) {
             remoteRepository.fetchCartList(token)
+        }
+    }
+
+    override suspend fun fetchAddressList(): List<AddressResponse>? {
+        return withContext(schedulersFactory.io()) {
+            localRepository.fetchAddressList()
         }
     }
 }

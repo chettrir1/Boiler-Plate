@@ -1,5 +1,6 @@
 package com.iions.done.feature.main.data
 
+import com.iions.done.feature.auth.data.model.AddressResponse
 import com.iions.done.feature.auth.data.model.LogoutResponse
 import com.iions.done.feature.main.data.model.*
 
@@ -12,6 +13,7 @@ interface MainRepository {
     fun getAuthorizationToken(): String
     suspend fun requestLogout(token: String): List<LogoutResponse>?
     suspend fun fetchCartList(token: String): CartBaseResponse?
+    suspend fun fetchAddressList(): List<AddressResponse>?
 
     interface Local {
         fun isUserLoggedIn(): Boolean
@@ -21,6 +23,8 @@ interface MainRepository {
         suspend fun fetchGroceryList(): List<HomeGroceryResponse>?
         fun getAuthorizationToken(): String
         suspend fun clearPrefs()
+        suspend fun fetchAddressList(): List<AddressResponse>?
+
     }
 
     interface Remote {

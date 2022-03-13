@@ -2,11 +2,8 @@ package com.iions.done.remote.helper
 
 import android.app.Activity
 import android.content.Context
-import com.google.gson.Gson
 import com.iions.SharedPreferenceManager
-import com.iions.done.exceptions.FailedResponseException
-import com.iions.done.exceptions.NetworkNotAvailableException
-import com.iions.done.exceptions.UnauthenticatedException
+import com.iions.done.exceptions.*
 import com.iions.done.feature.auth.screens.login.smslogin.SmsLoginActivity
 import com.iions.done.remote.Constants.AUTHENTICATION_ERROR_401
 import com.iions.done.remote.Constants.FILE_NOT_FOUND
@@ -46,13 +43,13 @@ class ApiInterceptor @Inject constructor(
                 throw UnauthenticatedException(true, "Authentication Error!")
             }
             VALIDATION_ERROR -> {
-                throw UnauthenticatedException(true, "Validation Error!")
+                throw ValidationException(true, "Validation Error!")
             }
             GATE_WAY_TIME_OUT -> {
-                throw UnauthenticatedException(true, "Time Out!")
+                throw FailedResponseException(true, "Time Out!")
             }
             FILE_NOT_FOUND -> {
-                throw UnauthenticatedException(true, "File Not Found!")
+                throw FileNotFoundException(true, "File Not Found!")
             }
             else -> return response.newBuilder()
                 .body((responseString ?: "").toResponseBody())

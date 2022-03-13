@@ -2,6 +2,7 @@ package com.iions.done.feature.main.data.local
 
 import com.iions.DatabaseManager
 import com.iions.SharedPreferenceManager
+import com.iions.done.feature.auth.data.model.AddressResponse
 import com.iions.done.feature.main.data.MainRepository
 import com.iions.done.feature.main.data.model.BannerResponse
 import com.iions.done.feature.main.data.model.HomeGroceryCategoryResponse
@@ -40,5 +41,9 @@ class MainLocalImpl @Inject constructor(
 
     override suspend fun clearPrefs() {
         sharedPreferenceManager.clearCache()
+    }
+
+    override suspend fun fetchAddressList(): List<AddressResponse> {
+        return databaseManager.getUserAddressDao().getUserAddressResponse()
     }
 }

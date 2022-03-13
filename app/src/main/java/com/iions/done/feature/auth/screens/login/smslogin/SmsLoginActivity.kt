@@ -93,7 +93,5 @@ class SmsLoginActivity : BaseActivity<ActivitySmsLoginBinding>() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        finish()
-        exitProcess(0)
     }
 }
