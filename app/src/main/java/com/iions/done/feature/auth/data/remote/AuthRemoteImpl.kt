@@ -1,6 +1,5 @@
 package com.iions.done.feature.auth.data.remote
 
-import com.google.gson.Gson
 import com.iions.done.exceptions.FailedResponseException
 import com.iions.done.feature.auth.data.AuthRepository
 import com.iions.done.feature.auth.data.model.*

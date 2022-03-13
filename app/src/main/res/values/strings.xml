@@ -42,7 +42,7 @@
     <string name="recommended_products">Recommended Products</string>
     <string name="my_profile">My Profile</string>
     <string name="history">History</string>
-    <string name="take_a_photo">Camera</string>
+    <string name="take_a_photo">Upload</string>
     <string name="nearby_restaurants">Nearby Restaurants</string>
     <string name="logout">Logout</string>
     <string name="cancel">Cancel</string>
@@ -106,4 +106,6 @@
     <string name="edit">Edit</string>
     <string name="item_removed_from_cart">Item removed from cart!</string>
     <string name="edit_profile">Edit Profile</string>
+    <string name="enter_valid_otp">Please enter valid otp!</string>
+    <string name="enter_valid_mobile_number">Please enter correct mobile number!</string>
 </resources>

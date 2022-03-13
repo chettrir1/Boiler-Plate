@@ -10,7 +10,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
-import com.iions.Constants
 import com.iions.SharedPreferenceManager
 import com.iions.done.R
 import com.iions.done.base.BaseActivity
@@ -145,7 +144,24 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
             R.id.action_home -> {
                 binding.drawerLayout.closeDrawer(GravityCompat.START)
             }
-
+            R.id.action_order_history -> {
+                binding.drawerLayout.closeDrawer(GravityCompat.START)
+                val fragment = HistoryFragment.getInstance()
+                addFragment(fragment)
+                binding.bottomNavigationView.selectedItemId = R.id.action_history
+            }
+            R.id.action_cart -> {
+                binding.drawerLayout.closeDrawer(GravityCompat.START)
+                val fragment = CameraFragment.getInstance()
+                addFragment(fragment)
+                binding.bottomNavigationView.selectedItemId = R.id.action_cart
+            }
+            R.id.action_profile -> {
+                binding.drawerLayout.closeDrawer(GravityCompat.START)
+                val fragment = ProfileFragment.getInstance()
+                addFragment(fragment)
+                binding.bottomNavigationView.selectedItemId = R.id.action_profile
+            }
             R.id.action_logout -> {
                 showAlertDialog(
                     getString(R.string.alert),
