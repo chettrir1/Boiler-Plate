@@ -22,8 +22,8 @@ class VerifyPinViewModel @Inject constructor(
     val verifyPinResponse: LiveData<Response<VerifyPinResponse>> =
         verifyPinUseCase
 
-    private val loginUseCase = MutableLiveData<Response<List<LoginResponse>>>()
-    val loginResponse: LiveData<Response<List<LoginResponse>>> =
+    private val loginUseCase = MutableLiveData<Response<LoginResponse>>()
+    val loginResponse: LiveData<Response<LoginResponse>> =
         loginUseCase
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)

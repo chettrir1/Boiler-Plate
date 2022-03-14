@@ -45,9 +45,11 @@ class CartListAdapter(
             super.bindView(obj)
             binding.tvTitle.text = obj.item.name
             binding.tvQuantity.text = obj.quantity.toString()
-            Glide.with(binding.root.context).load(obj.item.mainImageThumbnail)
+            Glide.with(binding.root.context)
+                .load("https://d-one.iionstech.com/storage/${obj.item.mainImageThumbnail}")
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .placeholder(R.drawable.logo).into(binding.ivCart)
+
 
             val total = obj.quantity?.times(obj.price!!)
             if (total != null) {

@@ -15,14 +15,14 @@ interface AuthRepository {
     }
 
     interface Remote {
-        suspend fun loginWithPhone(username: String): List<LoginResponse>?
+        suspend fun loginWithPhone(username: String): LoginResponse?
         suspend fun requestPin(phoneNumber: String): RequestPinResponse
         suspend fun requestResetPin(resetPinRequestModel: ResetPinRequestModel): ResetPinResponse
         suspend fun verifyPinRequest(pin: String, phone: String): VerifyPinResponse?
     }
 
     fun getPhoneNumber(): String
-    suspend fun loginWithPhone(username: String): List<LoginResponse>?
+    suspend fun loginWithPhone(username: String): LoginResponse?
     suspend fun requestPin(phoneNumber: String): RequestPinResponse
     suspend fun requestResetPin(resetPinRequestModel: ResetPinRequestModel): ResetPinResponse
     fun getLoginUserId(): String

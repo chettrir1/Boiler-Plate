@@ -30,7 +30,7 @@ class AuthRepositoryImpl @Inject constructor(
 
     override fun getPhoneNumber(): String = localRepository.getPhoneNumber()
 
-    override suspend fun loginWithPhone(username: String): List<LoginResponse>? {
+    override suspend fun loginWithPhone(username: String): LoginResponse? {
         return withContext(schedulersFactory.io()) {
             localRepository.saveUsername(username)
             remoteRepository.loginWithPhone(username)

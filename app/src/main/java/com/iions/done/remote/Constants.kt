@@ -9,5 +9,10 @@ object Constants {
     const val GATE_WAY_TIME_OUT = 504
     const val VALIDATION_ERROR = 422
     const val FILE_NOT_FOUND = 404
+
     const val ORDER_RESPONSE = "order"
+    const val ORDER_DRAFT = "Draft"
+    const val ORDER_SUCCESS = "Success"
+    const val ORDER_CANCELED = "Canceled"
+    const val ORDER_FAILED = "Failed"
 }

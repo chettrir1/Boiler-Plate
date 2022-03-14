@@ -10,7 +10,7 @@ class AuthRemoteImpl @Inject constructor(
     private val apiService: ApiService
 ) : AuthRepository.Remote {
 
-    override suspend fun loginWithPhone(username: String): List<LoginResponse>? {
+    override suspend fun loginWithPhone(username: String): LoginResponse? {
         val requestParams = mutableMapOf<String, Any>()
         requestParams["phone_number"] = username
         val remoteResponse = apiService.loginWithPhone(requestParams)

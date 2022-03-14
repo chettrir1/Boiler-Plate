@@ -16,8 +16,8 @@ class SmsLoginViewModel @Inject constructor(
     private val repository: AuthRepository
 ) : AndroidViewModel(app), LifecycleObserver {
 
-    private val loginUseCase = MutableLiveData<Response<List<LoginResponse>>>()
-    val loginResponse: LiveData<Response<List<LoginResponse>>> =
+    private val loginUseCase = MutableLiveData<Response<LoginResponse>>()
+    val loginResponse: LiveData<Response<LoginResponse>> =
         loginUseCase
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)

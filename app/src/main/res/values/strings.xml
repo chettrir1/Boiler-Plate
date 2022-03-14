@@ -76,6 +76,7 @@
     <string name="cash_on_delivery">Cash on Delivery</string>
     <string name="confirm_payment">Confirm Payment</string>
     <string name="no_item_in_your_cart">There are no items in your cart!</string>
+    <string name="no_item_in_your_order">You have not had any order yet!</string>
     <string name="browse">Browse</string>
     <string name="select_a_payment">Select A Payment</string>
     <string name="remove">Remove</string>

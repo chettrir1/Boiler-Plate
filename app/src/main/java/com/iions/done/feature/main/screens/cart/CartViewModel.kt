@@ -21,8 +21,8 @@ class CartViewModel @Inject constructor(
     val cartResponse: LiveData<Response<CartBaseResponse>> =
         cartUseCase
 
-    private val removeCartUseCase = MutableLiveData<Response<List<RemoveCartResponse>>>()
-    val removeCartResponse: LiveData<Response<List<RemoveCartResponse>>> =
+    private val removeCartUseCase = MutableLiveData<Response<RemoveCartResponse>>()
+    val removeCartResponse: LiveData<Response<RemoveCartResponse>> =
         removeCartUseCase
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)

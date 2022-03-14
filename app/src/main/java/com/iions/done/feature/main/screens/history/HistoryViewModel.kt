@@ -1,9 +1,9 @@
-package com.iions.done.feature.main.screens
+package com.iions.done.feature.main.screens.history
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.iions.done.feature.auth.data.model.LogoutResponse
 import com.iions.done.feature.main.data.MainRepository
+import com.iions.done.feature.main.data.model.OrdersBaseResponse
 import com.iions.done.utils.archcomponents.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.cancel
@@ -11,14 +11,14 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class HistoryViewModel @Inject constructor(
     var app: Application,
     private val repository: MainRepository
 ) : AndroidViewModel(app), LifecycleObserver {
 
-    private val logoutUseCase = MutableLiveData<Response<LogoutResponse>>()
-    val logoutResponse: LiveData<Response<LogoutResponse>> =
-        logoutUseCase
+    private val historyUseCase = MutableLiveData<Response<OrdersBaseResponse>>()
+    val historyResponse: LiveData<Response<OrdersBaseResponse>> =
+        historyUseCase
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public override fun onCleared() {
@@ -30,22 +30,17 @@ class MainViewModel @Inject constructor(
         return repository.isUserLoggedIn()
     }
 
-    private fun getAuthorizationToken(): String {
-        return repository.getAuthorizationToken()
-    }
-
-    fun requestLogout() {
+    fun fetchOrdersList() {
         viewModelScope.launch {
-            logoutUseCase.value = Response.loading()
+            historyUseCase.value = Response.loading()
             try {
-                logoutUseCase.value = Response.complete(
-                    repository.requestLogout(getAuthorizationToken())
+                historyUseCase.value = Response.complete(
+                    repository.fetchOrdersList()
                 )
             } catch (error: Exception) {
                 error.printStackTrace()
-                logoutUseCase.value = Response.error(error)
+                historyUseCase.value = Response.error(error)
             }
         }
     }
-
 }

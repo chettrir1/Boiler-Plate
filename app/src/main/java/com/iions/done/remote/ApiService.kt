@@ -6,10 +6,7 @@ import com.iions.done.feature.auth.data.model.VerifyPinResponse
 import com.iions.done.feature.groceries.data.model.AddToCartResponse
 import com.iions.done.feature.groceries.data.model.GroceryDetailRemoteBaseResponse
 import com.iions.done.feature.groceries.data.model.GroceryRemoteBaseResponse
-import com.iions.done.feature.main.data.model.CartBaseResponse
-import com.iions.done.feature.main.data.model.HomeResponse
-import com.iions.done.feature.main.data.model.ProfileBaseResponse
-import com.iions.done.feature.main.data.model.RemoveCartResponse
+import com.iions.done.feature.main.data.model.*
 import com.iions.done.feature.summary.data.model.CreateOrderBaseResponse
 import com.iions.done.remote.helper.BaseResponse
 import retrofit2.http.*
@@ -24,7 +21,7 @@ interface ApiService {
     @POST("login/phone")
     suspend fun loginWithPhone(
         @Body requestParams: MutableMap<String, Any>
-    ): BaseResponse<List<LoginResponse>>
+    ): BaseResponse<LoginResponse>
 
     @Headers("Accept: application/json")
     @POST("validateOtp")
@@ -36,13 +33,7 @@ interface ApiService {
     @GET("logout")
     suspend fun logout(
         @Header("Authorization") token: String
-    ): BaseResponse<List<LogoutResponse>>
-
-    @Headers("Accept: application/json")
-    @POST("login/phone")
-    suspend fun authenticateUser(
-        @Body requestParams: MutableMap<String, Any>
-    ): BaseResponse<LoginResponse>
+    ): BaseResponse<LogoutResponse>
 
     @Headers("Accept: application/json")
     @GET("grocery/items")
@@ -72,7 +63,7 @@ interface ApiService {
     suspend fun removeFromCart(
         @Header("Authorization") token: String,
         @Body requestParams: MutableMap<String, Any>
-    ): BaseResponse<List<RemoveCartResponse>>
+    ): BaseResponse<RemoveCartResponse>
 
     @Headers("Accept: application/json")
     @POST("cart/createOrder")
@@ -80,6 +71,12 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Body requestParams: MutableMap<String, Any>
     ): BaseResponse<CreateOrderBaseResponse>
+
+    @Headers("Accept: application/json")
+    @GET("cart/orders")
+    suspend fun getOrders(
+        @Header("Authorization") token: String
+    ): BaseResponse<OrdersBaseResponse>
 
     @Headers("Accept: application/json")
     @GET("me")

@@ -44,7 +44,7 @@ class MainRepositoryImpl @Inject constructor(
         return localRepository.getAuthorizationToken()
     }
 
-    override suspend fun requestLogout(token: String): List<LogoutResponse>? {
+    override suspend fun requestLogout(token: String): LogoutResponse? {
         return withContext(schedulersFactory.io()) {
             val response = remoteRepository.requestLogout(token)
             localRepository.clearPrefs()
@@ -67,7 +67,7 @@ class MainRepositoryImpl @Inject constructor(
     override suspend fun removeCartList(
         authorizationToken: String,
         cartId: Int
-    ): List<RemoveCartResponse>? {
+    ): RemoveCartResponse? {
         return withContext(schedulersFactory.io()) {
             remoteRepository.removeCartList(authorizationToken, cartId)
         }
@@ -76,6 +76,12 @@ class MainRepositoryImpl @Inject constructor(
     override suspend fun fetchProfileResponse(): ProfileBaseResponse? {
         return withContext(schedulersFactory.io()) {
             remoteRepository.fetchProfileResponse(localRepository.getAuthorizationToken())
+        }
+    }
+
+    override suspend fun fetchOrdersList(): OrdersBaseResponse? {
+        return withContext(schedulersFactory.io()) {
+            remoteRepository.fetchOrdersList(localRepository.getAuthorizationToken())
         }
     }
 }
