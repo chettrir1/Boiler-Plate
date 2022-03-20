@@ -39,7 +39,7 @@
             android:screenOrientation="@integer/screen_orientation_portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".feature.resturants.RestaurantActivity"
+            android:name=".feature.restaurants.screen.RestaurantActivity"
             android:exported="true"
             android:screenOrientation="@integer/screen_orientation_portrait"
             android:windowSoftInputMode="adjustResize" />

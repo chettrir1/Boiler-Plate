@@ -20,13 +20,15 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
+            android:visibility="gone"
+            android:id="@+id/nested_scroll_view"
             android:layout_height="match_parent"
             android:fillViewport="true">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context=".feature.resturants.RestaurantActivity">
+                tools:context=".feature.restaurants.screen.RestaurantActivity">
 
                 <include
                     android:id="@+id/include_filter"
@@ -44,6 +46,7 @@
                     android:id="@+id/include_nearby"
                     layout="@layout/snippet_resturant_nearby"
                     android:layout_width="0dp"
+                    android:visibility="gone"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/spacing_16"
                     android:layout_marginTop="@dimen/spacing_16"
@@ -68,9 +71,10 @@
                     android:id="@+id/rv_resturant"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_16"
+                    android:layout_marginStart="@dimen/spacing_8"
                     android:layout_marginTop="@dimen/spacing_8"
-                    android:layout_marginEnd="@dimen/spacing_16"
+                    android:layout_marginEnd="@dimen/spacing_8"
+                    android:nestedScrollingEnabled="false"
                     android:layout_marginBottom="@dimen/spacing_16"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -78,11 +82,21 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/include_slider"
                     app:layout_constraintVertical_bias="0.0"
-                    app:spanCount="3"
+                    app:spanCount="2"
                     tools:itemCount="12"
-                    tools:listitem="@layout/item_resturant" />
+                    tools:listitem="@layout/item_restaurant" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
+
+        <include
+            android:id="@+id/loadingLayout"
+            layout="@layout/layout_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
 </layout>

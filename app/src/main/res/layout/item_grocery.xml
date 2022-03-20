@@ -15,7 +15,6 @@
         android:layout_marginTop="@dimen/spacing_4"
         android:layout_marginEnd="@dimen/spacing_4"
         android:layout_marginBottom="@dimen/spacing_4"
-        android:background="@color/white_FFFFFF"
         android:clipToPadding="false"
         app:cardBackgroundColor="@color/white_FFFFFF"
         app:cardCornerRadius="@dimen/spacing_8"
@@ -139,7 +138,6 @@
                 app:layout_constraintBottom_toBottomOf="@+id/rating_bar"
                 app:layout_constraintStart_toEndOf="@+id/rating_bar"
                 app:layout_constraintTop_toTopOf="@+id/rating_bar" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

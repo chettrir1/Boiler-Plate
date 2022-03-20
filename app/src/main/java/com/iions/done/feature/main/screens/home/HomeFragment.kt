@@ -12,7 +12,7 @@ import com.iions.done.databinding.FragmentHomeBinding
 import com.iions.done.feature.groceries.screen.GroceryActivity
 import com.iions.done.feature.groceries.screen.detail.GroceryDetailActivity
 import com.iions.done.feature.main.data.model.BannerResponse
-import com.iions.done.feature.resturants.RestaurantActivity
+import com.iions.done.feature.restaurants.screen.RestaurantActivity
 import com.iions.done.feature.search.screens.SearchActivity
 import com.iions.done.utils.archcomponents.Status
 import com.smarteist.autoimageslider.SliderView

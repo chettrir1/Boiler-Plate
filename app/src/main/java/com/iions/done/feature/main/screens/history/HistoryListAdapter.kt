@@ -45,7 +45,11 @@ class HistoryListAdapter(
                     ?.let { response ->
                         HistorySubListAdapter(response, obj.id, obj.status) {}
                     }
-            binding.tvOrderCount.text = "${obj.cart?.size} items Ordered"
+            if (obj.cart?.size!! <= 1) {
+                binding.tvOrderCount.text = "${obj.cart?.size} item Ordered"
+            } else {
+                binding.tvOrderCount.text = "${obj.cart?.size} items Ordered"
+            }
             binding.rvOrderHistory.hasFixedSize()
         }
     }
