@@ -8,10 +8,10 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:animateLayoutChanges="true"
-        android:id="@+id/constraint"
         tools:context=".feature.restaurants.screen.detail.RestaurantDetailActivity">
 
         <include
@@ -44,20 +44,18 @@
                     android:layout_marginEnd="@dimen/spacing_16"
                     app:cardBackgroundColor="@color/white_FFFFFF"
                     app:cardCornerRadius="@dimen/spacing_8"
+                    android:layout_marginTop="@dimen/spacing_16"
                     app:cardElevation="0dp"
                     app:layout_constraintDimensionRatio="3:2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <com.denzcoskun.imageslider.ImageSlider
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/slide_view"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        app:iss_error_image="@drawable/logo"
-                        app:iss_indicator_align="end"
-                        app:iss_placeholder="@drawable/logo"
-                        app:iss_selected_dot="@color/red_F93838" />
+                        app:srcCompat="@drawable/logo" />
                 </androidx.cardview.widget.CardView>
 
                 <include

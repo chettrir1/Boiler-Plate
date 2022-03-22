@@ -12,7 +12,6 @@ import com.iions.done.R
 import com.iions.done.base.BaseActivity
 import com.iions.done.databinding.ActivityRestaurantDetailBinding
 import com.iions.done.feature.auth.screens.login.smslogin.SmsLoginActivity
-import com.iions.done.feature.groceries.data.model.GroceryDetailRemoteBaseResponse
 import com.iions.done.feature.restaurants.data.model.RestaurantDetailRemoteBaseResponse
 import com.iions.done.feature.restaurants.data.model.RestaurantMenuResponse
 import com.iions.done.feature.summary.screens.PaymentOptionActivity
@@ -123,7 +122,15 @@ class RestaurantDetailActivity : BaseActivity<ActivityRestaurantDetailBinding>()
         response.restaurant.let {
             binding.includeDetail.tvTitle.text = it?.name
             binding.includeDetail.tvAddress.text = it?.address
-            val adapter = RestaurantMenuListAdapter(it?.menu!!.toMutableList()) {response->
+            if (!response.restaurant?.coverImage.isNullOrEmpty()) {
+                Glide.with(binding.root.context)
+                    .load("https://d-one.iionstech.com/storage/${response.restaurant?.coverImage}")
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .fitCenter()
+                    .placeholder(R.drawable.logo).into(binding.slideView)
+            }
+
+            val adapter = RestaurantMenuListAdapter(it?.menu!!.toMutableList()) { response ->
                 binding.includeAddToCart.tvTitle.text = it.name
                 binding.includeAddToCart.tvPrice.text = "Rs. ${response.price}"
                 if (!response.image.isNullOrEmpty())
