@@ -17,7 +17,7 @@ data class CartResponse(
     var quantity: Int?,
     @SerializedName("price")
     var price: Int?,
-    @SerializedName("item")
+    @SerializedName("cartable")
     var item: CartItemResponse
 ) : Serializable
 
@@ -29,5 +29,7 @@ data class CartItemResponse(
     @SerializedName("name")
     var name: String?,
     @SerializedName("main_image_thumbnail")
-    var mainImageThumbnail: String?
+    var mainImageThumbnail: String?,
+    @SerializedName("image")
+    var image: String?,
 ) : Serializable

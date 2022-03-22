@@ -74,6 +74,7 @@
         <entry key="app/src/main/res/drawable/ic_right_arrow.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/ic_search.xml" value="0.31145833333333334" />
         <entry key="app/src/main/res/drawable/ic_search_cross.xml" value="0.2671875" />
+        <entry key="app/src/main/res/drawable/ic_username.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/ic_wallet.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/menu_item_selector.xml" value="0.2671875" />
         <entry key="app/src/main/res/drawable/vc_cart.xml" value="0.1815" />
@@ -107,7 +108,7 @@
         <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.13179347826086957" />
         <entry key="app/src/main/res/layout/fragment_address_search.xml" value="0.12638549804687502" />
-        <entry key="app/src/main/res/layout/fragment_camera.xml" value="0.17074275362318841" />
+        <entry key="app/src/main/res/layout/fragment_camera.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_favourite.xml" value="0.14361702127659576" />
         <entry key="app/src/main/res/layout/fragment_history.xml" value="0.335" />

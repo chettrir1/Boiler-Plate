@@ -45,10 +45,17 @@ class CartListAdapter(
             super.bindView(obj)
             binding.tvTitle.text = obj.item.name
             binding.tvQuantity.text = obj.quantity.toString()
-            Glide.with(binding.root.context)
-                .load("https://d-one.iionstech.com/storage/${obj.item.mainImageThumbnail}")
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(R.drawable.logo).into(binding.ivCart)
+            if (!obj.item.mainImageThumbnail.isNullOrEmpty()) {
+                Glide.with(binding.root.context)
+                    .load("https://d-one.iionstech.com/storage/${obj.item.mainImageThumbnail}")
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .placeholder(R.drawable.logo).into(binding.ivCart)
+            }else{
+                Glide.with(binding.root.context)
+                    .load("https://d-one.iionstech.com/storage/${obj.item.image}")
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .placeholder(R.drawable.logo).into(binding.ivCart)
+            }
 
 
             val total = obj.quantity?.times(obj.price!!)
