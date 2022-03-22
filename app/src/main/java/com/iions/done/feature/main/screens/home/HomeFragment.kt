@@ -13,6 +13,7 @@ import com.iions.done.feature.groceries.screen.GroceryActivity
 import com.iions.done.feature.groceries.screen.detail.GroceryDetailActivity
 import com.iions.done.feature.main.data.model.BannerResponse
 import com.iions.done.feature.restaurants.screen.RestaurantActivity
+import com.iions.done.feature.restaurants.screen.detail.RestaurantDetailActivity
 import com.iions.done.feature.search.screens.SearchActivity
 import com.iions.done.utils.archcomponents.Status
 import com.smarteist.autoimageslider.SliderView
@@ -168,7 +169,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     response.data?.let {
                         binding.includeRestaurant.rvRestaurant.layoutManager = setUpLayoutManager()
                         binding.includeRestaurant.rvRestaurant.adapter =
-                            HomeRestaurantListAdapter(it.toMutableList()) {}
+                            HomeRestaurantListAdapter(it.toMutableList()) {
+                                RestaurantDetailActivity.start(requireActivity(), it.id!!)
+                            }
                     }
                     binding.includeRestaurant.rvRestaurant.hasFixedSize()
                     ViewCompat.setNestedScrollingEnabled(

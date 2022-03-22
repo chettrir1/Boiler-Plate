@@ -62,5 +62,4 @@ class GroceryDetailViewModel @Inject constructor(
             }
         }
     }
-
 }

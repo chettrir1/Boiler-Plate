@@ -10,6 +10,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:id="@+id/constraint"
         tools:context=".feature.restaurants.screen.detail.RestaurantDetailActivity">
 
         <include
@@ -32,13 +34,14 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/spacing_16">
+                android:layout_height="match_parent">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_view"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:layout_marginStart="@dimen/spacing_16"
+                    android:layout_marginEnd="@dimen/spacing_16"
                     app:cardBackgroundColor="@color/white_FFFFFF"
                     app:cardCornerRadius="@dimen/spacing_8"
                     app:cardElevation="0dp"
@@ -62,15 +65,28 @@
                     layout="@layout/snippet_restaurant_detail"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_16"
                     android:layout_marginTop="@dimen/spacing_16"
-                    android:layout_marginBottom="@dimen/spacing_64"
+                    android:layout_marginEnd="@dimen/spacing_16"
+                    android:layout_marginBottom="130dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/card_view"
                     app:layout_constraintVertical_bias="0.0" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
+
+        <include
+            android:id="@+id/include_add_to_cart"
+            layout="@layout/snippet_restaurant_add_to_cart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <include
             android:id="@+id/loadingLayout"

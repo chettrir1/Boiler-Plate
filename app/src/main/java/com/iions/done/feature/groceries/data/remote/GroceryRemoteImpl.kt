@@ -59,7 +59,8 @@ class GroceryRemoteImpl @Inject constructor(
     override suspend fun getGroceryDetail(itemId: Int): GroceryDetailRemoteBaseResponse? {
         val requestParams = mutableMapOf<String, Any>()
         requestParams["item_id"] = itemId
-        val remoteResponse = apiService.getGroceryDetail(requestParams)
+        val remoteResponse = apiService.
+        getGroceryDetail(requestParams)
         if (remoteResponse.status == true) {
             throw FailedResponseException(
                 remoteResponse.status!!,

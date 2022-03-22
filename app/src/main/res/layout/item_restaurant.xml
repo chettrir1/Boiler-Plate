@@ -34,7 +34,6 @@
                 android:id="@+id/iv_resturant"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="@dimen/spacing_16"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/logo" />
         </com.google.android.material.card.MaterialCardView>
@@ -47,7 +46,9 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:minLines="2"
-            android:textColor="@color/red_F93838"
+            android:layout_marginStart="@dimen/spacing_8"
+            android:layout_marginEnd="@dimen/spacing_8"
+            android:textColor="@color/black_2e384d"
             android:textSize="@dimen/text_size_14"
             app:fontFamily="@font/roboto_medium"
             app:layout_constraintEnd_toEndOf="@id/cv_resturant"

@@ -54,7 +54,7 @@ class HomeRestaurantListAdapter(
                     .placeholder(R.drawable.logo).into(binding.ivResturant)
             }
             binding.tvDescription.text = obj.address
-            binding.cvResturant.setOnClickListener {
+            binding.constraint.setOnClickListener {
                 onItemSelectedListener(obj)
             }
         }

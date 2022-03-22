@@ -81,6 +81,7 @@
         <entry key="app/src/main/res/drawable/vc_login.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/vc_order_confirm.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/vc_profile.xml" value="0.2985" />
+        <entry key="app/src/main/res/drawable/vc_restaurant.xml" value="0.1815" />
         <entry key="app/src/main/res/font/roboto_bold.xml" value="0.28125" />
         <entry key="app/src/main/res/font/roboto_light.xml" value="0.28125" />
         <entry key="app/src/main/res/font/roboto_medium.xml" value="0.28125" />
@@ -125,7 +126,7 @@
         <entry key="app/src/main/res/layout/item_order_history.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_order_summary.xml" value="0.2543822146216332" />
         <entry key="app/src/main/res/layout/item_profile_shipping_address.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/item_restaurant.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/item_restaurant.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_restaurant_menu.xml" value="0.5" />
         <entry key="app/src/main/res/layout/item_resturant.xml" value="0.375" />
         <entry key="app/src/main/res/layout/item_search.xml" value="0.375" />
@@ -147,6 +148,7 @@
         <entry key="app/src/main/res/layout/snippet_proceed_to_check_out.xml" value="0.2543822146216332" />
         <entry key="app/src/main/res/layout/snippet_profile.xml" value="0.335" />
         <entry key="app/src/main/res/layout/snippet_profile_details.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/snippet_restaurant_add_to_cart.xml" value="0.375" />
         <entry key="app/src/main/res/layout/snippet_restaurant_detail.xml" value="0.375" />
         <entry key="app/src/main/res/layout/snippet_resturant_nearby.xml" value="0.16530797101449277" />
         <entry key="app/src/main/res/layout/snippet_search.xml" value="0.335" />

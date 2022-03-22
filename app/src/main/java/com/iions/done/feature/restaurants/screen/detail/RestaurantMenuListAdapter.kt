@@ -48,7 +48,7 @@ class RestaurantMenuListAdapter(
                     .placeholder(R.drawable.logo).into(binding.ivMenu)
 
             binding.tvPrice.text = "Rs. ${obj.price}"
-            binding.cvMenu.setOnClickListener {
+            binding.constraint.setOnClickListener {
                 onItemSelectedListener(obj)
             }
         }
