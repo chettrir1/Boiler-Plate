@@ -18,7 +18,7 @@ data class HomeGroceryResponse(
     var sku: String? = "",
     @SerializedName("name")
     var name: String,
-    @SerializedName("cover_image")
+    @SerializedName("main_image_thumbnail")
     var image: String?,
     @SerializedName("category_id")
     var categoryId: Int? = 0,
