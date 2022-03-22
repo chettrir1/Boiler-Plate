@@ -4,10 +4,7 @@ import com.iions.DatabaseManager
 import com.iions.SharedPreferenceManager
 import com.iions.done.feature.auth.data.model.AddressResponse
 import com.iions.done.feature.main.data.MainRepository
-import com.iions.done.feature.main.data.model.BannerResponse
-import com.iions.done.feature.main.data.model.HomeGroceryCategoryResponse
-import com.iions.done.feature.main.data.model.HomeGroceryResponse
-import com.iions.done.feature.main.data.model.ModuleResponse
+import com.iions.done.feature.main.data.model.*
 import javax.inject.Inject
 
 class MainLocalImpl @Inject constructor(
@@ -31,8 +28,8 @@ class MainLocalImpl @Inject constructor(
         return databaseManager.getGroceryCategoryDao().getGroceryCategoryResponse()
     }
 
-    override suspend fun fetchGroceryList(): List<HomeGroceryResponse>? {
-        return databaseManager.getGroceryDao().getGroceryResponse()
+    override suspend fun fetchGroceryList(categoryId: Int): List<HomeGroceryResponse>? {
+        return databaseManager.getGroceryDao().getGroceryResponse(categoryId)
     }
 
     override fun getAuthorizationToken(): String {
@@ -45,5 +42,9 @@ class MainLocalImpl @Inject constructor(
 
     override suspend fun fetchAddressList(): List<AddressResponse> {
         return databaseManager.getUserAddressDao().getUserAddressResponse()
+    }
+
+    override suspend fun fetchRestaurantList(): List<HomeRestaurantRemoteResponse>? {
+        return databaseManager.getRestaurantDao().getRestaurantResponse()
     }
 }

@@ -34,9 +34,9 @@ class MainRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun fetchGroceryList(): List<HomeGroceryResponse>? {
+    override suspend fun fetchGroceryList(categoryId: Int): List<HomeGroceryResponse>? {
         return withContext(schedulersFactory.io()) {
-            localRepository.fetchGroceryList()
+            localRepository.fetchGroceryList(categoryId)
         }
     }
 
@@ -82,6 +82,12 @@ class MainRepositoryImpl @Inject constructor(
     override suspend fun fetchOrdersList(): OrdersBaseResponse? {
         return withContext(schedulersFactory.io()) {
             remoteRepository.fetchOrdersList(localRepository.getAuthorizationToken())
+        }
+    }
+
+    override suspend fun fetchRestaurantList(): List<HomeRestaurantRemoteResponse>? {
+        return withContext(schedulersFactory.io()) {
+            localRepository.fetchRestaurantList()
         }
     }
 }

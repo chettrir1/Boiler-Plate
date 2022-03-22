@@ -34,6 +34,7 @@
                 android:id="@+id/iv_resturant"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:padding="@dimen/spacing_16"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/logo" />
         </com.google.android.material.card.MaterialCardView>

@@ -1,10 +1,10 @@
 package com.iions.done.feature.main.data.mapper
 
-import com.iions.done.feature.main.data.model.HomeGroceryRemoteResponse
+import com.iions.done.feature.main.data.model.HomeGroceryResponse
 import com.iions.entity.GroceryEntity
 
 object GroceryMapper {
-    fun mapToLocal(grocery: List<HomeGroceryRemoteResponse>): List<GroceryEntity> {
+    fun mapToLocal(grocery: List<HomeGroceryResponse>): List<GroceryEntity> {
         return grocery.map {
             GroceryEntity(
                 groceryId = it.id,

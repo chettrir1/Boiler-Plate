@@ -36,7 +36,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         viewModel.fetchModuleList()
         viewModel.fetchBannerList()
         viewModel.fetchGroceryCategoryList()
-        viewModel.fetchGroceryList()
+        viewModel.fetchRestaurantList()
         binding.tvSearch.setOnClickListener {
             SearchActivity.start(requireActivity())
         }
@@ -47,6 +47,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         observeBannerResponse()
         observeGroceryCategoryResponse()
         observeGroceryResponse()
+        observeRestaurantResponse()
     }
 
     private fun observeCategoryResponse() {
@@ -103,7 +104,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     }
                     binding.includeGrocery.rvGrocery.hasFixedSize()
                     ViewCompat.setNestedScrollingEnabled(binding.includeGrocery.rvGrocery, false)
-                    super.showData(binding.loadingLayout)
                 }
                 Status.ERROR -> {
                     super.showErrorWithImage(
@@ -125,7 +125,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     response.data?.let {
                         binding.includeGrocery.rvCategory.layoutManager = setUpLayoutManager()
                         binding.includeGrocery.rvCategory.adapter =
-                            HomeGroceryCategoryListAdapter(it.toMutableList()) {}
+                            HomeGroceryCategoryListAdapter(it.toMutableList()) {
+                                viewModel.fetchGroceryList(it.id!!)
+                            }
                     }
                     binding.includeGrocery.rvCategory.hasFixedSize()
                     ViewCompat.setNestedScrollingEnabled(binding.includeGrocery.rvCategory, false)
@@ -150,6 +152,30 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     response.data?.let {
                         setUpBanner(it)
                     }
+                }
+                Status.ERROR -> {
+                }
+            }
+        }
+    }
+
+    private fun observeRestaurantResponse() {
+        viewModel.restaurantResponse.observe(this) { response ->
+            when (response.status) {
+                Status.LOADING -> {
+                }
+                Status.COMPLETE -> {
+                    response.data?.let {
+                        binding.includeRestaurant.rvRestaurant.layoutManager = setUpLayoutManager()
+                        binding.includeRestaurant.rvRestaurant.adapter =
+                            HomeRestaurantListAdapter(it.toMutableList()) {}
+                    }
+                    binding.includeRestaurant.rvRestaurant.hasFixedSize()
+                    ViewCompat.setNestedScrollingEnabled(
+                        binding.includeRestaurant.rvRestaurant,
+                        false
+                    )
+                    super.showData(binding.loadingLayout)
                 }
                 Status.ERROR -> {
                 }

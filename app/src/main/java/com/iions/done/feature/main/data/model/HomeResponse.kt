@@ -8,9 +8,11 @@ data class HomeResponse(
     @SerializedName("modules")
     var modules: List<ModuleResponse>?,
     @SerializedName("grocery")
-    var grocery: List<HomeGroceryRemoteResponse>?,
+    var category: List<HomeGroceryRemoteResponse>?,
     @SerializedName("district")
     var district: List<DistrictResponse>?,
     @SerializedName("streets")
-    var streets: List<StreetResponse>?
+    var streets: List<StreetResponse>?,
+    @SerializedName("restaurant")
+    var restaurant: List<HomeRestaurantRemoteResponse>?
 )

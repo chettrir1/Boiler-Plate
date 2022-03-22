@@ -24,7 +24,7 @@ class RestaurantMenuListAdapter(
     }
 
     override fun getLayoutResource(viewType: Int): Int {
-        return R.layout.item_grocery
+        return R.layout.item_restaurant_menu
     }
 
     override fun getItemCount(): Int {

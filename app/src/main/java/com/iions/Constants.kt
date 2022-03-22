@@ -49,11 +49,16 @@ object Constants {
     const val GROCERY_HAS_VARIANT = "grocery_has_variant"
     const val GROCERY_PARENT_ID = "grocery_parent_id"
 
-    /*brand*/
-    const val TBL_GROCERY_BRAND = "grocery_brand"
-    const val GROCERY_BRAND_ID = "grocery_brand_id"
-    const val GROCERY_BRAND_NAME = "grocery_brand_name"
-    const val GROCERY_BRAND_LOGO = "grocery_brand_logo"
+    /*restaurant*/
+    const val TBL_RESTAURANT = "restaurant"
+    const val RESTAURANT_ID = "restaurant_id"
+    const val RESTAURANT_NAME = "restaurant_name"
+    const val RESTAURANT_LOGO = "restaurant_logo"
+    const val RESTAURANT_IMAGE = "restaurant_cover_image"
+    const val RESTAURANT_ADDRESS = "restaurant_address"
+    const val RESTAURANT_DESCRIPTION = "restaurant_description"
+    const val RESTAURANT_LAT = "restaurant_latitude"
+    const val RESTAURANT_LNG = "restaurant_longitude"
 
     /*category*/
     const val TBL_GROCERY_CATEGORY = "grocery_category"

@@ -77,7 +77,7 @@ class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
                     super.showActionableError(
                         binding.loadingLayout,
                         errorMessage = response.error?.message.toString(),
-                        R.drawable.vc_cart,
+                        R.drawable.vc_grocery,
                         actionLabel = getString(R.string.retry)
                     ) {
                         viewModel.getGroceryDetail(intent.getIntExtra(Constants.GENERIC_ID, 0))

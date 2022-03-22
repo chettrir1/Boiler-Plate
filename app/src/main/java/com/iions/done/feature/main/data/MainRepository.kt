@@ -9,7 +9,7 @@ interface MainRepository {
     suspend fun fetchModuleList(): List<ModuleResponse>?
     suspend fun fetchBannerList(): List<BannerResponse>?
     suspend fun fetchGroceryCategoryList(): List<HomeGroceryCategoryResponse>?
-    suspend fun fetchGroceryList(): List<HomeGroceryResponse>?
+    suspend fun fetchGroceryList(categoryId: Int): List<HomeGroceryResponse>?
     fun getAuthorizationToken(): String
     suspend fun requestLogout(token: String): LogoutResponse?
     suspend fun fetchCartList(token: String): CartBaseResponse?
@@ -17,16 +17,19 @@ interface MainRepository {
     suspend fun removeCartList(authorizationToken: String, cartId: Int): RemoveCartResponse?
     suspend fun fetchProfileResponse(): ProfileBaseResponse?
     suspend fun fetchOrdersList(): OrdersBaseResponse?
+    suspend fun fetchRestaurantList(): List<HomeRestaurantRemoteResponse>?
 
     interface Local {
         fun isUserLoggedIn(): Boolean
         suspend fun fetchModuleList(): List<ModuleResponse>?
         suspend fun fetchBannerList(): List<BannerResponse>?
         suspend fun fetchGroceryCategoryList(): List<HomeGroceryCategoryResponse>?
-        suspend fun fetchGroceryList(): List<HomeGroceryResponse>?
+        suspend fun fetchGroceryList(categoryId: Int): List<HomeGroceryResponse>?
         fun getAuthorizationToken(): String
         suspend fun clearPrefs()
         suspend fun fetchAddressList(): List<AddressResponse>?
+        suspend fun fetchRestaurantList(): List<HomeRestaurantRemoteResponse>?
+
     }
 
     interface Remote {

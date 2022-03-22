@@ -10,7 +10,9 @@ import com.iions.done.base.BaseActivity
 import com.iions.done.databinding.ActivityRestaurantDetailBinding
 import com.iions.done.feature.restaurants.data.model.RestaurantDetailRemoteBaseResponse
 import com.iions.done.utils.archcomponents.Status
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RestaurantDetailActivity : BaseActivity<ActivityRestaurantDetailBinding>() {
     private val viewModel: RestaurantDetailViewModel by viewModels()
 
@@ -53,7 +55,7 @@ class RestaurantDetailActivity : BaseActivity<ActivityRestaurantDetailBinding>()
                     super.showActionableError(
                         binding.loadingLayout,
                         errorMessage = response.error?.message.toString(),
-                        R.drawable.vc_cart,
+                        R.drawable.vc_restaurant,
                         actionLabel = getString(R.string.retry)
                     ) {
                         viewModel.getRestaurant(intent.getIntExtra(Constants.GENERIC_ID, 0))
