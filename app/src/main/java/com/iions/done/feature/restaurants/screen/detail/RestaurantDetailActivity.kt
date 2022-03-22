@@ -126,7 +126,7 @@ class RestaurantDetailActivity : BaseActivity<ActivityRestaurantDetailBinding>()
                 Glide.with(binding.root.context)
                     .load("https://d-one.iionstech.com/storage/${response.restaurant?.coverImage}")
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .fitCenter()
+                    .dontAnimate()
                     .placeholder(R.drawable.logo).into(binding.slideView)
             }
 

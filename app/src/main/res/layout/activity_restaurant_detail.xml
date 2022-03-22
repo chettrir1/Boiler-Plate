@@ -54,6 +54,7 @@
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/slide_view"
                         android:layout_width="match_parent"
+                        android:scaleType="fitXY"
                         android:layout_height="match_parent"
                         app:srcCompat="@drawable/logo" />
                 </androidx.cardview.widget.CardView>
