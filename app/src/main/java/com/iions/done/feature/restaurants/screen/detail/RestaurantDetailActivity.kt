@@ -26,7 +26,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class RestaurantDetailActivity : BaseActivity<ActivityRestaurantDetailBinding>() {
     private val viewModel: RestaurantDetailViewModel by viewModels()
-    private var quantity = 0
+    private var quantity = 1
     private var isOrderNow = false
 
     override fun layout() = R.layout.activity_restaurant_detail
@@ -131,7 +131,7 @@ class RestaurantDetailActivity : BaseActivity<ActivityRestaurantDetailBinding>()
             }
 
             val adapter = RestaurantMenuListAdapter(it?.menu!!.toMutableList()) { response ->
-                binding.includeAddToCart.tvTitle.text = it.name
+                binding.includeAddToCart.tvTitle.text = response.name
                 binding.includeAddToCart.tvPrice.text = "Rs. ${response.price}"
                 if (!response.image.isNullOrEmpty())
                     Glide.with(binding.root.context)
@@ -153,7 +153,7 @@ class RestaurantDetailActivity : BaseActivity<ActivityRestaurantDetailBinding>()
                     addQuantity()
                 }
                 binding.includeAddToCart.ivMinus.enablePianoEffect().setOnClickListener {
-                    if (quantity > 0)
+                    if (quantity > 1)
                         removeQuantity()
                 }
             }

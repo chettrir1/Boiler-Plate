@@ -24,7 +24,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
     private val viewModel: GroceryDetailViewModel by viewModels()
-    private var quantity = 0
+    private var quantity = 1
     private var isOrderNow = false
 
     override fun layout() = R.layout.activity_grocery_detail
@@ -51,7 +51,7 @@ class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
             addQuantity()
         }
         binding.includeAddToCart.ivMinus.enablePianoEffect().setOnClickListener {
-            if (quantity > 0)
+            if (quantity > 1)
                 removeQuantity()
         }
     }

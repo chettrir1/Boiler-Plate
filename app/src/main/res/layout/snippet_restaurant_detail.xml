@@ -84,7 +84,6 @@
             android:id="@+id/rv_menu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_8"
             android:layout_marginBottom="@dimen/spacing_16"
             android:nestedScrollingEnabled="false"
             android:overScrollMode="never"

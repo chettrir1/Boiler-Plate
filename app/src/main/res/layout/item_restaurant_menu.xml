@@ -8,10 +8,13 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/constraint"
-        android:layout_margin="@dimen/spacing_4">
+        android:layout_marginStart="@dimen/spacing_4"
+        android:layout_marginTop="@dimen/spacing_8"
+        android:layout_marginEnd="@dimen/spacing_4"
+        android:layout_marginBottom="@dimen/spacing_8">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cv_menu"
