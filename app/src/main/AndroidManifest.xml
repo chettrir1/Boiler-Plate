@@ -24,6 +24,11 @@
         tools:ignore="DataExtractionRules"
         tools:replace="android:allowBackup">
         <activity
+            android:name=".feature.restaurants.screen.detail.RestaurantDetailActivity"
+            android:exported="false"
+            android:screenOrientation="@integer/screen_orientation_portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
             android:name=".feature.main.screens.profile.edit.EditProfileActivity"
             android:exported="false"
             android:screenOrientation="@integer/screen_orientation_portrait"

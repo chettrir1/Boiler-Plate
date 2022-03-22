@@ -11,6 +11,7 @@ import com.iions.done.databinding.ActivityRestaurantBinding
 import com.iions.done.feature.main.data.model.BannerResponse
 import com.iions.done.feature.main.screens.home.HomeSliderAdapter
 import com.iions.done.feature.restaurants.data.model.RestaurantResponse
+import com.iions.done.feature.restaurants.screen.detail.RestaurantDetailActivity
 import com.iions.done.utils.archcomponents.Status
 import com.iions.done.utils.visible
 import com.smarteist.autoimageslider.SliderView
@@ -71,6 +72,7 @@ class RestaurantActivity : BaseActivity<ActivityRestaurantBinding>() {
                         it.items?.data?.toList()?.let { it1 -> dataList.addAll(it1) }
 
                         adapter = RestaurantListAdapter(dataList.toMutableList()) { response ->
+                            RestaurantDetailActivity.start(this, response.id)
                         }
                         binding.rvResturant.adapter = adapter
                         val items = it.banner?.map {

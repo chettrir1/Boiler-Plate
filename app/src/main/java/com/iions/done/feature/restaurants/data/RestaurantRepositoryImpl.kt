@@ -1,6 +1,7 @@
 package com.iions.done.feature.restaurants.data
 
 import com.iions.done.feature.groceries.data.model.AddToCartResponse
+import com.iions.done.feature.restaurants.data.model.RestaurantDetailRemoteBaseResponse
 import com.iions.done.feature.restaurants.data.model.RestaurantRemoteBaseResponse
 import com.iions.done.utils.SchedulersFactory
 import kotlinx.coroutines.withContext
@@ -38,6 +39,14 @@ class RestaurantRepositoryImpl @Inject constructor(
                 itemId,
                 itemType,
                 quantity
+            )
+        }
+    }
+
+    override suspend fun getRestaurantDetail(restaurantId: Int): RestaurantDetailRemoteBaseResponse? {
+        return withContext(schedulersFactory.io()) {
+            remoteRepository.getRestaurantDetail(
+                restaurantId
             )
         }
     }

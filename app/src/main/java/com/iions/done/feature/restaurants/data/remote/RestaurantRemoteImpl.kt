@@ -2,8 +2,8 @@ package com.iions.done.feature.restaurants.data.remote
 
 import com.iions.done.exceptions.FailedResponseException
 import com.iions.done.feature.groceries.data.model.AddToCartResponse
-import com.iions.done.feature.groceries.data.model.GroceryRemoteBaseResponse
 import com.iions.done.feature.restaurants.data.RestaurantRepository
+import com.iions.done.feature.restaurants.data.model.RestaurantDetailRemoteBaseResponse
 import com.iions.done.feature.restaurants.data.model.RestaurantRemoteBaseResponse
 import com.iions.done.remote.ApiService
 import javax.inject.Inject
@@ -42,6 +42,20 @@ class RestaurantRemoteImpl @Inject constructor(
         requestParams["item_type"] = itemType ?: ""
         requestParams["quantity"] = quantity ?: 0
         val remoteResponse = apiService.requestAddToCart(token, requestParams)
+        if (remoteResponse.status == true) {
+            throw FailedResponseException(
+                remoteResponse.status!!,
+                remoteResponse.message.toString()
+            )
+        } else {
+            return remoteResponse.response
+        }
+    }
+
+    override suspend fun getRestaurantDetail(restaurantId: Int): RestaurantDetailRemoteBaseResponse? {
+        val requestParams = mutableMapOf<String, Any>()
+        requestParams["restaurant_id"] = restaurantId
+        val remoteResponse = apiService.getRestaurantDetail(requestParams)
         if (remoteResponse.status == true) {
             throw FailedResponseException(
                 remoteResponse.status!!,

@@ -2,6 +2,7 @@ package com.iions.done.feature.restaurants.data
 
 import com.iions.done.feature.groceries.data.model.AddToCartResponse
 import com.iions.done.feature.groceries.data.model.GroceryRemoteBaseResponse
+import com.iions.done.feature.restaurants.data.model.RestaurantDetailRemoteBaseResponse
 import com.iions.done.feature.restaurants.data.model.RestaurantRemoteBaseResponse
 
 interface RestaurantRepository {
@@ -15,6 +16,8 @@ interface RestaurantRepository {
     suspend fun addToCart(
         itemId: Int?, itemType: String?, quantity: Int?
     ): AddToCartResponse?
+
+    suspend fun getRestaurantDetail(restaurantId: Int): RestaurantDetailRemoteBaseResponse?
 
     interface Local {
         fun getAuthorizationToken(): String
@@ -31,6 +34,8 @@ interface RestaurantRepository {
         suspend fun addToCart(
             token: String, userId: Int?, itemId: Int?, itemType: String?, quantity: Int?
         ): AddToCartResponse?
+
+        suspend fun getRestaurantDetail(restaurantId: Int): RestaurantDetailRemoteBaseResponse?
 
     }
 }

@@ -7,6 +7,7 @@ import com.iions.done.feature.groceries.data.model.AddToCartResponse
 import com.iions.done.feature.groceries.data.model.GroceryDetailRemoteBaseResponse
 import com.iions.done.feature.groceries.data.model.GroceryRemoteBaseResponse
 import com.iions.done.feature.main.data.model.*
+import com.iions.done.feature.restaurants.data.model.RestaurantDetailRemoteBaseResponse
 import com.iions.done.feature.restaurants.data.model.RestaurantRemoteBaseResponse
 import com.iions.done.feature.summary.data.model.CreateOrderBaseResponse
 import com.iions.done.remote.helper.BaseResponse
@@ -88,5 +89,11 @@ interface ApiService {
     @Headers("Accept: application/json")
     @GET("restaurant/list")
     suspend fun getRestaurants(@Query("page") page: Int): BaseResponse<RestaurantRemoteBaseResponse>
+
+    @Headers("Accept: application/json")
+    @POST("restaurant/show")
+    suspend fun getRestaurantDetail(
+        @Body requestParams: MutableMap<String, Any>
+    ): BaseResponse<RestaurantDetailRemoteBaseResponse>
 
 }

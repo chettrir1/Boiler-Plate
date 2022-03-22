@@ -27,6 +27,8 @@ class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
     private var quantity = 0
     private var isOrderNow = false
 
+    override fun layout() = R.layout.activity_grocery_detail
+
     companion object {
         fun start(activity: Activity, id: Int, title: String) {
             val intent = Intent(activity, GroceryDetailActivity::class.java)
@@ -54,8 +56,6 @@ class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
         }
     }
 
-    override fun layout() = R.layout.activity_grocery_detail
-
     override fun initObservers() {
         observeGroceryDetailResponse()
         observeAddToCartResponse()
@@ -74,7 +74,14 @@ class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
                     showData(binding.loadingLayout)
                 }
                 Status.ERROR -> {
-                    showError(binding.loadingLayout, response.error?.message.toString())
+                    super.showActionableError(
+                        binding.loadingLayout,
+                        errorMessage = response.error?.message.toString(),
+                        R.drawable.vc_cart,
+                        actionLabel = getString(R.string.retry)
+                    ) {
+                        viewModel.getGroceryDetail(intent.getIntExtra(Constants.GENERIC_ID, 0))
+                    }
                 }
             }
         }
