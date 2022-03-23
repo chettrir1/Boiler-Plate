@@ -33,7 +33,7 @@ class ApiInterceptor @Inject constructor(
 
         when (response.code) {
             TOKEN_EXPIRED -> {
-                SmsLoginActivity.start(context as Activity)
+                SmsLoginActivity.start(context as Activity, true)
                 throw FailedResponseException(true, "Token Expired!")
             }
             INTERNAL_SERVER_ERROR -> {

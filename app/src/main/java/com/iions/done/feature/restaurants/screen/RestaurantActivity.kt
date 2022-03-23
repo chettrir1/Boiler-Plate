@@ -8,6 +8,7 @@ import androidx.core.widget.NestedScrollView
 import com.iions.done.R
 import com.iions.done.base.BaseActivity
 import com.iions.done.databinding.ActivityRestaurantBinding
+import com.iions.done.feature.auth.screens.login.smslogin.SmsLoginActivity
 import com.iions.done.feature.main.data.model.BannerResponse
 import com.iions.done.feature.main.screens.home.HomeSliderAdapter
 import com.iions.done.feature.restaurants.data.model.RestaurantResponse
@@ -91,11 +92,27 @@ class RestaurantActivity : BaseActivity<ActivityRestaurantBinding>() {
                 Status.ERROR -> {
                     super.showActionableError(
                         binding.loadingLayout,
-                        errorMessage = response.error?.message.toString(),
+                        errorMessage = if (response.error?.message.toString()
+                                .contains("Authentication")
+                        ) {
+                            getString(R.string.you_havent_logged_in_yet)
+                        } else {
+                            response.error?.message.toString()
+                        },
                         R.drawable.vc_restaurant,
-                        actionLabel = getString(R.string.retry)
+                        actionLabel = if (response.error?.message.toString()
+                                .contains("Authentication")
+                        ) {
+                            getString(R.string.login)
+                        } else {
+                            getString(R.string.retry)
+                        }
                     ) {
-                        viewModel.getRestaurants("", page)
+                        if (it == getString(R.string.login)) {
+                            SmsLoginActivity.start(this, false)
+                        } else {
+                            viewModel.getRestaurants("", page)
+                        }
                     }
                 }
             }

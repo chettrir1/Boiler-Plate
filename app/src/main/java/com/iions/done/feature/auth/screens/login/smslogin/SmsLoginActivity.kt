@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import com.iions.Constants.TYPE_LOGOUT
 import com.iions.done.R
 import com.iions.done.base.BaseActivity
 import com.iions.done.databinding.ActivitySmsLoginBinding
@@ -24,9 +25,14 @@ class SmsLoginActivity : BaseActivity<ActivitySmsLoginBinding>() {
 
     private lateinit var dialog: Dialog
 
+    private val isLogout: Boolean? by lazy {
+        intent?.getBooleanExtra(TYPE_LOGOUT, false) ?: false
+    }
+
     companion object {
-        fun start(activity: Activity) {
+        fun start(activity: Activity, isLogout: Boolean) {
             val intent = Intent(activity, SmsLoginActivity::class.java)
+            intent.putExtra(TYPE_LOGOUT, isLogout)
             activity.startActivity(intent)
         }
     }
@@ -92,6 +98,12 @@ class SmsLoginActivity : BaseActivity<ActivitySmsLoginBinding>() {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
+        if (isLogout == true) {
+            moveTaskToBack(true)
+            android.os.Process.killProcess(android.os.Process.myPid())
+            exitProcess(1)
+        } else {
+            super.onBackPressed()
+        }
     }
 }

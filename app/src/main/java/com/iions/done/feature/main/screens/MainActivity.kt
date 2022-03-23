@@ -61,11 +61,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
         val navViewLeft = binding.navigationView.getHeaderView(0)
         val navHeaderMainBinding: SnippetHomeNavHeaderBinding =
             SnippetHomeNavHeaderBinding.bind(navViewLeft)
-        navHeaderMainBinding.tvName.text = "Unknnown"
+        navHeaderMainBinding.tvName.text = "Unknown"
         navHeaderMainBinding.tvPhone.text = "------"
-        navHeaderMainBinding.cvImage.setOnClickListener {
-            SmsLoginActivity.start(this)
-        }
 
         binding.includeToolbar.ivMenu.setOnClickListener {
             binding.drawerLayout.openDrawer(GravityCompat.START)
@@ -163,6 +160,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
                 binding.bottomNavigationView.selectedItemId = R.id.action_profile
             }
             R.id.action_logout -> {
+                binding.drawerLayout.closeDrawer(GravityCompat.START)
+                binding.bottomNavigationView.selectedItemId = R.id.action_home
                 showAlertDialog(
                     getString(R.string.alert),
                     getString(R.string.are_you_sure_you_want_to_logout)
@@ -213,7 +212,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
                 }
                 Status.COMPLETE -> {
                     hideProgress()
-                    SmsLoginActivity.start(this)
+                    SmsLoginActivity.start(this, true)
                 }
                 Status.ERROR -> {
                     hideProgress()

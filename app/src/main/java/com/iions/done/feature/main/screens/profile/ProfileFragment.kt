@@ -46,7 +46,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                 R.drawable.vc_profile,
                 actionLabel = getString(R.string.login)
             ) {
-                SmsLoginActivity.start(requireActivity())
+                SmsLoginActivity.start(requireActivity(), false)
             }
         }
     }
@@ -97,18 +97,34 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                 }
                 Status.COMPLETE -> {
                     response.data?.let {
-                       setView(it)
+                        setView(it)
                         viewModel.fetchAddressList()
                     }
                 }
                 Status.ERROR -> {
                     super.showActionableError(
                         binding.loadingLayout,
-                        errorMessage = response.error?.message.toString(),
+                        errorMessage = if (response.error?.message.toString()
+                                .contains("Authentication")
+                        ) {
+                            getString(R.string.you_havent_logged_in_yet)
+                        } else {
+                            response.error?.message.toString()
+                        },
                         R.drawable.vc_profile,
-                        actionLabel = getString(R.string.retry)
+                        actionLabel = if (response.error?.message.toString()
+                                .contains("Authentication")
+                        ) {
+                            getString(R.string.login)
+                        } else {
+                            getString(R.string.retry)
+                        }
                     ) {
-                        viewModel.fetchAddressList()
+                        if (it == getString(R.string.login)) {
+                            SmsLoginActivity.start(requireActivity(), false)
+                        } else {
+                            viewModel.fetchProfileResponse()
+                        }
                     }
                 }
             }

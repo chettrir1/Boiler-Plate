@@ -8,6 +8,7 @@ import androidx.core.widget.NestedScrollView
 import com.iions.done.R
 import com.iions.done.base.BaseActivity
 import com.iions.done.databinding.ActivityGroceryBinding
+import com.iions.done.feature.auth.screens.login.smslogin.SmsLoginActivity
 import com.iions.done.feature.groceries.data.model.GroceryResponse
 import com.iions.done.feature.groceries.screen.detail.GroceryDetailActivity
 import com.iions.done.feature.main.data.model.BannerResponse
@@ -94,11 +95,27 @@ class GroceryActivity : BaseActivity<ActivityGroceryBinding>() {
                 Status.ERROR -> {
                     super.showActionableError(
                         binding.loadingLayout,
-                        errorMessage = response.error?.message.toString(),
+                        errorMessage = if (response.error?.message.toString()
+                                .contains("Authentication")
+                        ) {
+                            getString(R.string.you_havent_logged_in_yet)
+                        } else {
+                            response.error?.message.toString()
+                        },
                         R.drawable.vc_grocery,
-                        actionLabel = getString(R.string.retry)
+                        actionLabel = if (response.error?.message.toString()
+                                .contains("Authentication")
+                        ) {
+                            getString(R.string.login)
+                        } else {
+                            getString(R.string.retry)
+                        }
                     ) {
-                        viewModel.getGroceries("", "", "", page)
+                        if (it == getString(R.string.login)) {
+                            SmsLoginActivity.start(this, false)
+                        } else {
+                            viewModel.getGroceries("", "", "", page)
+                        }
                     }
                 }
             }

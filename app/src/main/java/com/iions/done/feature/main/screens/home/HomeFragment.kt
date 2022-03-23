@@ -129,6 +129,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                             HomeGroceryCategoryListAdapter(it.toMutableList()) {
                                 viewModel.fetchGroceryList(it.id!!)
                             }
+                        viewModel.fetchGroceryList(it.first().id!!)
                     }
                     binding.includeGrocery.rvCategory.hasFixedSize()
                     ViewCompat.setNestedScrollingEnabled(binding.includeGrocery.rvCategory, false)

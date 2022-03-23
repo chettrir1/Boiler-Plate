@@ -97,7 +97,9 @@ class ChooseAddressActivity : BaseActivity<ActivityChooseAddressBinding>() {
                         viewModel.createOrder("cod", districtId, streetId, localAddress)
                     }
                 }
-            } else {
+            } else if (districtId > 0 && streetId > 0 && localAddress.isNotEmpty()) {
+                viewModel.createOrder("cod", districtId, streetId, localAddress)
+            }else{
                 viewModel.createOrder(cod = "cod", addressId = addressId)
             }
         }

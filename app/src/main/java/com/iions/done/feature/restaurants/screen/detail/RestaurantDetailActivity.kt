@@ -183,7 +183,7 @@ class RestaurantDetailActivity : BaseActivity<ActivityRestaurantDetailBinding>()
                 quantity = quantity
             )
         } else {
-            SmsLoginActivity.start(this)
+            SmsLoginActivity.start(this, false)
         }
     }
 }

@@ -179,7 +179,7 @@ class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
                 quantity = quantity
             )
         } else {
-            SmsLoginActivity.start(this)
+            SmsLoginActivity.start(this, false)
         }
     }
 }

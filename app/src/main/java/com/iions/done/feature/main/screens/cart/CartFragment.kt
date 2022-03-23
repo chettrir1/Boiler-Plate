@@ -50,7 +50,7 @@ class CartFragment : BaseFragment<FragmentCartBinding>() {
                 R.drawable.vc_cart,
                 actionLabel = getString(R.string.login)
             ) {
-                SmsLoginActivity.start(requireActivity())
+                SmsLoginActivity.start(requireActivity(), false)
             }
         }
     }
@@ -107,11 +107,27 @@ class CartFragment : BaseFragment<FragmentCartBinding>() {
                 Status.ERROR -> {
                     super.showActionableError(
                         binding.loadingLayout,
-                        errorMessage = response.error?.message.toString(),
+                        errorMessage = if (response.error?.message.toString()
+                                .contains("Authentication")
+                        ) {
+                            getString(R.string.you_havent_logged_in_yet)
+                        } else {
+                            response.error?.message.toString()
+                        },
                         R.drawable.vc_cart,
-                        actionLabel = getString(R.string.retry)
+                        actionLabel = if (response.error?.message.toString()
+                                .contains("Authentication")
+                        ) {
+                            getString(R.string.login)
+                        } else {
+                            getString(R.string.retry)
+                        }
                     ) {
-                        viewModel.fetchCartList()
+                        if (it == getString(R.string.login)) {
+                            SmsLoginActivity.start(requireActivity(), false)
+                        } else {
+                            viewModel.fetchCartList()
+                        }
                     }
                 }
             }
