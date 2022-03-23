@@ -1,6 +1,7 @@
 package com.iions.done.feature.main.screens
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
@@ -9,13 +10,11 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
-import com.iions.Constants
 import com.iions.SharedPreferenceManager
 import com.iions.done.R
 import com.iions.done.base.BaseActivity
 import com.iions.done.databinding.ActivityMainBinding
 import com.iions.done.databinding.SnippetHomeNavHeaderBinding
-import com.iions.done.exceptions.parseError
 import com.iions.done.feature.auth.screens.login.smslogin.SmsLoginActivity
 import com.iions.done.feature.main.screens.camera.CameraFragment
 import com.iions.done.feature.main.screens.cart.CartFragment
@@ -37,10 +36,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
     @Inject
     lateinit var sharedPreferenceManager: SharedPreferenceManager
     private val viewModel: MainViewModel by viewModels()
+    private lateinit var dialog: Dialog
 
     companion object {
         fun start(activity: Activity) {
             val intent = Intent(activity, MainActivity::class.java)
+            intent.flags =
+                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
             activity.startActivity(intent)
             activity.finish()
         }
@@ -62,7 +64,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
         navHeaderMainBinding.tvName.text = "Unknnown"
         navHeaderMainBinding.tvPhone.text = "------"
         navHeaderMainBinding.cvImage.setOnClickListener {
-            SmsLoginActivity.start(this, "")
+            SmsLoginActivity.start(this)
         }
 
         binding.includeToolbar.ivMenu.setOnClickListener {
@@ -142,7 +144,24 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
             R.id.action_home -> {
                 binding.drawerLayout.closeDrawer(GravityCompat.START)
             }
-
+            R.id.action_order_history -> {
+                binding.drawerLayout.closeDrawer(GravityCompat.START)
+                val fragment = HistoryFragment.getInstance()
+                addFragment(fragment)
+                binding.bottomNavigationView.selectedItemId = R.id.action_history
+            }
+            R.id.action_cart -> {
+                binding.drawerLayout.closeDrawer(GravityCompat.START)
+                val fragment = CameraFragment.getInstance()
+                addFragment(fragment)
+                binding.bottomNavigationView.selectedItemId = R.id.action_cart
+            }
+            R.id.action_profile -> {
+                binding.drawerLayout.closeDrawer(GravityCompat.START)
+                val fragment = ProfileFragment.getInstance()
+                addFragment(fragment)
+                binding.bottomNavigationView.selectedItemId = R.id.action_profile
+            }
             R.id.action_logout -> {
                 showAlertDialog(
                     getString(R.string.alert),
@@ -190,16 +209,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
         viewModel.logoutResponse.observe(this) { response ->
             when (response.status) {
                 Status.LOADING -> {
-                    showProgress(true)
+                    showProgress()
                 }
                 Status.COMPLETE -> {
-                    showProgress(false)
-                    SmsLoginActivity.start(this, Constants.TYPE_LOGOUT)
+                    hideProgress()
+                    SmsLoginActivity.start(this)
                 }
                 Status.ERROR -> {
-                    showProgress(false)
+                    hideProgress()
                     showToast(
-                        this.parseError(response.error),
+                        response.error?.message.toString(),
                         TYPE_ERROR
                     )
                 }
@@ -207,14 +226,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
         }
     }
 
-    private fun showProgress(show: Boolean) {
-        val dialog = ProgressDialog.progressDialog(this)
-        if (show) {
-            dialog.show()
-        } else {
-            if (dialog.isShowing) {
-                dialog.dismiss()
-            }
+    private fun showProgress() {
+        dialog = ProgressDialog.progressDialog(this)
+        dialog.show()
+    }
+
+    private fun hideProgress() {
+        if (dialog.isShowing) {
+            dialog.dismiss()
         }
     }
 }

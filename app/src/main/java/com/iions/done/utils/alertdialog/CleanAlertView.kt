@@ -15,7 +15,6 @@ import androidx.core.view.setPadding
 import com.iions.done.R
 import kotlinx.android.synthetic.main.view_clean_alert.view.*
 
-
 class CleanAlertView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,

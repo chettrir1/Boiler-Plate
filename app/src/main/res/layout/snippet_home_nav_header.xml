@@ -20,6 +20,8 @@
             android:layout_marginStart="@dimen/spacing_16"
             app:cardBackgroundColor="@color/white_FFFFFF"
             app:cardCornerRadius="@dimen/spacing_32"
+            app:strokeColor="@color/white_FFFFFF"
+            app:strokeWidth="@dimen/spacing_1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -27,7 +29,7 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/logo" />
+                app:srcCompat="@drawable/ic_profile_avatar" />
         </com.google.android.material.card.MaterialCardView>
 
         <androidx.appcompat.widget.AppCompatTextView

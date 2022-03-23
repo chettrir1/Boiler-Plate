@@ -1,5 +1,6 @@
 package com.iions.done.feature.main.data
 
+import com.iions.done.feature.auth.data.model.AddressResponse
 import com.iions.done.feature.auth.data.model.LogoutResponse
 import com.iions.done.feature.main.data.model.*
 import com.iions.done.utils.SchedulersFactory
@@ -33,9 +34,9 @@ class MainRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun fetchGroceryList(): List<HomeGroceryResponse>? {
+    override suspend fun fetchGroceryList(categoryId: Int): List<HomeGroceryResponse>? {
         return withContext(schedulersFactory.io()) {
-            localRepository.fetchGroceryList()
+            localRepository.fetchGroceryList(categoryId)
         }
     }
 
@@ -43,15 +44,50 @@ class MainRepositoryImpl @Inject constructor(
         return localRepository.getAuthorizationToken()
     }
 
-    override suspend fun requestLogout(token: String): List<LogoutResponse>? {
+    override suspend fun requestLogout(token: String): LogoutResponse? {
         return withContext(schedulersFactory.io()) {
-            remoteRepository.requestLogout(token)
+            val response = remoteRepository.requestLogout(token)
+            localRepository.clearPrefs()
+            response
         }
     }
 
     override suspend fun fetchCartList(token: String): CartBaseResponse? {
         return withContext(schedulersFactory.io()) {
             remoteRepository.fetchCartList(token)
+        }
+    }
+
+    override suspend fun fetchAddressList(): List<AddressResponse>? {
+        return withContext(schedulersFactory.io()) {
+            localRepository.fetchAddressList()
+        }
+    }
+
+    override suspend fun removeCartList(
+        authorizationToken: String,
+        cartId: Int
+    ): RemoveCartResponse? {
+        return withContext(schedulersFactory.io()) {
+            remoteRepository.removeCartList(authorizationToken, cartId)
+        }
+    }
+
+    override suspend fun fetchProfileResponse(): ProfileBaseResponse? {
+        return withContext(schedulersFactory.io()) {
+            remoteRepository.fetchProfileResponse(localRepository.getAuthorizationToken())
+        }
+    }
+
+    override suspend fun fetchOrdersList(): OrdersBaseResponse? {
+        return withContext(schedulersFactory.io()) {
+            remoteRepository.fetchOrdersList(localRepository.getAuthorizationToken())
+        }
+    }
+
+    override suspend fun fetchRestaurantList(): List<HomeRestaurantRemoteResponse>? {
+        return withContext(schedulersFactory.io()) {
+            localRepository.fetchRestaurantList()
         }
     }
 }

@@ -2,6 +2,7 @@ package com.iions.done.feature.auth.screens.verifypin
 
 import android.app.Application
 import androidx.lifecycle.*
+import com.iions.done.R
 import com.iions.done.feature.auth.data.AuthRepository
 import com.iions.done.feature.auth.data.model.LoginResponse
 import com.iions.done.feature.auth.data.model.VerifyPinResponse
@@ -21,8 +22,8 @@ class VerifyPinViewModel @Inject constructor(
     val verifyPinResponse: LiveData<Response<VerifyPinResponse>> =
         verifyPinUseCase
 
-    private val loginUseCase = MutableLiveData<Response<List<LoginResponse>>>()
-    val loginResponse: LiveData<Response<List<LoginResponse>>> =
+    private val loginUseCase = MutableLiveData<Response<LoginResponse>>()
+    val loginResponse: LiveData<Response<LoginResponse>> =
         loginUseCase
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
@@ -31,7 +32,7 @@ class VerifyPinViewModel @Inject constructor(
         super.onCleared()
     }
 
-    fun getLoggedInUserId(): String {
+    private fun getLoggedInUserId(): String {
         return repository.getLoginUserId()
     }
 
@@ -42,9 +43,14 @@ class VerifyPinViewModel @Inject constructor(
                 verifyPinUseCase.value = Response.complete(
                     repository.verifyPinRequest(pin, getLoggedInUserId())
                 )
+            } catch (error: java.lang.IllegalStateException) {
+                error.printStackTrace()
+                verifyPinUseCase.value =
+                    Response.error(Throwable(app.getString(R.string.enter_valid_otp)))
             } catch (error: Exception) {
                 error.printStackTrace()
-                verifyPinUseCase.value = Response.error(error)
+                verifyPinUseCase.value =
+                    Response.error(Throwable(app.getString(R.string.enter_valid_otp)))
             }
         }
     }
@@ -56,9 +62,14 @@ class VerifyPinViewModel @Inject constructor(
                 loginUseCase.value = Response.complete(
                     repository.loginWithPhone(getLoggedInUserId())
                 )
+            } catch (error: java.lang.IllegalStateException) {
+                error.printStackTrace()
+                verifyPinUseCase.value =
+                    Response.error(Throwable(app.getString(R.string.enter_valid_mobile_number)))
             } catch (error: Exception) {
                 error.printStackTrace()
-                loginUseCase.value = Response.error(error)
+                loginUseCase.value =
+                    Response.error(Throwable(app.getString(R.string.enter_valid_mobile_number)))
             }
         }
     }

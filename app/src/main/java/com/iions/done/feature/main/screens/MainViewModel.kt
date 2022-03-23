@@ -16,8 +16,8 @@ class MainViewModel @Inject constructor(
     private val repository: MainRepository
 ) : AndroidViewModel(app), LifecycleObserver {
 
-    private val logoutUseCase = MutableLiveData<Response< List<LogoutResponse>>>()
-    val logoutResponse: LiveData<Response< List<LogoutResponse>>> =
+    private val logoutUseCase = MutableLiveData<Response<LogoutResponse>>()
+    val logoutResponse: LiveData<Response<LogoutResponse>> =
         logoutUseCase
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)

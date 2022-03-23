@@ -1,10 +1,8 @@
 package com.iions.done.feature.groceries.data
 
-import androidx.paging.PagingData
 import com.iions.done.feature.groceries.data.model.AddToCartResponse
 import com.iions.done.feature.groceries.data.model.GroceryDetailRemoteBaseResponse
-import com.iions.done.feature.groceries.data.model.GroceryResponse
-import kotlinx.coroutines.flow.Flow
+import com.iions.done.feature.groceries.data.model.GroceryRemoteBaseResponse
 
 interface GroceryRepository {
     fun isUserLoggedIn(): Boolean
@@ -12,13 +10,14 @@ interface GroceryRepository {
     suspend fun getGroceries(
         filter: String?,
         category: String?,
-        brand: String?
-    ): Flow<PagingData<GroceryResponse>>?
+        brand: String?,
+        page: Int
+    ): GroceryRemoteBaseResponse?
 
     fun getUserId(): Int
     suspend fun addToCart(
         itemId: Int?, itemType: String?, quantity: Int?
-    ): List<AddToCartResponse>?
+    ): AddToCartResponse?
 
     suspend fun getGroceryDetail(itemId: Int): GroceryDetailRemoteBaseResponse?
 
@@ -32,12 +31,13 @@ interface GroceryRepository {
         suspend fun getGroceries(
             filter: String?,
             category: String?,
-            brand: String?
-        ): Flow<PagingData<GroceryResponse>>?
+            brand: String?,
+            page: Int
+        ): GroceryRemoteBaseResponse?
 
         suspend fun addToCart(
             token: String, userId: Int?, itemId: Int?, itemType: String?, quantity: Int?
-        ): List<AddToCartResponse>?
+        ): AddToCartResponse?
 
         suspend fun getGroceryDetail(itemId: Int): GroceryDetailRemoteBaseResponse?
 

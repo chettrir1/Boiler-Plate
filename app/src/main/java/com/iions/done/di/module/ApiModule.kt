@@ -1,14 +1,16 @@
 package com.iions.done.di.module
 
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.iions.SharedPreferenceManager
 import com.iions.done.remote.ApiService
 import com.iions.done.remote.helper.ApiInterceptor
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
+import com.iions.done.remote.helper.ErrorInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -32,16 +34,17 @@ object ApiModule {
     @Provides
     fun provideOkHttpClient(
         httpLoggingInterceptor: HttpLoggingInterceptor,
+        errorInterceptor: ErrorInterceptor,
         apiInterceptor: ApiInterceptor
     ): OkHttpClient {
+
         return OkHttpClient.Builder()
             .apply {
                 addInterceptor(apiInterceptor)
                 addInterceptor(httpLoggingInterceptor)
                 connectTimeout(40, TimeUnit.SECONDS)
                 readTimeout(40, TimeUnit.SECONDS)
-            }
-            .build()
+            }.build()
     }
 
     @Provides

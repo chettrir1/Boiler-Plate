@@ -21,7 +21,8 @@ interface GroceryDao {
         grocery_brand_id as brandId,
         grocery_has_variant as hasVarient,
         grocery_parent_id as parentId
-        from grocery"""
+        from grocery
+        where grocery_category_id =:categoryId"""
     )
-    suspend fun getGroceryResponse(): List<HomeGroceryResponse>?
+    suspend fun getGroceryResponse(categoryId: Int): List<HomeGroceryResponse>?
 }

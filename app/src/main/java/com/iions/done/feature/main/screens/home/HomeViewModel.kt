@@ -24,7 +24,8 @@ class HomeViewModel @Inject constructor(
     val groceryResponse: LiveData<Response<List<HomeGroceryResponse>>> =
         groceryUseCase
 
-    private val groceryCategoryUseCase = MutableLiveData<Response<List<HomeGroceryCategoryResponse>>>()
+    private val groceryCategoryUseCase =
+        MutableLiveData<Response<List<HomeGroceryCategoryResponse>>>()
     val groceryCategoryResponse: LiveData<Response<List<HomeGroceryCategoryResponse>>> =
         groceryCategoryUseCase
 
@@ -32,6 +33,10 @@ class HomeViewModel @Inject constructor(
     private val bannerUseCase = MutableLiveData<Response<List<BannerResponse>>>()
     val bannerResponse: LiveData<Response<List<BannerResponse>>> =
         bannerUseCase
+
+    private val restaurantUseCase = MutableLiveData<Response<List<HomeRestaurantRemoteResponse>>>()
+    val restaurantResponse: LiveData<Response<List<HomeRestaurantRemoteResponse>>> =
+        restaurantUseCase
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public override fun onCleared() {
@@ -67,12 +72,12 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun fetchGroceryList() {
+    fun fetchGroceryList(categoryId: Int) {
         viewModelScope.launch {
             groceryUseCase.value = Response.loading()
             try {
                 groceryUseCase.value = Response.complete(
-                    repository.fetchGroceryList()
+                    repository.fetchGroceryList(categoryId)
                 )
             } catch (error: Exception) {
                 error.printStackTrace()
@@ -95,5 +100,18 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    fun fetchRestaurantList() {
+        viewModelScope.launch {
+            restaurantUseCase.value = Response.loading()
+            try {
+                restaurantUseCase.value = Response.complete(
+                    repository.fetchRestaurantList()
+                )
+            } catch (error: Exception) {
+                error.printStackTrace()
+                restaurantUseCase.value = Response.error(error)
+            }
+        }
+    }
 
 }

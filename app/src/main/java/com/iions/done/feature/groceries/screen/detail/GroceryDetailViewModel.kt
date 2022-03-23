@@ -17,8 +17,8 @@ class GroceryDetailViewModel @Inject constructor(
     private val repository: GroceryRepository
 ) : AndroidViewModel(app), LifecycleObserver {
 
-    private val addToCartUseCase = MutableLiveData<Response<List<AddToCartResponse>>>()
-    val addToCartResponse: LiveData<Response<List<AddToCartResponse>>> =
+    private val addToCartUseCase = MutableLiveData<Response<AddToCartResponse>>()
+    val addToCartResponse: LiveData<Response<AddToCartResponse>> =
         addToCartUseCase
 
     private val groceryUseCase = MutableLiveData<Response<GroceryDetailRemoteBaseResponse>>()
@@ -62,5 +62,4 @@ class GroceryDetailViewModel @Inject constructor(
             }
         }
     }
-
 }

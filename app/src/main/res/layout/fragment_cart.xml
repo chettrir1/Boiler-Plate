@@ -29,7 +29,7 @@
 
         <include
             android:id="@+id/include_proceed_to_checkout"
-            layout="@layout/snippet_proceed_to_check_out"
+            layout="@layout/snippet_proceed_to_payment"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"

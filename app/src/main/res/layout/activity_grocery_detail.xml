@@ -14,7 +14,7 @@
 
         <include
             android:id="@+id/include_toolbar"
-            layout="@layout/toolbar_secondary"
+            layout="@layout/toolbar_secondary_with_cart"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -41,13 +41,18 @@
                     android:layout_height="0dp"
                     app:cardBackgroundColor="@color/white_FFFFFF"
                     app:cardCornerRadius="@dimen/spacing_8"
-                    app:layout_constraintDimensionRatio="4:5"
+                    app:cardElevation="0dp"
+                    app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <com.denzcoskun.imageslider.ImageSlider
                         android:id="@+id/slide_view"
+                        app:iss_error_image="@drawable/logo"
+                        app:iss_indicator_align="end"
+                        app:iss_placeholder="@drawable/logo"
+                        app:iss_selected_dot="@color/red_F93838"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
                 </androidx.cardview.widget.CardView>

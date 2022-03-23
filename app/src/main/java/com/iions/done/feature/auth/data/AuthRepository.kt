@@ -9,22 +9,20 @@ import com.iions.done.feature.auth.data.model.*
 interface AuthRepository {
     interface Local {
         fun getPhoneNumber(): String
-        suspend fun clearPrefs()
         suspend fun saveUser(loginResponse: VerifyPinResponse)
         suspend fun saveUsername(username: String)
         fun getLoggedInUserId(): String
     }
 
     interface Remote {
-        suspend fun loginWithPhone(username: String): List<LoginResponse>?
+        suspend fun loginWithPhone(username: String): LoginResponse?
         suspend fun requestPin(phoneNumber: String): RequestPinResponse
         suspend fun requestResetPin(resetPinRequestModel: ResetPinRequestModel): ResetPinResponse
-        suspend fun logout(token: String):  List<LogoutResponse>?
         suspend fun verifyPinRequest(pin: String, phone: String): VerifyPinResponse?
     }
 
     fun getPhoneNumber(): String
-    suspend fun loginWithPhone(username: String): List<LoginResponse>?
+    suspend fun loginWithPhone(username: String): LoginResponse?
     suspend fun requestPin(phoneNumber: String): RequestPinResponse
     suspend fun requestResetPin(resetPinRequestModel: ResetPinRequestModel): ResetPinResponse
     fun getLoginUserId(): String

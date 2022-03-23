@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/ll_cash_on_delivery"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/spacing_8"
+            android:background="@drawable/bg_choose_payment_option"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ll_debit_card"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/spacing_32"
+                android:layout_height="@dimen/spacing_32"
+                android:src="@drawable/ic_summary" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_8"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Cash on Delivery"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                android:textColor="@color/black_2e384d"
+                android:textSize="@dimen/text_size_10" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_debit_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_8"
+            android:background="@drawable/bg_choose_payment_option"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_16"
+            app:layout_constraintBottom_toBottomOf="@+id/ll_cash_on_delivery"
+            app:layout_constraintEnd_toStartOf="@+id/ll_wallet"
+            app:layout_constraintStart_toEndOf="@+id/ll_cash_on_delivery"
+            app:layout_constraintTop_toTopOf="@+id/ll_cash_on_delivery">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/spacing_32"
+                android:layout_height="@dimen/spacing_32"
+                android:src="@drawable/ic_debit_card" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_8"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Debit/Credit Card"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                android:textColor="@color/black_2e384d"
+                android:textSize="@dimen/text_size_10" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_wallet"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_8"
+            android:background="@drawable/bg_choose_payment_option"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_16"
+            app:layout_constraintBottom_toBottomOf="@+id/ll_debit_card"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ll_debit_card"
+            app:layout_constraintTop_toTopOf="@+id/ll_debit_card">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/spacing_32"
+                android:layout_height="@dimen/spacing_32"
+                android:src="@drawable/ic_wallet" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_8"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Wallet"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                android:textColor="@color/black_2e384d"
+                android:textSize="@dimen/text_size_10" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

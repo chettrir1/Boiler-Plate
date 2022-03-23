@@ -2,15 +2,23 @@ package com.iions.done.feature.main.screens.profile
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.iions.done.R
 import com.iions.done.base.BaseFragment
 import com.iions.done.databinding.FragmentProfileBinding
+import com.iions.done.feature.auth.screens.login.smslogin.SmsLoginActivity
+import com.iions.done.feature.main.data.model.ProfileBaseResponse
+import com.iions.done.feature.main.screens.profile.edit.EditProfileActivity
+import com.iions.done.utils.archcomponents.Status
+import com.iions.done.utils.gone
+import com.iions.done.utils.visible
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
+    private val viewModel: ProfileViewModel by viewModels()
+
     override fun layout(): Int = R.layout.fragment_profile
 
     companion object {
@@ -21,10 +29,99 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Toast.makeText(requireContext(), "Profile Fragment", Toast.LENGTH_SHORT).show()
+
+        binding.includeProfiles.tvEdit.setOnClickListener {
+            EditProfileActivity.start(requireActivity())
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (viewModel.isUserLoggedIn()) {
+            viewModel.fetchProfileResponse()
+        } else {
+            super.showActionableError(
+                binding.loadingLayout,
+                errorMessage = getString(R.string.you_havent_logged_in_yet),
+                R.drawable.vc_profile,
+                actionLabel = getString(R.string.login)
+            ) {
+                SmsLoginActivity.start(requireActivity())
+            }
+        }
     }
 
     override fun initObservers() {
+        observeProfileResponse()
+        observeAddressResponse()
     }
 
+
+    private fun observeAddressResponse() {
+        viewModel.addressResponse.observe(this) { response ->
+            when (response.status) {
+                Status.LOADING -> {
+                }
+                Status.COMPLETE -> {
+                    response.data?.let {
+                        if (it.isNotEmpty()) {
+                            binding.rvAddress.adapter =
+                                ProfileAddressListAdapter(it.toMutableList()) {}
+                            binding.group.visible()
+                        } else {
+                            binding.group.gone()
+                        }
+                    }
+                    super.showData(binding.loadingLayout)
+                }
+                Status.ERROR -> {
+                    super.showActionableError(
+                        binding.loadingLayout,
+                        errorMessage = response.error?.message.toString(),
+                        R.drawable.vc_profile,
+                        actionLabel = getString(R.string.retry)
+                    ) {
+                        viewModel.fetchAddressList()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun observeProfileResponse() {
+        viewModel.profileResponse.observe(this) { response ->
+            when (response.status) {
+                Status.LOADING -> {
+                    binding.loadingLayout.thumb.gone()
+                    super.showLoading(binding.loadingLayout, getString(R.string.please_wait))
+                }
+                Status.COMPLETE -> {
+                    response.data?.let {
+                       setView(it)
+                        viewModel.fetchAddressList()
+                    }
+                }
+                Status.ERROR -> {
+                    super.showActionableError(
+                        binding.loadingLayout,
+                        errorMessage = response.error?.message.toString(),
+                        R.drawable.vc_profile,
+                        actionLabel = getString(R.string.retry)
+                    ) {
+                        viewModel.fetchAddressList()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setView(it: ProfileBaseResponse) {
+        binding.includeProfiles.tvProfileName.text = it.user?.name ?: "Unknown"
+        binding.includeProfiles.tvProfileNumber.text = it.user?.phoneNumber ?: "98********"
+        binding.includeProfileDetails.tvName.text = it.user?.name ?: "Unknown"
+        binding.includeProfileDetails.tvEmail.text =
+            it.user?.email ?: "unknown@gmail.com"
+        binding.includeProfileDetails.tvPhone.text =
+            it.user?.phoneNumber ?: "98********"
+    }
 }

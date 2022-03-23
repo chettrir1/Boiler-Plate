@@ -21,5 +21,32 @@ data class UserResponse(
     @SerializedName("pin")
     var pin: String? = null,
     @SerializedName("phone_number")
-    var phoneNumber: String? = null
+    var phoneNumber: String? = null,
+    @SerializedName("addresses")
+    var addresses: List<UserAddressResponse>? = null
+)
+
+data class UserAddressResponse(
+    @SerializedName("id")
+    var id: Int?,
+    @SerializedName("local_address")
+    var localAddress: String? = null,
+    @SerializedName("district")
+    var district: DistrictResponse?,
+    @SerializedName("street")
+    var street: StreetResponse?
+)
+
+data class DistrictResponse(
+    @SerializedName("id")
+    var id: Int?,
+    @SerializedName("name")
+    var name: String? = null
+)
+
+data class StreetResponse(
+    @SerializedName("id")
+    var id: Int?,
+    @SerializedName("name")
+    var name: String? = null
 )

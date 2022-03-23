@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black_2e384d"
+            android:textSize="@dimen/text_size_20"
+            app:fontFamily="@font/roboto_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Whiskey Peaks Fine Dinners" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_restaurant_detail_location"
+            android:drawablePadding="@dimen/spacing_8"
+            android:text="Sanepa, Kathmandu"
+            android:textColor="@color/grey_8798AD"
+            android:textSize="@dimen/text_size_14"
+            app:fontFamily="@font/roboto_light"
+            app:layout_constraintEnd_toEndOf="@+id/tv_title"
+            app:layout_constraintStart_toStartOf="@+id/tv_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_total_rating"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_restaurant_detail_star"
+            android:drawablePadding="@dimen/spacing_8"
+            android:text="4.5 Ratings 200 Reviews given"
+            android:textColor="@color/grey_8798AD"
+            android:textSize="@dimen/text_size_14"
+            app:fontFamily="@font/roboto_light"
+            app:layout_constraintEnd_toEndOf="@+id/tv_title"
+            app:layout_constraintStart_toStartOf="@+id/tv_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_address" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title_menu_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_32"
+            android:text="@string/menu_items"
+            android:textColor="@color/black_2e384d"
+            android:textSize="@dimen/text_size_16"
+            app:fontFamily="@font/roboto_bold"
+            app:layout_constraintEnd_toEndOf="@+id/tv_total_rating"
+            app:layout_constraintStart_toStartOf="@+id/tv_total_rating"
+            app:layout_constraintTop_toBottomOf="@id/tv_total_rating" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_category"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_8"
+            android:layout_marginBottom="@dimen/spacing_8"
+            android:nestedScrollingEnabled="false"
+            android:overScrollMode="never"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintEnd_toEndOf="@id/tv_title_menu_item"
+            app:layout_constraintStart_toStartOf="@id/tv_title_menu_item"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_menu_item"
+            app:spanCount="4"
+            tools:itemCount="3"
+            tools:listitem="@layout/item_category" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_menu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_16"
+            android:nestedScrollingEnabled="false"
+            android:overScrollMode="never"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/rv_category"
+            app:layout_constraintStart_toStartOf="@id/rv_category"
+            app:layout_constraintTop_toBottomOf="@id/rv_category"
+            app:layout_constraintVertical_bias="0.0"
+            app:spanCount="2"
+            tools:itemCount="10"
+            tools:listitem="@layout/item_restaurant_menu" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

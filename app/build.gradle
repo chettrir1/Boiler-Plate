@@ -57,9 +57,9 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:4.9.2"
 
     //database
-    implementation "androidx.room:room-runtime:2.4.1"
-    implementation "androidx.room:room-ktx:2.4.1"
-    kapt "androidx.room:room-compiler:2.4.1"
+    implementation "androidx.room:room-runtime:2.4.2"
+    implementation "androidx.room:room-ktx:2.4.2"
+    kapt "androidx.room:room-compiler:2.4.2"
 
     // coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2"
@@ -90,7 +90,8 @@ dependencies {
 
     implementation 'com.github.denzcoskun:ImageSlideshow:0.1.0'
 
-    implementation "androidx.paging:paging-runtime-ktx:3.1.0"
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.github.dhaval2404:imagepicker-support:1.7.1'
 
     testImplementation 'junit:junit:'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

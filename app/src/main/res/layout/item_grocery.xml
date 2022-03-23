@@ -15,10 +15,9 @@
         android:layout_marginTop="@dimen/spacing_4"
         android:layout_marginEnd="@dimen/spacing_4"
         android:layout_marginBottom="@dimen/spacing_4"
-        android:background="@color/white_FFFFFF"
         android:clipToPadding="false"
         app:cardBackgroundColor="@color/white_FFFFFF"
-        app:cardCornerRadius="@dimen/spacing_4"
+        app:cardCornerRadius="@dimen/spacing_8"
         app:cardElevation="0dp"
         app:cardUseCompatPadding="false">
 
@@ -29,13 +28,13 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_grocery"
                 android:layout_width="0dp"
-                android:layout_height="150dp"
-                android:layout_marginStart="@dimen/spacing_16"
-                android:layout_marginEnd="@dimen/spacing_16"
+                android:layout_height="0dp"
+                android:scaleType="fitXY"
+                app:layout_constraintDimensionRatio="w,1:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/grey_logo" />
+                app:srcCompat="@drawable/logo" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_discount_percentage"
@@ -48,7 +47,7 @@
                 android:paddingEnd="@dimen/spacing_6"
                 android:singleLine="true"
                 android:textColor="@color/white_FFFFFF"
-                android:textSize="@dimen/text_size_10"
+                android:textSize="@dimen/text_size_8"
                 android:visibility="gone"
                 app:fontFamily="@font/roboto_medium"
                 app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +75,7 @@
                 android:maxLines="2"
                 android:minLines="2"
                 android:textColor="@color/black_000000"
-                android:textSize="@dimen/text_size_12"
+                android:textSize="@dimen/text_size_14"
                 app:fontFamily="@font/roboto_regular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -90,9 +89,8 @@
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:textColor="@color/red_F93838"
-                android:textSize="@dimen/text_size_10"
-                app:fontFamily="@font/roboto_medium"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:textSize="@dimen/text_size_12"
+                app:fontFamily="@font/roboto_bold"
                 app:layout_constraintStart_toStartOf="@id/tv_title"
                 app:layout_constraintTop_toBottomOf="@id/tv_title"
                 app:layout_constraintVertical_bias="0.0"
@@ -113,7 +111,6 @@
                 app:layout_constraintBottom_toBottomOf="@id/tv_price"
                 app:layout_constraintStart_toEndOf="@id/tv_price"
                 app:layout_constraintTop_toTopOf="@id/tv_price"
-                app:layout_constraintVertical_bias="0.0"
                 tools:text="Rs. 2500" />
 
             <androidx.appcompat.widget.AppCompatRatingBar
@@ -124,6 +121,7 @@
                 android:layout_marginBottom="@dimen/spacing_16"
                 android:indeterminateTint="@color/red_F93838"
                 android:rating="4.3"
+                android:theme="@style/RatingBar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_price"
                 app:layout_constraintTop_toBottomOf="@+id/tv_price" />
@@ -132,14 +130,14 @@
                 android:id="@+id/tv_total_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="12 Reviews"
+                android:text="(12 Reviews)"
                 android:textColor="@color/black_2e384d"
                 android:textSize="@dimen/text_size_10"
-                app:fontFamily="@font/roboto_light"
+                android:layout_marginStart="@dimen/spacing_4"
+                app:fontFamily="@font/roboto_regular"
                 app:layout_constraintBottom_toBottomOf="@+id/rating_bar"
                 app:layout_constraintStart_toEndOf="@+id/rating_bar"
                 app:layout_constraintTop_toTopOf="@+id/rating_bar" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

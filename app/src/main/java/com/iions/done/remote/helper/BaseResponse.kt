@@ -5,6 +5,6 @@ import com.google.gson.annotations.SerializedName
 
 data class BaseResponse<T>(
     @SerializedName("message") @Expose var message: String? = null,
-    @SerializedName("status") @Expose var status: Boolean? = false,
+    @SerializedName("error") @Expose var status: Boolean? = false,
     @SerializedName("data") @Expose var response: T? = null
 )

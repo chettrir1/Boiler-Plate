@@ -1,6 +1,7 @@
 package com.iions.done.feature.groceries.data.model
 
 import com.google.gson.annotations.SerializedName
+import com.iions.done.feature.main.data.model.BannerResponse
 
 data class GroceryRemoteBaseResponse(
     @SerializedName("items")
@@ -8,12 +9,16 @@ data class GroceryRemoteBaseResponse(
     @SerializedName("brands")
     var brand: List<GroceryBrandResponse>? = null,
     @SerializedName("categories")
-    var category: List<GroceryCategoryResponse>? = null
+    var category: List<GroceryCategoryResponse>? = null,
+    @SerializedName("banner")
+    var banner: List<BannerResponse>? = null
 )
 
 data class GroceryItemsResponse(
     @SerializedName("current_page")
     var currentPage: Int,
+    @SerializedName("last_page")
+    var lastPage: Int,
     @SerializedName("data")
     var data: List<GroceryResponse>? = null,
     @SerializedName("first_page_url")
@@ -49,6 +54,12 @@ data class GroceryResponse(
     var brand: GroceryBrandResponse?,
     @SerializedName("quantity")
     var quantity: String?,
+    @SerializedName("current_price")
+    var currentPrice: String?,
+    @SerializedName("old_price")
+    var oldPrice: String?,
+    @SerializedName("has_discount")
+    var hasDiscount: Boolean?,
     @SerializedName("images")
     var images: List<GroceryImageResponse>? = null
 )

@@ -8,7 +8,6 @@ import androidx.activity.viewModels
 import com.iions.done.R
 import com.iions.done.base.BaseActivity
 import com.iions.done.databinding.ActivitySmsLoginBinding
-import com.iions.done.exceptions.parseError
 import com.iions.done.feature.auth.screens.login.LoginActivity
 import com.iions.done.feature.auth.screens.verifypin.VerifyPinActivity
 import com.iions.done.utils.archcomponents.Status
@@ -17,6 +16,7 @@ import com.iions.done.utils.progressdialog.ProgressDialog
 import com.iions.done.utils.showToast
 import com.valdesekamdem.library.mdtoast.MDToast
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.system.exitProcess
 
 @AndroidEntryPoint
 class SmsLoginActivity : BaseActivity<ActivitySmsLoginBinding>() {
@@ -25,9 +25,8 @@ class SmsLoginActivity : BaseActivity<ActivitySmsLoginBinding>() {
     private lateinit var dialog: Dialog
 
     companion object {
-        fun start(activity: Activity, type: String) {
+        fun start(activity: Activity) {
             val intent = Intent(activity, SmsLoginActivity::class.java)
-
             activity.startActivity(intent)
         }
     }
@@ -63,7 +62,7 @@ class SmsLoginActivity : BaseActivity<ActivitySmsLoginBinding>() {
                     showProgress()
                 }
                 Status.COMPLETE -> {
-                    hideDialog()
+                    hideProgress()
                     showToast(
                         getString(R.string.verification_code_sent),
                         MDToast.TYPE_SUCCESS
@@ -71,9 +70,9 @@ class SmsLoginActivity : BaseActivity<ActivitySmsLoginBinding>() {
                     VerifyPinActivity.start(this, true)
                 }
                 Status.ERROR -> {
-                    hideDialog()
+                    hideProgress()
                     showToast(
-                        this.parseError(response.error),
+                        response.error?.message,
                         MDToast.TYPE_ERROR
                     )
                 }
@@ -86,9 +85,13 @@ class SmsLoginActivity : BaseActivity<ActivitySmsLoginBinding>() {
         dialog.show()
     }
 
-    private fun hideDialog() {
+    private fun hideProgress() {
         if (dialog.isShowing) {
             dialog.dismiss()
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
     }
 }

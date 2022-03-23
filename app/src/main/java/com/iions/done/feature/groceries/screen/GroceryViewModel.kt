@@ -2,14 +2,11 @@ package com.iions.done.feature.groceries.screen
 
 import android.app.Application
 import androidx.lifecycle.*
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
 import com.iions.done.feature.groceries.data.GroceryRepository
-import com.iions.done.feature.groceries.data.model.GroceryResponse
+import com.iions.done.feature.groceries.data.model.GroceryRemoteBaseResponse
 import com.iions.done.utils.archcomponents.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.cancel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,8 +16,8 @@ class GroceryViewModel @Inject constructor(
     private val repository: GroceryRepository
 ) : AndroidViewModel(app), LifecycleObserver {
 
-    private val groceryUseCase = MutableLiveData<Response<Flow<PagingData<GroceryResponse>>>>()
-    val groceryResponse: LiveData<Response<Flow<PagingData<GroceryResponse>>>> =
+    private val groceryUseCase = MutableLiveData<Response<GroceryRemoteBaseResponse>>()
+    val groceryResponse: LiveData<Response<GroceryRemoteBaseResponse>> =
         groceryUseCase
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
@@ -29,12 +26,12 @@ class GroceryViewModel @Inject constructor(
         super.onCleared()
     }
 
-    fun getGroceries(filter: String?, category: String?, brand: String?) {
+    fun getGroceries(filter: String?, category: String?, brand: String?, page: Int) {
         viewModelScope.launch {
             groceryUseCase.value = Response.loading()
             try {
                 groceryUseCase.value = Response.complete(
-                    repository.getGroceries(filter, category, brand)
+                    repository.getGroceries(filter, category, brand, page)
                 )
             } catch (error: Exception) {
                 error.printStackTrace()

@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.iions.done.R
 import com.iions.done.base.BaseFragment
 import com.iions.done.databinding.FragmentHomeBinding
-import com.iions.done.exceptions.parseError
 import com.iions.done.feature.groceries.screen.GroceryActivity
 import com.iions.done.feature.groceries.screen.detail.GroceryDetailActivity
 import com.iions.done.feature.main.data.model.BannerResponse
-import com.iions.done.feature.resturants.RestaurantActivity
+import com.iions.done.feature.restaurants.screen.RestaurantActivity
+import com.iions.done.feature.restaurants.screen.detail.RestaurantDetailActivity
 import com.iions.done.feature.search.screens.SearchActivity
 import com.iions.done.utils.archcomponents.Status
 import com.smarteist.autoimageslider.SliderView
@@ -37,7 +37,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         viewModel.fetchModuleList()
         viewModel.fetchBannerList()
         viewModel.fetchGroceryCategoryList()
-        viewModel.fetchGroceryList()
+        viewModel.fetchRestaurantList()
         binding.tvSearch.setOnClickListener {
             SearchActivity.start(requireActivity())
         }
@@ -48,6 +48,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         observeBannerResponse()
         observeGroceryCategoryResponse()
         observeGroceryResponse()
+        observeRestaurantResponse()
     }
 
     private fun observeCategoryResponse() {
@@ -77,7 +78,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 Status.ERROR -> {
                     super.showErrorWithImage(
                         binding.loadingLayout,
-                        parseError(response.error),
+                        response.error?.message.toString(),
                         R.drawable.ic_error_home
                     )
                 }
@@ -104,12 +105,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     }
                     binding.includeGrocery.rvGrocery.hasFixedSize()
                     ViewCompat.setNestedScrollingEnabled(binding.includeGrocery.rvGrocery, false)
-                    super.showData(binding.loadingLayout)
                 }
                 Status.ERROR -> {
                     super.showErrorWithImage(
                         binding.loadingLayout,
-                        parseError(response.error),
+                        response.error?.message.toString(),
                         R.drawable.ic_error_home
                     )
                 }
@@ -126,7 +126,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     response.data?.let {
                         binding.includeGrocery.rvCategory.layoutManager = setUpLayoutManager()
                         binding.includeGrocery.rvCategory.adapter =
-                            HomeGroceryCategoryListAdapter(it.toMutableList()) {}
+                            HomeGroceryCategoryListAdapter(it.toMutableList()) {
+                                viewModel.fetchGroceryList(it.id!!)
+                            }
                     }
                     binding.includeGrocery.rvCategory.hasFixedSize()
                     ViewCompat.setNestedScrollingEnabled(binding.includeGrocery.rvCategory, false)
@@ -134,7 +136,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 Status.ERROR -> {
                     super.showErrorWithImage(
                         binding.loadingLayout,
-                        parseError(response.error),
+                        response.error?.message.toString(),
                         R.drawable.ic_error_home
                     )
                 }
@@ -151,6 +153,32 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     response.data?.let {
                         setUpBanner(it)
                     }
+                }
+                Status.ERROR -> {
+                }
+            }
+        }
+    }
+
+    private fun observeRestaurantResponse() {
+        viewModel.restaurantResponse.observe(this) { response ->
+            when (response.status) {
+                Status.LOADING -> {
+                }
+                Status.COMPLETE -> {
+                    response.data?.let {
+                        binding.includeRestaurant.rvRestaurant.layoutManager = setUpLayoutManager()
+                        binding.includeRestaurant.rvRestaurant.adapter =
+                            HomeRestaurantListAdapter(it.toMutableList()) {
+                                RestaurantDetailActivity.start(requireActivity(), it.id!!)
+                            }
+                    }
+                    binding.includeRestaurant.rvRestaurant.hasFixedSize()
+                    ViewCompat.setNestedScrollingEnabled(
+                        binding.includeRestaurant.rvRestaurant,
+                        false
+                    )
+                    super.showData(binding.loadingLayout)
                 }
                 Status.ERROR -> {
                 }

@@ -1,16 +1,11 @@
 package com.iions.done.feature.groceries.data.remote
 
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
+import com.iions.done.exceptions.FailedResponseException
 import com.iions.done.feature.groceries.data.GroceryRepository
 import com.iions.done.feature.groceries.data.model.AddToCartResponse
 import com.iions.done.feature.groceries.data.model.GroceryDetailRemoteBaseResponse
-import com.iions.done.feature.groceries.data.model.GroceryResponse
-import com.iions.done.feature.groceries.screen.detail.GroceryPagingSource
+import com.iions.done.feature.groceries.data.model.GroceryRemoteBaseResponse
 import com.iions.done.remote.ApiService
-import com.iions.done.utils.notNullMapper
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class GroceryRemoteImpl @Inject constructor(
@@ -20,14 +15,22 @@ class GroceryRemoteImpl @Inject constructor(
     override suspend fun getGroceries(
         filter: String?,
         category: String?,
-        brand: String?
-    ): Flow<PagingData<GroceryResponse>> {
+        brand: String?,
+        page: Int,
+    ): GroceryRemoteBaseResponse? {
         val params: MutableMap<String, String> = HashMap()
         params["filter"] = filter ?: ""
         params["category"] = category ?: ""
         params["brand"] = brand ?: ""
-        return Pager(config = PagingConfig(pageSize = 15, maxSize = 2000),
-            pagingSourceFactory = { GroceryPagingSource(apiService) }).flow
+        val remoteResponse = apiService.getGroceries(page)
+        if (remoteResponse.status == true) {
+            throw FailedResponseException(
+                remoteResponse.status!!,
+                remoteResponse.message.toString()
+            )
+        } else {
+            return remoteResponse.response
+        }
     }
 
     override suspend fun addToCart(
@@ -36,20 +39,35 @@ class GroceryRemoteImpl @Inject constructor(
         itemId: Int?,
         itemType: String?,
         quantity: Int?
-    ): List<AddToCartResponse> {
+    ): AddToCartResponse? {
         val requestParams = mutableMapOf<String, Any>()
         requestParams["user_id"] = userId ?: -1
         requestParams["item_id"] = itemId ?: -1
         requestParams["item_type"] = itemType ?: ""
         requestParams["quantity"] = quantity ?: 0
         val remoteResponse = apiService.requestAddToCart(token, requestParams)
-        return notNullMapper(remoteResponse)
+        if (remoteResponse.status == true) {
+            throw FailedResponseException(
+                remoteResponse.status!!,
+                remoteResponse.message.toString()
+            )
+        } else {
+            return remoteResponse.response
+        }
     }
 
-    override suspend fun getGroceryDetail(itemId: Int): GroceryDetailRemoteBaseResponse {
+    override suspend fun getGroceryDetail(itemId: Int): GroceryDetailRemoteBaseResponse? {
         val requestParams = mutableMapOf<String, Any>()
         requestParams["item_id"] = itemId
-        val remoteResponse = apiService.getGroceryDetail(requestParams)
-        return notNullMapper(remoteResponse)
+        val remoteResponse = apiService.
+        getGroceryDetail(requestParams)
+        if (remoteResponse.status == true) {
+            throw FailedResponseException(
+                remoteResponse.status!!,
+                remoteResponse.message.toString()
+            )
+        } else {
+            return remoteResponse.response
+        }
     }
 }

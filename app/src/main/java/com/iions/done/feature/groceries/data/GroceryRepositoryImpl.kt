@@ -1,11 +1,9 @@
 package com.iions.done.feature.groceries.data
 
-import androidx.paging.PagingData
 import com.iions.done.feature.groceries.data.model.AddToCartResponse
 import com.iions.done.feature.groceries.data.model.GroceryDetailRemoteBaseResponse
-import com.iions.done.feature.groceries.data.model.GroceryResponse
+import com.iions.done.feature.groceries.data.model.GroceryRemoteBaseResponse
 import com.iions.done.utils.SchedulersFactory
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -21,10 +19,11 @@ class GroceryRepositoryImpl @Inject constructor(
     override suspend fun getGroceries(
         filter: String?,
         category: String?,
-        brand: String?
-    ): Flow<PagingData<GroceryResponse>>? {
+        brand: String?,
+        page: Int
+    ): GroceryRemoteBaseResponse? {
         return withContext(schedulersFactory.io()) {
-            remoteRepository.getGroceries(filter, category, brand)
+            remoteRepository.getGroceries(filter, category, brand, page)
         }
     }
 
@@ -34,7 +33,7 @@ class GroceryRepositoryImpl @Inject constructor(
 
     override suspend fun addToCart(
         itemId: Int?, itemType: String?, quantity: Int?
-    ): List<AddToCartResponse>? {
+    ): AddToCartResponse? {
         return withContext(schedulersFactory.io()) {
             remoteRepository.addToCart(
                 localRepository.getAuthorizationToken(),

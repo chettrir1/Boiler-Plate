@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_FFFFFF"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white_FFFFFF">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_success"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="@dimen/spacing_80"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/vc_order_confirm" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_order_success"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_16"
+                android:layout_marginEnd="@dimen/spacing_16"
+                android:text="@string/order_confirmed"
+                android:textColor="@color/black_2e384d"
+                android:textSize="@dimen/text_size_20"
+                app:fontFamily="@font/roboto_bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_success" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_message"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_16"
+                android:layout_marginTop="@dimen/spacing_4"
+                android:layout_marginEnd="@dimen/spacing_16"
+                android:gravity="center"
+                android:text="Your order with ORDER ID: 141241241 has been confirmed, make sure to have Rs. 2300 on the delivery date."
+                android:textColor="@color/black_2e384d"
+                app:fontFamily="@font/roboto_regular"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_order_success" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_order_summary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_16"
+                android:layout_marginTop="@dimen/spacing_32"
+                android:layout_marginEnd="@dimen/spacing_16"
+                android:text="@string/order_summary"
+                android:textColor="@color/black_2e384d"
+                android:textSize="@dimen/text_size_16"
+                app:fontFamily="@font/roboto_bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_message" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_right_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:padding="@dimen/spacing_5"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_order_summary"
+                app:layout_constraintStart_toEndOf="@+id/tv_order_summary"
+                app:layout_constraintTop_toTopOf="@+id/tv_order_summary"
+                app:srcCompat="@drawable/ic_right_arrow" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_order_summary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_6"
+                android:layout_marginTop="@dimen/spacing_8"
+                android:layout_marginEnd="@dimen/spacing_6"
+                android:overScrollMode="never"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_order_summary"
+                tools:itemCount="3"
+                tools:listitem="@layout/item_order_summary" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_total_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_8"
+                android:text="Rs. 2,500"
+                android:textColor="@color/black_2e384d"
+                android:textSize="@dimen/text_size_14"
+                app:fontFamily="@font/roboto_bold"
+                app:layout_constraintEnd_toEndOf="@+id/rv_order_summary"
+                app:layout_constraintTop_toBottomOf="@+id/rv_order_summary" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_back_to_home"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_16"
+                android:layout_marginTop="@dimen/spacing_24"
+                android:layout_marginEnd="@dimen/spacing_16"
+                android:layout_marginBottom="@dimen/spacing_64"
+                android:background="@drawable/bg_button_circular_red"
+                android:text="@string/back_to_home"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_total_amount"
+                app:layout_constraintVertical_bias="0.0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

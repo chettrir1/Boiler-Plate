@@ -18,6 +18,8 @@ data class GroceryDetailResponse(
     var name: String,
     @SerializedName("description")
     var description: String,
+    @SerializedName("unit_size")
+    var unitSize: String,
     @SerializedName("main_image_original")
     var mainImageOriginal: String?,
     @SerializedName("main_image_thumbnail")
