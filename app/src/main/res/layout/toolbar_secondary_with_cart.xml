@@ -19,6 +19,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:contentInsetStart="0dp"
             android:background="@color/background_F5F5F5">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,6 +33,7 @@
                     android:background="?android:attr/actionBarItemBackground"
                     android:clickable="true"
                     android:focusable="true"
+                    android:padding="@dimen/spacing_16"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -41,7 +43,7 @@
                     android:id="@+id/tv_title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_16"
+                    android:layout_marginStart="@dimen/spacing_4"
                     android:fontFamily="@font/roboto_regular"
                     android:text="@string/app_name"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
