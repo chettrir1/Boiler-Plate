@@ -111,4 +111,5 @@
     <string name="enter_valid_mobile_number">Please enter correct mobile number!</string>
     <string name="menu_items">Menu Items</string>
     <string name="capture">Capture</string>
+    <string name="profile_successfully_updated">Profile Successfully Updated!</string>
 </resources>

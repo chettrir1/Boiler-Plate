@@ -3,10 +3,7 @@ package com.iions.done.feature.main.data.remote
 import com.iions.done.exceptions.FailedResponseException
 import com.iions.done.feature.auth.data.model.LogoutResponse
 import com.iions.done.feature.main.data.MainRepository
-import com.iions.done.feature.main.data.model.CartBaseResponse
-import com.iions.done.feature.main.data.model.OrdersBaseResponse
-import com.iions.done.feature.main.data.model.ProfileBaseResponse
-import com.iions.done.feature.main.data.model.RemoveCartResponse
+import com.iions.done.feature.main.data.model.*
 import com.iions.done.remote.ApiService
 import javax.inject.Inject
 
@@ -69,6 +66,21 @@ class MainRemoteImpl @Inject constructor(
 
     override suspend fun fetchOrdersList(token: String): OrdersBaseResponse? {
         val remoteResponse = apiService.getOrders(token)
+        if (remoteResponse.status == true) {
+            throw FailedResponseException(
+                remoteResponse.status!!,
+                remoteResponse.message.toString()
+            )
+        } else {
+            return remoteResponse.response
+        }
+    }
+
+    override suspend fun editProfile(token: String,name: String?, avatar: String?): EditProfileResponse? {
+        val requestParams = mutableMapOf<String, Any>()
+        requestParams["avatar"] = avatar ?: ""
+        requestParams["name"] = name ?: ""
+        val remoteResponse = apiService.editProfile(token,requestParams)
         if (remoteResponse.status == true) {
             throw FailedResponseException(
                 remoteResponse.status!!,

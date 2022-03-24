@@ -18,6 +18,7 @@ interface MainRepository {
     suspend fun fetchProfileResponse(): ProfileBaseResponse?
     suspend fun fetchOrdersList(): OrdersBaseResponse?
     suspend fun fetchRestaurantList(): List<HomeRestaurantRemoteResponse>?
+    suspend fun editProfile(name: String? = null, avatar: String? = null): EditProfileResponse?
 
     interface Local {
         fun isUserLoggedIn(): Boolean
@@ -29,7 +30,6 @@ interface MainRepository {
         suspend fun clearPrefs()
         suspend fun fetchAddressList(): List<AddressResponse>?
         suspend fun fetchRestaurantList(): List<HomeRestaurantRemoteResponse>?
-
     }
 
     interface Remote {
@@ -42,5 +42,7 @@ interface MainRepository {
 
         suspend fun fetchProfileResponse(authorizationToken: String): ProfileBaseResponse?
         suspend fun fetchOrdersList(token: String): OrdersBaseResponse?
+        suspend fun editProfile(token: String,name: String? = null, avatar: String? = null): EditProfileResponse?
+
     }
 }

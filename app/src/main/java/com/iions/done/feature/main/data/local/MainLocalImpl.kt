@@ -47,4 +47,5 @@ class MainLocalImpl @Inject constructor(
     override suspend fun fetchRestaurantList(): List<HomeRestaurantRemoteResponse>? {
         return databaseManager.getRestaurantDao().getRestaurantResponse()
     }
+
 }

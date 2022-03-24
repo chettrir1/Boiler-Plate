@@ -29,10 +29,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.includeProfiles.tvEdit.setOnClickListener {
-            EditProfileActivity.start(requireActivity())
-        }
     }
 
     override fun onResume() {
@@ -139,5 +135,14 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             it.user?.email ?: "unknown@gmail.com"
         binding.includeProfileDetails.tvPhone.text =
             it.user?.phoneNumber ?: "98********"
+
+        binding.includeProfiles.tvEdit.setOnClickListener { _ ->
+            EditProfileActivity.start(
+                requireActivity(),
+                it.user?.name ?: "Unknown",
+                it.user?.email ?: "unknown@gmail.com",
+                it.user?.phoneNumber ?: "98********"
+            )
+        }
     }
 }

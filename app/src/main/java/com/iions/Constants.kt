@@ -9,6 +9,9 @@ object Constants {
     const val GENERIC_ID = "id"
     const val GENERIC_TITLE = "title"
     const val TYPE_LOGOUT = "logout"
+    const val TYPE_NAME = "name"
+    const val TYPE_PHONE = "phone"
+    const val TYPE_EMAIL = "email"
 
     /*preferences*/
     const val PREF_USER_ID = "userId"

@@ -90,4 +90,10 @@ class MainRepositoryImpl @Inject constructor(
             localRepository.fetchRestaurantList()
         }
     }
+
+    override suspend fun editProfile(name: String?, avatar: String?): EditProfileResponse? {
+        return withContext(schedulersFactory.io()) {
+            remoteRepository.editProfile(localRepository.getAuthorizationToken(), name, avatar)
+        }
+    }
 }

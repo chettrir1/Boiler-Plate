@@ -96,4 +96,11 @@ interface ApiService {
         @Body requestParams: MutableMap<String, Any>
     ): BaseResponse<RestaurantDetailRemoteBaseResponse>
 
+    @Headers("Accept: application/json")
+    @POST("me")
+    suspend fun editProfile(
+        @Header("Authorization") token: String,
+        @Body requestParams: MutableMap<String, Any>
+    ): BaseResponse<EditProfileResponse>
+
 }
