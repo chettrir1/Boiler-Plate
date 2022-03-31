@@ -8,6 +8,7 @@ object Constants {
     const val DB_NAME = "app.db"
     const val GENERIC_ID = "id"
     const val GENERIC_TITLE = "title"
+    const val GENERIC_IMAGE = "image"
     const val TYPE_LOGOUT = "logout"
     const val TYPE_NAME = "name"
     const val TYPE_PHONE = "phone"

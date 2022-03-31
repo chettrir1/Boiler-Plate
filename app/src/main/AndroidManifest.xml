@@ -24,6 +24,9 @@
         tools:ignore="DataExtractionRules"
         tools:replace="android:allowBackup">
         <activity
+            android:name=".feature.main.screens.camera.upload.UploadActivity"
+            android:exported="false" />
+        <activity
             android:name=".feature.restaurants.screen.detail.RestaurantDetailActivity"
             android:exported="false"
             android:screenOrientation="@integer/screen_orientation_portrait"

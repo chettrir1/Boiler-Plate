@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".feature.groceries.screen.detail.GroceryDetailActivity">
+        tools:context=".feature.main.screens.camera.upload.UploadActivity">
 
         <include
             android:id="@+id/include_toolbar"
@@ -47,61 +47,42 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <com.denzcoskun.imageslider.ImageSlider
-                        android:id="@+id/slide_view"
-                        app:iss_error_image="@drawable/logo"
-                        app:iss_indicator_align="end"
-                        app:iss_placeholder="@drawable/logo"
-                        app:iss_selected_dot="@color/red_F93838"
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_upload"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        app:srcCompat="@drawable/logo" />
                 </androidx.cardview.widget.CardView>
 
-                <include
-                    android:id="@+id/include_price_view"
-                    layout="@layout/snippet_grocery_detail"
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_upload"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_16"
-                    android:layout_marginBottom="@dimen/spacing_64"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginTop="@dimen/spacing_64"
+                    android:background="@drawable/bg_button_circular_red"
+                    android:text="@string/upload"
+                    app:layout_constraintEnd_toEndOf="@id/card_view"
+                    app:layout_constraintStart_toStartOf="@+id/card_view"
+                    app:layout_constraintTop_toBottomOf="@+id/card_view" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_retake"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_32"
+                    android:layout_marginTop="@dimen/spacing_8"
+                    android:layout_marginEnd="@dimen/spacing_32"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:padding="@dimen/spacing_8"
+                    android:text="@string/retake"
+                    android:textColor="@color/red_F93838"
+                    android:textSize="@dimen/text_size_14"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/card_view"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintTop_toBottomOf="@id/btn_upload" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
-
-        <androidx.core.widget.ContentLoadingProgressBar
-            android:id="@+id/progress_bar"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:indeterminate="true"
-            android:indeterminateBehavior="cycle"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@id/include_add_to_cart"
-            app:layout_constraintEnd_toEndOf="@id/include_add_to_cart"
-            app:layout_constraintStart_toStartOf="@id/include_add_to_cart" />
-
-        <include
-            android:id="@+id/include_add_to_cart"
-            layout="@layout/snippet_add_to_cart"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <include
-            android:id="@+id/loadingLayout"
-            layout="@layout/layout_loading"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="gone" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -10,11 +10,8 @@ import com.iions.done.databinding.FragmentCartBinding
 import com.iions.done.feature.auth.screens.login.smslogin.SmsLoginActivity
 import com.iions.done.feature.groceries.screen.GroceryActivity
 import com.iions.done.feature.summary.screens.PaymentOptionActivity
-import com.iions.done.utils.Commons
+import com.iions.done.utils.*
 import com.iions.done.utils.archcomponents.Status
-import com.iions.done.utils.enablePianoEffect
-import com.iions.done.utils.gone
-import com.iions.done.utils.showToast
 import com.valdesekamdem.library.mdtoast.MDToast
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -138,8 +135,12 @@ class CartFragment : BaseFragment<FragmentCartBinding>() {
         viewModel.removeCartResponse.observe(this) { response ->
             when (response.status) {
                 Status.LOADING -> {
+                    binding.progressBar.show()
+                    binding.progressBar.visible()
                 }
                 Status.COMPLETE -> {
+                    binding.progressBar.hide()
+                    binding.progressBar.gone()
                     showToast(
                         getString(R.string.item_removed_from_cart),
                         MDToast.TYPE_SUCCESS
@@ -147,6 +148,8 @@ class CartFragment : BaseFragment<FragmentCartBinding>() {
                     viewModel.fetchCartList()
                 }
                 Status.ERROR -> {
+                    binding.progressBar.hide()
+                    binding.progressBar.gone()
                     showToast(
                         response.error?.message,
                         MDToast.TYPE_ERROR

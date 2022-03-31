@@ -16,6 +16,7 @@ import com.iions.done.feature.restaurants.screen.RestaurantActivity
 import com.iions.done.feature.restaurants.screen.detail.RestaurantDetailActivity
 import com.iions.done.feature.search.screens.SearchActivity
 import com.iions.done.utils.archcomponents.Status
+import com.iions.done.utils.enablePianoEffect
 import com.smarteist.autoimageslider.SliderView
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -38,6 +39,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         viewModel.fetchBannerList()
         viewModel.fetchGroceryCategoryList()
         viewModel.fetchRestaurantList()
+
+        binding.includeRestaurant.tvSeeAll.enablePianoEffect().setOnClickListener {
+                RestaurantActivity.start(requireActivity())
+        }
+
+        binding.includeGrocery.tvSeeAll.enablePianoEffect().setOnClickListener {
+            GroceryActivity.start(requireActivity())
+        }
+
         binding.tvSearch.setOnClickListener {
             SearchActivity.start(requireActivity())
         }

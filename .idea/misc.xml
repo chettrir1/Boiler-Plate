@@ -104,12 +104,13 @@
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.19972826086956522" />
         <entry key="app/src/main/res/layout/activity_sms_login.xml" value="0.20774078369140625" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.14361702127659576" />
+        <entry key="app/src/main/res/layout/activity_upload.xml" value="0.26096491228070173" />
         <entry key="app/src/main/res/layout/activity_verify_pin.xml" value="0.375" />
         <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.13179347826086957" />
         <entry key="app/src/main/res/layout/fragment_address_search.xml" value="0.12638549804687502" />
         <entry key="app/src/main/res/layout/fragment_camera.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_favourite.xml" value="0.14361702127659576" />
         <entry key="app/src/main/res/layout/fragment_history.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2628091872791519" />
@@ -137,18 +138,19 @@
         <entry key="app/src/main/res/layout/progress_dialog.xml" value="0.26403985507246375" />
         <entry key="app/src/main/res/layout/slider_layout.xml" value="0.19067028985507245" />
         <entry key="app/src/main/res/layout/snippet_add_to_cart.xml" value="0.2543822146216332" />
-        <entry key="app/src/main/res/layout/snippet_confirm_payment.xml" value="0.2543822146216332" />
+        <entry key="app/src/main/res/layout/snippet_confirm_payment.xml" value="0.375" />
         <entry key="app/src/main/res/layout/snippet_filter.xml" value="0.375" />
         <entry key="app/src/main/res/layout/snippet_grocery_detail.xml" value="0.2474700927734375" />
         <entry key="app/src/main/res/layout/snippet_home_category.xml" value="0.33229166666666665" />
-        <entry key="app/src/main/res/layout/snippet_home_grocery.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/snippet_home_grocery.xml" value="0.25" />
         <entry key="app/src/main/res/layout/snippet_home_nav_header.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/snippet_home_restaurant.xml" value="0.11842105263157894" />
+        <entry key="app/src/main/res/layout/snippet_home_restaurant.xml" value="0.375" />
         <entry key="app/src/main/res/layout/snippet_home_slider.xml" value="0.19067028985507245" />
         <entry key="app/src/main/res/layout/snippet_payment_option.xml" value="0.2543822146216332" />
         <entry key="app/src/main/res/layout/snippet_proceed_to_check_out.xml" value="0.2543822146216332" />
+        <entry key="app/src/main/res/layout/snippet_proceed_to_payment.xml" value="0.26096491228070173" />
         <entry key="app/src/main/res/layout/snippet_profile.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/snippet_profile_details.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/snippet_profile_details.xml" value="0.11" />
         <entry key="app/src/main/res/layout/snippet_restaurant_add_to_cart.xml" value="0.375" />
         <entry key="app/src/main/res/layout/snippet_restaurant_detail.xml" value="0.375" />
         <entry key="app/src/main/res/layout/snippet_resturant_nearby.xml" value="0.16530797101449277" />

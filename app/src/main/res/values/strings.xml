@@ -112,4 +112,6 @@
     <string name="menu_items">Menu Items</string>
     <string name="capture">Capture</string>
     <string name="profile_successfully_updated">Profile Successfully Updated!</string>
+    <string name="retake">Retake</string>
+    <string name="upload">Upload</string>
 </resources>

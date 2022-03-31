@@ -14,10 +14,8 @@ import com.iions.done.databinding.ActivityGroceryDetailBinding
 import com.iions.done.feature.auth.screens.login.smslogin.SmsLoginActivity
 import com.iions.done.feature.groceries.data.model.GroceryDetailRemoteBaseResponse
 import com.iions.done.feature.summary.screens.PaymentOptionActivity
-import com.iions.done.utils.ImageGetter
+import com.iions.done.utils.*
 import com.iions.done.utils.archcomponents.Status
-import com.iions.done.utils.enablePianoEffect
-import com.iions.done.utils.showToast
 import com.valdesekamdem.library.mdtoast.MDToast
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,6 +24,14 @@ class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
     private val viewModel: GroceryDetailViewModel by viewModels()
     private var quantity = 1
     private var isOrderNow = false
+
+    private val id: Int? by lazy {
+        intent?.getIntExtra(Constants.GENERIC_ID, -1) ?: -1
+    }
+
+    private val title: String? by lazy {
+        intent?.getStringExtra(Constants.GENERIC_TITLE) ?: ""
+    }
 
     override fun layout() = R.layout.activity_grocery_detail
 
@@ -41,7 +47,7 @@ class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.includeToolbar.tvTitle.text = getString(R.string.groceries)
-        viewModel.getGroceryDetail(intent.getIntExtra(Constants.GENERIC_ID, 0))
+        id?.let { viewModel.getGroceryDetail(it) }
         quantity = binding.includeAddToCart.tvQuantity.text.toString().toInt()
 
         binding.includeToolbar.ivBack.setOnClickListener {
@@ -80,7 +86,7 @@ class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
                         R.drawable.vc_grocery,
                         actionLabel = getString(R.string.retry)
                     ) {
-                        viewModel.getGroceryDetail(intent.getIntExtra(Constants.GENERIC_ID, 0))
+                        id?.let { it1 -> viewModel.getGroceryDetail(it1) }
                     }
                 }
             }
@@ -91,9 +97,13 @@ class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
         viewModel.addToCartResponse.observe(this) { response ->
             when (response.status) {
                 Status.LOADING -> {
+                    binding.progressBar.show()
+                    binding.progressBar.visible()
                 }
                 Status.COMPLETE -> {
                     response.data?.let {
+                        binding.progressBar.hide()
+                        binding.progressBar.gone()
                         if (!isOrderNow) {
                             showToast(
                                 getString(R.string.item_added_to_cart),
@@ -105,6 +115,8 @@ class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
                     }
                 }
                 Status.ERROR -> {
+                    binding.progressBar.hide()
+                    binding.progressBar.gone()
                     showToast(
                         response.error?.message,
                         MDToast.TYPE_ERROR

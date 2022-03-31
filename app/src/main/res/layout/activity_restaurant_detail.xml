@@ -41,10 +41,10 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="@dimen/spacing_16"
+                    android:layout_marginTop="@dimen/spacing_16"
                     android:layout_marginEnd="@dimen/spacing_16"
                     app:cardBackgroundColor="@color/white_FFFFFF"
                     app:cardCornerRadius="@dimen/spacing_8"
-                    android:layout_marginTop="@dimen/spacing_16"
                     app:cardElevation="0dp"
                     app:layout_constraintDimensionRatio="3:2"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -54,8 +54,8 @@
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/slide_view"
                         android:layout_width="match_parent"
-                        android:scaleType="fitXY"
                         android:layout_height="match_parent"
+                        android:scaleType="fitXY"
                         app:srcCompat="@drawable/logo" />
                 </androidx.cardview.widget.CardView>
 
@@ -76,6 +76,18 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/progress_bar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateBehavior="cycle"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/include_add_to_cart"
+            app:layout_constraintEnd_toEndOf="@id/include_add_to_cart"
+            app:layout_constraintStart_toStartOf="@id/include_add_to_cart" />
 
         <include
             android:id="@+id/include_add_to_cart"

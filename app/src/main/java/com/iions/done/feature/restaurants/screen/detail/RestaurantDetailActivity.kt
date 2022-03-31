@@ -29,6 +29,10 @@ class RestaurantDetailActivity : BaseActivity<ActivityRestaurantDetailBinding>()
     private var quantity = 1
     private var isOrderNow = false
 
+    private val id: Int? by lazy {
+        intent?.getIntExtra(Constants.GENERIC_ID, -1) ?: -1
+    }
+
     override fun layout() = R.layout.activity_restaurant_detail
 
     companion object {
@@ -41,7 +45,7 @@ class RestaurantDetailActivity : BaseActivity<ActivityRestaurantDetailBinding>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.getRestaurant(intent.getIntExtra(Constants.GENERIC_ID, 0))
+        id?.let { viewModel.getRestaurant(it) }
         binding.includeToolbar.tvTitle.text = getString(R.string.restaurants)
         binding.includeToolbar.ivBack.setOnClickListener {
             onBackPressed()
@@ -76,7 +80,7 @@ class RestaurantDetailActivity : BaseActivity<ActivityRestaurantDetailBinding>()
                         R.drawable.vc_restaurant,
                         actionLabel = getString(R.string.retry)
                     ) {
-                        viewModel.getRestaurant(intent.getIntExtra(Constants.GENERIC_ID, 0))
+                        id?.let { it1 -> viewModel.getRestaurant(it1) }
                     }
                 }
             }
@@ -87,9 +91,13 @@ class RestaurantDetailActivity : BaseActivity<ActivityRestaurantDetailBinding>()
         viewModel.addToCartResponse.observe(this) { response ->
             when (response.status) {
                 Status.LOADING -> {
+                    binding.progressBar.show()
+                    binding.progressBar.visible()
                 }
                 Status.COMPLETE -> {
                     response.data?.let {
+                        binding.progressBar.hide()
+                        binding.progressBar.gone()
                         if (!isOrderNow) {
                             showToast(
                                 getString(R.string.item_added_to_cart),
@@ -101,6 +109,8 @@ class RestaurantDetailActivity : BaseActivity<ActivityRestaurantDetailBinding>()
                     }
                 }
                 Status.ERROR -> {
+                    binding.progressBar.hide()
+                    binding.progressBar.gone()
                     showToast(
                         response.error?.message,
                         MDToast.TYPE_ERROR
