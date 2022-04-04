@@ -41,6 +41,7 @@
         <entry key="app/src/main/res/drawable/ic_arrow_down.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/ic_arrow_left.xml" value="0.31145833333333334" />
         <entry key="app/src/main/res/drawable/ic_auth_arrow.xml" value="0.1815" />
+        <entry key="app/src/main/res/drawable/ic_back.xml" value="0.1445" />
         <entry key="app/src/main/res/drawable/ic_chevron_left_compat.xml" value="0.2671875" />
         <entry key="app/src/main/res/drawable/ic_close.xml" value="0.31145833333333334" />
         <entry key="app/src/main/res/drawable/ic_cross_circle_compat.xml" value="0.2671875" />
@@ -99,7 +100,7 @@
         <entry key="app/src/main/res/layout/activity_request_pin.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_reset_pin.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_restaurant.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_restaurant_detail.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_restaurant_detail.xml" value="0.11" />
         <entry key="app/src/main/res/layout/activity_resturant.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.19972826086956522" />
         <entry key="app/src/main/res/layout/activity_sms_login.xml" value="0.20774078369140625" />

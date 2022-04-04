@@ -99,7 +99,7 @@ class ChooseAddressActivity : BaseActivity<ActivityChooseAddressBinding>() {
                 }
             } else if (districtId > 0 && streetId > 0 && localAddress.isNotEmpty()) {
                 viewModel.createOrder("cod", districtId, streetId, localAddress)
-            }else{
+            } else {
                 viewModel.createOrder(cod = "cod", addressId = addressId)
             }
         }
@@ -130,6 +130,9 @@ class ChooseAddressActivity : BaseActivity<ActivityChooseAddressBinding>() {
                                 AddressListAdapter(it.toMutableList()) {
                                     addressId = it.addressId ?: -1
                                 }
+                            addressId = it.first().addressId ?: -1
+                            streetId = it.first().streetId ?: -1
+                            savedLocalAddress = it.first().localAddress ?: ""
                         } else {
                             isAddressAvailable = false
                             binding.groupCustomAddress.visible()
