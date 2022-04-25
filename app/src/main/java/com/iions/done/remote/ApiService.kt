@@ -1,5 +1,6 @@
 package com.iions.done.remote
 
+import com.iions.done.feature.appointment.screens.AppointmentRemoteBaseResponse
 import com.iions.done.feature.auth.data.model.LoginResponse
 import com.iions.done.feature.auth.data.model.LogoutResponse
 import com.iions.done.feature.auth.data.model.VerifyPinResponse
@@ -102,5 +103,9 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Body requestParams: MutableMap<String, Any>
     ): BaseResponse<EditProfileResponse>
+
+    @Headers("Accept: application/json")
+    @GET("appointment/list")
+    fun getAppointment(@Query("page") page: Int): BaseResponse<AppointmentRemoteBaseResponse>
 
 }

@@ -41,7 +41,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         viewModel.fetchRestaurantList()
 
         binding.includeRestaurant.tvSeeAll.enablePianoEffect().setOnClickListener {
-                RestaurantActivity.start(requireActivity())
+            RestaurantActivity.start(requireActivity())
         }
 
         binding.includeGrocery.tvSeeAll.enablePianoEffect().setOnClickListener {
@@ -76,7 +76,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                                     RestaurantActivity.start(requireActivity())
                                 } else if (it.name == "Grocery") {
                                     GroceryActivity.start(requireActivity())
-                                }
+                                } else if (it.name == "Appointment"
+                                    AppointmentActivity.start(requireActivity())
+                                )
                             }
                         binding.includeCategory.recyclerView.hasFixedSize()
                         ViewCompat.setNestedScrollingEnabled(
