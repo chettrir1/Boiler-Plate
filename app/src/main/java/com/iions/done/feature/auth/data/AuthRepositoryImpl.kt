@@ -53,9 +53,9 @@ class AuthRepositoryImpl @Inject constructor(
         return localRepository.getLoggedInUserId()
     }
 
-    override suspend fun verifyPinRequest(pin: String, phone: String): VerifyPinResponse? {
+    override suspend fun verifyPinRequest(pin: String, phone: String, fcmToken: String): VerifyPinResponse? {
         return withContext(schedulersFactory.io()) {
-            val remoteResponse = remoteRepository.verifyPinRequest(pin, phone)
+            val remoteResponse = remoteRepository.verifyPinRequest(pin, phone, fcmToken)
             if (remoteResponse != null) {
                 localRepository.saveUser(remoteResponse)
             }

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.iions.done.R
 import com.iions.done.base.BaseFragment
 import com.iions.done.databinding.FragmentHomeBinding
+import com.iions.done.feature.appointment.screens.AppointmentActivity
 import com.iions.done.feature.groceries.screen.GroceryActivity
 import com.iions.done.feature.groceries.screen.detail.GroceryDetailActivity
 import com.iions.done.feature.main.data.model.BannerResponse
@@ -35,10 +36,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.fetchModuleList()
-        viewModel.fetchBannerList()
-        viewModel.fetchGroceryCategoryList()
-        viewModel.fetchRestaurantList()
+        viewModel.getHomeResponse()
+
+        binding.swipe.setOnRefreshListener {
+            viewModel.getHomeResponse()
+        }
 
         binding.includeRestaurant.tvSeeAll.enablePianoEffect().setOnClickListener {
             RestaurantActivity.start(requireActivity())
@@ -57,34 +59,111 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         observeCategoryResponse()
         observeBannerResponse()
         observeGroceryCategoryResponse()
-        observeGroceryResponse()
         observeRestaurantResponse()
+        observeHomeResponse()
     }
 
     private fun observeCategoryResponse() {
-        viewModel.categoryResponse.observe(this) { response ->
+        viewModel.fetchModuleList().observe(this) { response ->
+            response?.let {
+                binding.includeCategory.recyclerView.layoutManager = setUpLayoutManager()
+                binding.includeCategory.recyclerView.adapter =
+                    ModuleListAdapter(it.toMutableList()) {
+                        when (it.name) {
+                            "Restaurant" -> {
+                                RestaurantActivity.start(requireActivity())
+                            }
+                            "Grocery" -> {
+                                GroceryActivity.start(requireActivity())
+                            }
+                            "Appointment" -> {
+                                AppointmentActivity.start(requireActivity())
+                            }
+                        }
+                    }
+                binding.includeCategory.recyclerView.hasFixedSize()
+                ViewCompat.setNestedScrollingEnabled(
+                    binding.includeCategory.recyclerView,
+                    false
+                )
+            }
+        }
+    }
+
+    private fun observeGroceryResponse(categoryId: Int) {
+        viewModel.fetchGroceryList(categoryId).observe(this) { response ->
+            response?.let {
+                binding.includeGrocery.rvGrocery.layoutManager = setUpLayoutManager()
+                binding.includeGrocery.rvGrocery.adapter =
+                    HomeGroceryListAdapter(it.toMutableList()) { response ->
+                        GroceryDetailActivity.start(
+                            requireActivity(),
+                            response.id,
+                            response.name
+                        )
+                    }
+            }
+            binding.includeGrocery.rvGrocery.hasFixedSize()
+            ViewCompat.setNestedScrollingEnabled(
+                binding.includeGrocery.rvGrocery,
+                false
+            )
+        }
+    }
+
+    private fun observeGroceryCategoryResponse() {
+        viewModel.fetchGroceryCategoryList().observe(this) { response ->
+            response?.let {
+                binding.includeGrocery.rvCategory.layoutManager = setUpLayoutManager()
+                binding.includeGrocery.rvCategory.adapter =
+                    HomeGroceryCategoryListAdapter(it.toMutableList()) {
+                        observeGroceryResponse(it.id!!)
+                    }
+                observeGroceryResponse(it.first().id!!)
+            }
+            binding.includeGrocery.rvCategory.hasFixedSize()
+            ViewCompat.setNestedScrollingEnabled(
+                binding.includeGrocery.rvCategory,
+                false
+            )
+        }
+    }
+
+    private fun observeBannerResponse() {
+        viewModel.fetchBannerList().observe(this) { response ->
+            response?.let {
+                setUpBanner(it)
+            }
+        }
+    }
+
+    private fun observeRestaurantResponse() {
+        viewModel.fetchRestaurantList().observe(this) { response ->
+            response?.let {
+                binding.includeRestaurant.rvRestaurant.layoutManager = setUpLayoutManager()
+                binding.includeRestaurant.rvRestaurant.adapter =
+                    HomeRestaurantListAdapter(it.toMutableList()) {
+                        RestaurantDetailActivity.start(requireActivity(), it.id!!)
+                    }
+            }
+            binding.includeRestaurant.rvRestaurant.hasFixedSize()
+            ViewCompat.setNestedScrollingEnabled(
+                binding.includeRestaurant.rvRestaurant,
+                false
+            )
+        }
+    }
+
+    private fun observeHomeResponse() {
+        viewModel.homeResponse.observe(this) { response ->
             when (response.status) {
                 Status.LOADING -> {
                     super.showLoading(binding.loadingLayout, getString(R.string.please_wait))
                 }
                 Status.COMPLETE -> {
                     response.data?.let {
-                        binding.includeCategory.recyclerView.layoutManager = setUpLayoutManager()
-                        binding.includeCategory.recyclerView.adapter =
-                            ModuleListAdapter(it.toMutableList()) {
-                                if (it.name == "Restaurant") {
-                                    RestaurantActivity.start(requireActivity())
-                                } else if (it.name == "Grocery") {
-                                    GroceryActivity.start(requireActivity())
-                                } else if (it.name == "Appointment"
-                                    AppointmentActivity.start(requireActivity())
-                                )
-                            }
-                        binding.includeCategory.recyclerView.hasFixedSize()
-                        ViewCompat.setNestedScrollingEnabled(
-                            binding.includeCategory.recyclerView,
-                            false
-                        )
+                        super.showData(binding.loadingLayout)
+                        binding.swipe.isRefreshing=false
                     }
                 }
                 Status.ERROR -> {
@@ -93,107 +172,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                         response.error?.message.toString(),
                         R.drawable.ic_error_home
                     )
-                }
-            }
-        }
-    }
-
-    private fun observeGroceryResponse() {
-        viewModel.groceryResponse.observe(this) { response ->
-            when (response.status) {
-                Status.LOADING -> {
-                }
-                Status.COMPLETE -> {
-                    response.data?.let {
-                        binding.includeGrocery.rvGrocery.layoutManager = setUpLayoutManager()
-                        binding.includeGrocery.rvGrocery.adapter =
-                            HomeGroceryListAdapter(it.toMutableList()) { response ->
-                                GroceryDetailActivity.start(
-                                    requireActivity(),
-                                    response.id,
-                                    response.name
-                                )
-                            }
-                    }
-                    binding.includeGrocery.rvGrocery.hasFixedSize()
-                    ViewCompat.setNestedScrollingEnabled(binding.includeGrocery.rvGrocery, false)
-                }
-                Status.ERROR -> {
-                    super.showErrorWithImage(
-                        binding.loadingLayout,
-                        response.error?.message.toString(),
-                        R.drawable.ic_error_home
-                    )
-                }
-            }
-        }
-    }
-
-    private fun observeGroceryCategoryResponse() {
-        viewModel.groceryCategoryResponse.observe(this) { response ->
-            when (response.status) {
-                Status.LOADING -> {
-                }
-                Status.COMPLETE -> {
-                    response.data?.let {
-                        binding.includeGrocery.rvCategory.layoutManager = setUpLayoutManager()
-                        binding.includeGrocery.rvCategory.adapter =
-                            HomeGroceryCategoryListAdapter(it.toMutableList()) {
-                                viewModel.fetchGroceryList(it.id!!)
-                            }
-                        viewModel.fetchGroceryList(it.first().id!!)
-                    }
-                    binding.includeGrocery.rvCategory.hasFixedSize()
-                    ViewCompat.setNestedScrollingEnabled(binding.includeGrocery.rvCategory, false)
-                }
-                Status.ERROR -> {
-                    super.showErrorWithImage(
-                        binding.loadingLayout,
-                        response.error?.message.toString(),
-                        R.drawable.ic_error_home
-                    )
-                }
-            }
-        }
-    }
-
-    private fun observeBannerResponse() {
-        viewModel.bannerResponse.observe(this) { response ->
-            when (response.status) {
-                Status.LOADING -> {
-                }
-                Status.COMPLETE -> {
-                    response.data?.let {
-                        setUpBanner(it)
-                    }
-                }
-                Status.ERROR -> {
-                }
-            }
-        }
-    }
-
-    private fun observeRestaurantResponse() {
-        viewModel.restaurantResponse.observe(this) { response ->
-            when (response.status) {
-                Status.LOADING -> {
-                }
-                Status.COMPLETE -> {
-                    response.data?.let {
-                        binding.includeRestaurant.rvRestaurant.layoutManager = setUpLayoutManager()
-                        binding.includeRestaurant.rvRestaurant.adapter =
-                            HomeRestaurantListAdapter(it.toMutableList()) {
-                                RestaurantDetailActivity.start(requireActivity(), it.id!!)
-                            }
-                    }
-                    binding.includeRestaurant.rvRestaurant.hasFixedSize()
-                    ViewCompat.setNestedScrollingEnabled(
-                        binding.includeRestaurant.rvRestaurant,
-                        false
-                    )
-                    super.showData(binding.loadingLayout)
-                }
-                Status.ERROR -> {
                 }
             }
         }

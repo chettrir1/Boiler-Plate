@@ -1,15 +1,16 @@
 package com.iions.done.feature.main.data
 
+import androidx.lifecycle.LiveData
 import com.iions.done.feature.auth.data.model.AddressResponse
 import com.iions.done.feature.auth.data.model.LogoutResponse
 import com.iions.done.feature.main.data.model.*
 
 interface MainRepository {
     fun isUserLoggedIn(): Boolean
-    suspend fun fetchModuleList(): List<ModuleResponse>?
-    suspend fun fetchBannerList(): List<BannerResponse>?
-    suspend fun fetchGroceryCategoryList(): List<HomeGroceryCategoryResponse>?
-    suspend fun fetchGroceryList(categoryId: Int): List<HomeGroceryResponse>?
+    fun fetchModuleList(): LiveData<List<ModuleResponse>>
+    fun fetchBannerList(): LiveData<List<BannerResponse>>
+    fun fetchGroceryCategoryList(): LiveData<List<HomeGroceryCategoryResponse>>
+    fun fetchGroceryList(categoryId: Int): LiveData<List<HomeGroceryResponse>>
     fun getAuthorizationToken(): String
     suspend fun requestLogout(token: String): LogoutResponse?
     suspend fun fetchCartList(token: String): CartBaseResponse?
@@ -17,19 +18,21 @@ interface MainRepository {
     suspend fun removeCartList(authorizationToken: String, cartId: Int): RemoveCartResponse?
     suspend fun fetchProfileResponse(): ProfileBaseResponse?
     suspend fun fetchOrdersList(): OrdersBaseResponse?
-    suspend fun fetchRestaurantList(): List<HomeRestaurantRemoteResponse>?
+    fun fetchRestaurantList(): LiveData<List<HomeRestaurantRemoteResponse>>
     suspend fun editProfile(name: String? = null, avatar: String? = null): EditProfileResponse?
+    suspend fun fetchHomeResponse(): HomeResponse?
 
     interface Local {
         fun isUserLoggedIn(): Boolean
-        suspend fun fetchModuleList(): List<ModuleResponse>?
-        suspend fun fetchBannerList(): List<BannerResponse>?
-        suspend fun fetchGroceryCategoryList(): List<HomeGroceryCategoryResponse>?
-        suspend fun fetchGroceryList(categoryId: Int): List<HomeGroceryResponse>?
+        fun fetchModuleList(): LiveData<List<ModuleResponse>>
+        fun fetchBannerList(): LiveData<List<BannerResponse>>
+        fun fetchGroceryCategoryList(): LiveData<List<HomeGroceryCategoryResponse>>
+        fun fetchGroceryList(categoryId: Int): LiveData<List<HomeGroceryResponse>>
         fun getAuthorizationToken(): String
         suspend fun clearPrefs()
         suspend fun fetchAddressList(): List<AddressResponse>?
-        suspend fun fetchRestaurantList(): List<HomeRestaurantRemoteResponse>?
+        fun fetchRestaurantList(): LiveData<List<HomeRestaurantRemoteResponse>>
+        suspend fun fetchHomeResponse(response: HomeResponse?)
     }
 
     interface Remote {
@@ -42,7 +45,11 @@ interface MainRepository {
 
         suspend fun fetchProfileResponse(authorizationToken: String): ProfileBaseResponse?
         suspend fun fetchOrdersList(token: String): OrdersBaseResponse?
-        suspend fun editProfile(token: String,name: String? = null, avatar: String? = null): EditProfileResponse?
-
+        suspend fun editProfile(
+            token: String,
+            name: String? = null,
+            avatar: String? = null
+        ): EditProfileResponse?
+        suspend fun fetchHomeResponse(): HomeResponse?
     }
 }

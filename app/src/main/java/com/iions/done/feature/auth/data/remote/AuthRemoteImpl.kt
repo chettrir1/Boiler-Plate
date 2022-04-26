@@ -32,11 +32,16 @@ class AuthRemoteImpl @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    override suspend fun verifyPinRequest(pin: String, phone: String): VerifyPinResponse? {
+    override suspend fun verifyPinRequest(
+        pin: String,
+        phone: String,
+        fcmToken: String
+    ): VerifyPinResponse? {
         val requestParams = mutableMapOf<String, Any>()
         requestParams["phone_number"] = phone
         requestParams["otp"] = pin
         requestParams["device_name"] = android.os.Build.DEVICE
+        requestParams["device"] = fcmToken
         val remoteResponse = apiService.verifyPin(requestParams)
         if (remoteResponse.status == true) {
             throw FailedResponseException(

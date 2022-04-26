@@ -6,6 +6,7 @@ import com.iions.done.R
 import com.iions.done.base.BaseAdapter
 import com.iions.done.base.BaseViewHolder
 import com.iions.done.databinding.ItemAppointmentBinding
+import com.iions.done.feature.appointment.data.model.AppointmentResponse
 
 class AppointmentListAdapter(
     private var dataList: MutableList<AppointmentResponse>,

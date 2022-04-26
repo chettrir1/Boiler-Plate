@@ -3,6 +3,7 @@ package com.iions.done.feature.appointment.screens
 import android.app.Application
 import androidx.lifecycle.*
 import com.iions.done.feature.appointment.data.AppointmentRepository
+import com.iions.done.feature.appointment.data.model.AppointmentRemoteBaseResponse
 import com.iions.done.utils.archcomponents.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.cancel

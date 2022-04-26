@@ -48,7 +48,7 @@ class VerifyPinActivity : BaseActivity<ActivityVerifyPinBinding>() {
                         MDToast.TYPE_ERROR
                     )
                 } else {
-                    viewModel.verifyPinResponse(pin)
+                    viewModel.verifyPinResponse(pin, "")
                 }
             } else
                 ResetPinActivity.start(this)

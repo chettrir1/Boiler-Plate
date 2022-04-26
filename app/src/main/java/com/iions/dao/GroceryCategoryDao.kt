@@ -1,5 +1,6 @@
 package com.iions.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -18,5 +19,5 @@ interface GroceryCategoryDao {
         grocery_category_name as name
         from grocery_category"""
     )
-    fun getGroceryCategoryResponse(): List<HomeGroceryCategoryResponse>?
+    fun getGroceryCategoryResponse(): LiveData<List<HomeGroceryCategoryResponse>>
 }

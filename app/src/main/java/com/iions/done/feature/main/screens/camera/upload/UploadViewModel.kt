@@ -2,7 +2,9 @@ package com.iions.done.feature.main.screens.camera.upload
 
 import android.app.Application
 import androidx.lifecycle.*
+import com.iions.done.feature.auth.data.model.LogoutResponse
 import com.iions.done.feature.main.data.MainRepository
+import com.iions.done.utils.archcomponents.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.cancel
 import javax.inject.Inject
@@ -18,4 +20,6 @@ class UploadViewModel @Inject constructor(
         viewModelScope.cancel()
         super.onCleared()
     }
+
+
 }

@@ -90,4 +90,13 @@ class MainRemoteImpl @Inject constructor(
             return remoteResponse.response
         }
     }
+
+    override suspend fun fetchHomeResponse(): HomeResponse? {
+        val remoteResponse= apiService.getHome()
+        if (remoteResponse.status==true){
+            throw FailedResponseException(remoteResponse.status!!, remoteResponse.message.toString())
+        }else{
+            return remoteResponse.response
+        }
+    }
 }

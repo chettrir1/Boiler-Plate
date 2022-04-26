@@ -2,15 +2,19 @@ package com.iions.done.feature.appointment.screens
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.widget.NestedScrollView
 import com.iions.done.R
 import com.iions.done.base.BaseActivity
 import com.iions.done.databinding.ActivityAppointmentBinding
+import com.iions.done.feature.appointment.data.model.AppointmentResponse
 import com.iions.done.utils.archcomponents.Status
 import com.iions.done.utils.visible
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AppointmentActivity : BaseActivity<ActivityAppointmentBinding>() {
 
     private val dataList: ArrayList<AppointmentResponse> = arrayListOf()
@@ -46,7 +50,7 @@ class AppointmentActivity : BaseActivity<ActivityAppointmentBinding>() {
             })
     }
 
-    override fun layout() = R.layout.activity_grocery
+    override fun layout() = R.layout.activity_appointment
 
     override fun initObservers() {
         observeAppointmentResponse()
@@ -65,6 +69,9 @@ class AppointmentActivity : BaseActivity<ActivityAppointmentBinding>() {
                         it.items?.data?.toList()?.let { it1 -> dataList.addAll(it1) }
 
                         adapter = AppointmentListAdapter(dataList.toMutableList()) { response ->
+                            val dialIntent = Intent(Intent.ACTION_DIAL)
+                            dialIntent.data = Uri.parse("tel:${response.contact}")
+                            startActivity(dialIntent)
                         }
                         binding.rvAppointment.adapter = adapter
                     }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "806412483517",
+    "project_id": "d-one-9da8c",
+    "storage_bucket": "d-one-9da8c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:806412483517:android:23f39fa2dbb953746130d4",
+        "android_client_info": {
+          "package_name": "com.iions.done"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "806412483517-deosgn5usdp99j31v2fbohh9alftl6ik.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnc9KNySaqw5u5HN9gszWcWLGjSuyY_G8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "806412483517-deosgn5usdp99j31v2fbohh9alftl6ik.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

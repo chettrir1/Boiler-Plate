@@ -1,6 +1,6 @@
 package com.iions.done.feature.appointment.data
 
-import com.iions.done.feature.appointment.screens.AppointmentRemoteBaseResponse
+import com.iions.done.feature.appointment.data.model.AppointmentRemoteBaseResponse
 
 interface AppointmentRepository {
     suspend fun getAppointment(

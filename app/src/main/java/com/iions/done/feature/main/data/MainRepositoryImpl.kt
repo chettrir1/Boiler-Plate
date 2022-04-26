@@ -1,5 +1,7 @@
 package com.iions.done.feature.main.data
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.liveData
 import com.iions.done.feature.auth.data.model.AddressResponse
 import com.iions.done.feature.auth.data.model.LogoutResponse
 import com.iions.done.feature.main.data.model.*
@@ -16,27 +18,27 @@ class MainRepositoryImpl @Inject constructor(
         return localRepository.isUserLoggedIn()
     }
 
-    override suspend fun fetchModuleList(): List<ModuleResponse>? {
-        return withContext(schedulersFactory.io()) {
-            localRepository.fetchModuleList()
+    override fun fetchModuleList(): LiveData<List<ModuleResponse>> {
+        return liveData(schedulersFactory.io()) {
+            emitSource(localRepository.fetchModuleList())
         }
     }
 
-    override suspend fun fetchBannerList(): List<BannerResponse>? {
-        return withContext(schedulersFactory.io()) {
-            localRepository.fetchBannerList()
+    override fun fetchBannerList(): LiveData<List<BannerResponse>> {
+        return liveData(schedulersFactory.io()) {
+            emitSource(localRepository.fetchBannerList())
         }
     }
 
-    override suspend fun fetchGroceryCategoryList(): List<HomeGroceryCategoryResponse>? {
-        return withContext(schedulersFactory.io()) {
-            localRepository.fetchGroceryCategoryList()
+    override fun fetchGroceryCategoryList(): LiveData<List<HomeGroceryCategoryResponse>> {
+        return liveData(schedulersFactory.io()) {
+            emitSource(localRepository.fetchGroceryCategoryList())
         }
     }
 
-    override suspend fun fetchGroceryList(categoryId: Int): List<HomeGroceryResponse>? {
-        return withContext(schedulersFactory.io()) {
-            localRepository.fetchGroceryList(categoryId)
+    override fun fetchGroceryList(categoryId: Int): LiveData<List<HomeGroceryResponse>> {
+        return liveData(schedulersFactory.io()) {
+            emitSource(localRepository.fetchGroceryList(categoryId))
         }
     }
 
@@ -85,15 +87,23 @@ class MainRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun fetchRestaurantList(): List<HomeRestaurantRemoteResponse>? {
-        return withContext(schedulersFactory.io()) {
-            localRepository.fetchRestaurantList()
+    override fun fetchRestaurantList(): LiveData<List<HomeRestaurantRemoteResponse>> {
+        return liveData(schedulersFactory.io()) {
+            emitSource(localRepository.fetchRestaurantList())
         }
     }
 
     override suspend fun editProfile(name: String?, avatar: String?): EditProfileResponse? {
         return withContext(schedulersFactory.io()) {
             remoteRepository.editProfile(localRepository.getAuthorizationToken(), name, avatar)
+        }
+    }
+
+    override suspend fun fetchHomeResponse(): HomeResponse? {
+        return withContext(schedulersFactory.io()) {
+            val response = remoteRepository.fetchHomeResponse()
+            localRepository.fetchHomeResponse(response)
+            response
         }
     }
 }

@@ -1,6 +1,6 @@
 package com.iions.done.remote
 
-import com.iions.done.feature.appointment.screens.AppointmentRemoteBaseResponse
+import com.iions.done.feature.appointment.data.model.AppointmentRemoteBaseResponse
 import com.iions.done.feature.auth.data.model.LoginResponse
 import com.iions.done.feature.auth.data.model.LogoutResponse
 import com.iions.done.feature.auth.data.model.VerifyPinResponse
@@ -12,6 +12,7 @@ import com.iions.done.feature.restaurants.data.model.RestaurantDetailRemoteBaseR
 import com.iions.done.feature.restaurants.data.model.RestaurantRemoteBaseResponse
 import com.iions.done.feature.summary.data.model.CreateOrderBaseResponse
 import com.iions.done.remote.helper.BaseResponse
+import okhttp3.MultipartBody
 import retrofit2.http.*
 
 interface ApiService {
@@ -106,6 +107,12 @@ interface ApiService {
 
     @Headers("Accept: application/json")
     @GET("appointment/list")
-    fun getAppointment(@Query("page") page: Int): BaseResponse<AppointmentRemoteBaseResponse>
+    suspend fun getAppointment(@Query("page") page: Int): BaseResponse<AppointmentRemoteBaseResponse>
+
+    @Headers("Accept: application/json")
+    @Multipart
+    @POST("cart/createImageOrder")
+    suspend fun uploadOrder(@Part part: MultipartBody.Part): BaseResponse<LoginResponse>
+
 
 }

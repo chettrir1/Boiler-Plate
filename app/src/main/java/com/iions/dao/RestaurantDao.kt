@@ -1,5 +1,6 @@
 package com.iions.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -23,5 +24,5 @@ interface RestaurantDao {
         restaurant_longitude as longitude
         from restaurant"""
     )
-    suspend fun getRestaurantResponse(): List<HomeRestaurantRemoteResponse>?
+    fun getRestaurantResponse(): LiveData<List<HomeRestaurantRemoteResponse>>
 }

@@ -36,12 +36,12 @@ class VerifyPinViewModel @Inject constructor(
         return repository.getLoginUserId()
     }
 
-    fun verifyPinResponse(pin: String) {
+    fun verifyPinResponse(pin: String, fcmToken: String) {
         viewModelScope.launch {
             verifyPinUseCase.value = Response.loading()
             try {
                 verifyPinUseCase.value = Response.complete(
-                    repository.verifyPinRequest(pin, getLoggedInUserId())
+                    repository.verifyPinRequest(pin, getLoggedInUserId(), fcmToken)
                 )
             } catch (error: java.lang.IllegalStateException) {
                 error.printStackTrace()

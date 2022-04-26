@@ -2,7 +2,7 @@ package com.iions.done.feature.appointment.data.remote
 
 import com.iions.done.exceptions.FailedResponseException
 import com.iions.done.feature.appointment.data.AppointmentRepository
-import com.iions.done.feature.appointment.screens.AppointmentRemoteBaseResponse
+import com.iions.done.feature.appointment.data.model.AppointmentRemoteBaseResponse
 import com.iions.done.remote.ApiService
 import javax.inject.Inject
 

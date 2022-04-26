@@ -1,5 +1,6 @@
 package com.iions.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -17,5 +18,5 @@ interface ModuleDao {
         module_icon as image
         from module"""
     )
-    suspend fun getCategoryResponse(): List<ModuleResponse>
+    fun getCategoryResponse(): LiveData<List<ModuleResponse>>
 }

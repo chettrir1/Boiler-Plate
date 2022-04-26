@@ -1,5 +1,6 @@
 package com.iions.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -24,5 +25,5 @@ interface GroceryDao {
         from grocery
         where grocery_category_id =:categoryId"""
     )
-    suspend fun getGroceryResponse(categoryId: Int): List<HomeGroceryResponse>?
+    fun getGroceryResponse(categoryId: Int): LiveData<List<HomeGroceryResponse>>
 }
