@@ -9,8 +9,6 @@ import com.iions.Constants
 import com.iions.done.R
 import com.iions.done.base.BaseActivity
 import com.iions.done.databinding.ActivityEditProfileBinding
-import com.iions.done.feature.auth.screens.login.smslogin.SmsLoginViewModel
-import com.iions.done.feature.auth.screens.verifypin.VerifyPinActivity
 import com.iions.done.utils.archcomponents.Status
 import com.iions.done.utils.progressdialog.ProgressDialog
 import com.iions.done.utils.showToast
@@ -41,8 +39,8 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>() {
         fun start(activity: Activity, name: String, email: String, phone: String) {
             val intent = Intent(activity, EditProfileActivity::class.java)
             intent.putExtra(Constants.TYPE_NAME, name)
-            intent.putExtra(Constants.TYPE_PHONE, email)
-            intent.putExtra(Constants.TYPE_EMAIL, phone)
+            intent.putExtra(Constants.TYPE_EMAIL, email)
+            intent.putExtra(Constants.TYPE_PHONE, phone)
             activity.startActivity(intent)
         }
     }
@@ -55,6 +53,18 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>() {
         binding.etName.setText(name)
         binding.etPhoneNumber.setText(phone)
         binding.etEmail.setText(email)
+
+        binding.btnEdit.setOnClickListener {
+            val name = binding.etName.text.toString()
+            if (name.isNotEmpty()) {
+                viewModel.editProfileResponse(name)
+            } else {
+                showToast(
+                    getString(R.string.name_field_cannot_be_empty),
+                    MDToast.TYPE_ERROR
+                )
+            }
+        }
     }
 
     override fun initObservers() {

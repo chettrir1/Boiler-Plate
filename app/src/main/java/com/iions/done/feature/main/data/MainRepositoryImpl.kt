@@ -94,7 +94,7 @@ class MainRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun editProfile(name: String?, avatar: String?): EditProfileResponse? {
+    override suspend fun editProfile(name: String?, avatar: File?): EditProfileResponse? {
         return withContext(schedulersFactory.io()) {
             remoteRepository.editProfile(localRepository.getAuthorizationToken(), name, avatar)
         }

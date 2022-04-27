@@ -5,9 +5,11 @@ import com.iions.done.feature.auth.data.model.LogoutResponse
 import com.iions.done.feature.main.data.MainRepository
 import com.iions.done.feature.main.data.model.*
 import com.iions.done.remote.ApiService
+import com.iions.done.remote.helper.BaseResponse
 import com.iions.done.utils.toMultipartBodyPart
 import java.io.File
 import javax.inject.Inject
+
 
 class MainRemoteImpl @Inject constructor(
     private val apiService: ApiService
@@ -81,12 +83,19 @@ class MainRemoteImpl @Inject constructor(
     override suspend fun editProfile(
         token: String,
         name: String?,
-        avatar: String?
+        avatar: File?
     ): EditProfileResponse? {
+        val remoteResponse: BaseResponse<EditProfileResponse>
         val requestParams = mutableMapOf<String, Any>()
-        requestParams["avatar"] = avatar ?: ""
         requestParams["name"] = name ?: ""
-        val remoteResponse = apiService.editProfile(token, requestParams)
+        remoteResponse = if (avatar != null) {
+            apiService.editProfile(
+                token,
+                avatar.toMultipartBodyPart("avatar")
+            )
+        } else {
+            apiService.editProfile(token, requestParams)
+        }
         if (remoteResponse.status == true) {
             throw FailedResponseException(
                 remoteResponse.status!!,

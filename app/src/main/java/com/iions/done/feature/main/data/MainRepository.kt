@@ -20,7 +20,7 @@ interface MainRepository {
     suspend fun fetchProfileResponse(): ProfileBaseResponse?
     suspend fun fetchOrdersList(): OrdersBaseResponse?
     fun fetchRestaurantList(): LiveData<List<HomeRestaurantRemoteResponse>>
-    suspend fun editProfile(name: String? = null, avatar: String? = null): EditProfileResponse?
+    suspend fun editProfile(name: String? = null, avatar: File? = null): EditProfileResponse?
     suspend fun fetchHomeResponse(): HomeResponse?
     suspend fun createOrder(file: File): CreateOrderResponse?
 
@@ -50,7 +50,7 @@ interface MainRepository {
         suspend fun editProfile(
             token: String,
             name: String? = null,
-            avatar: String? = null
+            avatar: File? = null
         ): EditProfileResponse?
 
         suspend fun fetchHomeResponse(): HomeResponse?

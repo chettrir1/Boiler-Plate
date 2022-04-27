@@ -31,7 +31,7 @@ class EditProfileViewModel @Inject constructor(
             editUseCase.value = Response.loading()
             try {
                 editUseCase.value = Response.complete(
-                    repository.editProfile(name)
+                    repository.editProfile(name = name)
                 )
             } catch (error: Exception) {
                 error.printStackTrace()

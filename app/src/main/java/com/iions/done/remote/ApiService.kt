@@ -13,6 +13,7 @@ import com.iions.done.feature.restaurants.data.model.RestaurantRemoteBaseRespons
 import com.iions.done.feature.summary.data.model.CreateOrderBaseResponse
 import com.iions.done.remote.helper.BaseResponse
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.http.*
 
 interface ApiService {
@@ -102,7 +103,15 @@ interface ApiService {
     @POST("me")
     suspend fun editProfile(
         @Header("Authorization") token: String,
-        @Body requestParams: MutableMap<String, Any>
+        @Body requestParams: MutableMap<String, Any>?,
+    ): BaseResponse<EditProfileResponse>
+
+    @Multipart
+    @Headers("Accept: application/json")
+    @POST("me")
+    suspend fun editProfile(
+        @Header("Authorization") token: String,
+        @Part part: MultipartBody.Part? = null
     ): BaseResponse<EditProfileResponse>
 
     @Headers("Accept: application/json")
