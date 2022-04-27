@@ -5,6 +5,8 @@ import com.iions.done.feature.auth.data.model.LogoutResponse
 import com.iions.done.feature.main.data.MainRepository
 import com.iions.done.feature.main.data.model.*
 import com.iions.done.remote.ApiService
+import com.iions.done.utils.toMultipartBodyPart
+import java.io.File
 import javax.inject.Inject
 
 class MainRemoteImpl @Inject constructor(
@@ -76,11 +78,15 @@ class MainRemoteImpl @Inject constructor(
         }
     }
 
-    override suspend fun editProfile(token: String,name: String?, avatar: String?): EditProfileResponse? {
+    override suspend fun editProfile(
+        token: String,
+        name: String?,
+        avatar: String?
+    ): EditProfileResponse? {
         val requestParams = mutableMapOf<String, Any>()
         requestParams["avatar"] = avatar ?: ""
         requestParams["name"] = name ?: ""
-        val remoteResponse = apiService.editProfile(token,requestParams)
+        val remoteResponse = apiService.editProfile(token, requestParams)
         if (remoteResponse.status == true) {
             throw FailedResponseException(
                 remoteResponse.status!!,
@@ -92,10 +98,25 @@ class MainRemoteImpl @Inject constructor(
     }
 
     override suspend fun fetchHomeResponse(): HomeResponse? {
-        val remoteResponse= apiService.getHome()
-        if (remoteResponse.status==true){
-            throw FailedResponseException(remoteResponse.status!!, remoteResponse.message.toString())
-        }else{
+        val remoteResponse = apiService.getHome()
+        if (remoteResponse.status == true) {
+            throw FailedResponseException(
+                remoteResponse.status!!,
+                remoteResponse.message.toString()
+            )
+        } else {
+            return remoteResponse.response
+        }
+    }
+
+    override suspend fun createOrder(token: String, file: File): CreateOrderResponse? {
+        val remoteResponse = apiService.uploadOrder(token, file.toMultipartBodyPart("image"))
+        if (remoteResponse.status == true) {
+            throw FailedResponseException(
+                remoteResponse.status!!,
+                remoteResponse.message.toString()
+            )
+        } else {
             return remoteResponse.response
         }
     }

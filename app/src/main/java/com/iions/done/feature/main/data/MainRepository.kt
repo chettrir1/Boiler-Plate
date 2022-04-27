@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import com.iions.done.feature.auth.data.model.AddressResponse
 import com.iions.done.feature.auth.data.model.LogoutResponse
 import com.iions.done.feature.main.data.model.*
+import java.io.File
 
 interface MainRepository {
     fun isUserLoggedIn(): Boolean
@@ -21,6 +22,7 @@ interface MainRepository {
     fun fetchRestaurantList(): LiveData<List<HomeRestaurantRemoteResponse>>
     suspend fun editProfile(name: String? = null, avatar: String? = null): EditProfileResponse?
     suspend fun fetchHomeResponse(): HomeResponse?
+    suspend fun createOrder(file: File): CreateOrderResponse?
 
     interface Local {
         fun isUserLoggedIn(): Boolean
@@ -50,6 +52,8 @@ interface MainRepository {
             name: String? = null,
             avatar: String? = null
         ): EditProfileResponse?
+
         suspend fun fetchHomeResponse(): HomeResponse?
+        suspend fun createOrder(token: String, file: File): CreateOrderResponse?
     }
 }

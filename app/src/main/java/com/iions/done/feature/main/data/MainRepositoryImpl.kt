@@ -7,6 +7,7 @@ import com.iions.done.feature.auth.data.model.LogoutResponse
 import com.iions.done.feature.main.data.model.*
 import com.iions.done.utils.SchedulersFactory
 import kotlinx.coroutines.withContext
+import java.io.File
 import javax.inject.Inject
 
 class MainRepositoryImpl @Inject constructor(
@@ -104,6 +105,12 @@ class MainRepositoryImpl @Inject constructor(
             val response = remoteRepository.fetchHomeResponse()
             localRepository.fetchHomeResponse(response)
             response
+        }
+    }
+
+    override suspend fun createOrder(file: File): CreateOrderResponse? {
+        return withContext(schedulersFactory.io()) {
+            remoteRepository.createOrder(localRepository.getAuthorizationToken(), file)
         }
     }
 }

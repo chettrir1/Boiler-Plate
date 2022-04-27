@@ -58,7 +58,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/btn_add_to_cart"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginStart="@dimen/spacing_8"
             android:background="@drawable/bg_circular_grey"
             android:gravity="center"
@@ -70,16 +70,16 @@
             android:textColor="@color/white_FFFFFF"
             android:textSize="@dimen/text_size_13"
             app:fontFamily="@font/roboto_medium"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/iv_add"
             app:layout_constraintEnd_toStartOf="@+id/btn_order_now"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/iv_add"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/iv_add" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/btn_order_now"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginStart="@dimen/spacing_8"
             android:background="@drawable/bg_circular_red"
             android:gravity="center"

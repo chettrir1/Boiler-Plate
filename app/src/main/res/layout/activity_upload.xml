@@ -54,16 +54,28 @@
                         app:srcCompat="@drawable/logo" />
                 </androidx.cardview.widget.CardView>
 
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_message"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/spacing_16"
+                    android:text="@string/image_taken_successfully_now_you_are_ready_to_upload_please_press_upload_to_proceed"
+                    android:textColor="@color/black_2e384d"
+                    app:layout_constraintEnd_toEndOf="@id/card_view"
+                    app:layout_constraintStart_toStartOf="@+id/card_view"
+                    app:layout_constraintTop_toBottomOf="@+id/card_view" />
+
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_upload"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_64"
+                    android:layout_marginTop="@dimen/spacing_24"
                     android:background="@drawable/bg_button_circular_red"
                     android:text="@string/upload"
                     app:layout_constraintEnd_toEndOf="@id/card_view"
                     app:layout_constraintStart_toStartOf="@+id/card_view"
-                    app:layout_constraintTop_toBottomOf="@+id/card_view" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_message" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_retake"

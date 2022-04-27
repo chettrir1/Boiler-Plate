@@ -132,6 +132,14 @@
             android:name="firebase_performance_logcat_enabled"
             android:value="true" />
 
+        <service
+            android:name=".utils.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>

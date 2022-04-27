@@ -109,10 +109,12 @@ interface ApiService {
     @GET("appointment/list")
     suspend fun getAppointment(@Query("page") page: Int): BaseResponse<AppointmentRemoteBaseResponse>
 
-    @Headers("Accept: application/json")
     @Multipart
+    @Headers("Accept: application/json")
     @POST("cart/createImageOrder")
-    suspend fun uploadOrder(@Part part: MultipartBody.Part): BaseResponse<LoginResponse>
-
+    suspend fun uploadOrder(
+        @Header("Authorization") token: String,
+        @Part part: MultipartBody.Part? = null
+    ): BaseResponse<CreateOrderResponse>
 
 }

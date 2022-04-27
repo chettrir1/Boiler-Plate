@@ -18,6 +18,8 @@ import com.iions.done.feature.restaurants.screen.detail.RestaurantDetailActivity
 import com.iions.done.feature.search.screens.SearchActivity
 import com.iions.done.utils.archcomponents.Status
 import com.iions.done.utils.enablePianoEffect
+import com.iions.done.utils.gone
+import com.iions.done.utils.visible
 import com.smarteist.autoimageslider.SliderView
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -158,12 +160,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         viewModel.homeResponse.observe(this) { response ->
             when (response.status) {
                 Status.LOADING -> {
+                    binding.constraint.gone()
                     super.showLoading(binding.loadingLayout, getString(R.string.please_wait))
                 }
                 Status.COMPLETE -> {
                     response.data?.let {
+                        binding.constraint.visible()
+                        binding.swipe.isRefreshing = false
                         super.showData(binding.loadingLayout)
-                        binding.swipe.isRefreshing=false
                     }
                 }
                 Status.ERROR -> {

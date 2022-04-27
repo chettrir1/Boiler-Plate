@@ -4,7 +4,10 @@ import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import com.iions.Constants
 import com.iions.done.R
 import com.iions.done.base.BaseActivity
@@ -18,6 +21,8 @@ import com.iions.done.utils.startResendTimer
 import com.iions.done.utils.stopResendTimer
 import com.valdesekamdem.library.mdtoast.MDToast
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.IOException
+
 
 @AndroidEntryPoint
 class VerifyPinActivity : BaseActivity<ActivityVerifyPinBinding>() {
@@ -48,7 +53,7 @@ class VerifyPinActivity : BaseActivity<ActivityVerifyPinBinding>() {
                         MDToast.TYPE_ERROR
                     )
                 } else {
-                    viewModel.verifyPinResponse(pin, "")
+                    viewModel.verifyPinResponse(pin, getFirebaseToken())
                 }
             } else
                 ResetPinActivity.start(this)
@@ -129,4 +134,43 @@ class VerifyPinActivity : BaseActivity<ActivityVerifyPinBinding>() {
             dialog.dismiss()
         }
     }
+
+    private fun getFirebaseToken(): String {
+        var token = ""
+        Thread {
+            try {
+                FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+                    token = task.result
+                }
+//                subscribeToAndroid()
+//                subscribeToAll()
+
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }.start()
+        return token
+    }
+
+//    private fun subscribeToAndroid() {
+//        FirebaseMessaging.getInstance().subscribeToTopic("ANDROID")
+//            .addOnCompleteListener { task ->
+//                if (!task.isSuccessful) {
+//                    Log.d("subscribe", "Not Subscribed")
+//                } else {
+//                    Log.d("subscribe", "Subscribed")
+//                }
+//            }
+//    }
+//
+//    private fun subscribeToAll() {
+//        FirebaseMessaging.getInstance().subscribeToTopic("ALL")
+//            .addOnCompleteListener { task ->
+//                if (!task.isSuccessful) {
+//                    Log.d("subscribe", "Not Subscribed")
+//                } else {
+//                    Log.d("subscribe", "Subscribed")
+//                }
+//            }
+//    }
 }

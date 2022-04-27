@@ -59,8 +59,9 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(), MotionLayout.Trans
                         handler = { index ->
                             when (index) {
                                 0 -> {
-                                    binding.motionLayout.setTransitionListener(this)
+                                    viewModel.getHomeResponse()
                                 }
+                                1 -> finish()
                                 else -> Unit
                             }
                         }
