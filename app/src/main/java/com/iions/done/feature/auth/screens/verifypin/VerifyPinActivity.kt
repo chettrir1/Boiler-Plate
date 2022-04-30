@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import com.iions.Constants
 import com.iions.done.R
@@ -25,7 +26,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class VerifyPinActivity : BaseActivity<ActivityVerifyPinBinding>() {
     private val viewModel: VerifyPinViewModel by viewModels()
 
-    private var token = ""
     private lateinit var dialog: Dialog
 
     companion object {
@@ -42,6 +42,7 @@ class VerifyPinActivity : BaseActivity<ActivityVerifyPinBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         startResendTimer(binding.btnResend)
+
         binding.btnVerify.enablePianoEffect().setOnClickListener {
             if (getBundle()) {
                 val pin = binding.etPin.text.toString()
@@ -51,10 +52,12 @@ class VerifyPinActivity : BaseActivity<ActivityVerifyPinBinding>() {
                         MDToast.TYPE_ERROR
                     )
                 } else {
-                    FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
-                        token = task.result
-                    }
-                    viewModel.verifyPinResponse(pin, token)
+                    FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+                        if (!task.isSuccessful) {
+                            return@OnCompleteListener
+                        }
+                        viewModel.verifyPinResponse(pin, task.result)
+                    })
                 }
             } else
                 ResetPinActivity.start(this)
