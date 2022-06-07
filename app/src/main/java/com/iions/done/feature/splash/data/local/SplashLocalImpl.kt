@@ -13,6 +13,7 @@ class SplashLocalImpl @Inject constructor(
 ) : SplashRepository.Local {
 
     override suspend fun fetchHomeResponse(response: HomeResponse?) {
+        databaseManager.getInstance().clearAllTables()
         saveModules(response?.modules)
         response?.category?.let { saveGroceryCategory(it) }
         saveBanner(response?.banners)

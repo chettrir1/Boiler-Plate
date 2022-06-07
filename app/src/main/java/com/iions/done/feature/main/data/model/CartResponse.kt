@@ -18,18 +18,14 @@ data class CartResponse(
     @SerializedName("price")
     var price: Int?,
     @SerializedName("cartable")
-    var item: CartItemResponse
+    var item: CartItemResponse? = null
 ) : Serializable
 
 data class CartItemResponse(
     @SerializedName("id")
     var id: Int?,
-    @SerializedName("sku")
-    var sku: String?,
     @SerializedName("name")
-    var name: String?,
-    @SerializedName("main_image_thumbnail")
-    var mainImageThumbnail: String?,
+    var name: String? = "",
     @SerializedName("image")
-    var image: String?,
+    var image: String? = "",
 ) : Serializable

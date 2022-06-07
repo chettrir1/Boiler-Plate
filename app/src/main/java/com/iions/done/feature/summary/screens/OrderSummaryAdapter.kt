@@ -39,7 +39,7 @@ class OrderSummaryAdapter(
         @SuppressLint("SetTextI18n")
         override fun bindView(obj: CartResponse) {
             super.bindView(obj)
-            binding.tvName.text = "${obj.item.name} * (${obj.quantity})"
+            binding.tvName.text = "${obj.item?.name} * (${obj.quantity})"
             val total = obj.quantity?.times(obj.price!!)
             if (total != null) {
                 binding.tvPrice.text = "Rs. ${Commons.currencyFormatter(total)}"

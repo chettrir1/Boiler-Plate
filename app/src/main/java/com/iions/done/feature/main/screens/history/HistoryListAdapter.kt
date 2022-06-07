@@ -39,18 +39,22 @@ class HistoryListAdapter(
         @SuppressLint("SetTextI18n")
         override fun bindView(obj: OrdersResponse) {
             super.bindView(obj)
+            obj.cart.let {
             binding.tvDate.text = obj.date ?: ""
-            binding.rvOrderHistory.adapter =
-                obj.cart?.toMutableList()
-                    ?.let { response ->
-                        HistorySubListAdapter(response, obj.id, obj.status) {}
-                    }
-            if (obj.cart?.size!! <= 1) {
-                binding.tvOrderCount.text = "${obj.cart?.size} item Ordered"
-            } else {
-                binding.tvOrderCount.text = "${obj.cart?.size} items Ordered"
+                binding.rvOrderHistory.adapter =
+                    obj.cart?.toMutableList()
+                        ?.let { response ->
+
+                            HistorySubListAdapter(response, obj.id, obj.status) {}
+                        }
+                if (obj.cart?.size!! <= 1) {
+                    binding.tvOrderCount.text = "${obj.cart?.size} item Ordered"
+                } else {
+                    binding.tvOrderCount.text = "${obj.cart?.size} items Ordered"
+                }
+                binding.rvOrderHistory.hasFixedSize()
             }
-            binding.rvOrderHistory.hasFixedSize()
+
         }
     }
 }

@@ -116,18 +116,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private fun observeGroceryCategoryResponse() {
         viewModel.fetchGroceryCategoryList().observe(this) { response ->
             response?.let {
-                binding.includeGrocery.rvCategory.layoutManager = setUpLayoutManager()
-                binding.includeGrocery.rvCategory.adapter =
-                    HomeGroceryCategoryListAdapter(it.toMutableList()) {
-                        observeGroceryResponse(it.id!!)
-                    }
-                observeGroceryResponse(it.first().id!!)
+                if (it.isNotEmpty()) {
+                    binding.includeGrocery.rvCategory.layoutManager = setUpLayoutManager()
+                    binding.includeGrocery.rvCategory.adapter =
+                        HomeGroceryCategoryListAdapter(it.toMutableList()) {
+                            observeGroceryResponse(it.id ?: -1)
+                        }
+                    observeGroceryResponse(it.first().id ?: -1)
+                    binding.includeGrocery.rvCategory.hasFixedSize()
+                    ViewCompat.setNestedScrollingEnabled(
+                        binding.includeGrocery.rvCategory,
+                        false
+                    )
+                }
             }
-            binding.includeGrocery.rvCategory.hasFixedSize()
-            ViewCompat.setNestedScrollingEnabled(
-                binding.includeGrocery.rvCategory,
-                false
-            )
         }
     }
 

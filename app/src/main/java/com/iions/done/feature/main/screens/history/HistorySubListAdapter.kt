@@ -50,10 +50,15 @@ class HistorySubListAdapter(
             binding.tvOrderId.text = "Order ID : #${orderId.toString()}"
             binding.tvStatus.text = "Status : ${getStatus()}"
 
-            Glide.with(binding.root.context)
-                .load("https://d-one.iionstech.com/storage/${obj.item.mainImageThumbnail}")
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(R.drawable.logo).into(binding.ivCart)
+            if (obj.item?.image!=null) {
+                Glide.with(binding.root.context)
+                    .load("https://d-one.iionstech.com/storage/${obj.item?.image?:""}")
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .placeholder(R.drawable.logo).into(binding.ivCart)
+            }
+
+            if (obj.item?.name!=null)
+            binding.tvName.text = obj.item?.name?:""
 
             if (absoluteAdapterPosition == dataList.size - 1) {
                 binding.divider.gone()
@@ -67,9 +72,7 @@ class HistorySubListAdapter(
                 binding.tvStatus.gone()
             }
 
-            binding.tvName.text = obj.item.name.toString()
-
-            val total = obj.quantity?.times(obj.price!!)
+            val total = obj.quantity?.times(obj.price ?: 0)
             if (total != null) {
                 binding.tvPrice.text = "Rs. ${Commons.currencyFormatter(total)}"
             }

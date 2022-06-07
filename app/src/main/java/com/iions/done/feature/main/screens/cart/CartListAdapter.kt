@@ -43,20 +43,14 @@ class CartListAdapter(
         @SuppressLint("SetTextI18n")
         override fun bindView(obj: CartResponse) {
             super.bindView(obj)
-            binding.tvTitle.text = obj.item.name
+            binding.tvTitle.text = obj.item?.name
             binding.tvQuantity.text = obj.quantity.toString()
-            if (!obj.item.mainImageThumbnail.isNullOrEmpty()) {
+            if (!obj.item?.image.isNullOrEmpty()) {
                 Glide.with(binding.root.context)
-                    .load("https://d-one.iionstech.com/storage/${obj.item.mainImageThumbnail}")
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .placeholder(R.drawable.logo).into(binding.ivCart)
-            }else{
-                Glide.with(binding.root.context)
-                    .load("https://d-one.iionstech.com/storage/${obj.item.image}")
+                    .load("https://d-one.iionstech.com/storage/${obj.item?.image}")
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.logo).into(binding.ivCart)
             }
-
 
             val total = obj.quantity?.times(obj.price!!)
             if (total != null) {
