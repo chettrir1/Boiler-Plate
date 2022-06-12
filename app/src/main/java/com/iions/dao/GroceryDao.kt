@@ -21,7 +21,11 @@ interface GroceryDao {
         grocery_category_id as categoryId,
         grocery_brand_id as brandId,
         grocery_has_variant as hasVarient,
-        grocery_parent_id as parentId
+        grocery_parent_id as parentId,
+        grocery_price as price,
+        grocery_old_price as oldPrice,
+        grocery_has_discount as hasDiscount,
+        grocery_average_rating as rating
         from grocery
         where grocery_category_id =:categoryId"""
     )

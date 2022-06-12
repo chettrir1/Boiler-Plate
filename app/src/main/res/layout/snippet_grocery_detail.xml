@@ -15,13 +15,13 @@
             android:id="@+id/tv_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            tools:text="Hulas Premium Basmati Rice"
             android:textColor="@color/black_2e384d"
             android:textSize="@dimen/text_size_20"
             app:fontFamily="@font/roboto_medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Hulas Premium Basmati Rice" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_price"
@@ -63,13 +63,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_8"
-            android:text="(331 Reviews)"
             android:textColor="@color/grey_636161"
             android:textSize="@dimen/text_size_12"
             app:fontFamily="@font/roboto_regular"
             app:layout_constraintBottom_toBottomOf="@+id/rating_bar"
             app:layout_constraintStart_toEndOf="@+id/rating_bar"
-            app:layout_constraintTop_toTopOf="@+id/rating_bar" />
+            app:layout_constraintTop_toTopOf="@+id/rating_bar"
+            tools:text="(331 Reviews)" />
 
         <View
             android:id="@+id/divider"
@@ -79,7 +79,7 @@
             android:background="@color/grey_D1D1D1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rating_bar" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_rate_product" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_title_product_description"
@@ -106,6 +106,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_title_product_description" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_rate_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_4"
+            android:paddingTop="@dimen/spacing_4"
+            android:paddingBottom="@dimen/spacing_4"
+            android:text="@string/rate_this_product"
+            android:textColor="@color/red_F93838"
+            app:fontFamily="@font/roboto_medium"
+            app:layout_constraintStart_toStartOf="@+id/rating_bar"
+            app:layout_constraintTop_toBottomOf="@+id/rating_bar" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

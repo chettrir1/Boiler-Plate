@@ -46,6 +46,8 @@ class OrderConfirmActivity : BaseActivity<ActivityOrderConfirmedBinding>() {
                 ?.let { response -> OrderSummaryAdapter(response) }
         binding.rvOrderSummary.hasFixedSize()
         binding.tvTotalAmount.text = "Rs. ${Commons.currencyFormatter(data.order.totalPrice ?: 0)}"
+        binding.tvMessage.text =
+            "Your order with ORDER ID: ${data.order.uniqueId} has been confirmed, make sure to have Rs. ${data.order.totalPrice} on the delivery date."
     }
 
     override fun initObservers() {

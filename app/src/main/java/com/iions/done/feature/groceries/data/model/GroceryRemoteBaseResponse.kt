@@ -54,12 +54,14 @@ data class GroceryResponse(
     var brand: GroceryBrandResponse?,
     @SerializedName("quantity")
     var quantity: String?,
-    @SerializedName("current_price")
-    var currentPrice: String?,
+    @SerializedName("price")
+    var currentPrice: Int?,
     @SerializedName("old_price")
-    var oldPrice: String?,
+    var oldPrice: Int?,
+    @SerializedName("average_rating")
+    var averageRating: Int?,
     @SerializedName("has_discount")
-    var hasDiscount: Boolean?,
+    var hasDiscount: Int?,
     @SerializedName("images")
     var images: List<GroceryImageResponse>? = null
 )

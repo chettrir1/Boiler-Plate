@@ -22,7 +22,8 @@ import kotlinx.coroutines.MainCoroutineDispatcher
         (GroceryModule::class),
         (SummaryModule::class),
         (RestaurantModule::class),
-        (AppointmentModule::class)
+        (AppointmentModule::class),
+        (RatingModule::class)
     ]
 )
 open class ApplicationModule {

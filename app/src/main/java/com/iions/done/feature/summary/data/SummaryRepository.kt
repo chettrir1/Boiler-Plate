@@ -3,6 +3,7 @@ package com.iions.done.feature.summary.data
 import com.iions.done.feature.auth.data.model.AddressResponse
 import com.iions.done.feature.main.data.model.CartBaseResponse
 import com.iions.done.feature.main.data.model.DistrictResponse
+import com.iions.done.feature.main.data.model.ProfileBaseResponse
 import com.iions.done.feature.main.data.model.StreetResponse
 import com.iions.done.feature.summary.data.model.CreateOrderBaseResponse
 
@@ -18,6 +19,8 @@ interface SummaryRepository {
         localAddress: String?,
         addressId: Int?
     ): CreateOrderBaseResponse?
+
+    suspend fun fetchProfileResponse(): ProfileBaseResponse?
 
     interface Local {
         fun getAuthorizationToken(): String
@@ -36,5 +39,7 @@ interface SummaryRepository {
             localAddress: String?,
             addressId: Int?
         ): CreateOrderBaseResponse?
+
+        suspend fun fetchProfileResponse(authorizationToken: String): ProfileBaseResponse?
     }
 }

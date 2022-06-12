@@ -6,12 +6,12 @@ import com.iions.done.R
 import com.iions.done.base.BaseAdapter
 import com.iions.done.base.BaseViewHolder
 import com.iions.done.databinding.ItemProfileShippingAddressBinding
-import com.iions.done.feature.auth.data.model.AddressResponse
+import com.iions.done.feature.auth.data.model.UserAddressResponse
 
 class ProfileAddressListAdapter(
-    private var dataList: MutableList<AddressResponse>,
-    private val onItemSelectedListener: (AddressResponse) -> Unit
-) : BaseAdapter<AddressResponse, ProfileAddressListAdapter.AddressListViewHolder>() {
+    private var dataList: MutableList<UserAddressResponse>,
+    private val onItemSelectedListener: (UserAddressResponse) -> Unit
+) : BaseAdapter<UserAddressResponse, ProfileAddressListAdapter.AddressListViewHolder>() {
     override fun getViewHolder(binding: ViewDataBinding, viewType: Int): AddressListViewHolder {
         return AddressListViewHolder(binding as ItemProfileShippingAddressBinding)
     }
@@ -28,17 +28,17 @@ class ProfileAddressListAdapter(
         return dataList.size
     }
 
-    fun updateData(list: MutableList<AddressResponse>) {
+    fun updateData(list: MutableList<UserAddressResponse>) {
         this.dataList = list
     }
 
     inner class AddressListViewHolder(private var binding: ItemProfileShippingAddressBinding) :
-        BaseViewHolder<AddressResponse>(binding) {
+        BaseViewHolder<UserAddressResponse>(binding) {
         @SuppressLint("SetTextI18n")
-        override fun bindView(obj: AddressResponse) {
+        override fun bindView(obj: UserAddressResponse) {
             super.bindView(obj)
-            binding.tvDistrict.text = obj.district
-            binding.tvStreet.text = obj.street
+            binding.tvDistrict.text = obj.district?.name
+            binding.tvStreet.text = obj.street?.name
             binding.tvLocalAddress.text = obj.localAddress
             binding.ivDelete.setOnClickListener {
                 onItemSelectedListener(obj)

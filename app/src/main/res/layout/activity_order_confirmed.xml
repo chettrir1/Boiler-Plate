@@ -52,7 +52,7 @@
                 android:layout_marginTop="@dimen/spacing_4"
                 android:layout_marginEnd="@dimen/spacing_16"
                 android:gravity="center"
-                android:text="Your order with ORDER ID: 141241241 has been confirmed, make sure to have Rs. 2300 on the delivery date."
+                tools:text="Your order with ORDER ID: 141241241 has been confirmed, make sure to have Rs. 2300 on the delivery date."
                 android:textColor="@color/black_2e384d"
                 app:fontFamily="@font/roboto_regular"
                 app:layout_constraintEnd_toEndOf="parent"

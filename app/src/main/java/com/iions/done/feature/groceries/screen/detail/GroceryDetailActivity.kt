@@ -2,6 +2,7 @@ package com.iions.done.feature.groceries.screen.detail
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Paint
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import androidx.activity.viewModels
@@ -139,6 +140,17 @@ class GroceryDetailActivity : BaseActivity<ActivityGroceryDetailBinding>() {
         response.item?.images?.map {
             SlideModel("https://d-one.iionstech.com/storage/${it.original}")
         }?.let { binding.slideView.setImageList(it) }
+
+        binding.includePriceView.tvPrice.text = "Rs. ${response.item?.price}"
+        if (response.item?.oldPrice != null && response.item?.hasDiscount ?: 0 > 0) {
+            binding.includePriceView.tvOldPrice.visible()
+            binding.includePriceView.tvOldPrice.text = "Rs. ${response.item?.oldPrice}"
+            binding.includePriceView.tvOldPrice.paintFlags =
+                binding.includePriceView.tvOldPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+        } else {
+            binding.includePriceView.tvOldPrice.gone()
+        }
+        binding.includePriceView.ratingBar.rating = response.item?.rating?.toFloat() ?: 0f
 
         binding.includeAddToCart.btnAddToCart.enablePianoEffect().setOnClickListener {
             isOrderNow = false

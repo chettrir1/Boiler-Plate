@@ -122,4 +122,5 @@
     <string name="image_taken_successfully_now_you_are_ready_to_upload_please_press_upload_to_proceed">Image taken successfully, now you are ready to upload. Please press upload to proceed?</string>
     <string name="file_uploaded_successfully">File Uploaded Successfully!</string>
     <string name="name_field_cannot_be_empty">Name field cannot be empty!</string>
+    <string name="rate_this_product">Rate this Product?</string>
 </resources>

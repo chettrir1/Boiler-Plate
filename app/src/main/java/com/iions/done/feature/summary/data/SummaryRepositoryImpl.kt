@@ -3,6 +3,7 @@ package com.iions.done.feature.summary.data
 import com.iions.done.feature.auth.data.model.AddressResponse
 import com.iions.done.feature.main.data.model.CartBaseResponse
 import com.iions.done.feature.main.data.model.DistrictResponse
+import com.iions.done.feature.main.data.model.ProfileBaseResponse
 import com.iions.done.feature.main.data.model.StreetResponse
 import com.iions.done.feature.summary.data.model.CreateOrderBaseResponse
 import com.iions.done.utils.SchedulersFactory
@@ -55,6 +56,12 @@ class SummaryRepositoryImpl @Inject constructor(
                 localAddress,
                 addressId
             )
+        }
+    }
+
+    override suspend fun fetchProfileResponse(): ProfileBaseResponse? {
+        return withContext(schedulersFactory.io()) {
+            remoteRepository.fetchProfileResponse(localRepository.getAuthorizationToken())
         }
     }
 }

@@ -14,7 +14,11 @@ object GroceryMapper {
                 categoryId = it.categoryId ?: -1,
                 brandId = it.brandId ?: -1,
                 hasVarient = it.hasVarient ?: 0,
-                parentId = it.parentId ?: -1
+                parentId = it.parentId ?: -1,
+                price = it.price ?: -1,
+                oldPrice = it.oldPrice ?: -1,
+                hasDiscount = it.hasDiscount ?: -1,
+                rating = it.rating ?: -1,
             )
         }
     }

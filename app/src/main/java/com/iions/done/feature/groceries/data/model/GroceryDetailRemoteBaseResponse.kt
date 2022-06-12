@@ -6,7 +6,7 @@ data class GroceryDetailRemoteBaseResponse(
     @SerializedName("item")
     var item: GroceryDetailResponse? = null,
     @SerializedName("inventory_details")
-    var groceryInventoryDetails: GroceryDetailInventoryDetails? = null
+    var groceryInventoryDetails: List<GroceryDetailInventoryDetails>? = null
 )
 
 data class GroceryDetailResponse(
@@ -24,6 +24,14 @@ data class GroceryDetailResponse(
     var mainImageOriginal: String?,
     @SerializedName("main_image_thumbnail")
     var mainImageThumbnail: String?,
+    @SerializedName("price")
+    var price: Int?,
+    @SerializedName("old_price")
+    var oldPrice: Int?,
+    @SerializedName("has_discount")
+    var hasDiscount: Int?,
+    @SerializedName("average_rating")
+    var rating: Int?,
     @SerializedName("category_id")
     var category_id: Int?,
     @SerializedName("brand_id")

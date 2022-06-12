@@ -27,7 +27,15 @@ data class HomeGroceryResponse(
     @SerializedName("has_variant")
     var hasVarient: Int? = 0,
     @SerializedName("parent_id")
-    var parentId: Int? = 0
+    var parentId: Int? = 0,
+    @SerializedName("price")
+    var price: Int?,
+    @SerializedName("old_price")
+    var oldPrice: Int?,
+    @SerializedName("has_discount")
+    var hasDiscount: Int?,
+    @SerializedName("average_rating")
+    var rating: Int?
 )
 
 data class HomeGroceryCategoryResponse(

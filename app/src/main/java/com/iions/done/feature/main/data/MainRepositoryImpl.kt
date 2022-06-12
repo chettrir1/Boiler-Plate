@@ -61,12 +61,6 @@ class MainRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun fetchAddressList(): List<AddressResponse>? {
-        return withContext(schedulersFactory.io()) {
-            localRepository.fetchAddressList()
-        }
-    }
-
     override suspend fun removeCartList(
         authorizationToken: String,
         cartId: Int

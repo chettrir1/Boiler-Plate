@@ -42,10 +42,6 @@ class MainLocalImpl @Inject constructor(
         sharedPreferenceManager.clearCache()
     }
 
-    override suspend fun fetchAddressList(): List<AddressResponse> {
-        return databaseManager.getUserAddressDao().getUserAddressResponse()
-    }
-
     override fun fetchRestaurantList(): LiveData<List<HomeRestaurantRemoteResponse>> {
         return databaseManager.getRestaurantDao().getRestaurantResponse()
     }

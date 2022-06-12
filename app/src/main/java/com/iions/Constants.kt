@@ -1,5 +1,7 @@
 package com.iions
 
+import com.google.gson.annotations.SerializedName
+
 object Constants {
     const val PREF_FILE = "rosia-sales"
     const val PREF_TOKEN = "access_token"
@@ -52,6 +54,10 @@ object Constants {
     const val CATEGORY_ID = "grocery_category_id"
     const val GROCERY_HAS_VARIANT = "grocery_has_variant"
     const val GROCERY_PARENT_ID = "grocery_parent_id"
+    const val GROCERY_PRICE = "grocery_price"
+    const val GROCERY_OLD_PRICE = "grocery_old_price"
+    const val GROCERY_HAS_DISCOUNT = "grocery_has_discount"
+    const val GROCERY_AVERAGE_RATING = "grocery_average_rating"
 
     /*restaurant*/
     const val TBL_RESTAURANT = "restaurant"

@@ -130,7 +130,7 @@
                 android:id="@+id/tv_total_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="(12 Reviews)"
+                tools:text="(12 Reviews)"
                 android:textColor="@color/black_2e384d"
                 android:textSize="@dimen/text_size_10"
                 android:layout_marginStart="@dimen/spacing_4"

@@ -64,39 +64,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
     override fun initObservers() {
         observeProfileResponse()
-        observeAddressResponse()
         observeEditProfileResponse()
-    }
-
-    private fun observeAddressResponse() {
-        viewModel.addressResponse.observe(this) { response ->
-            when (response.status) {
-                Status.LOADING -> {
-                }
-                Status.COMPLETE -> {
-                    response.data?.let {
-                        if (it.isNotEmpty()) {
-                            binding.rvAddress.adapter =
-                                ProfileAddressListAdapter(it.toMutableList()) {}
-                            binding.group.visible()
-                        } else {
-                            binding.group.gone()
-                        }
-                    }
-                    super.showData(binding.loadingLayout)
-                }
-                Status.ERROR -> {
-                    super.showActionableError(
-                        binding.loadingLayout,
-                        errorMessage = response.error?.message.toString(),
-                        R.drawable.vc_profile,
-                        actionLabel = getString(R.string.retry)
-                    ) {
-                        viewModel.fetchAddressList()
-                    }
-                }
-            }
-        }
     }
 
     private fun observeProfileResponse() {
@@ -109,8 +77,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                 Status.COMPLETE -> {
                     response.data?.let {
                         setView(it)
-                        viewModel.fetchAddressList()
                     }
+                    super.showData(binding.loadingLayout)
                 }
                 Status.ERROR -> {
                     super.showActionableError(
@@ -180,6 +148,14 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                 it.user?.email ?: "unknown@gmail.com",
                 it.user?.phoneNumber ?: "98********"
             )
+        }
+
+        if (!it.user?.addresses.isNullOrEmpty()) {
+            binding.rvAddress.adapter =
+                ProfileAddressListAdapter(it.user?.addresses!!.toMutableList()) {}
+            binding.group.visible()
+        } else {
+            binding.group.gone()
         }
     }
 

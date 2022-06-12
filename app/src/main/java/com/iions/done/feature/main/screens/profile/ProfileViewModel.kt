@@ -19,10 +19,6 @@ class ProfileViewModel @Inject constructor(
     private val repository: MainRepository
 ) : AndroidViewModel(app), LifecycleObserver {
 
-    private val addressUseCase = MutableLiveData<Response<List<AddressResponse>>>()
-    val addressResponse: LiveData<Response<List<AddressResponse>>> =
-        addressUseCase
-
     private val profileUseCase = MutableLiveData<Response<ProfileBaseResponse>>()
     val profileResponse: LiveData<Response<ProfileBaseResponse>> =
         profileUseCase
@@ -37,19 +33,6 @@ class ProfileViewModel @Inject constructor(
         super.onCleared()
     }
 
-    fun fetchAddressList() {
-        viewModelScope.launch {
-            addressUseCase.value = Response.loading()
-            try {
-                addressUseCase.value = Response.complete(
-                    repository.fetchAddressList()
-                )
-            } catch (error: Exception) {
-                error.printStackTrace()
-                addressUseCase.value = Response.error(error)
-            }
-        }
-    }
 
     fun fetchProfileResponse() {
         viewModelScope.launch {

@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.iions.done.feature.auth.data.model.AddressResponse
 import com.iions.done.feature.main.data.model.DistrictResponse
+import com.iions.done.feature.main.data.model.ProfileBaseResponse
 import com.iions.done.feature.main.data.model.StreetResponse
 import com.iions.done.feature.summary.data.SummaryRepository
 import com.iions.done.feature.summary.data.model.CreateOrderBaseResponse
@@ -19,9 +20,9 @@ class ChooseAddressViewModel @Inject constructor(
     private val repository: SummaryRepository
 ) : AndroidViewModel(app), LifecycleObserver {
 
-    private val addressUseCase = MutableLiveData<Response<List<AddressResponse>>>()
-    val addressResponse: LiveData<Response<List<AddressResponse>>> =
-        addressUseCase
+    private val profileUseCase = MutableLiveData<Response<ProfileBaseResponse>>()
+    val profileResponse: LiveData<Response<ProfileBaseResponse>> =
+        profileUseCase
 
     private val districtUseCase = MutableLiveData<Response<List<DistrictResponse>>>()
     val districtResponse: LiveData<Response<List<DistrictResponse>>> =
@@ -41,16 +42,16 @@ class ChooseAddressViewModel @Inject constructor(
         super.onCleared()
     }
 
-    fun fetchAddressList() {
+    fun fetchProfileResponse() {
         viewModelScope.launch {
-            addressUseCase.value = Response.loading()
+            profileUseCase.value = Response.loading()
             try {
-                addressUseCase.value = Response.complete(
-                    repository.fetchAddressList()
+                profileUseCase.value = Response.complete(
+                    repository.fetchProfileResponse()
                 )
             } catch (error: Exception) {
                 error.printStackTrace()
-                addressUseCase.value = Response.error(error)
+                profileUseCase.value = Response.error(error)
             }
         }
     }

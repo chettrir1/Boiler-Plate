@@ -8,12 +8,12 @@ import com.iions.done.feature.groceries.data.model.AddToCartResponse
 import com.iions.done.feature.groceries.data.model.GroceryDetailRemoteBaseResponse
 import com.iions.done.feature.groceries.data.model.GroceryRemoteBaseResponse
 import com.iions.done.feature.main.data.model.*
+import com.iions.done.feature.rating.data.model.PostRatingResponse
 import com.iions.done.feature.restaurants.data.model.RestaurantDetailRemoteBaseResponse
 import com.iions.done.feature.restaurants.data.model.RestaurantRemoteBaseResponse
 import com.iions.done.feature.summary.data.model.CreateOrderBaseResponse
 import com.iions.done.remote.helper.BaseResponse
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.http.*
 
 interface ApiService {
@@ -125,5 +125,12 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Part part: MultipartBody.Part? = null
     ): BaseResponse<CreateOrderResponse>
+
+    @Headers("Accept: application/json")
+    @POST("rating/grocery-item")
+    suspend fun postRating(
+        @Header("Authorization") token: String,
+        @Body requestParams: MutableMap<String, Any>?,
+    ): BaseResponse<PostRatingResponse>
 
 }

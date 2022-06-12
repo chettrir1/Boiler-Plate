@@ -2,6 +2,7 @@ package com.iions.done.feature.summary.data.remote
 
 import com.iions.done.exceptions.FailedResponseException
 import com.iions.done.feature.main.data.model.CartBaseResponse
+import com.iions.done.feature.main.data.model.ProfileBaseResponse
 import com.iions.done.feature.summary.data.SummaryRepository
 import com.iions.done.feature.summary.data.model.CreateOrderBaseResponse
 import com.iions.done.remote.ApiService
@@ -39,6 +40,18 @@ class SummaryRemoteImpl @Inject constructor(
         if (remoteResponse.status==true){
             throw FailedResponseException(remoteResponse.status!!, remoteResponse.message.toString())
         }else{
+            return remoteResponse.response
+        }
+    }
+
+    override suspend fun fetchProfileResponse(authorizationToken: String): ProfileBaseResponse? {
+        val remoteResponse = apiService.fetchProfile(authorizationToken)
+        if (remoteResponse.status == true) {
+            throw FailedResponseException(
+                remoteResponse.status!!,
+                remoteResponse.message.toString()
+            )
+        } else {
             return remoteResponse.response
         }
     }

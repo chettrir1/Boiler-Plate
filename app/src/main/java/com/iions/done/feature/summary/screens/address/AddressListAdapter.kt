@@ -6,12 +6,12 @@ import com.iions.done.R
 import com.iions.done.base.BaseAdapter
 import com.iions.done.base.BaseViewHolder
 import com.iions.done.databinding.ItemAddressBinding
-import com.iions.done.feature.auth.data.model.AddressResponse
+import com.iions.done.feature.auth.data.model.UserAddressResponse
 
 class AddressListAdapter(
-    private var dataList: MutableList<AddressResponse>,
-    private val onItemSelectedListener: (AddressResponse) -> Unit
-) : BaseAdapter<AddressResponse, AddressListAdapter.AddressListViewHolder>() {
+    private var dataList: MutableList<UserAddressResponse>,
+    private val onItemSelectedListener: (UserAddressResponse) -> Unit
+) : BaseAdapter<UserAddressResponse, AddressListAdapter.AddressListViewHolder>() {
     private var mCheckedPosition = -1
 
     override fun getViewHolder(binding: ViewDataBinding, viewType: Int): AddressListViewHolder {
@@ -30,17 +30,17 @@ class AddressListAdapter(
         return dataList.size
     }
 
-    fun updateData(list: MutableList<AddressResponse>) {
+    fun updateData(list: MutableList<UserAddressResponse>) {
         this.dataList = list
     }
 
     inner class AddressListViewHolder(private var binding: ItemAddressBinding) :
-        BaseViewHolder<AddressResponse>(binding) {
+        BaseViewHolder<UserAddressResponse>(binding) {
         @SuppressLint("SetTextI18n")
-        override fun bindView(obj: AddressResponse) {
+        override fun bindView(obj: UserAddressResponse) {
             super.bindView(obj)
-            binding.tvDistrict.text = obj.district
-            binding.tvArea.text = "${obj.street} , ${obj.localAddress}"
+            binding.tvDistrict.text = obj.district?.name
+            binding.tvArea.text = "${obj.street?.name} , ${obj.localAddress}"
             if (mCheckedPosition == -1) {
                 if (absoluteAdapterPosition == 0) {
                     setSelectedItem(binding, true)

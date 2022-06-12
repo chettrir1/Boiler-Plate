@@ -52,15 +52,16 @@ class GroceryListAdapter(
 
             binding.tvPrice.text = "Rs. ${obj.currentPrice}"
 
-            if (obj.oldPrice != null && obj.hasDiscount == true) {
+            binding.ratingBar.rating = obj.averageRating?.toFloat() ?: 0f
+            if (obj.oldPrice != null && obj.hasDiscount ?: 0 > 0) {
                 binding.tvOldPrice.visible()
-                binding.tvDiscountPercentage.visible()
+                binding.tvDiscountPercentage.gone()
                 binding.tvOldPrice.text = "Rs. ${obj.oldPrice}"
                 binding.tvOldPrice.paintFlags =
                     binding.tvOldPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-                val originalPrice = obj.oldPrice?.toDouble()
-                val discountedPrice = obj.currentPrice?.toDouble()
-                val discountAmount = originalPrice!! - discountedPrice!!
+                val originalPrice = obj.oldPrice ?: 0
+                val discountedPrice = obj.currentPrice ?: 0
+                val discountAmount = originalPrice - discountedPrice
                 val value = discountAmount / originalPrice
                 val discountPercentage = value * 100
                 binding.tvDiscountPercentage.text = "($discountPercentage) % off"

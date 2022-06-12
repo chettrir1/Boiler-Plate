@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import com.iions.done.R
 import com.iions.done.base.BaseActivity
 import com.iions.done.databinding.ActivityChooseAddressBinding
+import com.iions.done.feature.main.data.model.ProfileBaseResponse
 import com.iions.done.feature.summary.data.model.AddressSearchResponse
 import com.iions.done.feature.summary.screens.confirm.OrderConfirmActivity
 import com.iions.done.utils.archcomponents.Status
@@ -40,7 +41,7 @@ class ChooseAddressActivity : BaseActivity<ActivityChooseAddressBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.includeToolbar.tvTitle.text = getString(R.string.choose_address)
-        viewModel.fetchAddressList()
+        viewModel.fetchProfileResponse()
 
         binding.includeToolbar.ivBack.setOnClickListener {
             onBackPressed()
@@ -97,8 +98,8 @@ class ChooseAddressActivity : BaseActivity<ActivityChooseAddressBinding>() {
                         viewModel.createOrder("cod", districtId, streetId, localAddress)
                     }
                 }
-            } else if (districtId > 0 && streetId > 0 && localAddress.isNotEmpty()) {
-                viewModel.createOrder("cod", districtId, streetId, localAddress)
+            } else if (districtId > 0 && streetId > 0 && savedLocalAddress.isNotEmpty()) {
+                viewModel.createOrder("cod", districtId, streetId, savedLocalAddress)
             } else {
                 viewModel.createOrder(cod = "cod", addressId = addressId)
             }
@@ -109,40 +110,45 @@ class ChooseAddressActivity : BaseActivity<ActivityChooseAddressBinding>() {
     override fun layout() = R.layout.activity_choose_address
 
     override fun initObservers() {
-        observeAddressResponse()
+        observeProfileResponse()
         observeDistrictResponse()
         observeStreetResponse()
         observeCreateOrderResponse()
     }
 
-    private fun observeAddressResponse() {
-        viewModel.addressResponse.observe(this) { response ->
+    private fun observeProfileResponse() {
+        viewModel.profileResponse.observe(this) { response ->
             when (response.status) {
                 Status.LOADING -> {
                 }
                 Status.COMPLETE -> {
                     response.data?.let {
-                        if (it.isNotEmpty()) {
-                            isAddressAvailable = true
-                            binding.groupMyAddress.visible()
-                            binding.groupCustomAddress.gone()
-                            binding.rvAddress.adapter =
-                                AddressListAdapter(it.toMutableList()) {
-                                    addressId = it.addressId ?: -1
-                                }
-                            addressId = it.first().addressId ?: -1
-                            streetId = it.first().streetId ?: -1
-                            savedLocalAddress = it.first().localAddress ?: ""
-                        } else {
-                            isAddressAvailable = false
-                            binding.groupCustomAddress.visible()
-                            binding.groupMyAddress.gone()
-                        }
+                        setView(it)
                     }
                 }
-                Status.ERROR -> {
-                }
+                Status.ERROR -> {}
             }
+        }
+    }
+
+    private fun setView(it: ProfileBaseResponse) {
+        if (!it.user?.addresses.isNullOrEmpty()) {
+            isAddressAvailable = true
+            binding.groupMyAddress.visible()
+            binding.groupCustomAddress.gone()
+            binding.rvAddress.adapter =
+                AddressListAdapter(it.user?.addresses!!.toMutableList()) {
+                    addressId = it.district?.id ?: -1
+                    streetId = it.street?.id ?: -1
+                    savedLocalAddress = it.localAddress ?: ""
+                }
+            addressId = it.user?.addresses?.first()?.district?.id ?: -1
+            streetId = it.user?.addresses?.first()?.street?.id ?: -1
+            savedLocalAddress = it.user?.addresses?.first()?.localAddress ?: ""
+        } else {
+            isAddressAvailable = false
+            binding.groupCustomAddress.visible()
+            binding.groupMyAddress.gone()
         }
     }
 

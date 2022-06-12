@@ -12,6 +12,8 @@ data class CreateOrderBaseResponse(
 data class CreateOrderResponse(
     @SerializedName("user_id")
     var userId: Int?,
+    @SerializedName("unique_id")
+    var uniqueId: Int?,
     @SerializedName("total_price")
     var totalPrice: Int?,
     @SerializedName("shipping_price")

@@ -15,5 +15,9 @@ data class GroceryEntity(
     @ColumnInfo(name = Constants.CATEGORY_ID) var categoryId: Int,
     @ColumnInfo(name = Constants.BRAND_ID) var brandId: Int,
     @ColumnInfo(name = Constants.GROCERY_HAS_VARIANT) var hasVarient: Int,
-    @ColumnInfo(name = Constants.GROCERY_PARENT_ID) var parentId: Int
+    @ColumnInfo(name = Constants.GROCERY_PARENT_ID) var parentId: Int,
+    @ColumnInfo(name = Constants.GROCERY_PRICE) var price: Int,
+    @ColumnInfo(name = Constants.GROCERY_OLD_PRICE) var oldPrice: Int,
+    @ColumnInfo(name = Constants.GROCERY_HAS_DISCOUNT) var hasDiscount: Int,
+    @ColumnInfo(name = Constants.GROCERY_AVERAGE_RATING) var rating: Int
 )

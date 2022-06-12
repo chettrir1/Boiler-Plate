@@ -15,7 +15,6 @@ interface MainRepository {
     fun getAuthorizationToken(): String
     suspend fun requestLogout(token: String): LogoutResponse?
     suspend fun fetchCartList(token: String): CartBaseResponse?
-    suspend fun fetchAddressList(): List<AddressResponse>?
     suspend fun removeCartList(authorizationToken: String, cartId: Int): RemoveCartResponse?
     suspend fun fetchProfileResponse(): ProfileBaseResponse?
     suspend fun fetchOrdersList(): OrdersBaseResponse?
@@ -32,7 +31,6 @@ interface MainRepository {
         fun fetchGroceryList(categoryId: Int): LiveData<List<HomeGroceryResponse>>
         fun getAuthorizationToken(): String
         suspend fun clearPrefs()
-        suspend fun fetchAddressList(): List<AddressResponse>?
         fun fetchRestaurantList(): LiveData<List<HomeRestaurantRemoteResponse>>
         suspend fun fetchHomeResponse(response: HomeResponse?)
     }

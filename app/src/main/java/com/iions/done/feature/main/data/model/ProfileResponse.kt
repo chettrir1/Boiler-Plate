@@ -1,6 +1,7 @@
 package com.iions.done.feature.main.data.model
 
 import com.google.gson.annotations.SerializedName
+import com.iions.done.feature.auth.data.model.UserAddressResponse
 
 data class ProfileBaseResponse(
     @SerializedName("user")
@@ -17,6 +18,10 @@ data class ProfileResponse(
     @SerializedName("email_verified_at")
     var emailVerifiedAt: String?,
     @SerializedName("phone_number")
-    var phoneNumber: String?
+    var phoneNumber: String?,
+    @SerializedName("addresses")
+    var addresses: List<UserAddressResponse>? = null
 )
+
+
 
