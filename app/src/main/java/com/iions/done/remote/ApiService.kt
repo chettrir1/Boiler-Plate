@@ -11,6 +11,7 @@ import com.iions.done.feature.main.data.model.*
 import com.iions.done.feature.rating.data.model.PostRatingResponse
 import com.iions.done.feature.restaurants.data.model.RestaurantDetailRemoteBaseResponse
 import com.iions.done.feature.restaurants.data.model.RestaurantRemoteBaseResponse
+import com.iions.done.feature.search.data.model.SearchBaseResponse
 import com.iions.done.feature.summary.data.model.CreateOrderBaseResponse
 import com.iions.done.remote.helper.BaseResponse
 import okhttp3.MultipartBody
@@ -132,5 +133,11 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Body requestParams: MutableMap<String, Any>?,
     ): BaseResponse<PostRatingResponse>
+
+    @Headers("Accept: application/json")
+    @GET("search")
+    suspend fun requestSearch(
+        @Query("query") query: String,
+    ): BaseResponse<SearchBaseResponse>
 
 }
