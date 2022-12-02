@@ -19,11 +19,12 @@
             android:layout_height="wrap_content" />
 
         <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:visibility="gone"
             android:id="@+id/nested_scroll_view"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true">
+            android:fillViewport="true"
+            android:visibility="gone"
+            tools:visibility="visible">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -34,6 +35,7 @@
                     android:id="@+id/include_filter"
                     layout="@layout/snippet_filter"
                     android:layout_width="0dp"
+                    android:visibility="gone"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/spacing_16"
                     android:layout_marginTop="@dimen/spacing_16"
@@ -46,11 +48,11 @@
                     android:id="@+id/include_nearby"
                     layout="@layout/snippet_resturant_nearby"
                     android:layout_width="0dp"
-                    android:visibility="gone"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/spacing_16"
                     android:layout_marginTop="@dimen/spacing_16"
                     android:layout_marginEnd="@dimen/spacing_16"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/include_filter" />
@@ -74,8 +76,8 @@
                     android:layout_marginStart="@dimen/spacing_8"
                     android:layout_marginTop="@dimen/spacing_8"
                     android:layout_marginEnd="@dimen/spacing_8"
-                    android:nestedScrollingEnabled="false"
                     android:layout_marginBottom="@dimen/spacing_16"
+                    android:nestedScrollingEnabled="false"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -97,6 +99,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="gone" />
     </LinearLayout>
 </layout>

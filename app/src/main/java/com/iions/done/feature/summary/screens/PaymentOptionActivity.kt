@@ -33,6 +33,9 @@ class PaymentOptionActivity : BaseActivity<ActivityPaymentOptionBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.includeToolbar.tvTitle.text = getString(R.string.select_a_payment)
+        binding.includeToolbar.ivBack.setOnClickListener {
+            onBackPressed()
+        }
         viewModel.fetchCartList()
 
         binding.includePaymentOption.llCashOnDelivery.isSelected = true
