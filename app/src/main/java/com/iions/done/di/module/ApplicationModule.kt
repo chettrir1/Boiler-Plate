@@ -16,15 +16,8 @@ import kotlinx.coroutines.MainCoroutineDispatcher
 @InstallIn(SingletonComponent::class)
 @Module(
     includes = [
-        (SplashModule::class),
         (AuthModule::class),
-        (MainModule::class),
-        (GroceryModule::class),
-        (SummaryModule::class),
-        (RestaurantModule::class),
-        (AppointmentModule::class),
-        (RatingModule::class),
-        (SearchModule::class)
+        (MainModule::class)
     ]
 )
 open class ApplicationModule {

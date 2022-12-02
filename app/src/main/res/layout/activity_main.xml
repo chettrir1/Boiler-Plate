@@ -38,8 +38,8 @@
                 android:id="@+id/bottom_navigation_view"
                 android:layout_width="0dp"
                 android:layout_height="?android:attr/actionBarSize"
-                app:itemIconSize="@dimen/spacing_20"
                 android:background="@color/background_F5F5F5"
+                app:itemIconSize="@dimen/spacing_20"
                 app:itemIconTint="@drawable/bg_bottom_navigation"
                 app:itemTextAppearance="@style/Menu.TextAppearance"
                 app:itemTextColor="@drawable/bg_bottom_navigation"
@@ -49,21 +49,5 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:menu="@menu/menu_bottom_nav" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/navigationView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@color/background_F5F5F5"
-            android:layout_gravity="start"
-            android:fitsSystemWindows="true"
-            android:theme="@style/NavigationDrawerStyle"
-            app:headerLayout="@layout/snippet_home_nav_header"
-            app:itemBackground="@drawable/bg_nav_background"
-            app:itemIconSize="@dimen/spacing_20"
-            app:itemIconTint="@drawable/bg_nav_item"
-            app:itemTextAppearance="@style/Menu.TextAppearance"
-            app:itemTextColor="@drawable/bg_nav_item"
-            app:menu="@menu/menu_main" />
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

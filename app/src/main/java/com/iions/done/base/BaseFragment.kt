@@ -6,16 +6,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
-import android.widget.RelativeLayout
-import androidx.annotation.DrawableRes
-import androidx.appcompat.widget.AppCompatButton
-import androidx.appcompat.widget.AppCompatImageView
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import com.iions.done.R
 
 @SuppressLint("CutPasteId")
 abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
@@ -43,78 +36,4 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
 
     abstract fun initObservers()
 
-    fun <T : ViewDataBinding> showLoading(binding: T?, message: String?) {
-        val loadingLayout = binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)
-        loadingLayout?.visibility = View.VISIBLE
-        loadingLayout?.findViewById<AppCompatTextView>(R.id.txtLoading)?.text =
-            message ?: getString(R.string.please_wait)
-        loadingLayout?.findViewById<ProgressBar>(R.id.progressBar)?.visibility = View.VISIBLE
-        binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)
-            ?.findViewById<AppCompatButton>(R.id.btnAction)?.visibility = View.GONE
-    }
-
-    fun <T : ViewDataBinding> showData(binding: T?) {
-        binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)?.visibility = View.GONE
-    }
-
-    fun <T : ViewDataBinding> showError(binding: T?, errorMessage: String) {
-        binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)?.visibility =
-            View.VISIBLE
-        binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)
-            ?.findViewById<AppCompatTextView>(R.id.txtLoading)?.text = errorMessage
-        binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)
-            ?.findViewById<ProgressBar>(R.id.progressBar)?.visibility = View.GONE
-        binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)
-            ?.findViewById<ProgressBar>(R.id.progressBar)?.visibility = View.GONE
-    }
-
-    fun <T : ViewDataBinding> showErrorWithImage(
-        binding: T?,
-        errorMessage: String,
-        @DrawableRes thumbnail: Int
-    ) {
-        binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)?.visibility =
-            View.VISIBLE
-        binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)
-            ?.findViewById<AppCompatTextView>(R.id.txtLoading)?.text = errorMessage
-        binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)
-            ?.findViewById<ProgressBar>(R.id.progressBar)?.visibility = View.GONE
-        binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)
-            ?.findViewById<ProgressBar>(R.id.progressBar)?.visibility = View.GONE
-        binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)
-            ?.findViewById<AppCompatImageView>(R.id.thumb)?.visibility = View.VISIBLE
-        binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)
-            ?.findViewById<AppCompatImageView>(R.id.thumb)?.setImageResource(thumbnail)
-    }
-
-    fun <T : ViewDataBinding> showActionableError(
-        binding: T?,
-        errorMessage: String,
-        @DrawableRes thumbnail: Int,
-        actionLabel: String,
-        actionListener: (type: String?) -> Unit
-    ) {
-        binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)?.visibility =
-            View.VISIBLE
-        binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)
-            ?.findViewById<AppCompatImageView>(R.id.thumb)?.visibility = View.VISIBLE
-        binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)
-            ?.findViewById<AppCompatImageView>(R.id.thumb)?.setImageResource(thumbnail)
-        binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)
-            ?.findViewById<AppCompatTextView>(R.id.txtLoading)?.text = errorMessage
-        binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)
-            ?.findViewById<AppCompatButton>(R.id.btnAction)?.apply {
-                text = actionLabel
-                visibility = View.VISIBLE
-                setOnClickListener {
-                    if (actionLabel == getString(R.string.retry)) {
-                        binding.root.findViewById<RelativeLayout>(R.id.loadingLayout)
-                            ?.findViewById<AppCompatImageView>(R.id.thumb)?.visibility = View.GONE
-                    }
-                    actionListener(actionLabel)
-                }
-            }
-        binding?.root?.findViewById<RelativeLayout>(R.id.loadingLayout)
-            ?.findViewById<ProgressBar>(R.id.progressBar)?.visibility = View.GONE
-    }
 }

@@ -2,7 +2,6 @@
 <resources>
     <color name="colorAccent">@color/background_F5F5F5</color>
     <color name="colorPrimary">@color/background_F5F5F5</color>
-    <color name="colorPrimaryDark">@color/background_F5F5F5</color>
     <color name="teal_200">@color/red_F93838</color>
     <color name="teal_700">@color/red_F93838</color>
 
@@ -12,42 +11,16 @@
     <color name="white_f4f6fc">#f4f6fc</color>
 
     <color name="black_FF000000">#FF000000</color>
-    <color name="black_99000000">#99000000</color>
     <color name="black_2e384d">#2e384d</color>
-    <color name="black_402e384d">#402e384d</color>
     <color name="black_FF2E384D">#FF2E384D</color>
-    <color name="black_502E384D">#502E384D</color>
-    <color name="black_89000000">#89000000</color>
     <color name="black_000000">#000000</color>
-    <color name="black_38000000">#38000000</color>
 
     <color name="grey_636161">#636161</color>
-    <color name="grey_69707F">#69707F</color>
-    <color name="grey_2E384D">#2E384D</color>
-    <color name="grey_882E384D">#882E384D</color>
     <color name="grey_8798AD">#8798AD</color>
     <color name="grey_BFC5D2">#BFC5D2</color>
-    <color name="grey_F4F6FC">#F4F6FC</color>
-    <color name="grey_EEF3F5">#EEF3F5</color>
     <color name="grey_bfc5d2">#bfc5d2</color>
-    <color name="grey_E0E7FF">#E0E7FF</color>
-    <color name="grey_E4E8F0">#E4E8F0</color>
-    <color name="grey_B0BAC9">#B0BAC9</color>
-    <color name="grey_8097B1">#758097B1</color>
-    <color name="grey_e0e0e0">#e0e0e0</color>
-    <color name="grey_FFBFC5D2">#FFBFC5D2</color>
-    <color name="grey_b0bac9">#b0bac9</color>
-    <color name="grey_6d6d6d">#6d6d6d</color>
-    <color name="grey_cdcbcb">#cdcbcb</color>
-    <color name="grey_A8A8A8">#A8A8A8</color>
-    <color name="grey_908F8F">#908F8F</color>
-    <color name="grey_D1D1D1">#D1D1D1</color>
 
-    <color name="bgBorder">#E0E7FF</color>
-
-    <color name="blue_E0E7FF">#E0E7FF</color>
     <color name="blue_FF1294F7">#FF1294F7</color>
     <color name="red_F93838">#F93838</color>
-    <color name="red_20F93838">#20F93838</color>
 
 </resources>

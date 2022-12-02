@@ -9,21 +9,17 @@
             android:icon="@drawable/ic_nav_home"
             android:title="@string/home" />
         <item
-            android:id="@+id/action_history"
             android:icon="@drawable/ic_nav_history"
             android:title="@string/history" />
 
         <item
-            android:id="@+id/action_camera"
             android:icon="@drawable/ic_nav_camera"
             android:title="@string/take_a_photo" />
         <item
-            android:id="@+id/action_cart"
             android:icon="@drawable/ic_nav_cart"
             android:title="@string/cart" />
 
         <item
-            android:id="@+id/action_profile"
             android:icon="@drawable/ic_nav_profile"
             android:title="@string/profile" />
     </group>

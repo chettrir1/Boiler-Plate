@@ -17,18 +17,21 @@
             android:layout_height="match_parent"
             tools:context=".feature.auth.screens.login.LoginActivity">
 
-            <androidx.appcompat.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/iv_logo"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="@dimen/spacing_30"
                 android:layout_marginTop="@dimen/spacing_80"
                 android:layout_marginEnd="@dimen/spacing_30"
+                android:gravity="center"
+                android:text="Login"
+                android:textColor="@color/black_2e384d"
+                android:textSize="@dimen/text_size_20"
                 app:layout_constraintDimensionRatio="5:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_toolbar_logo" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_title_username"

@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Context
 import com.iions.SharedPreferenceManager
 import com.iions.done.exceptions.*
-import com.iions.done.feature.auth.screens.login.smslogin.SmsLoginActivity
+import com.iions.done.feature.auth.screens.login.LoginActivity
 import com.iions.done.remote.Constants.AUTHENTICATION_ERROR_401
 import com.iions.done.remote.Constants.FILE_NOT_FOUND
 import com.iions.done.remote.Constants.GATE_WAY_TIME_OUT
@@ -33,7 +33,7 @@ class ApiInterceptor @Inject constructor(
 
         when (response.code) {
             TOKEN_EXPIRED -> {
-                SmsLoginActivity.start(context as Activity, true)
+                LoginActivity.start(context as Activity, true)
                 throw FailedResponseException(true, "Token Expired!")
             }
             INTERNAL_SERVER_ERROR -> {

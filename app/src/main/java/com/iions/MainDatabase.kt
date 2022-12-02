@@ -4,20 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.iions.dao.*
-import com.iions.entity.*
+import com.iions.dao.UserDao
+import com.iions.entity.UserEntity
 
 @Database(
     entities = [
-        UserEntity::class,
-        UserAddressEntity::class,
-        ModulesEntity::class,
-        GroceryEntity::class,
-        GroceryCategoryEntity::class,
-        BannerEntity::class,
-        DistrictEntity::class,
-        StreetEntity::class,
-        RestaurantEntity::class
+        UserEntity::class
     ],
     version = 3,
     exportSchema = false
@@ -46,12 +38,4 @@ abstract class MainDatabase : RoomDatabase() {
     }
 
     abstract fun getUsersDao(): UserDao
-    abstract fun getUserAddressDao(): UserAddressDao
-    abstract fun getModuleDao(): ModuleDao
-    abstract fun getGroceryDao(): GroceryDao
-    abstract fun getGroceryCategoryDao(): GroceryCategoryDao
-    abstract fun getBannerDao(): BannerDao
-    abstract fun getDistrictDao(): DistrictDao
-    abstract fun getStreetDao(): StreetDao
-    abstract fun getRestaurantDao(): RestaurantDao
 }

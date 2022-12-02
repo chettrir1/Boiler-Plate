@@ -13,7 +13,7 @@ import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.iions.done.R
-import com.iions.done.feature.splash.screens.SplashActivity
+import com.iions.done.feature.auth.screens.login.LoginActivity
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 
@@ -28,7 +28,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     @SuppressLint("UnspecifiedImmutableFlag")
     private fun sendNotification(remoteMessage: RemoteMessage) {
-        val intent = Intent(this, SplashActivity::class.java)
+        val intent = Intent(this, LoginActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         val pendingIntent = PendingIntent.getActivity(
             this, REQUEST_CODE, intent,
