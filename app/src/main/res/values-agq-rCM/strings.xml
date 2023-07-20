@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Boiler Plate</string>
+    <string name="home"></string>
+    <string name="cart">Cart</string>
+    <string name="profile">Profile</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="create_an_account">Create an Account</string>
+    <string name="type_your_phone_number">Type your phone number</string>
+    <string name="username">Username</string>
+    <string name="login">Login</string>
+    <string name="history">History</string>
+    <string name="take_a_photo">Upload</string>
+    <string name="verification_code_sent">Verification code has been sent Successfully!</string>
+</resources>
